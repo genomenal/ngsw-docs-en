@@ -1,0 +1,24 @@
+---
+sidebar_position: 1
+sidebar_label: Pair of tumor/normal samples
+---
+
+# Pair of tumor/normal samples
+
+:::info
+Normal sample is a sample of non-tumor-bearing healthy tissue.
+:::
+
+Having the results of sequencing of tumor and normal tissues of the same patient, the Genomenal platform can be used for:
+1. Analysis of somatic mutations (SNV/Indels) in a tumor sample and hereditary (germline) mutations (SNV/Indels) in a normal sample;
+2. Analysis of structural variations - for each sample from a pair;
+3. Analysis of copy number variations (CNV) - for each sample from a pair.
+
+If you have a pair of tumor/normal samples, then this section is for you.
+
+:::danger Attention!
+If you want to analyze germline or somatic mutations in a single tumor sample (without a matched healthy tissue sample), go to [the corresponding section](/uploading-samples/tumor-only/tumor-sample).
+This is important, since the discovery algorithm of germline mutations in tumor takes into account a large number of somatic mutations occurring in such tissues and tries to filter them.
+:::
+
+For this pipeline, use sample files in **FASTQ** and **BAM** formats.

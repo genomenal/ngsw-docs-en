@@ -1,0 +1,11 @@
+---
+sidebar_position: 1
+sidebar_label: Workflow details
+---
+
+# Workflow details
+
+You can get detailed information about the processing of your samples, the status of the stages, as well as download intermediate data in the "**Workflow details**" section.
+To open a section, click on the corresponding tab on the sample page:
+
+![Workflow details](/img/eng/18-workflow-details.png)
