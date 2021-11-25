@@ -20,7 +20,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                     routeBasePath: '/',
                     homePageId: 'intro',
                     sidebarPath: require.resolve('./sidebars.js'),
-                    // editUrl: 'https://github.com/RoadRoller/ngsw-docs-en/edit/master/website/',
+                    // editUrl: 'https://github.com/genomenal/ngsw-docs-en/edit/master/website/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
