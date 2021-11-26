@@ -14,7 +14,7 @@ Genomenal supports FASTQ, BAM, VCF, TXT, TSV file formats:
 5. Tab-delimited files with genotype data (**TXT**, **TSV** formats).
 
 :::info
-Genomenal can recognize compressed files (GZ, ZIP, BZ2, SEVEN_ZIP, XZ, WIM, RAR).
+Genomenal can recognize compressed files (GZIP, ZIP, BZIP2, 7-ZIP, XZ, WIM, RAR).
 :::
 
 :::tip
