@@ -11,17 +11,17 @@ If you would like to perform prenatal genetic testing with Genomenal, then this 
 
 When you first open Genomenal, you will see a login page. Enter your login and password if you already have an account or sign up.
 
-Click on “**Add Patient**” to create a patient card.
+Click on “**Add Patient**” to create a patient entry.
 
 :::info
-A Patient, or Proband, is a person from whom samples were taken for analysis.
+A Patient, or Proband, is a person the samples were taken from.
 :::
 
 <p align="center">
 <img src={require('/img/eng/2-add-patient-button.png').default} width="700"/>
 </p>
 
-Only the **Patient ID** field is required. You can fill out the details later on this patient's personal page. Click on “**Create**”.
+Only the **Patient ID** field is required. You can fill out the details later on this patient's personal page. Click on “**Create**” to proceed.
 
 <p align="center">
 <img src={require('/img/eng/3-add-patient.png').default} height="400"/>
@@ -35,7 +35,7 @@ You will see the patient page.
 
 ### 2. Upload Samples
 
-Select sample file(s) to analyze. In the simplest case, the sample is a paired-end sequencing in FASTQ format.
+Select sample file(s) to analyze. Commonly, the sample is a paired-end sequencing data in FASTQ format.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -74,7 +74,7 @@ After uploading samples, you can fill out the patient card. We recommend filling
 Click on “**Submit Samples**” to start sample analysis.
 
 :::danger Attention!
-If you upload sample files from a computer, and not by a link, then do not close the tab where files are being uploaded until it is completed. Otherwise, the uploading will be interrupted. After the uploading stage, you can close the tab, the browser and turn off the computer - further analysis does not depend on your device.
+If you upload sample files from a computer, and not by a link, do not close the tab where files are being uploaded until it is completed. Otherwise, the uploading will be interrupted. After the uploading stage, you can close the tab, the browser and turn off the computer - further analysis does not depend on your device.
 :::
 
 You can see that the sample analysis is complete when all stage statuses are green or orange:
