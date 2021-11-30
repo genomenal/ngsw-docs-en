@@ -9,7 +9,8 @@ If you would like to perform prenatal genetic testing with Genomenal, then this 
 
 ### 1. Create Patient
 
-When you first open Genomenal, you will see a login page. Enter your login and password if you already have an account or sign up.
+import PartialExample from './_login.mdx';
+<PartialExample/>;
 
 Click on “**Add Patient**” to create a patient card.
 
