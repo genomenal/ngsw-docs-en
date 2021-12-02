@@ -1,0 +1,74 @@
+---
+sidebar_position: 2
+sidebar_label: Quick start for prenatal genetic testing
+---
+
+# Quick start for prenatal genetic testing
+
+If you would like to perform prenatal genetic testing with Genomenal, then this section is for you.
+
+### 1. Create Patient
+
+import Login from '/docs/imported_components/_login.mdx';
+
+<Login />
+
+import PatientInfo from '/docs/imported_components/_patient_def.mdx';
+
+<PatientInfo />
+
+Click on “**Add Patient**” to create a patient entry.
+
+import PatientPage from '/docs/imported_components/_patient_page.mdx';
+
+<PatientPage />
+
+### 2. Upload Samples
+
+Select sample file(s) to analyze. Commonly, the sample is a paired-end sequencing data in FASTQ format.
+
+import UploadFiles from '/docs/imported_components/_upload_files_from_different_sources.mdx';
+
+<UploadFiles />
+
+import FillCard from '/docs/imported_components/_fill_out_patient_card.mdx';
+
+<FillCard />
+
+### 3. Start Analysis
+
+Click on “**Submit Samples**” to start sample analysis.
+
+import DangerUploading from '/docs/imported_components/_danger_while_uploading.mdx';
+
+<DangerUploading />
+
+You can see that the sample analysis is complete when all stage statuses are green or orange:
+
+<p align="center">
+<img src={require('/img/eng/7a-stage-statuses.png').default} width="150"/>
+</p>
+
+### 4. Analysis Results
+
+When the analysis is complete, you can examine the results. Open the sample page by clicking on sample row:
+
+<p align="center">
+<img src={require('/img/eng/7b-sample-row.png').default} width="700"/>
+</p>
+
+Then click on the **CNV Report** tab and explore the report.
+
+<p align="center">
+<img src={require('/img/eng/33-cnv-report-chr21.png').default} width="700"/>
+</p>
+
+import SampleCNVReport from '/docs/imported_components/_sample_cnv_report.mdx';
+
+<SampleCNVReport />
+
+Report can be exported to PDF.
+
+In addition, you can view the analysis results of all patient samples. You can find information on how to do this [here](/results/cnv-report/patient-cnv-report).
+
+Further, [here](/sample-examples/normal-no-cnvs) you can find examples of prenatal genetic testing results for samples of different quality.

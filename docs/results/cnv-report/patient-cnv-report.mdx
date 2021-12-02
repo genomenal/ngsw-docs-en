@@ -5,15 +5,19 @@ sidebar_label: CNV Report for the patient
 
 # CNV Report for the patient
 
-Report is located on the **"CNV Report"** tab at the patient page.
+import CNVReportLocation from '/docs/imported_components/_cnv_report_location.mdx';
+
+<CNVReportLocation location="tab at the patient page" />
 
 <p align="center">
 <img src={require('/img/eng/34-cnv-report-tab.png').default} width="800"/>
 </p>
 
-The **“Result”** section includes a report about the presence or absence of a deviation from the normal copy number in any chromosome in all patient samples.
+import CNVReportResult from '/docs/imported_components/_cnv_report_result.mdx';
 
-The **“Interpretation of results and conclusions”** section contains a table with the following information on patient samples:
+<CNVReportResult samples="all patient samples" />
+
+The "**Interpretation of results and conclusions**" section contains a table with the following information on patient samples:
 
 1. Detected CNVs (reducing or increasing the number of copies in any chromosome)
 2. Sample coverage

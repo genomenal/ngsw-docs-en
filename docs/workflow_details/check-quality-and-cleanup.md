@@ -13,7 +13,10 @@ In the eponymous section of “Workflow details”, information about the thresh
 <img src={require('/img/eng/20-quality-control-report.png').default} width="300"/>
 </p>
 
-**The sequence quality control metrics**
+<details>
+<summary>Click to see the sequence quality control metrics</summary>
+
+#### The sequence quality control metrics
 
 <table>
   <tr>
@@ -113,3 +116,5 @@ In the eponymous section of “Workflow details”, information about the thresh
    </td>
   </tr>
 </table>
+
+</details>

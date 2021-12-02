@@ -12,9 +12,12 @@ Genome-wide CNV segments plot can be opened and downloaded in PNG format ![Plot 
 Karyogram-like graph with denoted chromosome-level CNVs can be opened and downloaded in PNG format ![Karyotype file](/img/eng/26_karyotype_file.png) .
 You can also open the module for visualization of variations on the genome in the embedded IGV ![IGV](/img/eng/27_igv.png) .
 
-**The AnnotSV CSV **is a table of annotated CNVs. They are presented both in the form of a full deletion or insertion, and in the form of genes overlapped by a deletion/insertion.
+**The AnnotSV CSV** is a table of annotated CNVs. They are presented both in the form of a full deletion or insertion, and in the form of genes overlapped by a deletion/insertion.
 
-**Main fields with annotated CNVs (AnnotSV CSV)**
+<details>
+<summary>Click to see the main fields of the AnnotSV CSV</summary>
+
+#### Main fields with annotated CNVs
 
 <table>
   <tr>
@@ -69,10 +72,14 @@ You can also open the module for visualization of variations on the genome in th
 
 A description of the remaining 54 annotation fields can be found here: [AnnotSV Manual](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf).
 
+</details>
 
 **The CNV coverage file **is an unannotated file in a format convenient for considering CNVs in large regions (chromosome arms, chromosomes).
 
-**Main fields of variation description (CNV coverage file)**
+<details>
+<summary>Click to see the main fields of the CNV coverage file</summary>
+
+#### Main fields of variation description
 
 <table>
   <tr>
@@ -161,6 +168,7 @@ A description of the remaining 54 annotation fields can be found here: [AnnotSV 
   </tr>
 </table>
 
+</details>
 
 **Genome-wide CNV segments plot (example)**
 

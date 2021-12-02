@@ -33,4 +33,6 @@ Result suitable for interpretation requires data on specific features of the gen
 
 ## 7. Generate CNV report
 
-At this stage, a report on the results of the analysis is generated. The report can be viewed on the **"CNV Report"** tab and constitutes a raw document summarizing variants detected for the processed sample.
+At this stage, a report on the results of the analysis is generated.
+The report can be viewed on [the "CNV Report" tab](/results/cnv-report/sample-cnv-report) and constitutes a raw 
+document summarizing variants detected for the processed sample.

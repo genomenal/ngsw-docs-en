@@ -1,0 +1,66 @@
+---
+sidebar_position: 3
+sidebar_label: Uploading samples for new patient
+---
+
+# Uploading samples for new patient
+
+import StartUpload from '/docs/imported_components/_add_patient.mdx';
+
+<StartUpload />
+
+Select the needed workflow setting (as described [here](/uploading-samples/tumor-only/to_preset)).
+
+Upload tumor sample(s) into the "TUMOR TISSUE" window:
+
+<p align="center">
+<img src={require('/img/eng/up_TO.png').default} width="700"/>
+</p>
+
+import SeveralSamples from '/docs/imported_components/_upload_several_samples.mdx';
+
+<SeveralSamples sample_type="tumor" />
+
+<p align="center">
+<img src={require('/img/eng/upload_tumor_only.png').default} height="250"/>
+</p>
+
+import UploadFiles from '/docs/imported_components/_upload_files_from_different_sources.mdx';
+
+<UploadFiles />
+
+#### Recognizing paired files
+
+import RecognizePair from '/docs/imported_components/_recognize_pair.mdx';
+
+<RecognizePair />
+
+### Filling out the patient card
+
+import FillCard from '/docs/imported_components/_fill_out_patient_card.mdx';
+
+<FillCard />
+
+<p align="center">
+<img src={require('/img/eng/3c-patient-page.png').default} width="850"/>
+</p>
+
+You can add the details later on this patient's personal page.
+
+### Sequencing type
+
+import SequencingType from '/docs/imported_components/_seq_type.mdx';
+
+<SequencingType />
+
+### Run analysis
+
+Click on "**Submit Samples**" to start the sample analysis.
+
+<p align="center">
+<img src={require('/img/eng/TO_upload.png').default} width="700"/>
+</p>
+
+import DangerUploading from '/docs/imported_components/_danger_while_uploading.mdx';
+
+<DangerUploading />

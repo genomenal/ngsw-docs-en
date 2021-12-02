@@ -20,4 +20,4 @@ At this stage, the position of the reads on the reference genome is determined. 
 
 ## 3. Calculate coverage
 
-For the quality control of alignment of the regions of interest (genes, transcripts), we calculate the coverage in the genome, as well as the average coverage in the target area (complete genome, exome, panel). The results of this stage can be seen on the **“Coverage Analysis”** tab.
+For the quality control of alignment of the regions of interest (genes, transcripts), we calculate the coverage in the genome, as well as the average coverage in the target area (complete genome, exome, panel). The results of this stage can be seen on [the "Coverage Analysis" tab](/results/coverage-analysis).

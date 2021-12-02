@@ -18,9 +18,12 @@ Reads count and their length before and after cleaning, and the reads percent re
 ### Quality Report
 
 This is a report on the sequence quality control metrics calculated at the “Check quality and cleanup” stage of the pipeline.
-A detailed report on metrics with visualization can be downloaded in the tab **“Workflow details” -> “Check quality and cleanup” -> “Check Quality” -> “Result files”**.
+A detailed report on metrics with visualization can be downloaded in the tab “**Workflow details**” -> “**Check quality and cleanup**” -> “**Check Quality**” -> “**Result files**”.
 
-**Description of metrics and thresholds**
+<details>
+<summary>Click to see description of metrics and thresholds</summary>
+
+#### Description of metrics and thresholds
 
 <table>
   <tr>
@@ -121,6 +124,7 @@ A detailed report on metrics with visualization can be downloaded in the tab **�
   </tr>
 </table>
 
+</details>
 
 ### Alignment Report
 
