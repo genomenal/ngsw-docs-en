@@ -74,7 +74,7 @@ A description of the remaining 54 annotation fields can be found here: [AnnotSV 
 
 </details>
 
-**The CNV coverage file **is an unannotated file in a format convenient for considering CNVs in large regions (chromosome arms, chromosomes).
+**The CNV coverage file** is an unannotated file in a format convenient for considering CNVs in large regions (chromosome arms, chromosomes).
 
 <details>
 <summary>Click to see the main fields of the CNV coverage file</summary>
