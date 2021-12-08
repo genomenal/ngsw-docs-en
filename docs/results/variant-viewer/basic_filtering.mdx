@@ -1,0 +1,121 @@
+---
+sidebar_position: 3
+sidebar_label: Basic filtering
+---
+
+# Basic filtering of variants
+
+Basic filtering options are at the top of the table:
+
+<p align="center">
+<img src={require('/img/vv/basic_filtering.png').default} width="900"/>
+</p>
+
+### Basic filtering options
+
+1. <font size="4"><b>Origin</b></font>: All, Somatic, Germline.
+Both here and in all subsequent cases, <b><i>the filtering algorithm</i></b> is as follows:
+- Click on the container:
+
+<p align="center">
+<img src={require('/img/vv/all.png').default} width="150"/>
+</p>
+
+- Select the needed filtering option, or type the option you are looking for in the search box and select from the found.
+- Done! Filter applied. The selected filter can be seen in the window (in this case, the "Somatic" origin is selected):
+
+<p align="center">
+<img src={require('/img/vv/set_option.png').default} width="150"/>
+</p>
+
+import HiddenOrigin from '/docs/imported_components/_origin_column.mdx';
+
+<HiddenOrigin />
+
+2. <font size="4"><b>Gene panel</b></font>.
+You can add your own gene panel on the "<b>Settings</b>" -> "<b>Gene panels</b>" page or
+import panels from the Library of common gene panels:
+
+<p align="center">
+<img src={require('/img/vv/gene_panel.png').default} width="300"/>
+</p>
+
+Select the needed panels in the opened window and click on "**Import**":
+
+<p align="center">
+<img src={require('/img/vv/impot_from_library.png').default} height="600"/>
+</p>
+
+3. <font size="4"><b>Gene</b></font>: gene transcript (shown in brackets) filtering.
+
+:::info
+If several transcripts are known for a gene, the list presents all:
+<p align="center">
+<img src={require('/img/vv/many_transcripts.png').default} height="400"/>
+</p>
+:::
+
+4. <font size="4"><b>HPO</b></font>: filtering by <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>.
+To use this filter, click on the container:
+
+<p align="center">
+<img src={require('/img/vv/hpo_all.png').default} width="150"/>
+</p>
+
+You will see the ontology term search box:
+
+<p align="center">
+<img src={require('/img/vv/hpo_search.png').default} width="800"/>
+</p>
+
+The drop-down list contains the main term groups.
+Вы можете отфильтровать варианты как по целой группе, так и по конкретному термину.
+You can filter variants either by the whole group or by a specific term.
+The term can be found in the group's list of terms, or by searching by name or ID from [Human Phenotype Ontology](https://hpo.jax.org/app/).
+For example, a search for the term “glioma” found several terms:
+
+<p align="center">
+<img src={require('/img/vv/glioma_search.png').default} width="800"/>
+</p>
+
+Selecting one of them (for instance, "Glioma"), you will see this term page:
+
+<p align="center">
+<img src={require('/img/vv/glioma_page.png').default} width="800"/>
+</p>
+
+On the right, there are the term definition and a comment.
+In the middle, there is the hierarchy of the term: the terms above the selected Glioma
+term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
+and the terms below Glioma are its child terms.
+On the right, there are the genes associated with this term (in this case, 45 genes were found).
+
+If you want to filter the variants by these genes, then click **OK**.
+To ***cancel filtering***, click on the cross next to the HPO filtering field:
+
+<p align="center">
+<img src={require('/img/vv/cancel_hpo.png').default} width="150"/>
+</p>
+
+5. <font size="4"><b>Min depth level</b></font> is filtering by sequencing depth.
+You can vary the level using both the plus/minus and the slider.
+
+<p align="center">
+<img src={require('/img/vv/seq_depth.png').default} width="350"/>
+</p>
+
+6. <font size="4"><b>Saved filter</b></font>.
+You can read how to save filter <a href="/results/variant-viewer/advanced_filtering#saving-a-query">here</a>.
+To see a list of your saved filters, click on the "-" line:
+
+<p align="center">
+<img src={require('/img/vv/saved_query_options.png').default} width="150"/>
+</p>
+
+### Filtering reset
+
+To clear ***all*** filters, click on <img src={require('/img/vv/clear_filters.png').default} width="40"/>.
+To reset an ***individual filter***:
+- select "**All**" option (to reset ORIGIN, GENE PANEL, GENE)
+- click on the "**cross**" (to reset HPO)
+- select “**-**” (to reset SAVED FILTER)
