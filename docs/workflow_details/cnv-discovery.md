@@ -29,7 +29,7 @@ For a complete and effective interpretation of the CNV effect on the phenotype, 
 
 ## 6. Evaluating and visualizing biological features
 
-Result suitable for interpretation requires data on specific features of the genome instead of chromosome coordinates. At this stage, computed copy number deviations on the genome are used to find CNVs in biological features like chromosome arms or genes, depending on the analysis configuration. Additionally, visualization of the calls is done at this stage.
+Interpretation requires CNV calls relative to specific features of the genome (e.g. chr1, EGFR etc). At this stage, computed copy number deviations in specific genomic regions are used to compile a table of results for chromosome arms or genes, depending on the analysis configuration. Additionally, visualization of the calls is done at this stage.
 
 ## 7. Generate CNV report
 
