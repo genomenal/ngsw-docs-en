@@ -13,7 +13,9 @@ Bioinformatic report has collected the main metrics that will help control the q
 
 ### File statistics
 
-Reads count and their length before and after cleaning, and the reads percent retained after cleaning. A large number of filtered reads and a large decrease in length indicate a low quality of the source data.
+Reads count and length before and after cleaning, and the reads
+percent retained after cleaning. A large fraction of filtered reads and
+length shortening indicate low quality of the source data.
 
 ### Quality Report
 
@@ -128,4 +130,6 @@ A detailed report on metrics with visualization can be downloaded in the tab “
 
 ### Alignment Report
 
-Metrics describing the alignment quality. If there are a large number of sequencing errors, incomplete data, high levels of contamination, or incorrect identification of the sample source (organism), the metrics will indicate a possible problem.
+Metrics of generated read alignment onto human genome. Low percentage
+of mapped reads. Of special notice is the percent of mapped. Low mapped 
+reads fraction usually indicates problems in sample preparation.

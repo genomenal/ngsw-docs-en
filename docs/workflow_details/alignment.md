@@ -5,7 +5,7 @@ sidebar_label: Alignment
 
 # Alignment
 
-To call variants, reads must be mapped to a reference genome. At Genomenal, we use the most recent version of [GRCh38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26/) genome.
+To call variants, reads must be mapped to a reference genome. NGSWizard uses [GRCh38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26/) aka hg38 genome build.
 The process goes through several stages.
 
 
@@ -16,7 +16,7 @@ When using paired-end sequencing, each read from one file should contain a pair 
 
 ## 2. Alignment
 
-At this stage, the position of the reads on the reference genome is determined. Genomenal uses [BWA Burrows-Wheeler Aligner](http://bio-bwa.sourceforge.net/) (MEM algorithm), a de facto standard tool for this purpose.
+At this stage, the position of the reads on the reference genome is determined. Genomenal uses [BWA Burrows-Wheeler Aligner](http://bio-bwa.sourceforge.net/) (MEM algorithm), a _de facto_ standard tool for this purpose.
 
 ## 3. Calculate coverage
 

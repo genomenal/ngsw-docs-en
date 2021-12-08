@@ -1,14 +1,14 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::tip The sample files can be uploaded:
+:::tip Uploading genomic data files:
 
 <Tabs
   defaultValue="pc"
   values={[
-    {label: 'From computer', value: 'pc'},
-    {label: 'From FTP, HTTP or Yandex Disk servers', value: 'url'},
-    {label: 'From the NCBI SRA database', value: 'sra'}]}>
+    {label: 'Local files', value: 'pc'},
+    {label: 'Remote files via FTP, HTTP or Yandex Disk', value: 'url'},
+    {label: 'Via SRA accession', value: 'sra'}]}>
   <TabItem value="pc"><p align="center">To upload, drag and drop files or folder containing files into the drop-area or click on it to open the File Browser:<br />
   	<img src={require('/img/eng/9-drag-drop-box.png').default} width="300"/></p>
   </TabItem>
