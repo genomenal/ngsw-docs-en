@@ -42,9 +42,10 @@ By default, the table has the following columns (the set and order of the column
 1. **LOCUS** is the common name of the gene in which the variant is located.
 2. **ORIGIN** is a mutation type (somatic or germline).
 
-import HiddenOrigin from '/docs/imported_components/_origin_column.mdx';
-
-<HiddenOrigin />
+:::info
+"Origin" column is hidden in [Variant Viewer with germline mutations](/results/variant-viewer/variant-viewer)
+and in Variant Viewer with somatic mutations if "Origin Somatic" filter is on.
+:::
 
 3. **POSITION** is the coordinates of the variant in the genome (chromosome + start position).
 4. **HGVSP** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
