@@ -35,6 +35,100 @@ The main object of the Variant Viewer is a table with variants - each variant on
 <img src={require('/img/vv/snv_row.png').default} width="950"/>
 </p>
 
+### Variant information
+
+Besides of the information presented in the table (see
+[Description of table columns](/results/variant-viewer/variant-viewer#description-of-table-columns)), for each variant
+there are several built-in modules with additional information:
+
+1. **Variant detailed information panel**. Click on the variant row to see a panel:
+
+<p align="center">
+<img src={require('/img/vv/details_panel.png').default} width="950"/>
+</p>
+
+You can read more about the panel and its tabs in [the corresponding section](/results/variant-viewer/snv_details_panel).
+
+2. **Variant detailed information page** - here you can add the variant interpretation, include the variant to the
+report, and much more. Click on the highlighted button in the variant line to open the page:
+
+<p align="center">
+<img src={require('/img/vv/var_det_page_btn.png').default} width="950"/>
+</p>
+
+3. **ACMG Classification** - is a page with the criteria developed by [ACMG](https://www.acmg.net/) for the variant
+interpretation. Click on the highlighted button in the variant line to open the page:
+
+<p align="center">
+<img src={require('/img/vv/acmg_var_btn.png').default} width="900"/>
+</p>
+
+4. **Variant visualization module (IGV)**. Click on the IGV button in the variant line to open the built-in module:
+
+<p align="center">
+<img src={require('/img/vv/igv_var.png').default} width="950"/>
+</p>
+
+### Pinning variants
+
+The variants you want can be pinned. Click on the paperclip in the variant line to pin it:
+
+<p align="center">
+<img src={require('/img/vv/pin_variant.png').default} width="950"/>
+</p>
+
+The pinned variant will appear at the top of the table (the row highlighted in blue):
+
+<p align="center">
+<img src={require('/img/vv/pinned_variant.png').default} width="950"/>
+</p>
+
+:::info
+Variant pinning remains when leaving the Variant Viewer page.
+:::
+
+### Sorting and filtering variants
+
+You can ***sort*** the table in ascending or descending order of the values of the LOCUS, ORIGIN, POSITION, EXON,
+DEPTH, CONSEQUENCE, IMPACT, GNOMAD AF, ACMG columns. Click on the name of the corresponding column to sort by it
+(one click to sort in ascending order, two clicks - in descending order).
+
+***Filtering of variants*** in Variant Viewer is described in the
+[Basic filtering](/results/variant-viewer/basic_filtering) and
+[Advanced filtering](/results/variant-viewer/advanced_filtering) sections.
+
+### Export of variants
+
+Variant Viewer allows you to export variants in CSV format:
+
+<p align="center">
+<img src={require('/img/vv/export.png').default} width="950"/>
+</p>
+
+- ***Export of all variants***: click on <img src={require('/img/vv/export_btn.png').default} width="100"/> and select
+the "All to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/all_to_csv.png').default} width="230"/>
+</p>
+
+- ***Export of only filtered variants***: filter the variants you want by
+[Basic](/results/variant-viewer/basic_filtering) or [Advanced](/results/variant-viewer/advanced_filtering)
+filtering, then click on <img src={require('/img/vv/export_btn.png').default} width="100"/> and select
+the "All to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/all_to_csv.png').default} width="230"/>
+</p>
+
+- ***Export of only pinned variants***: [pin](/results/variant-viewer/variant-viewer#pinning-variants)
+the variants you want, then click on <img src={require('/img/vv/export_btn.png').default} width="100"/> and select
+the "Pinned only to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/only_pinned.png').default} width="230"/>
+</p>
+
 ### Description of table columns
 
 By default, the table has the following columns (the set and order of the columns can be changed):
