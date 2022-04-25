@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 sidebar_label: Getting to know the service
 ---
 
@@ -9,22 +9,359 @@ import Login from '/docs/imported_components/_login.mdx';
 
 <Login />
 
-Next you will see the main page listing the patients. If you have not previously used the service, the page will be empty. There is a search bar at the top to help you navigate through the patient pages.
+Next, you will see the main page of the service - “**All Patients**”.
+If you have not previously used the service, the page will be empty.
+
+<p align="center">
+<img src={require('/img/eng/no_patients_page.png').default} width="1000"/>
+</p>
+
+Further you will see here all the patients added to the account at the moment.
 
 <p align="center">
 <img src={require('/img/eng/1-all-patients-page.png').default} width="1000"/>
 </p>
 
-You can see various sections of the service in the navigation bar on the left. The bar contains the **“In process”** section, where there will be only those patients with samples being currently processed; the **“Problems”** section, where there will be only those patients with problems during data processing. You can transfer irrelevant data or data for later deletion to the **“Archive”** section.
+You can see the following sections of the service in the navigation sidebar on the left
+(lift-click on the corresponding page name to go to the required section):
 
-Patients can be grouped into **cohorts**, for example, by type of pathology or data source. By selecting a cohort in the navigation bar on the left, you can see only patients belonging to that cohort.
+1. The "***Patients***" section, which includes the following pages:
+- "***All Patients***" - contains all patients added to the system and their data.
+- “***In Progress***” - contains those patients whose data is being currently processed.
+- “***Problems***” - contains those patients with data processing problems or with peculiar data.
+- “***Archive***” - contains those patients whose data has been archived. You can transfer irrelevant data or
+data for later deletion here. Archived patients are not displayed on the "All Patients" page.
 
-Various global configuration options can be accessed in the **“Settings”** section. Here you can add sets of genes, which you can later use to filter the analysis results (**“Gene panels”** section). When creating a panel, you can select genes from a list of all genes, or import the prepared gene list as text (for example TP53, BRCA1, EGFR). Alternatively, you can select a panel from a library of the most common clinical panels and the genes will be imported from there automatically. This can significantly speed up further data interpretation if you are only interested in a narrow range of genes within a specific pathology or group of pathologies.
+<details>
+<summary>Click here to learn more about presenting information on the "Patients" section pages</summary>
 
-Often the data analyzed is prepared by targeted sequencing (WES,
-disease-specific gene panels, etc.).  NGS Wizard attempts to detect if
-one of the widely adopted commercial kits was used. However, if it's not
-the case or detection fails, you can upload sequenced
-regions (BED file) in the **“Capture kits”** section (make sure
-that you have correctly specified the assembly of the reference genome
-when uploading the BED file).
+#### The "Patients" section pages present the table with the following columns:
+
+- "PATIENT" - contains information about created patients (ID, first name, last name);
+- "STATUS" - contains information about the statuses of uploaded samples of each
+patient: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
+progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
+success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
+problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
+- "SAMPLES" - contains information about the uploaded samples of each
+patient: <img src={require('/img/eng/in_process_sample.png').default} width="22"/> - tumor sample in
+progress; <img src={require('/img/eng/tumor_success.png').default} width="20"/> - successfully processed
+tumor sample; <img src={require('/img/eng/tumor_problems.png').default} width="20"/> - tumor
+sample with problems; <img src={require('/img/eng/tumor_failed.png').default} width="20"/> - failed
+tumor sample; <img src={require('/img/eng/normal_in_process.png').default} width="20"/> - normal
+sample in progress; <img src={require('/img/eng/normal_success.png').default} width="20"/> - successfully
+processed normal sample; <img src={require('/img/eng/normal_problems.png').default} width="20"/> -
+normal sample with problems; <img src={require('/img/eng/normal_failed.png').default} width="20"/> -
+failed normal sample;
+- "COHORT" - contains the cohort name of the patient;
+- "CREATED" - contains the date of the patient creation in the format "month day, year";
+- "MODIFIED" - contains the date of the last change in the patient data in the format "month day, year".
+
+If you hover over a patient's row on the "<i>All Patients</i>", "<i>In Progress</i>" or "<i>Problems</i>" pages,
+you will see the following active
+elements: <img src={require('/img/eng/upload_in_patient.png').default} width="20"/> to upload patient
+data and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to archive it.
+
+If you hover over a patient's row on the "<i>Archive</i>" page,
+you will see the following active
+elements: <img src={require('/img/eng/restore_btn.png').default} width="22"/> to restore patient
+data and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete it.
+
+You can search for patients by ID or name using a search box at the top of the section pages:
+<p align="center"><img src={require('/img/eng/search_patient.png').default} width="400"/></p>
+
+There are following buttons at the top of the "<i>All Patients</i>", "<i>In Progress</i>" and "<i>Problems</i>"
+pages: <img src={require('/img/eng/upload_samples_btn.png').default} width="150"/> to upload multiple
+data for different patients
+and <img src={require('/img/eng/add_patient_btn.png').default} width="150"/> to <a href="/add_patient">add patient</a>.
+
+At the top of the "<i>Archive</i>" page there is
+a button <img src={require('/img/eng/clear_archive_btn.png').default} width="150"/> to delete all archived patient data.
+
+</details>
+
+2. The "***Runs***" section which includes the following pages:
+- "***Runs***" - contains all runs added to the system and their data.
+- “***Archive***” - contains those runs whose data has been archived. You can transfer irrelevant data or
+data for later deletion here. Archived runs are not displayed on the "Runs" page.
+
+<details>
+<summary>Click here to learn more about presenting information on the "Runs" section pages</summary>
+
+#### The "Runs" section pages present the table with the following columns:
+
+- «RUN» - contains the names of the created runs;
+- «SAMPLE STATUS» - contains information about the number of uploaded samples that are in a certain status for
+each run: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
+progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
+success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
+problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
+- "CREATED" - contains the date of the run creation in the format "month day, year";
+- "MODIFIED" - contains the date of the last change in the run data in the format "month day, year".
+
+If you hover over a run's row on the "<i>Runs</i>" page,
+you will see an active element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to archive run data.
+
+If you hover over a run's row on the "<i>Archive</i>" page,
+you will see the following active
+elements: <img src={require('/img/eng/restore_btn.png').default} width="22"/> to restore run
+data and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete it.
+
+You can search for run by name or description using a search box at the top of the section pages:
+<p align="center"><img src={require('/img/eng/search_run.png').default} width="400"/></p>
+
+At the top of the "<i>Runs</i>" page there is
+a button <img src={require('/img/eng/add_run.png').default} width="150"/> to create run.
+
+At the top of the "<i>Archive</i>" page there is
+a button <img src={require('/img/eng/clear_archive_btn.png').default} width="150"/> to delete all archived run data.
+
+</details>
+
+3. The "***Group analysis***" section, which includes the following pages:
+- "***All analyses***" - contains all group analyses created in the system.
+- “***Archive***” - contains those group analyses which have been archived. You can transfer irrelevant analyses or
+analyses for later deletion here. Archived analyses are not displayed on the "All analyses" page.
+
+<details>
+<summary>Click here to learn more about presenting information on the "Group analysis" section pages</summary>
+
+#### The "Group analysis" section pages present the table with the following columns:
+
+- «NAME» - contains the group analysis name;
+- «STATUS» - contains information about the group
+analysis status: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
+progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
+success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
+problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
+- «TYPE» - contains information about the group analysis type (germline cohort);
+- «DESCRIPTION» - contains the group analysis description;
+- "MODIFIED" - contains the date of the last change of the group analysis in the format "month day, year".
+
+If you hover over a group analysis's row on the "<i>All analyses</i>" page,
+you will see an active element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to archive group
+analysis data.
+
+If you hover over a group analysis's row on the "<i>Archive</i>" page,
+you will see the following active
+elements: <img src={require('/img/eng/restore_btn.png').default} width="22"/> to restore group
+analysis and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete it.
+
+At the top of the "<i>All analyses</i>" page there is
+a button <img src={require('/img/eng/add_group_analysis_btn.png').default} width="150"/> to create group analysis.
+
+At the top of the "<i>Archive</i>" page there is
+a button <img src={require('/img/eng/clear_archive_btn.png').default} width="150"/> to delete all archived group
+analyses.
+
+</details>
+
+4. The "***Cohorts***" section contains links to the pages of added cohorts and a
+button <img src={require('/img/eng/add_cohort.png').default} width="20"/> for adding a cohort.
+Patients can be grouped into a cohort by some common feature (for example, by pathology type or data source).
+If there are no cohorts added, then the section contains a window for grouping patients into cohorts:
+
+<p align="center">
+<img src={require('/img/eng/cohorts_empty.png').default} width="170"/>
+</p>
+
+After adding cohorts, links to their pages appear in the section.
+A cohort page contains only data of patients included in this cohort:
+
+<p align="center">
+<img src={require('/img/eng/cohorts_added.png').default} width="170"/>
+</p>
+
+If you hover over a cohort's row on the navigation sidebar, you will see an
+element <img src={require('/img/eng/cohort_options.png').default} width="22"/>. If you click on it, you will see
+the options "***Edit***" (opens the cohort editing window) and "***Delete***" (deletes the cohort).
+Please note that deleting a cohort does not delete the data of patients included in it.
+
+<p align="center">
+<img src={require('/img/eng/cohort_options_list.png').default} width="170"/>
+</p>
+
+<details>
+<summary>Click here to learn more about presenting information on the cohort pages</summary>
+
+#### The cohort pages present the table with the following columns:
+
+- "PATIENT" - contains information about created patients (ID, first name, last name);
+- "STATUS" - contains information about the statuses of uploaded samples of each
+patient: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
+progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
+success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
+problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
+- "SAMPLES" - contains information about the uploaded samples of each
+patient: <img src={require('/img/eng/in_process_sample.png').default} width="22"/> - tumor sample in
+progress; <img src={require('/img/eng/tumor_success.png').default} width="20"/> - successfully processed
+tumor sample; <img src={require('/img/eng/tumor_problems.png').default} width="20"/> - tumor
+sample with problems; <img src={require('/img/eng/tumor_failed.png').default} width="20"/> - failed
+tumor sample; <img src={require('/img/eng/normal_in_process.png').default} width="20"/> - normal
+sample in progress; <img src={require('/img/eng/normal_success.png').default} width="20"/> - successfully
+processed normal sample; <img src={require('/img/eng/normal_problems.png').default} width="20"/> -
+normal sample with problems; <img src={require('/img/eng/normal_failed.png').default} width="20"/> -
+failed normal sample;
+- "COHORT" - contains the cohort name of the patient;
+- "CREATED" - contains the date of the patient creation in the format "month day, year";
+- "MODIFIED" - contains the date of the last change in the patient data in the format "month day, year".
+
+If you hover over a patient's row, you will see the following active
+elements: <img src={require('/img/eng/upload_in_patient.png').default} width="20"/> to upload patient
+data and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to archive it.
+
+You can search for patients included in the cohort by ID or name using a search box at the top of the cohort page:
+<p align="center"><img src={require('/img/eng/search_patient.png').default} width="400"/></p>
+
+There are following buttons at the top of the cohort
+pages: <img src={require('/img/eng/upload_samples_btn.png').default} width="150"/> to upload multiple
+data for different patients, <img src={require('/img/eng/consolidate_cohort_btn.png').default} width="150"/> to
+create a group analysis of the samples of the patients included in the cohort
+and <img src={require('/img/eng/add_patient_btn.png').default} width="150"/> to <a href="/add_patient">add patient</a>.
+
+</details>
+
+
+
+5. The "***Settings***" section, which includes the following pages with various global configuration options:
+- "***Settings presets***" - contains preset settings for sample analysis.
+
+:::info
+The number and type of preset settings depends on the initial settings made by the System administrator.
+:::
+
+<details>
+<summary>Click here to learn more about presenting information on the "Settings presets" page</summary>
+
+#### The "Settings presets" page presents the table with the following columns:
+
+- «SETTINGS PRESET» - contains the settings preset name;
+- «DESCRIPTION» - contains the settings preset description;
+- «DEFAULT» - the settings preset that contains the
+checkmark <img src={require('/img/eng/default_setting.png').default} width="20"/> is selected by default for sample
+analysis;
+- "MODIFIED" - contains the date of the last change in the settings preset in the format "month day, year".
+
+If you hover over a settings preset's row, you will see the following active
+elements: <img src={require('/img/eng/set_as_default.png').default} width="20"/> to set a default preset
+and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to archive preset.
+
+At the top of the page there is
+a button <img src={require('/img/eng/add_setting.png').default} width="190"/> to create settings preset.
+
+</details>
+
+- "***Report templates***" - contains report templates designed to present the results of sample analysis in the form
+of reports.
+
+<details>
+<summary>Click here to learn more about presenting information on the "Report templates" page</summary>
+
+#### The "Report templates" page presents the table with the following columns:
+
+- «NAME» - contains the report name (names the report tab on the sample page);
+- «DESCRIPTION» - contains the report template description;
+- «APPLICABLE TO SAMPLES» - contains information about the type of samples to which the template is applicable:
+Any, Tumor, or Normal;
+- «ACTIVE» - those report templates that contain the
+checkmark <img src={require('/img/eng/default_setting.png').default} width="20"/> are active (so they will be
+used in the presentation of the results of the analysis of the samples of the corresponding type);
+- "MODIFIED" - contains the date of the last change in the report template in the format "month day, year".
+
+If you hover over a report template's row, you will see an active
+element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete template.
+
+At the top of the page there are the following
+buttons: <img src={require('/img/eng/template_import.png').default} width="170"/> to import report template
+and <img src={require('/img/eng/add_template.png').default} width="170"/> to create a template.
+
+</details>
+
+- "***Gene panels***" - contains gene sets, which you can use to filter the analysis results. This can significantly
+speed up further data interpretation if you are only interested in a narrow range of genes within a specific
+pathology or group of pathologies.
+
+<details>
+<summary>Click here to learn more about presenting information on the "Gene panels" page</summary>
+
+#### The "Gene panels" page presents the table with the following columns:
+
+- «GENE PANEL» - contains the gene panel name;
+- «DESCRIPTION» - contains the gene panel description.
+
+If you hover over a gene panel's row, you will see an active
+element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete panel.
+
+At the top of the page there are the following
+buttons: <img src={require('/img/eng/add_gene_panel.png').default} width="170"/> to create a panel
+by selecting genes from a list of all genes or adding genes associated with a specific term
+from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>,
+and <img src={require('/img/eng/import_gene_list.png').default} width="170"/> to create a panel by importing the
+prepared gene list, and <img src={require('/img/eng/import_from_library.png').default} width="170"/> to import a panel
+from the library of the most common clinical panels uploaded by the System administrator.
+
+</details>
+
+- "***Capture kits***" - contains built-in and uploaded capture kits that can be specified when uploading
+targeted sequencing results for more accurate and faster analysis.
+
+<details>
+<summary>Click here to learn more about presenting information on the "Capture kits" page</summary>
+
+#### The "Capture kits" page presents the table with the following columns:
+
+- «NAME» - contains the capture kit name (the name of uploaded capture kit file). If you click on the
+capture kit name, you can download the capture kit file in BED format;
+- «TYPE» - contains information about the type of capture kit: Built-in, or Custom (uploaded by user);
+- «LENGTH» - contains information about the total length of the capture kit across all genomic intervals.
+
+If you hover over a capture kit's row, you will see the following active
+elements: <img src={require('/img/eng/download_kit.png').default} width="20"/> to download the uploaded capture kit
+file (file before the processing) in BED
+format, and <img src={require('/img/eng/delete_btn.png').default} width="18"/> to delete capture kit.
+
+At the top of the page there is a button <img src={require('/img/eng/upload_ck_btn.png').default} width="170"/> to
+upload capture kit file.
+
+</details>
+
+- "***Custom annotations***" - contains the uploaded annotations by which the discovered variants will be annotated.
+You can read more about custom annotations [here](/custom-annotations).
+
+<details>
+<summary>Click here to learn more about presenting information on the "Custom annotations" page</summary>
+
+#### The "Custom annotations" page presents the table with the following columns:
+
+- «NAME» - contains the custom annotation name (can be set or changed until the annotation is successfully processed,
+otherwise matches the name of the uploaded annotation file);
+- "STATUS" - contains information about the statuses of uploaded
+annotations: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
+progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
+success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
+problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
+- «TYPE» - if the annotation has <img src={require('/img/eng/cosmic.png').default} width="100"/> type it is used as
+COSMIC base; if the annotations have <img src={require('/img/eng/pathogenicity.png').default} width="130"/> type they
+are used as pathogenicity base (data on the variant pathogenicity);
+- "MODIFIED" - contains the date of the last change in the custom annotation in the format "month day, year".
+
+If you hover over a custom annotation's row, you will see an active
+element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to to delete annotation.
+
+At the top of the page there is a button <img src={require('/img/eng/upload_custom_annot.png').default} width="170"/> to
+add custom annotation.
+
+</details>
+
+You can see the user login at the bottom of the navigation sidebar. If you hover over it and click on the appeared
+element <img src={require('/img/eng/cohort_options.png').default} height="20"/>, you will see the user menu:
+
+<p align="center">
+<img src={require('/img/eng/user_options.png').default} width="200"/>
+</p>
+
+- "***Profile***" - opens your profile page where you can find and change your account settings;
+- "***Report a problem***" - opens a window for sending information about your problem to the System administrator;
+- "***About***" - opens a window with information about the Program, including information about the versions of
+server, client and annotation databases;
+- "***Log out***" - logs the user out of the System.

@@ -70,9 +70,9 @@ To change the column position in the table, click on the row of the column
 <img src={require('/img/vv/change_order.png').default} width="400"/>
 </p>
 
-and change its order using the arrows. If you want to put the column closer to the beginning, click on
-<img src={require('/img/vv/up.png').default} width="40"/>, and if closer to the end, click on
-<img src={require('/img/vv/down.png').default} width="40"/>.
+and change its order using the arrows. If you want to put the column closer to the beginning, 
+click on <img src={require('/img/vv/up.png').default} width="40"/>, and if closer to the end, 
+click on <img src={require('/img/vv/down.png').default} width="40"/>.
 
 ### Applying
 
