@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     baseUrl: '/ngsw-docs-en/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    favicon: 'img/favicon.png',
     organizationName: 'genomenal', // Usually your GitHub org/user name.
     projectName: 'ngsw-docs-en', // Usually your repo name.
 
