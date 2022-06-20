@@ -1,0 +1,96 @@
+---
+sidebar_position: 1
+sidebar_label: Settings presets
+---
+
+# Settings presets
+
+A settings preset is a set of analysis parameters that can be applied to samples as they are uploaded.
+This is useful if you plan to frequently use the same analysis settings to analyze multiple samples.
+You can edit and create your own settings presets on the Settings presets page.
+There you can remove or add entire analysis modules and change their thresholds.
+
+To open the section with settings presets, go to the "**Settings presets**" page from the section "Settings"
+via the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/custom-annot/settings_page.png').default} width="900"/>
+</p>
+
+:::info
+The number and type of preset settings depends on the initial settings made by the System administrator.
+:::
+
+### Create settings preset
+
+1. Click on <img src={require('/img/eng/add_setting.png').default} width="200"/> to open the form for a preset adding.
+
+2. In the opened form, enter settings preset name in the **Name** field.
+You can also add a settings preset description if you like.
+
+<p align="center">
+<img src={require('/img/custom-annot/add_setting.png').default} height="500"/>
+</p>
+
+3. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
+You will see the preset page with a set of default settings.
+Customize it for yourself, as described in the next section.
+
+### Edit settings preset
+
+Create a preset as described in the previous section, or open the page of an already created preset by clicking
+on its row on the "Settings presets" page.
+The default settings page looks like this:
+
+<p align="center">
+<img src={require('/img/eng/default_preset.png').default} width="900"/>
+</p>
+
+#### 1. General analysis settings
+
+<p align="center">
+<img src={require('/img/eng/common_settings.png').default} width="600"/>
+</p>
+
+Here you can change:
+1. The name given to the preset (to do this, click on it and make changes).
+2. Analysis mode:
+- ***Somatic and germline variant analysis*** is a mode that allows you to look for somatic and germline
+mutations (SNV/Indels), structural variations and copy number variations. Suitable for the analysis of tumor
+samples with or without control (a sample of non-tumor-bearing healthy tissue).
+- ***Germline variant analysis*** is a mode that allows you to look for germline (hereditary)
+mutations (SNV/Indels), structural variations and copy number variations.
+Suitable for the analysis of non-tumor samples.
+
+<p align="center">
+<img src={require('/img/eng/analysis_mode.png').default} width="350"/>
+</p>
+
+3. Reads type, a type of nucleic acid (DNA, RNA or UNKNOWN) sequenced to obtain your sample.
+4. Sequencer, a type of sequencer platform on which the sample sequence was obtained (ILLUMINA, ION TORRENT,
+BGI or UNKNOWN).
+5. Description - you can add a description of the preset.
+
+#### 2. Settings of various analysis modules
+
+Settings are divided into three main modules:
+
+1. [Quality control](/settings/settings/quality_control_settings)
+2. [Alignment](/settings/settings/alignment_settings)
+3. [Variant discovery](/settings/settings/variant_discovery_settings)
+
+You can safely leave the preset page at any time by going to another section or by clicking on
+the <img src={require('/img/eng/close_btn.png').default} width="150"/> button.
+The changes you make are saved automatically.
+
+### Set settings preset as default
+
+The default settings preset for sample analysis is marked
+with <img src={require('/img/eng/default_setting.png').default} width="20"/> in the "Default" column on the
+"Settings" page . This preset cannot be deleted. If you want to set another preset as default, hover over
+its row and click on <img src={require('/img/eng/set_as_default.png').default} width="22"/>.
+
+### Delete settings preset
+
+If you want to delete a settings preset, hover over its row on the "Settings" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>.

@@ -1,0 +1,156 @@
+---
+sidebar_position: 2
+sidebar_label: Quality control settings
+---
+
+# Quality control settings
+
+Quality control is an essential first step in sequencing data analysis.
+It includes checking quality of sample reads and, if some of the quality metrics were not met,
+cleaning the data up (trimming and/or filtering). Reads quality is checked using the
+***Falco*** tool, which runs on average three times faster than the equivalent FastQC tool[^1].
+Reads are trimmed using the ***Cutadapt*** tool, which finds and removes adapter sequences, primers,
+poly(A) tails, and other types of unwanted sequence from reads[^2]. Reads are filtered using the
+***FASTX-Toolkit Quality Filter*** tool from [FASTX-Toolkit](http://hannonlab.cshl.edu/fastx_toolkit/),
+which filters sequences based on quality.
+
+### Disable quality control
+
+The primary quality check is carried out for all FASTQ or BAM files uploaded to the system and
+cannot be disabled. You can disable the following cleaning the data and re-checking the quality.
+To do this, turn off the toggle:
+
+<p align="center">
+<img src={require('/img/eng/tweaking_run_quality.png').default} width="400"/>
+</p>
+
+### Quality control metrics
+
+<table>
+  <tr>
+   <td>Metric</td>
+   <td>Metric threshold</td>
+   <td>Threshold default value</td>
+  </tr>
+  <tr>
+   <td>Number of reads</td>
+   <td><b>Min Total Sequences</b> is the minimal meaningful number of reads per file.
+   If the sample file contains fewer reads before or after cleaning,
+   then automatic sample processing stops.</td>
+   <td>10,000</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Reads length distribution</td>
+   <td><b>Short Sequence Bound</b> is the maximal length of reads per file.
+   Reads shorter than this value are discarded in processing.</td>
+   <td>20</td>
+   </tr>
+	<tr>
+   <td><b>Max Short Sequences Percent</b> is the maximal percent of short reads per file.
+   If this threshold is exceeded, the file is considered faulty by length distribution.</td>
+   <td>25</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Tiles reads quality</td>
+   <td><b>Max Tile Quality Deviation</b> is the maximal acceptable tile quality deviation per file.
+   Tiles that exceed mean quality across all tiles by this threshold are considered faulty.</td>
+   <td>7</td>
+   </tr>
+	<tr>
+   <td><b>Max Tile Bad Quality Cells</b> is the maximal acceptable number of bad quality cells in
+   a tile per file. If this threshold is exceeded, the cleaning by tiles is activated.</td>
+   <td>10</td>
+  </tr>
+  <tr>
+   <td rowspan="3">Per base reads quality</td>
+   <td><b>Base Start Count</b> is the number of nucleotides that represent the start of a read when
+   checking quality distribution across all reads.</td>
+   <td>3</td>
+   </tr>
+	<tr>
+   <td><b>Base End Count</b> is the number of nucleotides that represent the end of a read when
+   checking quality distribution across all reads.</td>
+   <td>3</td>
+   </tr>
+	<tr>
+   <td><b>Min Base Percentile Quality</b> is the minimal acceptable quality of a position in a read.
+    When evaluating, the first (in the amount equal to Base Start Count), last (in the amount equal
+    to Base End Count) and middle bases are considered separately.
+    If this threshold is exceeded, the trimming/filtering of reads is performed.</td>
+   <td>20</td>
+  </tr>
+  <tr>
+   <td>Overrepresented sequences</td>
+   <td><b>Max Overrepresented Sequences Percent</b> is the maximal percent of overrepresented sequences
+   per file. If this threshold is exceeded, the file is considered faulty by overrepresented sequences.</td>
+   <td>1</td>
+  </tr>
+  <tr>
+   <td>Adapter contamination</td>
+   <td><b>Max Adapter Contaminated Percent</b> is the maximal percent of reads contaminated with
+   adapter sequences per file. If this threshold is exceeded, adapter clipping is activated.</td>
+   <td>1</td>
+  </tr>
+  <tr>
+   <td>Base N content</td>
+   <td><b>Max N Content Percent</b> is the maximal percent of unknown nucleotides (N) in any position
+    among all nucleotides per file. If this threshold is exceeded, the file is considered faulty by
+    base N content.</td>
+   <td>20</td>
+  </tr>
+  <tr>
+   <td rowspan="3">GC content</td>
+   <td><b>Min Derivative Threshold</b> is the minimal threshold for detecting the local extremes
+   of GC per file. If secondary extremes are detected, the file is considered faulty by GC content.</td>
+   <td>0.085</td>
+   </tr>
+	<tr>
+   <td><b>Max Wave Sloping Threshold</b> is the maximal threshold for the slope of the local
+   extreme of GC. Exceeding this threshold indicates GC-content disturbances,
+   and in this case the file is considered faulty by GC content.</td>
+   <td>0.035</td>
+   </tr>
+	<tr>
+   <td><b>Min Wave Length</b> is the minimal acceptable length of GC-content disturbances
+   (distance between two local extremes of GC). Exceeding this threshold indicates GC-content
+   disturbances, and in this case the file is considered faulty by GC content.</td>
+   <td>4</td>
+  </tr>
+  <tr>
+   <td rowspan="5">Base sequence content (AT/GC ratio)</td>
+   <td><b>Max Cutoff at End</b> is the number of nucleotides from 3'-end that are skipped
+   when evaluating GC-content.</td>
+   <td>3</td>
+   </tr>
+	<tr>
+   <td><b>Max Cutoff at Start</b> is the number of nucleotides from 5'-end that are skipped
+   when evaluating GC-content.</td>
+   <td>15</td>
+   </tr>
+	<tr>
+   <td><b>Cutoff Difference Percent</b> is the difference threshold between base pairs (in
+   percent). If the difference between A and T, or G and C exceeds this threshold,
+   then the end nucleotides are skipped.</td>
+   <td>1</td>
+   </tr>
+	<tr>
+   <td><b>Mean Difference Threshold</b> is the threshold of the mean of difference between the
+   base pairs (in percent). If the mean of difference between A and T, or G and C exceeds this
+   threshold, then the file is considered faulty by base sequence content.</td>
+   <td>1</td>
+   </tr>
+	<tr>
+   <td><b>Max Difference Threshold</b> is the threshold of the maximum difference between base
+   pairs (in percent). If in any position the difference from all reads maximum between A and T,
+   or G and C exceeds this threshold, then the file is considered faulty by base sequence content.</td>
+   <td>20</td>
+  </tr>
+</table>
+
+### Change metric thresholds
+
+To change the metric threshold value, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+[^1]: [de Sena Brandine G. and Smith A.D. Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research 2021, 8:1874 (2021)](https://doi.org/10.12688/f1000research.21142.2)
+[^2]: [Martin M. Cutadapt Removes Adapter Sequences From High-Throughput Sequencing Reads. EMBnet.journal 17, 10:12 (2011)](https://doi.org/10.14806/ej.17.1.200)

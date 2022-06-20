@@ -1,0 +1,416 @@
+---
+sidebar_position: 4
+sidebar_label: Variant discovery settings
+---
+
+# Variant discovery settings
+
+### PCR duplicates filtration
+
+After the alignment stage, the results go through several preprocessing steps.
+This increases the sensitivity for low frequency variants, contributes to a more accurate copy number count,
+which depends on the number of reads, and also speeds up variant calling.
+If you want to keep every read in the process of variant calling (for example, if you are working with amplicon data),
+then disable Mark Duplicates and Limit Reads options.
+
+#### Disable mark duplicates
+
+During the sequencing process, the number of original sequences of fragmented DNA is increased in the polymerase
+chain reaction (PCR). For further analysis, it is essential to take into account duplicate reads of the
+same fragment. Duplicates are marked with the
+***[GATK MarkDuplicates (Picard)](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-)***
+tool. This tool locates duplicate reads in an alignment file, determines which reads are from original
+sequences and which are copies (duplicates) originating from a single fragment of DNA, and tags duplicates.
+Further analysis is carried out only on the original reads.
+To disable the duplicates marking, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_mark_dupl.png').default} width="400"/>
+</p>
+
+#### Disable limit reads per alignment
+
+After a certain threshold (50 reads per site for GATK), increasing coverage (number of reads)
+of the site used to call a variant is not informative, imposes unreasonable computational
+costs and also could lead to lack of sensitivity to some specific types of variants.
+Site coverage is limited by the ```--max-reads-per-alignment-start``` option of
+***[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)***,
+the tool to call germline variants. This option downsample reads if the maximum number of reads
+to retain per alignment start position (50 reads) is exceeded. To disable site coverage limit,
+turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_recalibr.png').default} width="400"/>
+</p>
+
+:::note
+This option is only applicable to the germline SNVs/indels discovery.
+:::
+
+### SNVs/Indels filtration
+
+#### Filter SNVs/indels by Capture Kit target and disable it
+
+Generally, for samples obtained as a result of targeted sequencing, variant call is carried out in the
+same genomic intervals in which sequencing was performed. Thus, if a Capture Kit has been defined for the sample,
+then the intervals of intersection of this Capture Kit with the reference genome are first found using the tool
+***[bedtools intersect](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html)***, and then
+germline (using ***[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)***)
+or somatic (using ***[GATK Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360036713131-Mutect2)***)
+variants are called in these intervals. The interval file is specified by the ```-L``` (```--intervals``` option).
+To disable filtering by Capture Kit, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_filter_by_ck.png').default} width="400"/>
+</p>
+
+#### Allow only variants passing all filters and disable it
+
+All variants discovered by the caller necessarily go through the filtering stage,
+during which it is checked whether they pass quality criteria.
+As a result, the value "PASS" is entered in VCF Filter field
+if the variant passes all quality criteria, or the certain quality criteria whose
+threshold the variant does not pass are enumerated in this field.
+By default, only variants that pass all criteria are included in further analysis
+and displayed in the Variant Viewer.
+If this option is disabled, then all variants are displayed in the Variant Viewer
+and statistics of Bioinformatic report. To disable it, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_filtering.png').default} width="400"/>
+</p>
+
+:::note
+This option only affects the display of unfiltered variants in the Variant Viewer and Bioinformatic report.
+In further analysis (for example, in a group analysis), only filtered variants will still be accepted.
+:::
+
+### Somatic SNVs/indels discovery
+
+Somatic mutations are acquired after birth and characteristic of the tumor process.
+Therefore, such mutations discovery is carried out only in tumor tissue samples
+with or without control (matched non-tumor tissue of same person).
+Somatic single-nucleotide variants (SNVs) and short insertions/deletions (indels) are discovered
+using the ***[GATK Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)*** tool,
+which works primarily by matching a tumor sample with a normal sample (tumor-normal mode).
+It can also work to discover variants in a tumor without control (tumor-only mode),
+but such discovery is characterized by a high level of false positives.
+
+#### Disable somatic SNVs/indels discovery
+
+To disable the somatic SNVs/indels discovery, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_somatic.png').default} width="400"/>
+</p>
+
+#### Select Panel of Normal
+
+Panel of Normal (PON) is a panel made from normal samples (that is, healthy tissue that is believed
+to not have any somatic alterations) to capture recurrent technical artifacts in order to improve the
+results of the variant calling analysis. These normal samples must be obtained using sequencing with
+similar technical characteristics, such as sequencing type, sequencer, Capture Kit, etc. Thus, when
+choosing a PON suitable for your data, you must be guided by the technical characteristics of the
+sequencing of the tumor tissue sample. The more accurately the panel is matched, the more specific
+the analysis becomes and more variants can be discovered. The panel is provided to the
+***[GATK Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)*** tool using
+the ```--panel-of-normals``` parameter (```-pon```).
+The following PONs are available for selection:
+
+- *Basic panel of normals* is a panel made from 110 samples randomly selected from 181 samples of healthy
+human tissue. The panel showed the highest sensitivity and specificity compared to other panels in
+somatic SNV/indels discovery in the gold standard sample (breast cancer sequencing sample SRR7890918
+against blood sample SRR7890919). Selected by default.
+- *Optimized for NimbleGen SeqCap_EZ_Exome_v2 & Illumina HiSeq 2000* is a panel made from 30 samples
+sequenced on the Illumina HiSeq 2000 platform with the NimbleGen SeqCap_EZ_Exome_v2 Capture Kit.
+- *Optimized for Agilent SureSelect_All_Exon_V2 & Illumina Genome Analyzer II*  is a panel made from 30 samples
+sequenced on the Illumina Genome Analyzer II platform with the Agilent SureSelect_All_Exon_V2 Capture Kit.
+- *Optimized for Agilent SureSelect_All_Exon_V2 & Illumina HiSeq 2000* is a panel made from 30 samples
+sequenced on the Illumina HiSeq 2000 platform with the Agilent SureSelect_All_Exon_V2 Capture Kit.
+- *Optimized for Agilent SureSelect All Exon V4 & Illumina HiSeq 2000* is a panel made from 30 samples
+sequenced on the Illumina HiSeq 2000 platform with the Agilent SureSelect All Exon V4 Capture Kit.
+- *None* - select this option if you want to perform somatic SNV/indels detection without a PON.
+
+To change the PON for somatic SNV/indels discovery, click on the value of the "Panel of normals"
+field and select the panel you need:
+
+<p align="center">
+<img src={require('/img/eng/change_pon.png').default} width="400"/>
+</p>
+
+#### Disable somatic tumor only discovery
+
+To disable the somatic SNVs/indels discovery in a single tumor tissue sample (tumor-only mode),
+turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_tumor_only.png').default} width="400"/>
+</p>
+
+:::note
+Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
+:::
+
+### Germline SNVs/indels discovery
+
+Germline mutations are inherited and can be found in every cell in the body. The discovery of such
+mutations is carried out for single tumor samples without control and for normal samples.
+Germline single-nucleotide variants (SNVs) and short insertions/deletions (indels) are discovered using
+the ***[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)*** tool.
+
+#### Disable germline SNVs/indels discovery
+
+To disable the germline SNVs/indels discovery, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_germline.png').default} width="400"/>
+</p>
+
+#### Disable germline tumor only discovery
+
+To disable the germline SNVs/indels discovery in a single tumor tissue sample,
+turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_germline_tumor.png').default} width="400"/>
+</p>
+
+:::note
+Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
+:::
+
+#### The germline SNV/indels hard-filtering parameters
+
+<details>
+<summary>Click to read about hard-filtering parameters and their thresholds</summary>
+<table>
+  <tr>
+   <td>Hard-filtering parameter</td>
+   <td>Parameter description</td>
+   <td>Default parameter threshold value</td>
+  </tr>
+  <tr>
+   <td>QD (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037592191-QualByDepth">QualByDepth</a>)</td>
+   <td>QD is a variant confidence (from the QUAL field) divided by the unfiltered depth (AD) of non hom-ref samples
+   (non homozygous/reference; genotype in which both alleles are not reference).
+   For filtering purposes it is better to use QD rather than QUAL or filtered depth (DP) directly.
+   Because each read contributes a little to the QUAL score, variants in regions with deep coverage can
+   have artificially inflated QUAL scores, giving the impression that the call is supported by more evidence
+   than it really is. To compensate for this, it is necessary to normalize the variant confidence by depth,
+   which gives a more objective picture of how well supported the call is.</td>
+   <td>QD &#60; 2</td>
+  </tr>
+  <tr>
+   <td>QUAL (variant quality)</td>
+   <td>QUAL is the Phred-scaled probability that a variant exists at this site given sequencing data.</td>
+   <td>QUAL &#60; 30</td>
+  </tr>
+  <tr>
+   <td>SOR
+   (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360036361772-StrandOddsRatio">StrandOddsRatio</a>)</td>
+   <td>SOR is a strand bias estimated by the symmetric odds ratio test. Strand bias is a type of sequencing bias
+   in which one DNA strand is favored over the other, which can result in incorrect evaluation of the amount
+   of evidence observed for one allele vs. the other. StrandOddsRatio evaluates whether there
+   is strand bias between forward and reverse strands for the reference or alternate allele(s).
+   </td>
+   <td>SOR &#62; 3 for SNVs (turned off for indels)</td>
+  </tr>
+  <tr>
+   <td>FS (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037592371-FisherStrand">FisherStrand</a>)</td>
+   <td>FS is a strand bias estimated using Fisher's Exact Test. Strand bias is a type of sequencing bias
+   in which one DNA strand is favored over the other, which can result in incorrect evaluation of the amount
+   of evidence observed for one allele vs. the other. The FisherStrand annotation determines if there is strand
+   bias between forward and reverse strands for the reference or alternate allele (i.e., whether the alternative
+   allele was seen more or less often on the forward or reverse strand than the reference allele). The output
+   is a Phred-scaled p-value. The higher the output value, the more likely there is to be bias. More bias is
+   indicative of false positive calls. FisherStrand takes into account large amounts of data worse in high coverage
+   situations than StrandOddsRatio. In addition, FisherStrand tends to penalize variants that occur at the ends of
+   exons. Reads at the ends of exons tend to only be covered by reads in one direction and FisherStrand gives
+   those variants a bad score. StrandOddsRatio will take into account the ratios of reads that cover both alleles.</td>
+   <td>FS &#62; 60 for SNVs,<br></br>FS &#62; 200 for indels</td>
+  </tr>
+  <tr>
+   <td>MQ (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037591751-RMSMappingQuality">RMMSMappingQuality</a>)</td>
+   <td>MQ is a root mean square of the mapping quality of reads across all samples. It provides an estimation
+   of the overall mapping quality of reads supporting a variant call, averaged over all samples in a cohort, i.e.
+   the square root of the average of the squares of the mapping qualities at the site. Thus, the score takes into
+   account the standard deviation of the mapping quality. A low standard deviation means the values are all close
+   to the mean, whereas a high standard deviation means the values are all far from the mean. When the mapping
+   qualities are good at a site, the MQ will be around 60.</td>
+   <td>MQ &#60; 40 for SNVs (turned off for indels)</td>
+  </tr>
+  <tr>
+   <td>MQRankSum (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360045799632-MappingQualityRankSumTest">MappingQualityRankSumTest</a>)</td>
+   <td>MQRankSum is a rank-sum test for mapping qualities of REF vs. ALT reads. This variant-level
+   annotation compares the mapping qualities of the reads supporting the reference allele with those
+   supporting the alternate allele. The ideal result is a value close to zero, which indicates there
+   is little to no difference. A negative value indicates that the reads supporting the alternate allele
+   have lower mapping quality scores than those supporting the reference allele. Conversely, a positive
+   value indicates that the reads supporting the alternate allele have higher mapping quality scores
+   than those supporting the reference allele. Finding a statistically significant difference in quality
+   either way suggests that the sequencing and/or mapping process may have been biased or affected by an
+   artifact. In practice, only low negative values are filtered out when evaluating variant quality because
+   the idea is to filter out variants for which the quality of the data supporting the alternate allele is
+   comparatively low. The reverse case, where it is the quality of data supporting the reference allele that
+   is lower, is not really informative for filtering variants.
+   </td>
+   <td>MQRankSum &#60; -12.5 for SNVs (turned off for indels)</td>
+  </tr>
+  <tr>
+   <td>ReadPosRankSum (<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360042914711-ReadPosRankSumTest">ReadPosRankSumTest</a>)</td>
+   <td>ReadPosRankSum is a rank-sum test for relative positioning of REF vs. ALT alleles within reads.
+   This variant-level annotation tests whether there is evidence of bias in the position of alleles within
+   the reads that support them, between the reference and alternate alleles. Seeing an allele only near the
+   ends of reads is indicative of error, because that is where sequencers tend to make the most errors.
+   However, some variants located near the edges of sequenced regions will necessarily be covered by the
+   ends of reads, so one cannot just set an absolute "minimum distance from end of read" threshold.
+   That is why the rank-sum test is useful to evaluate whether there is a difference in how well the
+   reference allele and the alternate allele are supported. The ideal result is a value close to zero,
+   which indicates there is little to no difference in where the alleles are found relative to the ends
+   of reads. A negative value indicates that the alternate allele is found at the ends of reads more often
+   than the reference allele. Conversely, a positive value indicates that the reference allele is found at
+   the ends of reads more often than the alternate allele. Finding a statistically significant difference
+   in relative position either way suggests that the sequencing process may have been biased or affected by
+   an artifact. In practice, only low negative values are filtered out when evaluating variant quality
+   because the idea is to filter out variants for which the quality of the data supporting the alternate
+   allele is comparatively low. The reverse case, where it is the quality of data supporting the reference
+   allele that is lower, is not really informative for filtering variants.</td>
+   <td>ReadPosRankSum &#60; -8 for SNVs;<br></br>ReadPosRankSum &#60; -20 for indels</td>
+  </tr>
+</table>
+</details>
+
+If at least one of the hard-filtering parameters of a variant satisfies the set threshold,
+then this variant does not pass the filtering.
+
+#### Disable or enable hard-filtering parameters and change their thresholds
+
+To ***change*** the hard-filtering parameter threshold value, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+To ***disable or enable*** the hard-filtering parameter, turn off or turn on the corresponding toggle.
+Turned on toggle is blue and shifted to the right: <img src={require('/img/eng/toggle_on.png').default} width="35"/>,
+and turned off toggle is gray and shifted to the
+left: <img src={require('/img/eng/toggle_off.png').default} width="35"/>.
+
+#### Enable CNN variant scoring
+
+In addition to hard-filtering, germline variants can be annotated with FILTERs based on scores from a pre-trained
+Convolutional Neural Network (CNN) implemented in
+***[GATK CNNScoreVariants](https://gatk.broadinstitute.org/hc/en-us/articles/360037226672-CNNScoreVariants)***.
+CNN scoring is time consuming and does not contribute much to filtering compared to hard-filtering.
+To enable CNN scoring of germline SNV/indels, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_on_cnn.png').default} width="400"/>
+</p>
+
+### Structural variations discovery
+
+Structural variations (SVs) are long deletions, tandem duplications, inversions and translocations.
+SVs are detected using the ***Delly***[^1] tool, an integrated structural variant prediction method
+that can discover, genotype and visualize SVs at single-nucleotide resolution in short-read massively
+parallel sequencing data. For tumor-normal pair, pipeline with normal sample as control is applied.
+For a single normal or tumor sample, pipeline without control sample is applied. Also, for
+tumor-only sample discovery, a mixture of somatic and germline SVs is discovered due to lack of
+the proper control sample.
+
+#### Disable structural variations discovery
+
+To disable structural variations discovery in sample, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_structural.png').default} width="400"/>
+</p>
+
+### Copy number variations discovery
+
+Copy number variation (CNV) is a phenomenon in which the number of repeats of DNA fragments in the
+genome varies between individuals. The length of such fragments usually ranges from 1 thousand to
+several million base pairs. CNVs arise as a result of deletions and duplications and are divided
+into two main groups: reducing the number of copies and increasing the number of copies in the genome.
+Such deleted or duplicated DNA fragments can increase or decrease the copy number of a particular gene,
+which in turn affects the expression of that gene's protein or non-coding RNA product.
+Copy number variations are of significant importance in syndromic conditions and cancer. Copy number discovery
+is made based on differences in sequencing depth (number of reads) in sequencing data.
+Copy number variations are discovered using the ***CNVkit***[^2] tool, which can infer and visualize
+copy number from both targeted sequencing and whole-exome sequencing data.
+For tumor-normal analysis, tumor sample is normalized against corresponding normal.
+For a single normal or tumor sample, no control-based normalization is applied.
+Also, for tumor-only sample discovery, a mixture of somatic and germline CNVs is discovered due to lack of
+the proper control sample.
+
+#### Disable copy number variations discovery
+
+To disable copy number variations discovery in sample, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_cnv.png').default} width="400"/>
+</p>
+
+#### Choose the minimal bin size for WGS data
+
+Bin is a span within which the reads are counted. If you have low coverage data,
+choose high values for the minimal bin size (e.g. up to 500,000 for low-pass WGS data),
+and if you have high coverage data, choose low values (e.g. 1000 for 10X covered data).
+The default minimal bin size is 100,000. To change it, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+#### Call germline aneuploidies only
+
+By default, for normal sample, a discovery of copy number variation of both whole chromosomes and
+their arms (q and p) is made. If you want to detect only germline aneuploidies (variations in the
+number of copies of chromosomes), turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_on_aneuploidies.png').default} width="400"/>
+</p>
+
+#### Select reference samples panel
+
+CNV analysis is more powerful when a batch of reference samples is used for normalization.
+By default, the panel is not selected (None), but you can select the ***WGA reference samples*** panel,
+which enables low-pass sequencing of whole genome amplification-derived library. To select a panel,
+click on the value of the "CNV analysis reference samples panel" field and select the WGA reference samples panel:
+
+<p align="center">
+<img src={require('/img/eng/change_panel.png').default} width="450"/>
+</p>
+
+### Phenotype prediction
+
+Phenotypes are predicted from single nucleotide polymorphisms (SNPs) associated with a particular
+trait expression according to multinomial logistic regression (MLR) models. We use models that
+predict such phenotypic traits as hair color, eyes color, skin color, freckling, lactose intolerance,
+blood type, alcohol metabolism, body odour (axillary osmidrosis), earwax type, bitter taste receptor
+sensitivity, sex, and pharmacokinetics of some drugs. Phenotype prediction can be performed on
+genotyping data in GT format or annotated germline SNV/indels in VCF format.
+
+#### Enable phenotype prediction
+
+To enable phenotype prediction in sample, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_on_phenotypes.png').default} width="400"/>
+</p>
+
+#### Disable quality control and imputation
+
+The phenotype prediction pipeline includes three preprocessing steps before the prediction itself:
+1. Quality control, that is a filtering SNPs (markers) by quality and is done using
+the ***[PLINK](https://www.cog-genomics.org/plink/)*** tool.
+2. Imputation, that is a determination of non-genotyped markers and is done
+using ***[bcftools](https://samtools.github.io/bcftools/bcftools.html)*** and ***Beagle***[^3] tools.
+Imputation significantly increases the number of markers on the basis of which phenotype prediction will occur.
+3. Quality control.
+
+These steps are important for the quality of phenotype prediction, but are not always successful
+for annotated VCF variants. To disable quality control and imputation, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_qc.png').default} width="400"/>
+</p>
+
+[^1]: [Rausch T., Zichner T., Schlattl A. et al. DELLY: structural variant discovery by integrated paired-end and split-read analysis. Bioinformatics 28(18), i333:i339 (2012)](https://doi.org/10.1093/bioinformatics/bts378)
+[^2]: [Talevich E., Shain A.H., Botton T., Bastian B.C. CNVkit: Genome-wide copy number detection and visualization from targeted sequencing. PLOS Computational Biology 12(4), e1004873 (2014)](https://doi.org/10.1371/journal.pcbi.1004873)
+[^3]: [Browning B.L., Zhou Y., Browning S.R. A one-penny imputed genome from next generation reference panels. Am J Hum Genet 103(3), 338-348 (2018)](https://doi.org/10.1016/j.ajhg.2018.07.015)

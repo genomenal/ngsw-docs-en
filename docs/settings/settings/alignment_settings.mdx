@@ -1,0 +1,156 @@
+---
+sidebar_position: 3
+sidebar_label: Alignment settings
+---
+
+# Alignment settings
+
+Alignment of sequence reads onto a reference genome is the most fundamental step for any NGS data analysis.
+[GRCh38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26/) version of the reference human genome is
+used for alignment. By default, alignment is performed using the ***BWA-MEM2*** (BWA2 Burrows-Wheeler Aligner)
+tool, which is the next and faster version of the BWA-MEM algorithm, which is based on backward search with
+Burrows–Wheeler Transform (BWT) and efficiently and quickly aligns short sequencing reads against the human
+genome, allowing mismatches and gaps[^1]. You can find out how to change the alignment tool in
+the [corresponding section](/settings/settings/alignment_settings#change-alignment-tool).
+
+### Disable alignment
+
+:::info
+If alignment is disabled, further analysis (SNVs/Indels, structural variations, and copy number variations
+discovery) is not possible.
+:::
+
+If you want to disable alignment, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_alignment.png').default} width="400"/>
+</p>
+
+### Disable re-pair
+
+When aligning paired-end sequence (in this case, both ends of a DNA fragment are sequenced towards each
+other on opposite strands), it is essential that each read from one file contains a mate in the second.
+Therefore, before alignment, the pairing of reads is ensured and restored. Pairing (number and order of
+reads) may not match in input paired-end sequencing files. In addition, pairing can be disturbed during
+cleaning the data, then it is necessary to remove reads that have lost a mate. If the number of reads in
+the files does not match, then the re-pair stage cannot be avoided, it will proceed even if it
+is disabled. However, if you are confident in your data quality and want to speed up the analysis process,
+then you can disable this stage by turning off the toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_repair.png').default} width="400"/>
+</p>
+
+### Change alignment tool
+
+In addition to the default BWA-MEM2 (BWA2 Burrows-Wheeler Aligner), the following alignment tools
+are available for selection:
+
+- *BWA-MEM* (BWA Burrows-Wheeler Aligner), an earlier version of the BWA-MEM algorithm[^2].
+- *Bowtie2*[^3]
+- *HISAT2*[^4]
+- *STAR*[^5]
+
+To change the alignment tool, click on the value of the "Alignment tools" field and select the aligner you need:
+
+<p align="center">
+<img src={require('/img/eng/change_alignment_tool.png').default} width="420"/>
+</p>
+
+### Use singleton reads
+
+If a read in one file has no mate in paired file, it is called a singleton read. Such situation can
+occur if paired-end and single-read sequencing results are mixed in one file, or if paired read
+was lost during data pre-processing (for example, during cleanup). If the "Use singleton reads" option
+is disabled, then singleton reads are discarded from further analysis at the re-pair stage. If you
+want to use singleton reads in alignment, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/singletons.png').default} width="400"/>
+</p>
+
+:::note
+This option is only applicable to BWA or BWA2 aligners.
+:::
+
+### Sequencing type detection
+
+If you know exactly what sequencing type was used to obtain your data, you can choose
+the appropriate type to speed up analysis. This can be whole genome sequencing (WGS)
+or targeted sequencing (exome or panel). To select the sequencing type, click on the value
+of the "Sequencing Type" field and select the type you need:
+
+<p align="center">
+<img src={require('/img/eng/define_seq_type.png').default} width="450"/>
+</p>
+
+To analyze your sample with a targeted panel, define a Capture Kit for more accurate
+and faster analysis. Capture Kit is a bed file provided for your exome capture kit and
+represents targeted features that you are expecting to see in the sequencing.
+You can choose a bed file appropriate for your exome capture kit from the built-in and uploaded kits:
+
+<p align="center">
+<img src={require('/img/eng/choose_capture_kit.png').default} width="400"/>
+</p>
+
+You can upload your Capture Kit on the "Capture kits" page from the "Settings" section.
+Usually appropriate Capture Kit can be obtained from kit producer website.
+
+### Alignment metrics
+
+<table>
+  <tr>
+   <td>Metric</td>
+   <td>Metric threshold</td>
+   <td>Threshold default value</td>
+  </tr>
+  <tr>
+   <td>Mapped reads</td>
+   <td><b>Min mapped reads percent</b> is the minimum acceptable percent of mapped reads per alignment file.</td>
+   <td>85</td>
+  </tr>
+  <tr>
+   <td>Multiple alignments</td>
+   <td><b>Max multimaps percent</b> is the maximum acceptable percent of multiple alignments of same
+   read per genome in alignment file.</td>
+   <td>15</td>
+  </tr>
+  <tr>
+   <td>Forward/reverse balance</td>
+   <td><b>Forward/reverse max difference</b> is the maximum acceptable difference between forward and reverse
+   strand reads per alignment file.</td>
+   <td>10</td>
+  </tr>
+  <tr>
+   <td>Paired mapped reads</td>
+   <td><b>Min paired mapped percent</b> is the minimum acceptable percent of paired mapped reads per
+   alignment file.</td>
+   <td>80</td>
+  </tr>
+  <tr>
+   <td>Paired properly mapped reads</td>
+   <td><b>Min paired properly mapped reads percent</b> is the minimum acceptable percent of paired
+   properly mapped reads per alignment file.</td>
+   <td>75</td>
+  </tr>
+  <tr>
+   <td>Coverage per nucleotide</td>
+   <td><b>Min coverage per nucleotide</b> is the minimum acceptable coverage per nucleotide.</td>
+   <td>0.1</td>
+  </tr>
+</table>
+
+If the metric value in the sample alignment file does not meet the set threshold,
+then the alignment is considered faulty by this metric, which is noted in the alignment quality warning
+(the alignment completes with an error, the message of which contains the number of failed metrics).
+
+### Change metric thresholds
+
+To change the metric threshold value, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+[^1]: [Vasimuddin M., Sanchit M., Heng L., Srinivas A. Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems. IEEE Parallel and Distributed Processing Symposium (IPDPS) (2019)](https://doi.org/10.1109/IPDPS.2019.00041)
+[^2]: [Li H. Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. arXiv:1303.3997v2 (2013)](https://doi.org/10.48550/arXiv.1303.3997)
+[^3]: [Langmead B., Salzberg S. Fast gapped-read alignment with Bowtie 2. Nature Methods 9, 357:359 (2012)](https://doi.org/10.1038/nmeth.1923)
+[^4]: [Kim D., Paggi J.M., Park C. et al. Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. Nat Biotechnol 37, 907:915 (2019)](https://doi.org/10.1038/s41587-019-0201-4)
+[^5]: [Dobin A., Davis C.A., Schlesinger F. et al. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 29(1), 15:21 (2013)](https://doi.org/10.1093/bioinformatics/bts635)
