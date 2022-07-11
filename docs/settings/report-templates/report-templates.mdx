@@ -1,0 +1,441 @@
+---
+sidebar_position: 1
+sidebar_label: Report templates
+---
+
+# Report templates
+
+If you want the sample analysis results to be presented as a structured report with the information you need,
+you can create, import or edit the report template on the "Report templates" page.
+
+:::info
+The number and type of report templates depends on the initial settings made by the System administrator.
+:::
+
+To open the section with report templates, go to the "**Report templates**" page from the section "Settings"
+via the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/report_templates/rt_page.png').default} width="900"/>
+</p>
+
+## Add report template
+
+Click on <img src={require('/img/eng/add_template.png').default} width="170"/> to open the page of adding a report
+template:
+
+<p align="center">
+<img src={require('/img/report_templates/add_template_page.png').default} width="900"/>
+</p>
+
+You can fill in the following fields on the page:
+1. "Name" (gives a title to <a href="/results/results">the report tab</a> on the sample page). Required to fill in.
+2. "Applicable to samples" is the type of samples (Any, Tumor, or Normal) to which the template will be applicable.
+
+:::caution
+The value of the "Applicable to samples" field cannot be changed after the template has been saved.
+Choose the type you need during adding. The values of all other fields can be changed at any time.
+:::
+
+3. "Active": if the toggle is on <img src={require('/img/eng/toggle_on.png').default} width="35"/>, then the template
+will be active , i.e. will be applicable to all samples with
+the type corresponding to the one selected in the "Applicable to samples" field; if the toggle is
+off <img src={require('/img/eng/toggle_off.png').default} width="35"/>, then the template will be inactive, i.e. will
+not be applied to any uploaded sample.
+
+4. "Report title".
+5. "Report description" (displayed under the title on the report page).
+
+Fill in all required fields and click
+on <img src={require('/img/report_templates/save_temaplate.png').default} width="150"/> to save the template.
+If you leave the page by clicking on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or otherwise, the template will not be saved. The saved template page looks like this:
+
+<p align="center">
+<img src={require('/img/report_templates/saved_template.png').default} width="900"/>
+</p>
+
+## Edit report template
+
+In addition to the fields described in the previous section ("Name", "Active", "Report title", "Report description"),
+you can edit template blocks on the saved template page.
+
+In order for a template to be active, at least one block must be added to it (in addition to the "Active" option
+enabled).
+
+### Add template block
+
+To add a template block, click on the search box and select the block type you need from the opened list
+(block types are detailed below):
+
+<p align="center">
+<img src={require('/img/report_templates/add_new_block.png').default} width="900"/>
+</p>
+
+After selecting the block type, fill in all the required fields
+and click on <img src={require('/img/report_templates/add_btn.png').default} width="160"/>.
+To cancel block type selection, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
+
+#### Types of report template blocks and their editing
+
+<table>
+  <tr>
+   <td>Block type name</td>
+   <td>The sample types to which the block type is applicable</td>
+   <td>Type description</td>
+   <td>Fields for editing / Additional information</td>
+  </tr>
+  <tr>
+   <td><b>Section</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with the heading and description of the report section.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in). If there are several sections in the report,
+   they will be automatically numbered.<br></br>2. <b>Description</b> of the section (will be displayed under
+   the section heading).</td>
+  </tr>
+  <tr>
+   <td><b>Patient info</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with information about the patient to which the sample was uploaded or which was defined for the
+   sample (for runs).</td>
+   <td>Display fields are the fields with information about the patient. You need to select (tick) the fields
+   that will be displayed in the report:<br></br>
+   1. <b>Patient ID</b>;<br></br>2. <b>First name</b>;<br></br>3. <b>Last name</b>;<br></br>4. <b>Middle name
+   </b>;<br></br>5. <b>Date of birth</b>;<br></br>6. <b>Age</b>;<br></br>7. <b>Sex</b>;<br></br>8. <b>Diagnosis
+   </b>;<br></br>9. <b>Date of diagnosis</b>;<br></br>10. <b>Comments</b>.<br></br>
+   After you have selected all the required fields, click outside the value container.</td>
+  </tr>
+  <tr>
+   <td><b>Sample info</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with information about the sample for which the report is generated.</td>
+   <td>Display fields are the fields with information about the sample. You need to select (tick) the fields
+   that will be displayed in the report:<br></br>
+   1. <b>Short name</b> is a sample file name without extension;<br></br>2. <b>Sample type</b>;<br></br>3. <b>
+   Sequencing type</b>;<br></br>4. <b>Sample collection date</b>;<br></br>5. <b>Capture Kit</b>;<br></br>6. <b>Sample
+   location (Organ)</b>;<br></br>7. <b>Methodology</b>;<br></br>8. <b>Comments</b>.<br></br>
+   After you have selected all the required fields, click outside the value container.</td>
+  </tr>
+  <tr>
+   <td><b>Control (normal) sample info</b></td>
+   <td>Tumor</td>
+   <td>A block with information about the sample, which is the control for the one for which the report is
+   generated.</td>
+   <td>Display fields are the fields with information about the control (normal; non-tumor) sample. You need to
+   select (tick) the fields that will be displayed in the report:<br></br>
+   1. <b>Short name</b> is a sample file name without extension;<br></br>2. <b>Sample type</b>;<br></br>3. <b>
+   Sequencing type</b>;<br></br>4. <b>Sample collection date</b>;<br></br>5. <b>Capture Kit</b>;<br></br>6. <b>Sample
+   location (Organ)</b>;<br></br>7. <b>Methodology</b>;<br></br>8. <b>Comments</b>.<br></br>
+   After you have selected all the required fields, click outside the value container.<br></br>
+   ________________________________________________________________<br></br>
+   The block is generated only for a tumor sample from the tumor-normal set (tumor + corresponding non-tumor
+   sample).</td>
+  </tr>
+  <tr>
+   <td><b>Disclaimer</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with a message about restrictions on the use of the report.</td>
+   <td><b>Text</b> is a standard text of a clinical disclaimer. It can be edited.</td>
+  </tr>
+  <tr>
+   <td><b>Sign place</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with a place for the doctor's signature.</td>
+   <td>The sign place will look like this in the report:<br></br>
+   <br></br><p align="center">
+   <img src={require('/img/report_templates/signing_place.png').default} width="500"/></p></td>
+  </tr>
+  <tr>
+   <td><b>SNV/Indels selected by user for reports</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with variants included in the report on the Variant Viewer page.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
+   block: somatic or germline.<br></br>
+   ________________________________________________________________<br></br>
+   To include a variant in the report on the Variant Viewer page,
+   click on <img src={require('/img/report_templates/add_to_report_btn.png').default} width="22"/> button in
+   the variant row. Variants included in the report are marked with a
+   checkmark: <img src={require('/img/report_templates/add_to_report.png').default} width="22"/>.</td>
+  </tr>
+  <tr>
+   <td><b>Pinned SNV/Indels</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with variants pinned on the Variant Viewer page.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
+   block: somatic or germline.<br></br>
+   ________________________________________________________________<br></br>
+   To pin a variant on the Variant Viewer page,
+   click on <img src={require('/img/report_templates/pin_var_btn.png').default} width="22"/> button in
+   the variant row. Pinned variants are marked like
+   this: <img src={require('/img/report_templates/pinned_var.png').default} width="22"/>.</td>
+  </tr>
+  <tr>
+   <td><b>SNV/Indels suitable for the specified conditions</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with variants that match the conditions specified in the block.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
+   block: somatic or germline.<br></br>4. <b>Conditions for including variants to the report</b>: if the variants
+   in the sample match the given conditions, they will be included in this report block.<br></br>
+   To add a condition, click on <img src={require('/img/report_templates/query_builder.png'). default} width="137"/>.
+   Then the Query Builder opens, which is exactly the same as the Advanced Filtering Query Builder on the Variant
+   Viewer page. You can read about how to set up
+   conditions <a href="/results/variant-viewer/advanced_filtering">here</a>.</td>
+  </tr>
+  <tr>
+   <td><b>Immunotherapy markers</b></td>
+   <td>Tumor</td>
+   <td>A block containing the value of the tumor mutation burden.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   High tumor mutation burden (TMB), more than 19 mutations per 1 Mb, may predict response to immunotherapy.
+   Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immunotherapy.</td>
+  </tr>
+  <tr>
+   <td><b>Clinical trials</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with a table of ongoing clinical trials of various drugs, technologies or diagnostic approaches
+   performed in people with a certain phenotype from
+   the <a href="https://clinicaltrials.gov">ClinicalTrials</a> database.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>3. <b>Phenotypes</b> is a list of phenotypes for which
+   you want to see clinical trials in the report. Phenotype names must be semicolon delimited (e.g.
+   "Glioma;Astrocytoma").<br></br>4. <b>Phases</b>: 1, 2, 3, 4. After you have selected all the required phases,
+   click outside the value container.</td>
+   </tr>
+   <tr>
+   <td><b>SNV/Indels in ACMG 73 genes</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with variants discovered in the sample and located in the 73 genes
+   from <a href="https://www.nature.com/articles/s41436-021-01172-3/tables/1">the list of American College of Medical Genetics and Genomics (ACMG)</a>.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
+   block: somatic or germline.<br></br>
+   ________________________________________________________________<br></br>
+   For these 73 genes from the ACMG list, specific mutations are known to be causative of disorders with defined
+   phenotypes that are clinically actionable by an accepted intervention. The ACMG recommends that variants detected
+   in any of these genes be reported as they are of medical relevance and could be used in the future to inform
+   clinical treatment.<br></br>
+   The report block includes the following variants located in the 73 genes from the ACMG list:<br></br>
+   1. Pathogenic (according to ClinVar);<br></br>
+   2. Likely pathogenic (according to ClinVar);<br></br>
+   3. Having high gene product impact;<br></br>
+   4. Having moderate gene product impact and frequency less than 10% in population;<br></br>
+   3. Rare (having frequency less than 2% in population).
+   </td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Tier I variants</b></td>
+   <td>Tumor</td>
+   <td>A block with somatic variants and variations of strong clinical significance related to glioma (Tier I).</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
+   discovered in the sample and are in the Tier I of the classification of somatic variations.
+   Tier I includes variations that have strong clinical significance with high level of evidence and are important
+   for diagnostics and treatment of cancer.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Tier II variants</b></td>
+   <td>Tumor</td>
+   <td>A block with somatic variants and variations of potential clinical significance related to glioma (Tier II).</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
+   discovered in the sample and are in the Tier II of the classification of somatic variations.
+   Tier II includes variations that clearly play a role in the development of cancer, but this role has not yet been
+   sufficiently proven.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Tier III variants</b></td>
+   <td>Tumor</td>
+   <td>A block with somatic variants and variations of unknown clinical significance related to glioma (Tier III).</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
+   discovered in the sample and are in the Tier III of the classification of somatic variations.
+   Tier III includes variations that have high gene product impact and are detected in genes associated with cancers
+   other than glioma.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Suggested diagnosis</b></td>
+   <td>Tumor</td>
+   <td>A block with a predicted diagnosis (glioma type) defined for the sample.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   Suggested diagnosis and predicted survival times base on Tier I and Tier II mutations automated interpretation
+   based on published research. Suggestions were made under the assumption that the tumor DNA has been extracted
+   from glioma, therefore, use this block in the report only if you have glioma sequencing samples. In case of
+   uncertainty up to three most probable diagnosis suggestions are proposed.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Suggested drugs</b></td>
+   <td>Tumor</td>
+   <td>A block with potentially effective and ineffective tumor-targeting drugs and corresponding biomarkers
+   discovered in the sample.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Mutations details</b></td>
+   <td>Tumor</td>
+   <td>A block with a description of mutations listed in "Glioma: Tier I variants" and "Glioma: Tier II variants"
+   blocks.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Glioma genes panel details</b></td>
+   <td>Tumor</td>
+   <td>A block with information about the coverage of glioma-specific genes discovered in the sample.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes the value of the fraction of the exonic part of the longest transcript covered by at least
+   50 sequenced reads (50X) for the genes associated with glioma. The higher the percent of coverage, the more
+   completely a transcript is sequenced.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Germline pathogenic for gliomas</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with germline SNVs discovered in the sample and pathogenic or likely pathogenic for gliomas.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes the following germline single nucleotide variants associated with gliomas according to
+   published research:<br></br>
+   1. Pathogenic (according to ClinVar);<br></br>
+   2. Likely pathogenic (according to ClinVar);<br></br>
+   3. Having high gene product impact;<br></br>
+   4. Having moderate gene product impact and frequency less than 10% in population;<br></br>
+   3. Rare (having frequency less than 5% in population).</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Germline pathogenic for any other diseases</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with germline SNVs discovered in the sample, pathogenic or likely pathogenic, and associated with
+   diseases other than gliomas.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Germline glioma associated</b></td>
+   <td>Any, Tumor, Normal</td>
+   <td>A block with germline SNVs discovered in the sample and associated with gliomas.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
+   (will be displayed under the section heading).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes germline single nucleotide variants associated with gliomas according published research but
+   not included in the "Glioma: Germline pathogenic for gliomas" block.</td>
+   </tr>
+   <tr>
+   <td><b>Glioma: Literature</b></td>
+   <td>Tumor</td>
+   <td>Block with a reference list about glioma.</td>
+   <td>Contains over 60 links to articles, publications and books on glioma research.</td>
+   </tr>
+   <tr>
+   <td><b>Germline CNV: results</b></td>
+   <td>Normal</td>
+   <td>A block with the result of germline copy number variations (CNVs) discovery in the sample.</td>
+   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Show inferred sex</b>: based on the
+   results of CNV discovery of sex chromosomes (X, Y), an assumption about the patient sex can be made.
+   To include the result of this assumption in the report, turn on the
+   toggle: <img src={require('/img/eng/toggle_on.png').default} width="35"/>.<br></br>
+   ________________________________________________________________<br></br>
+   The block includes a report about the presence or absence of a deviation from the normal copy number in any
+   chromosome or its arm in the sample.</td>
+   </tr>
+   <tr>
+   <td><b>Germline CNV: interpretation</b></td>
+   <td>Normal</td>
+   <td>A block with interpretation of results of germline CNVs discovery in the sample and conclusions based on
+   the results.</td>
+   <td><b>Name</b> is a section heading (required to fill in).<br></br>
+   ________________________________________________________________<br></br>
+   The block includes:<br></br>
+   1. a table with chromosomes or their arms in which structural variation (reduced or increased number of copies)
+   was found;<br></br>
+   2. karyogram-like graph with denoted chromosome-level CNVs;<br></br>
+   3. information on estimated sequencing depth.</td>
+   </tr>
+</table>
+
+### Added report template
+
+Added report template looks like this (example: the "Sample info" block):
+
+<p align="center">
+<img src={require('/img/report_templates/block_example.png').default} width="900"/>
+</p>
+
+The block name is written at the top, and information about its content is given in the main part.
+
+#### Move a block in a template
+
+To lift the added block up in the template (above the previous block),
+click on <img src={require('/img/report_templates/up.png').default} width="25"/>,
+and to bring it down - click on <img src={require('/img/report_templates/down.png').default} width="25"/>.
+
+#### Edit template block
+
+To edit the added block,
+click on <img src={require('/img/report_templates/edit.png').default} width="23"/>, edit, and then
+click on <img src={require('/img/report_templates/add_btn.png').default} width="170"/> to save changes.
+To cancel your changes, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
+
+#### Delete template block
+
+To delete the added block, click on <img src={require('/img/report_templates/delete.png').default} width="23"/>, and
+then click on <img src={require('/img/eng/delete.png').default} width="160"/> in the appeared confirmation window.
+To cancel deletion, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
+
+## Export report template
+
+The export option is available on the template page if at least one block has been added to the saved template.
+To export a report template in JSON format,
+click on <img src={require('/img/report_templates/export.png').default} width="160"/>.
+
+## Import report template
+
+To import a report template into the system,
+click on <img src={require('/img/eng/template_import.png').default} width="200"/> on the "Report templates" page.
+Drag and drop JSON template file into the opened window, or click on the window to open File Browser.
+Once the template has uploaded,
+click on <img src={require('/img/report_templates/import_btn.png').default} width="180"/>.
+
+## Delete report template
+
+To delete a report template, hover over the template row on the "Report templates" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="20"/>, and then
+click on <img src={require('/img/eng/delete.png').default} width="160"/> in the appeared confirmation window.
+To cancel deletion, click on <img src={require('/img/report_templates/cancel.png').default} width="160"/>.
+
+## About a report generation
+
+A report is generated for a sample if the following conditions are met:
+1. The sample type matches the type to which the report template is applicable (Any, Tumor, or Normal).
+2. The sample analysis was successfully completed (that is, all stages of the analysis have the status "Complete").
+3. The results necessary for the report generation were obtained for the sample. If the template includes blocks that
+depend on certain stages of analysis (blocks with SNVs/indels, copy number variations, or structural variations), then
+the report generation will depend on the completion of at least one of the corresponding stages of the sample analysis.
+Report blocks that depend on the results of stages turned off in the workflow will not be included in the report. For
+example, if the report template includes the "Germline CNV: results" block, then this block generation will depend on
+the successful completion of the "Copy number variations discovery" stage.
+4. The report template is active.
+5. The report template has at least one added block.
+6. The report template was created before the sample was processed.
+
+The report is divided into sections and blocks. If you have not added any "Section" blocks to the template,
+then all blocks will be automatically numbered according to their location in the template (1, 2, 3, ...).
+The sections added to the template are also numbered according to their location in the template (1, 2, 3, ...).
+The blocks included in the section are numbered according to their location in the template and depending on the
+section number (1.1, 1.2, 1.3, ...). If the block was not included in the final report, then it is not taken into
+account in the numbering.
