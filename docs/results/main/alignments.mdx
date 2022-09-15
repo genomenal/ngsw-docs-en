@@ -1,0 +1,31 @@
+---
+sidebar_position: 5
+sidebar_label: Alignments
+---
+
+# Alignments
+
+The "***Alignments***" section contains the sample reads mapped to reference genome.
+Subsequently, during the analysis, it is these reads that are used to call variants.
+
+<p align="center">
+<img src={require('/img/results/alignments.png').default} width="800"/>
+</p>
+
+The results of alignment of sample reads are presented as:
+
+1. File with alignments in **BAM (Binary Alignment Map)** format. To download the file,
+click on <img src={require('/img/eng/30-bam_file.png').default} width="45"/>.
+
+2. **Index file for alignment in BAI format**. The file is required for some tools.
+To download the file, click on <img src={require('/img/eng/31-bai-file.png').default} width="45"/>.
+
+3. **[Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/)** is an embedded
+module for visualization of variations on the genome. To open the module,
+click on <img src={require('/img/results/igv_btn.png').default} width="45"/>.
+
+***Visualization in IGV: reducing the number of copies on the example of a deletion:***
+
+<p align="center">
+<img src={require('/img/eng/32-igv-deletion.jpg').default} width="800"/>
+</p>

@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+sidebar_label: SNVs/Indels
+---
+
+# SNVs/Indels
+
+The sections "***Somatic SNVs/Indels***" and "***Germline SNVs/Indels***" contain the results of discovery of
+somatic and germline, respectively, single-nucleotide variants (SNVs) and short insertions/deletions (Indels),
+in the sample. Here are *the variants after filtering*
+with [GATK Best Practices](https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows)
+or *all discovered variants* if the sample file was uploaded in VCF, TXT or TSV format or if the
+[Allow only variants passing all filters](/settings/settings/variant_discovery_settings#allow-only-variants-passing-all-filters-and-disable-it)
+setting is disabled.
+
+***Somatic mutations*** occur after conception and are not passed on to children. They can cause cancer or other
+diseases. Somatic mutations discovery is carried out only for ***tumor tissue samples*** and, therefore, the results
+are presented only on the tumor tissue sample page.
+
+<p align="center">
+<img src={require('/img/results/somatic_snvs.png').default} width="800"/>
+</p>
+
+***Germline mutations*** can be discovered in any cells of the body and are passed on from parents to offspring.
+Accordingly, germline mutations discovery is carried out both for ***tumor tissue samples*** (in the case of single
+tumor tissue samples without control) and for ***non-tumor tissue samples***.
+In the case of a set of tumor/normal samples, the results of the germline mutations discovery
+in the normal sample are presented on the pages of both samples of the set.
+
+<p align="center">
+<img src={require('/img/results/germline_snvs.png').default} width="800"/>
+</p>
+
+The detected and annotated variants are presented in both sections as:
+
+1. **Variant Viewer** is a embedded service for viewing and analyzing variants.
+You can read more about it in [the corresponding section](/results/main/snvs_indels/variant-viewer).
+Click on <img src={require('/img/results/vv_btn.png').default} width="125"/> to use the module.
+2. Text file in **CSV** (Comma-Separated Values) format. To download the file,
+click on <img src={require('/img/results/table_btn.png').default} width="120"/>.
+3. File in **[VCF 4.2 (Variant Call Format)](http://samtools.github.io/hts-specs/VCFv4.2.pdf)** format.
+To download the file, click on <img src={require('/img/results/vcf_btn.png').default} width="45"/>.
+4. File in **Google Spreadsheet** (only a limited number of variants can be shown). To open the file,
+click on <img src={require('/img/results/google_btn.png').default} width="45"/>.
+5. **[Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/)** is an embedded
+module for visualization of variants on the genome. To open the module,
+click on <img src={require('/img/results/igv_btn.png').default} width="45"/>.

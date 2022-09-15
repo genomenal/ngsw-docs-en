@@ -1,0 +1,50 @@
+---
+sidebar_position: 1
+sidebar_label: Sample Page
+---
+
+# Sample Page
+
+On the sample page, you can find information about the sample analysis progress, change the analysis parameters
+and view the sample analysis results after processing is complete.
+To open the sample page, click on the corresponding line on the patient (or run) page:
+
+<p align="center">
+<img src={require('/img/eng/tumor_sample_row.png').default} width="900"/>
+</p>
+
+You will see [the sample **“Main”** tab](/results/main/main) where you can find the sample info, the main
+results and the workflow stages.
+
+<p align="center">
+<img src={require('/img/eng/tumor_main_page.png').default} width="900"/>
+</p>
+
+The workflow (and therefore the availability of results) depends on the selected workflow settings and
+the sample type (tumor or non-tumor tissue sample).
+
+From the "Main" tab, you can go to the other tabs on the sample page:
+
+1. **Tabs with generated reports** - the presence of tabs depends on the presence of active report templates
+(managed on [the "Report Templates" page](/settings/report-templates/report-templates) in the "Settings" page block),
+their applicability to a given sample, and the availability of the results necessary to build a report. By default,
+[the following reports may be active](/settings/report-templates/main_templates) for you (the addition of these
+reports can be requested from your administrator):
+
+- **[CNV report](/results/cnv-report/cnv-report)** is a report on the results of the analysis of the patient sample
+or samples in order to detect changes in the number of copies of chromosomes.
+- **Glioma report** is a clinical report on the characteristics of gliomas, based on tumor markers identified in
+the sample, and a knowledge base created on the basis of expert knowledge and published research on this topic.
+
+2. **[Bioinformatic report](/results/bioinformatic-report)** includes the file statistics and the reports on the
+completed stages of sample analysis (Quality Report, Alignment Report, Coverage Report, and SNVs/Indels Report).
+
+3. **[Coverage Analysis](/results/coverage-analysis)** (the tab is visible only for samples uploaded in FASTQ or
+BAM formats, and only after successful completion of all stages of analysis) contains information on depth of coverage
+and coverage of genes and transcripts in a sample.
+
+4. **[Workflow details](/results/workflow_details/workflow-details)** includes detailed information about the
+processing of the sample and intermediate data.
+
+5. **[Parameters](/results/parameters)** (the tab is visible only for samples uploaded in FASTQ or BAM formats) -
+contains information about sample analysis parameters.

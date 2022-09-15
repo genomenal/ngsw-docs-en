@@ -1,17 +1,27 @@
-- If your sequencing is paired-end and a pair of FASTQ files of the same sample is named in an [Illumina convention](https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/NamingConvention_FASTQ-files-swBS.htm) (or even by some other common read naming scheme), the files will be automatically recognized as a pair when added:
+- If your sequencing is paired-end and a pair of FASTQ files of the same sample is named in
+an [Illumina convention](https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/NamingConvention_FASTQ-files-swBS.htm)
+(or even by some other common read naming scheme), the files will be automatically recognized as a pair when added:
 
 <p align="center">
 <img src={require('/img/eng/4-14-pair.png').default} width="300"/>
 </p>
 
-- If the pair is not recognized correctly, you can manually unlink files by clicking on the corresponding button highlighted below:
+- If the pair is not recognized correctly, you can manually unlink files by hovering over the pair and
+clicking on <img src={require('/img/eng/clip.png').default} width="20"/>:
 
 <p align="center">
-<img src={require('/img/eng/5-15-unpair.png').default} width="300"/>
+<img src={require('/img/eng/unlink_pair.gif').default} width="400"/>
 </p>
 
-- If the automatic pair recognition didn’t succeed, you can manually pair the files by clicking and dragging the same element:
+- If the automatic pair recognition did nоt succeed, you can manually pair the files.
+To do this, either drag the mate paired-end file to the primary one:
 
 <p align="center">
-<img src={require('/img/eng/6-16-force-pair.png').default} width="300"/>
+<img src={require('/img/eng/create_pair.gif').default} width="300"/>
+</p>
+
+or click on the paperclip in the primary file card and then click on the mate file:
+
+<p align="center">
+<img src={require('/img/eng/primary_to_pair.gif').default} width="400"/>
 </p>

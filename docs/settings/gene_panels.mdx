@@ -1,0 +1,172 @@
+---
+sidebar_position: 3
+sidebar_label: Gene Panels
+---
+
+# Gene Panels
+
+In this section, you can add gene panels so that you can filter the discovered variants by them.
+The gene panel is a set of genes of interest (for example, genes associated with a specified phenotype).
+
+To open the section with gene panels, go to the "**Gene panels**" page from the "Settings" page block
+through the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/gene_panels/gene_panels_page.png').default} width="900"/>
+</p>
+
+## Add a gene panel
+
+There are 4 ways to add a panel to the system:
+1. [Selection of genes of interest from all genes (by name or Ensembl code)](/settings/gene_panels#1-adding-genes-from-the-list-of-all-genes-to-the-panel);
+2. [Adding genes associated with a certain phenotype from HPO](/settings/gene_panels#2-adding-genes-from-hpo-to-the-panel);
+3. [Import of a pre-prepared gene list](/settings/gene_panels#3-import-gene-list);
+4. [Import panel from the library of the most common clinical panels](/settings/gene_panels#4-import-gene-panel-from-library).
+
+:::tip
+When adding a panel, the first and second ways can be combined.
+:::
+
+### 1. Adding genes from the list of all genes to the panel
+
+1. Click on <img src={require('/img/eng/add_gene_panel.png').default} width="170"/> to open the form of
+adding a gene panel:
+
+<p align="center">
+<img src={require('/img/gene_panels/add_gene_panel_form.png').default} height="700"/>
+</p>
+
+2. In the opened form, enter gene panel name in the **Name** field.
+You can also add a panel description.
+
+3. Add genes to the panel. To do this, enter official gene symbol or Ensembl gene ID (ENSG...) into the search box.
+Among the found genes, select one or several ones, click on its/their row(s), and then
+click on <img src={require('/img/gene_panels/add_btn.png').default} width="40"/>:
+
+<p align="center">
+<img src={require('/img/gene_panels/add_gene.png').default} height="350"/>
+</p>
+
+Among the genes added to the panel, you can search, as well as remove genes from the panel (to do so, click on the
+gene row, and then click on <img src={require('/img/gene_panels/remove_gene.png').default} width="40"/>):
+
+<p align="center">
+<img src={require('/img/gene_panels/remove_example.png').default} height="350"/>
+</p>
+
+4. After you have added all the needed genes to the panel,
+click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
+A gene panel will be added to the system.
+
+### 2. Adding genes from HPO to the panel
+
+1. Click on <img src={require('/img/eng/add_gene_panel.png').default} width="170"/> to open the form of
+adding a gene panel:
+
+<p align="center">
+<img src={require('/img/gene_panels/add_gene_panel_form.png').default} height="700"/>
+</p>
+
+2. In the opened form, enter gene panel name in the **Name** field.
+You can also add a panel description.
+
+3. Click on <img src={require('/img/gene_panels/add_from_hpo.png').default} width="280"/>.
+The search form for <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a> will open:
+
+<p align="center">
+<img src={require('/img/vv/hpo_search.png').default} width="800"/>
+</p>
+
+The drop-down list contains the main term groups.
+You can add to the panel both genes associated with a whole group of terms and genes associated with a specific term.
+The term can be found in the group's list of terms, or by searching by name or ID
+from [Human Phenotype Ontology](https://hpo.jax.org/app/).
+For example, several terms are found when searching for the term “glioma”:
+
+<p align="center">
+<img src={require('/img/vv/glioma_search.png').default} width="800"/>
+</p>
+
+By selecting one of them (for example, "Glioma"), you will be redirected to this term page:
+
+<p align="center">
+<img src={require('/img/vv/glioma_page.png').default} width="800"/>
+</p>
+
+On the right, there are the term definition and a comment.
+In the middle, there is the hierarchy of the term: the terms above the selected Glioma
+term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
+and the terms below Glioma are its child terms.
+On the right, there are the genes associated with this term (in this case, 45 genes were found).
+If you want to add the found genes to the panel,
+click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
+To exit the form without adding genes to the panel,
+click on <img src={require('/img/gene_panels/cancel_btn.png').default} width="150"/>.
+
+If you have added genes from HPO to the panel, they will be displayed in the list on the right.
+You can search among them, as well as remove genes from the panel (to do so, click on the gene row, and then
+click on <img src={require('/img/gene_panels/remove_gene.png').default} width="40"/>):
+
+<p align="center">
+<img src={require('/img/gene_panels/remove_hpo_gene.png').default} height="350"/>
+</p>
+
+4. After you have added all the needed genes to the panel,
+click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
+A gene panel will be added to the system.
+
+### 3. Import gene list
+
+1. Click on <img src={require('/img/eng/import_gene_list.png').default} width="170"/> to open the form of
+importing gene list:
+
+<p align="center">
+<img src={require('/img/gene_panels/import_form.png').default} height="500"/>
+</p>
+
+2. In the opened form, enter gene panel name in the **Name** field.
+You can also add a panel description.
+
+3. Enter gene list in the **Genes** area. The list must include only official gene symbols and/or
+Ensembl gene IDs (ENSG...) separated by commas or new lines.
+It is preferable to use Ensembl ID or unique gene synonym that correspond to only one Ensembl ID,
+since when using gene symbols, ambiguity may arise due to the existence of human alternative sequence
+genes (in the given example, the *MUC6* gene has three such genes:
+[ENSG00000277281](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000277281),
+[ENSG00000277518](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000277518),
+[ENSG00000283350](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000283350)):
+
+<p align="center">
+<img src={require('/img/gene_panels/ambigous_gene.png').default} width="600"/>
+</p>
+
+4. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/> to add gene panel to the system.
+
+### 4. Import gene panel from library
+
+1. Click on <img src={require('/img/eng/import_from_library.png').default} width="170"/> to open the form of
+importing gene panel:
+
+<p align="center">
+<img src={require('/img/gene_panels/import_from_library.png').default} height="700"/>
+</p>
+
+2. In the opened form, tick the required panels:
+
+<p align="center">
+<img src={require('/img/gene_panels/checked_panels.png').default} width="600"/>
+</p>
+
+3. Click on <img src={require('/img/gene_panels/import_btn.png').default} width="170"/>.
+
+## Edit a gene panel
+
+To add or remove genes from the added panel, click on the panel row on the "Gene panels" page.
+In the opened form, you can change the name and description of the panel,
+remove and add genes to the panel (you can add genes either from the list of all genes or from HPO).
+After making changes click on <img src={require('/img/group_analysis/save_btn.png').default} width="150"/>.
+
+## Delete a gene panel
+
+To remove a gene panel from the system, hover over its row on the "Gene panels" page and click on the
+appeared <img src={require('/img/eng/delete_btn.png').default} width="21"/> button.

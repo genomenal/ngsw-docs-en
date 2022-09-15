@@ -1,0 +1,47 @@
+---
+sidebar_position: 3
+sidebar_label: Structural Variations
+---
+
+# Structural Variations
+
+The "***Somatic Structural Variations***" and "***Germline Structural Variations***" sections contain
+the results of discovery of somatic and germline, respectively, long deletions, duplications, inversions,
+and translocations in the sample.
+
+***Somatic variations*** occur after conception and are not passed on to children. They can cause cancer or other
+diseases. Somatic variations discovery is carried out only for ***tumor tissue samples*** and, therefore, the results
+are presented only on the tumor tissue sample page.
+
+<p align="center">
+<img src={require('/img/results/somatic_structural_var.png').default} width="800"/>
+</p>
+
+***Germline variations*** can be discovered in any cells of the body and are passed on from parents to offspring.
+Accordingly, germline variations discovery is carried out both for ***tumor tissue samples*** (in the case of
+single tumor tissue samples without control) and for ***non-tumor tissue samples***.
+For a set of tumor/normal samples, the results of the germline variations discovery
+in the normal sample are presented on the pages of both samples of the set.
+
+<p align="center">
+<img src={require('/img/results/germline_structural.png').default} width="800"/>
+</p>
+
+For a single tumor sample without control, the results of discovery of somatic and germline variations
+are combined into one section:
+
+<p align="center">
+<img src={require('/img/results/somatic_and_germline_structural.png').default} width="800"/>
+</p>
+
+The detected and annotated structural variations are presented in all sections as:
+
+1. Text file in **CSV** (Comma-Separated Values) format. To download the file,
+click on <img src={require('/img/results/table_btn.png').default} width="120"/>.
+2. File in **[VCF 4.2 (Variant Call Format)](http://samtools.github.io/hts-specs/VCFv4.2.pdf)** format.
+To download the file, click on <img src={require('/img/results/vcf_btn.png').default} width="45"/>.
+3. File in **Google Spreadsheet** (only a limited number of variations can be shown). To open the file,
+click on <img src={require('/img/results/google_btn.png').default} width="45"/>.
+4. **[Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/)** is an embedded
+module for visualization of variations on the genome. To open the module,
+click on <img src={require('/img/results/igv_btn.png').default} width="45"/>.

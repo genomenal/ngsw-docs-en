@@ -1,0 +1,97 @@
+---
+sidebar_position: 1
+sidebar_label: Main
+---
+
+# Main
+
+The "Main" tab on the sample page contains the following information:
+
+#### 1. The analysis results
+
+The section contains the main results of the analysis: a separate section with the results corresponds to a
+separate stage of the analysis. The availability of the results of a particular stage depends on whether it
+was carried out and completed successfully.
+
+<p align="center">
+<img src={require('/img/results/results.png').default} width="900"/>
+</p>
+
+You can read more about each section in the corresponding section of the documentation:
+1. [Somatic and Germline SNVs/Indels](/results/main/snvs_indels/snvs_indels)
+2. [Somatic and Germline Structural Variations](/results/main/structural_variations)
+3. [Somatic and Germline Copy Number Variations](/results/main/cnvs)
+4. [Alignments](/results/main/alignments)
+
+#### 2. Sample Info
+
+<p align="center">
+<img src={require('/img/results/sample_info.png').default} width="900"/>
+</p>
+
+- FILE NAME and MATE FILE NAME are the names of the uploaded sample files with extensions
+(can be edited by clicking on the name).
+- SAMPLE TYPE is the type that was selected when uploading the sample (TUMOR or NORMAL).
+You can change the type only by dragging the sample to the appropriate type in the edit sample set window,
+or by selecting a different type in the sample row (for runs).
+- CREATED is the date of creation of a sample set (start of uploading sample files into the system)
+in the format M/d/yyyy.
+- READS TYPE is the sequence type (DNA, RNA or UNKNOWN) that was sequenced. Determined by a built-in classifier
+that predicts the reads type using the LSTM (long short-term memory) model. If the type is not defined correctly,
+you can change it by clicking on it and selecting another type from the drop-down list.
+- SEQUENCER is the type of sequencer on which the sequence was sequenced (ILLUMINA, ION TORRENT, BGI or UNKNOWN).
+The type is determined according to the ID of the reads from the file in FASTQ format. If a sequencer is not correctly
+defined, it can be changed by clicking on it and selecting a different type from the drop-down list.
+- SEQUENCING TYPE: Panel (sequencing using a targeted panel), WES (whole-exome sequencing), Low-pass WGS (whole-genome
+sequencing), WGS, UNKNOWN. Determined automatically by Genomenal, can be based on the sequencing type that was selected
+while adding sample set. Can be changed on [the Parameters tab](/results/parameters).
+- ALIAS is a synonymous name for the sample, which can be entered by clicking on the value field.
+- CAPTURE KIT is a targeted panel used in targeted selection. Determined automatically by Genomenal, or by user while
+adding sample set. If the capture kit is defined incorrectly, it can be changed
+on [the Parameters tab](/results/parameters). You can use both built-in capture kits (standard panels often used in
+sequencing) and custom capture kits uploaded by the user (on the "Capture kits" page of the "Settings" page block).
+- SAMPLE LOCATION (ORGAN) is the organism part from which the sample was taken for sequencing. Can be specified by
+clicking on the value field.
+- SAMPLE COLLECTION DATE is the date in the format M/d/yyyy. Can be specified by clicking on the value field.
+- METHODOLOGY is the method of extracting the sample. Can be specified by clicking on the value field.
+- COMMENTS - can be specified by clicking on the value field.
+- ONCOLOGICAL DISEASE, STAGE and STAGE DETAILS are the patient's oncological disease, its stage and stage details
+as it occurred at the time the sample was taken for sequencing.
+- THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
+for sequencing.
+
+#### 3. Workflow
+
+The section is a table with analysis stages and their statuses.
+
+<p align="center">
+<img src={require('/img/results/workflow.png').default} width="900"/>
+</p>
+
+- If the stage is in progress, then
+its status has <img src={require('/img/results/in_process.png').default} width="22"/> icon and a percentage
+value of its progress.
+- If the stage is completed successfully,
+then it has the status <img src={require('/img/results/complete.png').default} width="100"/>.
+- If the stage is completed successfully, but not all metrics meet the quality criteria,
+then it has a status like <img src={require('/img/results/complete_metrics.png').default} width="300"/> indicating
+the number of metrics that do not meet the criteria.
+- If the stage is completed with an error,
+then its status has <img src={require('/img/results/failed.png').default} width="25"/> icon and the failed task
+is specified. In this case, you can report a problem to the administrator
+by clicking on <img src={require('/img/results/report_a_problem.png').default} width="25"/>, or retry
+the task by clicking on <img src={require('/img/results/try_again.png').default} width="22"/>.
+- If the stage is included in the workflow, but the necessary previous steps of the analysis have not yet been
+completed, then it has the "Not started" status.
+- If the stage is excluded from the analysis (in [the workflow settings](/settings/settings/settings) used when
+adding sample set or on [the "Parameters" tab](/results/parameters) of the sample), then it has the "Turned off" status.
+
+You can view the details of each stage by
+clicking on <img src={require('/img/results/show_details.png').default} width="25"/>.
+Then you will see this stage section on [the "Workflow details" tab](/results/workflow_details/workflow-details).
+
+If you want to restart the analysis from the very beginning (not counting the uploading of the sample files),
+click on <img src={require('/img/results/restart_analysis.png').default} width="180"/>.
+Please note that this button is available only for those samples, all stages of analysis of which were completed
+successfully. You can also restart the analysis from a certain stage by hovering over its row and
+clicking on <img src={require('/img/results/try_again.png').default} width="22"/>.

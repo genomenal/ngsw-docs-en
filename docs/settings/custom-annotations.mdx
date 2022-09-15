@@ -1,0 +1,273 @@
+---
+sidebar_position: 4
+sidebar_label: Custom Annotations
+---
+
+# Custom Annotations
+
+If you want to annotate the discovered variants using additional data, 
+upload a custom annotation containing this data.
+In addition, you can add annotations containing data on the pathogenicity of variants,
+and an annotation from the COSMIC database.
+
+To open the section with custom annotations, go to the "**Custom annotations**" page from the "Settings" page block
+through the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/custom-annot/custom_annot_page.png').default} width="900"/>
+</p>
+
+## Adding a Custom Annotation
+
+To open the page for adding a custom annotation,
+click on <img src={require('/img/custom-annot/upload_btn.png').default} width="170"/>.
+On the page that opens, you can specify annotation name and type a description
+by clicking on "**-**" (by default, the annotation name will be the file name):
+
+<p align="center">
+<img src={require('/img/custom-annot/name.png').default} height="170"/>
+</p>
+
+### 1. Upload file
+
+Upload the annotation file in **VCF**, **CSV** or **TSV** format.
+To do this, drop the file into the window or click on it to open File Browser:
+
+<p align="center">
+<img src={require('/img/custom-annot/uploading_window.png').default} width="500"/>
+</p>
+
+Specify annotation source reference genome (hg19 or hg38) for proper variant identification:
+
+<p align="center">
+<img src={require('/img/custom-annot/genome.png').default} width="300"/>
+</p>
+
+Immediately after uploading, you will see a preview of the first 7 lines of the annotation.
+
+### 2. Defining the type of a custom annotation
+
+The following types of custom annotations are available for adding:
+1. **Pathogenicity database** is an annotation that contains a column with the pathogenicity
+classes of the variants. The following numeric or text values are supported for a column:
+- "1" or "Benign";
+- "2" or "Likely_benign";
+- "3" or "Uncertain_significance";
+- "4" or "Likely_pathogenic";
+- "5" or "Pathogenic".
+
+If the uploaded annotation has a column with such values, the system will prompt you to define
+this annotation as the pathogenicity base. To do this, click on the switch:
+
+<p align="center">
+<img src={require('/img/custom-annot/pathogenicity_def.png').default} width="500"/>
+</p>
+
+The result of annotation of variants by pathogenicity base will be presented in
+[the "Pathogenicity" column in the Variant Viewer](/results/main/snvs_indels/variant-viewer#description-of-table-columns).
+
+:::info
+As a pathogenicity database, you can define as many user annotations as you like - all of them will be
+used in the annotation, if they do not overlap in variants. If a variant exists in several pathogenicity
+databases, then it will be annotated by the one that was uploaded last.
+:::
+
+2. **COSMIC database** is an annotation in VCF format, which contains a column with variant IDs
+from the [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database (COSV\*\*\*\*\*\*\*\*\).
+If the uploaded annotation has a column with such values, the system will prompt you to define
+this annotation as a COSMIC database. To do this, click on the switch:
+
+<p align="center">
+<img src={require('/img/custom-annot/cosmic_def.png').default} width="500"/>
+</p>
+
+The result of annotation of variants by COSMIC will be presented in
+[the "External links" column in the Variant Viewer](/results/main/snvs_indels/variant-viewer#description-of-table-columns): <img src={require('/img/vv/cosmic.png').default} width="35"/>.
+
+:::info
+Only one custom annotation can be defined as a COSMIC database.
+When defining a new annotation as a COSMIC database, the definition of the previous annotation is deleted.
+:::
+
+3. **An annotation with any other information about the variant** - in this case,
+the annotation type does not need to be defined.
+
+### 3. Map columns
+
+If you have uploaded an annotation file ***in VCF format***, the columns required to identify a variant 
+(CHROM, POS, REF, ALT) will be determined ***automatically***.
+
+If you have uploaded an annotation file ***in CSV or TSV format***, you need to ***define the columns***
+required to identify a variant:
+
+<p align="center">
+<img src={require('/img/custom-annot/main_columns.png').default} width="950"/>
+</p>
+
+- CHROMOSOME is a column with the names of the chromosomes in which the variants are located.
+- POSITION (1-BASED) is a column with start positions of variants.
+- REFERENCE is a column with reference alleles of variants.
+- ALTERNATIVE is a column with alternative alleles of variants.
+
+To do this, select the appropriate column from the annotation you uploaded for each required column.
+For example, in this case, the "CHROMOSOME" column corresponds to the "chr" column from the annotation:
+
+<p align="center">
+<img src={require('/img/custom-annot/chromosome_column.png').default} width="300"/>
+</p>
+
+If you have defined an annotation as ***a pathogenicity database***, then you need to define:
+- a column with the gene name:
+
+<p align="center">
+<img src={require('/img/custom-annot/gene_column.png').default} width="300"/>
+</p>
+
+- a column with the pathogenicity class of the variants (make sure the correct column is selected with auto-detection):
+
+<p align="center">
+<img src={require('/img/custom-annot/pathogenicity_column.png').default} width="300"/>
+</p>
+
+If you have defined an annotation as ***a COSMIC database***, then you need to define a column with variant ID
+from the [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database (COSV\*\*\*\*\*\*\*\*\) (make sure the correct
+column is selected with auto-detection):
+
+<p align="center">
+<img src={require('/img/custom-annot/id.png').default} width="300"/>
+</p>
+
+### 4. Adding an annotation column
+
+- Not available if you have defined the annotation as *a pathogenicity database*.
+- Available, but not required, if you have defined the annotation as *a COSMIC database*.
+
+In the uploaded annotation, select the columns containing the data which you want to annotate the variants with:
+
+1. Click on <img src={require('/img/custom-annot/add_new_column.png').default} width="250"/>.
+2. Enter the column name in the opened window:
+
+<p align="center">
+<img src={require('/img/custom-annot/column_name.png').default} height="400"/>
+</p>
+
+3. Specify the selected column in the file.
+For instance, we have data with the frequencies of variants in the exome,
+and we want to annotate the discovered variants using this information.
+To do this, let's select the appropriate column in the file:
+
+<p align="center">
+<img src={require('/img/custom-annot/file_column.png').default} width="350"/>
+</p>
+
+4. Define the field type: text or numeric:
+
+<p align="center">
+<img src={require('/img/custom-annot/filed_type.png').default} width="350"/>
+</p>
+
+5. Click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+An annotation column will be added:
+
+<p align="center">
+<img src={require('/img/custom-annot/added_column.png').default} width="340"/>
+</p>
+
+To ***edit a column***, hover over it and
+click on <img src={require('/img/custom-annot/edit_column.png').default} width="23"/>.
+
+To ***remove a column***, hover over it and
+click on <img src={require('/img/custom-annot/delete_column.png').default} width="20"/>.
+
+You can add multiple annotation columns in the same way.
+
+### 5. Perform source preparation
+
+To perform the annotation preparation, click on <img src={require('/img/custom-annot/start.png').default} width="200"/>.
+
+:::caution
+If you skipped one of the required steps of creating an annotation (uploading file, 
+selecting source reference genome, filling in the required fields to identify a variant, 
+or adding at least one annotation column for annotations other than pathogenicity or COSMIC databases),
+then the button <img src={require('/img/custom-annot/start_inactive.png').default} width="180"/>
+will be inactive. Variants will not be annotated with such file that has not been processed.
+:::
+
+While source preparation is ***in progress***, the status will be "IN_PROGRESS":
+
+<p align="center">
+<img src={require('/img/custom-annot/annotation_in_progress.png').default} width="950"/>
+</p>
+
+***A successfully prepared annotation*** will have the status "SUCCESS":
+
+<p align="center">
+<img src={require('/img/custom-annot/success_status.png').default} width="900"/>
+</p>
+
+or "PROBLEMS" if ***non-critical problems*** occurred during processing
+(more details about the problems can be found below in the "Warnings" section):
+
+<p align="center">
+<img src={require('/img/custom-annot/problems_status.png').default} width="900"/>
+</p>
+
+Processing of an annotation prepared incorrectly will ***fail*** with the "FAILED" status
+(more details about the error can be found below in the "Errors" section):
+
+<p align="center">
+<img src={require('/img/custom-annot/failed_status.png').default} width="900"/>
+</p>
+
+In such a situation, correct one of the annotation preparation steps 
+(select the correct reference genome, specify the correct annotation column type) 
+or upload another annotation file.
+
+To return to the list of all custom annotations, 
+click on <img src={require('/img/custom-annot/back_btn.png').default} width="230"/>.
+
+The values of the columns selected for the annotation of variants will be located 
+[on the Variant Viewer page](/results/main/snvs_indels/snv_details_panel#custom-annotation-sources)
+and in the file with variants, which can be downloaded from the main page of the sample.
+
+## Editing a Custom Annotation
+
+- If you want to edit an already prepared annotation (add, remove or edit annotation columns, change source
+reference genome or change the selection of required fields), you can do it on its page. To do this, make
+the necessary changes and click on <img src={require('/img/vv/apply.png').default} width="130"/>.
+To cancel the changes made, click on <img src={require('/img/eng/cancel_btn.png').default} width="110"/> or
+just leave the page - the changes will not be saved.
+
+<p align="center">
+<img src={require('/img/eng/apply_annot_changing.png').default} width="400"/>
+</p>
+
+- If you want to stop defining an already prepared annotation as a pathogenicity or COSMIC database,
+turn off the corresponding toggle on the annotation page. In this case, you do not need to save changes.
+
+:::tip
+If you want a newly created or edited annotation to annotate variants of a sample for which
+the "SNVs/Indels Annotation" stage has already been completed, restart the sample processing or this stage.
+:::
+
+## Deleting a Custom Annotation
+
+To remove a custom annotation, follow these steps:
+
+1. Hover over the annotation line on the "Custom annotations" page;
+
+2. Click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>;
+
+3. In the window that appears, confirm your actions by
+clicking on <img src={require('/img/eng/delete.png').default} width="150"/>.
+
+:::note
+Deleted annotation data will be saved and marked "deleted" for variants that were annotated with
+it before it was deleted:
+
+<p align="center">
+<img src={require('/img/eng/deleted_custom.png').default} width="200"/>
+</p>
+
+:::

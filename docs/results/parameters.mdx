@@ -1,0 +1,76 @@
+---
+sidebar_position: 7
+sidebar_label: Parameters
+---
+
+# Parameters
+
+On the "Parameters" tab, you can view and change the sample analysis parameters.
+
+The parameters are divided into three main groups according to which analysis
+modules these parameters are responsible for:
+
+1. [Quality Control](/settings/settings/quality_control_settings)
+2. [Alignment](/settings/settings/alignment_settings)
+3. [Variant Discovery](/settings/settings/variant_discovery_settings)
+
+### Changing Analysis Parameters
+
+To ***change the threshold value*** of quality control or alignment metric, or of hard-filtering or
+copy number variations discovery parameter, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+<p align="center">
+<img src={require('/img/eng/change_value_example.png').default} width="400"/>
+</p>
+
+To ***change the selection*** of the alignment tool, sequencing type, capture kit features,
+panel of normals or reference samples panel, click on the value of the corresponding field and
+select the required option:
+
+<p align="center">
+<img src={require('/img/eng/change_alignment_tool.png').default} width="420"/>
+</p>
+
+To ***disable or enable the analysis module or its parameter***, turn off or turn on, respectively,
+the corresponding toggle. When the toggle switch is on, it is blue and shifted to
+the right: <img src={require('/img/eng/toggle_on.png').default} width="35"/>, and when it is off,
+it is gray and shifted to the left: <img src={require('/img/eng/toggle_off.png').default} width="35"/>
+
+### Applying Analysis Parameter Changes
+
+As soon as you start making changes to the analysis settings, the following notification will appear:
+
+<p align="center">
+<img src={require('/img/eng/apply_warning.png').default} width="450"/>
+</p>
+
+It is not necessary to confirm the changes right away, you can do this when you have finished making
+all the necessary changes to the analysis settings
+by clicking on <img src={require('/img/vv/apply.png').default} width="130"/>.
+
+:::info
+Applying parameter changes will restart the sample analysis process from the step that was changed.
+For example, if you change the threshold of the hard-filtering parameter, the Germline SNVs/Indels
+discovery pipeline will restart from the filtering stage.
+:::
+
+:::caution
+If you disable one of the analysis modules, you will lose all its progress, so if you want to turn
+it back on, the process will start from the beginning.
+:::
+
+:::info
+By changing the parameters for one sample from a set (for example, for a tumor sample from a
+tumor/normal sample set), you change the parameters for all samples from the set.
+:::
+
+To ***cancel*** the changes made, click on <img src={require('/img/eng/cancel_btn.png').default} width="110"/>
+or just leave the page - the changes will not be saved.
+
+:::tip
+If you plan to frequently use the same parameters to analyze multiple samples, then instead of changing
+the settings on the sample parameters tab each time, it is convenient to create a settings
+preset that can be applied to samples during sample set adding. You can read about how to do
+this [here](/settings/settings/settings).
+:::

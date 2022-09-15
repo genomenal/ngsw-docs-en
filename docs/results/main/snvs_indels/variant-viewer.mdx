@@ -1,0 +1,425 @@
+---
+sidebar_position: 2
+sidebar_label: Variant Viewer
+---
+
+# Variant Viewer
+
+## Overview
+
+Variant Viewer is an embedded service for viewing and analyzing variants. Located on **[Main tab](/results/main/main)**
+of the sample.
+
+On the ***tumor*** sample page, you can find two Variant Viewers: one with ***somatic*** and one with ***germline***
+mutations discovered in this sample:
+
+<p align="center">
+<img src={require('/img/vv/germline_and_somatic_vv.png').default} width="600"/>
+</p>
+
+The ***normal*** sample page presents a Variant Viewer with ***germline*** mutations only:
+
+<p align="center">
+<img src={require('/img/vv/germline_only.png').default} width="600"/>
+</p>
+
+## The main page
+
+After clicking on <img src={require('/img/results/vv_btn.png').default} width="130"/>, you will see the main page
+of the service:
+
+<p align="center">
+<img src={require('/img/vv/main_table.png').default} width="950"/>
+</p>
+
+The main object of Variant Viewer is a table with variants - each variant is on a new line:
+
+<p align="center">
+<img src={require('/img/vv/snv_row.png').default} width="950"/>
+</p>
+
+### Variant information
+
+Besides of the information presented in the table (see
+[Description of table columns](/results/main/snvs_indels/variant-viewer#description-of-table-columns)),
+for each variant there are several embedded modules with additional information:
+
+1. **Variant detailed information panel**. Click on the variant row to see a panel:
+
+<p align="center">
+<img src={require('/img/vv/details_panel.png').default} width="950"/>
+</p>
+
+You can read more about the panel and its tabs
+in [the corresponding section](/results/main/snvs_indels/snv_details_panel).
+
+2. **Variant detailed information page** - here you can add the variant interpretation, include the variant to the
+report, and much more. Click on <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in the variant
+row to open the page.
+
+3. **ACMG Classification** is a page with the criteria developed by [ACMG](https://www.acmg.net/) for the variant
+interpretation. To open the page, click on the pathogenicity
+button (<img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> if the pathogenicity class of this
+variant has not previously been determined) in the variant row (the "**Pathogenicity**" column) and in the dialog
+that appears click on "**ACMG Classification**":
+
+<p align="center">
+<img src={require('/img/vv/acmg_on_dialog.png').default} width="250"/>
+</p>
+
+4. **Integrative Genomics Viewer (IGV)** is a module for visualization of variant on the genome.
+Click on <img src={require('/img/vv/igv_var.png').default} width="33"/> in the variant row to open the module.
+
+### Pinning variants
+
+The variants you want can be pinned. Click on <img src={require('/img/vv/pin_variant.png').default} width="28"/>
+in the variant line to pin it. The pinned variant will appear at the top of the table (the row highlighted in green):
+
+<p align="center">
+<img src={require('/img/vv/pinned_variant.png').default} width="950"/>
+</p>
+
+:::note
+Variant remains pinned when you exit the Variant Viewer page.
+:::
+
+### Sorting and filtering variants
+
+You can ***sort*** the table in ascending or descending order of the values of the "Locus", "Origin", "Position",
+"Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity". To sort by the column, click on its name
+(one click to sort in ascending order, two clicks - in descending order).
+
+***Filtering of variants*** in Variant Viewer is described in the
+[Basic Filtering](/results/main/snvs_indels/basic_filtering) and
+[Advanced Filtering](/results/main/snvs_indels/advanced_filtering) sections.
+
+### Export of variants
+
+Variant Viewer allows to export variants in CSV format:
+
+- ***Export of all variants***: click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
+the "All to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/all_to_csv.png').default} width="200"/>
+</p>
+
+- ***Export of only filtered variants***: filter the needed variants by
+[Basic](/results/main/snvs_indels/basic_filtering) or [Advanced](/results/main/snvs_indels/advanced_filtering)
+filtering, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
+the "All to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/all_to_csv.png').default} width="200"/>
+</p>
+
+- ***Export of only pinned variants***: [pin](/results/main/snvs_indels/variant-viewer#pinning-variants)
+the needed variants, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
+the "Pinned only to CSV" option:
+
+<p align="center">
+<img src={require('/img/vv/only_pinned.png').default} width="200"/>
+</p>
+
+## Description of table columns
+
+By default, the table has the following columns (the set and order of the columns can be changed - how to do it is
+described [here](/results/main/snvs_indels/edit_table_columns)):
+
+1. **Locus** is the common name of the gene in which the variant is located.
+2. **Origin** is a mutation type (somatic or germline).
+
+:::info
+"Origin" column is hidden in [Variant Viewer with germline mutations](/results/main/snvs_indels/variant-viewer)
+and in Variant Viewer with somatic mutations if "Origin is Somatic" filter is on.
+:::
+
+3. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+4. **HGVSp** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
+When hovering over the value of the "HGVSp" column for a variant, you can see the transcript which the substitution
+was predicted for and HGVSp with amino acids in the three letter code:
+
+<p align="center">
+<img src={require('/img/vv/hgvsp_tooltip.png').default} width="350"/>
+</p>
+
+4. **Alteration** is a nucleotide substitution (reference allele > alternative allele(s)).
+5. **HGVSc** is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position of
+the substituted nucleotide + reference allele > alternative allele). Starts with a prefix: “c.” (coding; for a
+substitution in the coding sequence), “n.” (non-coding; for a substitution in the non-coding sequence). When hovering
+over the value of the "HGVSc" column for a variant, you can see the transcript which the substitution was predicted
+for (the transcript IDs from Ensembl (ENST...) and RefSeq (NM_) are given):
+
+<p align="center">
+<img src={require('/img/vv/hgvsc_tooltip.png').default} width="300"/>
+</p>
+
+6. **Exon** is the exon number in the transcript which is affected by the variant.
+7. **Depth (Alt/Ref)** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+position for this sample. **Alt** is the alternative allele reads count, **Ref** is the reference allele reads count.
+Also the percentage of the share of the alternative allele reads count among all reads (Alt/Depth) is shown.
+
+The column cells are colored depending on the depth value:
+
+- green if depth > 60;
+- yellow if depth ≤ 60;
+- red if depth < 20.
+
+8. **GT** is a genotype; allelic values (0 - reference allele, 1 - first alternative allele, 2 - second alternative
+allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
+9. **Consequence** is the effect of the variant on genes.
+
+#### Consequences of variants in the annotation
+
+<table>
+  <tr>
+   <td>Consequence</td>
+   <td>Description</td>
+   <td>Impact*</td>
+  </tr>
+  <tr>
+   <td>Coding sequence</td>
+   <td>The variant hits a coding sequence</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Transcript ablation</td>
+   <td>Deletion of a transcript</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Splice acceptor</td>
+   <td>The variant hits a splice acceptor site</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Splice donor</td>
+   <td>The variant hits a splice donor site</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Stop gained</td>
+   <td>Variant causes a STOP codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Frameshift</td>
+   <td>Insertion or deletion causes a frame shift</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Stop lost</td>
+   <td>Variant causes stop codon to be mutated into a non-stop codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Start lost</td>
+   <td>Variant causes start codon to be mutated into a non-start codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Transcript amplification</td>
+   <td>A feature amplification of a region containing a transcript</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Inframe insertion</td>
+   <td>One or many codons are inserted</td>
+   <td>MODERATE</td>
+  </tr>
+  <tr>
+   <td>Inframe deletion</td>
+   <td>One or many codons are deleted</td>
+   <td>MODERATE</td>
+  </tr>
+  <tr>
+   <td>Missense</td>
+   <td>Variant causes a codon that produces a different amino acid</td>
+   <td>MODERATE</td>
+  </tr>
+  <tr>
+   <td>Protein altering</td>
+   <td>A variant which is predicted to change the protein encoded in the coding sequence</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Splice region</td>
+   <td>A sequence variant in which a change has occurred within the region of the splice site, either within 1-3
+   bases of the exon or 3-8 bases of the intron</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Incomplete terminal codon</td>
+   <td>A sequence variant where at least one base of the final codon of an incompletely annotated transcript
+   is changed</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Start retained</td>
+   <td>Variant causes start codon to be mutated into another start codon</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Stop retained</td>
+   <td>Variant causes stop codon to be mutated into another stop codon</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Synonymous</td>
+   <td>Variant causes a codon that produces the same amino acid</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Mature miRNA</td>
+   <td>A transcript variant located with the sequence of the mature miRNA</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>UTR5</td>
+   <td>A variant hits 5'UTR region</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>UTR3</td>
+   <td>A variant hits 3'UTR region</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Non coding transcript exon</td>
+   <td>A sequence variant that changes non-coding exon sequence in a non-coding transcript</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Intron</td>
+   <td>The variant is located in the intron</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>NMD transcript</td>
+   <td>The variant is located in the transcript susceptible to nonsense-mediated decay</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Non coding transcript</td>
+   <td>The variant is located in the non-coding transcript</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Upstream</td>
+   <td>Upstream of a gene</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Downstream</td>
+   <td>Downstream of a gene</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>TF binding site</td>
+   <td>Transcription factor binding site (TFBS)</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>TFBS ablation</td>
+   <td>Deletion of a TFBS</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>TFBS amplification</td>
+   <td>Amplification of a TFBS</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Regulatory region ablation</td>
+   <td>Deletion of a regulatory region</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Regulatory region amplification</td>
+   <td>Amplification of regulatory region</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Feature elongation</td>
+   <td>A sequence variant that causes the extension of a genomic feature</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Regulatory region variant</td>
+   <td>The variant hits a regulatory feature</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Feature truncation</td>
+   <td>A sequence variant that causes the reduction of a genomic feature</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Intergenic variant</td>
+   <td>The variant is in an intergenic region</td>
+   <td>MODIFIER</td>
+  </tr>
+</table>
+
+***Impact** is the predicted effect of the variant on the protein. The corresponding column can be added in
+[the Edit Table Columns window](/results/main/snvs_indels/edit_table_columns).
+
+#### Impacts of variants in the annotation
+
+<table>
+  <tr>
+   <td>Impact
+   </td>
+   <td>Description
+   </td>
+  </tr>
+  <tr>
+   <td>HIGH
+   </td>
+   <td>The variant has high (disruptive) impact in the protein, probably causing protein truncation, loss of
+   function or triggering nonsense mediated decay
+   </td>
+  </tr>
+  <tr>
+   <td>MODERATE
+   </td>
+   <td>The variant might change protein effectiveness
+   </td>
+  </tr>
+  <tr>
+   <td>LOW
+   </td>
+   <td>The variant is mostly harmless or unlikely to change protein behavior
+   </td>
+  </tr>
+  <tr>
+   <td>MODIFIER
+   </td>
+   <td>Usually variants affecting non-coding genes, where predictions are difficult or there is no evidence of impact
+   </td>
+  </tr>
+</table>
+
+The "Consequence" column cells are colored depending on the impact:
+
+- red if the impact is HIGH;
+- yellow if the impact is MODERATE;
+- no color if impact is LOW or MODIFIER.
+
+10. **External links** are links to pages with variant information
+in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>.
+There may also be a link to the variant in <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if it was [uploaded as a custom annotation](/settings/custom-annotations#2-defining-the-type-of-a-custom-annotation)).
+
+11. **gnomAD AF** is the allele frequency according to the [gnomAD](https://gnomad.broadinstitute.org/) database.
+
+The column cells are colored depending on the allele frequency value:
+
+- green if AF ≥ 0.015;
+- yellow if 0.01 ≤ AF < 0.015;
+- red if AF < 0.01.
+
+12. **Pathogenicity** is the variant pathogenicity, which can be determined either manually, by ACMG criteria, or
+according to the pathogenicity base. If you have not [uploaded the pathogenicity database](/settings/custom-annotations#2-defining-the-type-of-a-custom-annotation)
+or have not determined the variant pathogenicity, then the column
+value will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> (No interpretation).

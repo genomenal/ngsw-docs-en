@@ -1,0 +1,616 @@
+---
+sidebar_position: 5
+sidebar_label: Advanced Filtering of Variants
+---
+
+# Advanced Filtering of Variants
+
+To enter the Advanced Variant Filtering mode, click
+on the <img src={require('/img/vv/advanced_filteing_btn.png').default} width="120"/> button at the top of the table.
+You will see the Query Builder:
+
+<p align="center">
+<img src={require('/img/vv/query_wizard.png').default} width="700"/>
+</p>
+
+:::note
+If you are on the page of [Variant Viewer with somatic mutations](/results/variant-viewer/variant-viewer),
+the somatic mutation filter ("Origin in Somatic") will be selected by default:
+<p align="center">
+<img src={require('/img/vv/somatic_origin.png').default} width="550"/>
+</p>
+:::
+
+## Adding the First Filter Condition
+
+To add a new condition, click on the highlighted window:
+
+<p align="center">
+<img src={require('/img/vv/add_new_condition.png').default} width="600"/>
+</p>
+
+You will see a list of **annotation columns** available for filtering variants:
+
+<p align="center">
+<img src={require('/img/vv/fields.png').default} height="250"/>
+</p>
+
+The way of adding a filter condition depends on **the filter type**:
+
+### 1. Multiselect Filters
+
+- Ability to select multiple column values at once.
+- The way of adding a filter condition:
+
+1. Select ***a filter column*** from the list of all columns;
+2. Select ***a filter operator***:
+    * "in";
+    * "not in";
+    * "not empty": the selected column has a non-empty value in the annotation for the searched variants (there
+    is no such option for the "Chromosome" and "Origin" columns);
+    * "empty": the selected column has no value in the annotation for the searched variants (there
+    is no such option for the "Chromosome" and "Origin" columns).
+
+<p align="center">
+<img src={require('/img/vv/operators.png').default} width="650"/>
+</p>
+
+3. If the "in" or "not in" operators have been selected, select the required ***filter column values***
+by clicking on the value rows:
+
+<p align="center">
+<img src={require('/img/vv/multiselect_options.png').default} width="650"/>
+</p>
+
+4. To complete adding the condition, click outside edit value container.
+
+- The columns:
+    1. **Gene** (the "Locus" column, the "Gene" basic filter): filtering by gene transcript (shown in brackets).
+    2. **Impact**: filtering by the predicted effect of the variant on the protein:
+    High, Moderate, Low, Modifier. Column values are described
+    [here](/results/main/snvs_indels/variant-viewer#impacts-of-variants-in-the-annotation).
+    3. **Genome position**: filtering by variant position in the genome: Exonic (in exon),
+    Intronic (in intron), Intergenic (in the intergenic region).
+    4. **Consequence**: filtering by the effect of the variant on genes.
+    Column values are described
+    [here](/results/main/snvs_indels/variant-viewer#consequences-of-variants-in-the-annotation).
+    5. **Pathogenicity**: filtering by variant pathogenicity, which have been determined either manually, by ACMG
+    criteria, or according to the pathogenicity base.
+    6. **Chromosome** (the "Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
+    chrX, chrY, chrM, chromosomes like chrN\_random (contigs located in the N chromosome but could not be reliably
+    ordered within the sequence, or sequences for alternative haplotypes), chromosomes like chrUn_ (contigs that
+    cannot be confidently placed on a specific chromosome), chrEBV.
+    7. **Origin**: filtering by mutation type: Somatic, Germline.
+    8. **Caller Filters**: filtering by GATK variant filters.
+    9. **ClinVar: Clinical significance** (the "ClinVar" column/basic filter): filtering by the clinical
+    significance of the phenotype (you can find the description of
+    values [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
+    10. **ClinVar: Allele origin**: filtering by variant allele origin.
+    11. **Conservation: [conservation score] confidence value**: filtering by confidence value of various conservative
+    scores (Integrated, GM12878, H1-hESC, HUVEC): Highly significant; Significant; Informative; Other.
+    12. **Protein function effect: [prediction algorithm] prediction**: filtering by the results of predicting
+    the effect of amino acid substitution on protein function, obtained using various algorithms and programs
+    ([Polyphen](http://genetics.bwh.harvard.edu/pph/pph_help.html),
+    [SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/), LRT, [FAtHMM](http://fathmm.biocompute.org.uk/),
+    [Provean](http://provean.jcvi.org/index.php), [Meta SVM](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5270233/),
+    Meta LR, [M-CAP](http://bejerano.stanford.edu/mcap/),
+    [Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/),
+    [FAtHMM-MK](http://fathmm.biocompute.org.uk/), [FAtHMM-XF](http://fathmm.biocompute.org.uk/)).
+    13. **Other: APPRIS annotation** filtering by human splicing isoforms
+    ([APPRIS](http://appris.bioinfo.cnio.es) annotation): Principal 1-5; Alternative 1-2.
+
+### 2. Single Value Filters
+
+- Ability to select only one filter value.
+- The way of adding a filter condition:
+
+1. Select ***filter*** from the list of all filters. The filter operator "is" is automatically selected for
+filters of this type;
+2. Select the required ***filter value*** by clicking on the value row:
+
+<p align="center">
+<img src={require('/img/vv/one_option.png').default} width="700"/>
+</p>
+
+- The filters:
+    1. **Gene panel**: filtering by gene panel.
+    You can add your own gene panel on the "Gene panels" page, which is described in
+    detail in [the corresponding section](/settings/gene_panels). In addition, it is possible to import panels from
+    the Library of the most common clinical panels - such option is available in the "Gene panel" filter in the
+    [Basic Filtering](/results/main/snvs_indels/basic_filtering) mode. If you don't have any gene panels added,
+    the list of filter values will be empty.
+    2. **Onco Relevance**: filtering by the significance of the variant for any oncological disease:
+    Relevant, Irrelevant.
+
+### 3. Filters with ID input
+
+- Ability to enter the required column value.
+- The way of adding a filter condition:
+
+1. Select ***a filter column*** from the list of all columns;
+2. Select ***a filter operator***:
+
+<p align="center">
+<img src={require('/img/vv/operator_id.png').default} width="650"/>
+</p>
+
+3. If the operators "is" or "is not" were selected, click on the input box ("-") and enter ***filter column value***:
+
+<p align="center">
+<img src={require('/img/vv/rsid.png').default} width="650"/>
+</p>
+
+4. To complete adding the condition, press Enter or click outside edit value container.
+
+- The columns:
+    1. **rsId** (the "External links" column): filtering by variant ID from
+    the [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) database. You can use as a value either the full ID (rs\*\*\*\*\*\)
+    or the ID digits only (\*\*\*\*\*\).
+    2. **ClinVar ID** (the "External links" column): filtering by variant ID (Variation ID) from
+    the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
+    3. **GnomAD ID**: filtering by variant ID from the [gnomAD](https://gnomad.broadinstitute.org/) database.
+    Identical to ID from [dbSNP](https://www.ncbi.nlm.nih.gov/snp/). You can use as a value either the full dbSNP
+    ID (rs\*\*\*\*\*\) or the ID digits only (\*\*\*\*\*\).
+    4. **ClinVar: Allele ID**: filtering by [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) ID for
+    allelic substitution.
+    5. **ClinVar: Variant Haplotype ID**: filtering by ID of the variant that is part of the haplotype (Variation ID)
+    according to the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
+
+### 4. Numeric Filters
+
+- Ability to enter the required column value.
+- The way of adding a filter condition:
+
+1. Select ***a filter column*** from the list of all columns;
+2. Select ***a filter operator***:
+    * ">";
+    * "<";
+    * "≥";
+    * "≤";
+    * "=";
+    * "≠";
+    * "not empty": the selected column has a non-empty value in the annotation for the searched variants
+    (there is no such option for the "Start" and "End" columns);
+    * "empty": the selected column has no value in the annotation for the searched variants
+    (there is no such option for the "Start" and "End" columns).
+
+<p align="center">
+<img src={require('/img/vv/exon_operators.png').default} width="650"/>
+</p>
+
+3. If a mathematical operator was selected as the filter operator, click on the input box ("-") and enter
+***filter column value***:
+
+<p align="center">
+<img src={require('/img/vv/exon_value.png').default} width="650"/>
+</p>
+
+4. To complete adding the condition, press Enter or click outside edit value container.
+
+- The columns:
+    1. **Start** (the "Position" column): filtering by the start position of the variant on the chromosome
+    (natural number).
+    2. **End**: filtering by the end position of the variant on the chromosome (natural number).
+    3. **Exon**: filtering by exon number in the transcript that the variant affected (natural number).
+    4. **GnomAD: Allele frequency** (the "gnomAD AF" column): filtering by the total allele frequency in the
+    [gnomAD](https://gnomad.broadinstitute.org/) database (positive rational number).
+    5. **GnomAD: XY samples AF**: filtering by allele frequency in the XY subpopulation in the
+    [gnomAD](https://gnomad.broadinstitute.org/) database (positive rational number).
+    6. **GnomAD: XX samples AF**: filtering by allele frequency in the XX subpopulation in the
+    [gnomAD](https://gnomad.broadinstitute.org/) database (positive rational number).
+    7. **GnomAD: Number of Homozygotes**: filtering by the number of homozygotes in the
+    [gnomAD](https://gnomad.broadinstitute.org/) database (natural number).
+    8. **GnomAD: [population] AF / XY/XX samples AF / Number of Homozygotes**: filtering by total allele frequency (AF),
+    by allele frequencies in XX/XY subpopulations or by the number of homozygotes in different populations (Ashkenazi
+    Jewish, Amish, African and African American, Finnish, South Asian, Latino, Non-Finnish european, East Asian, Middle
+    Eastern, Other) in the [gnomAD](https://gnomad.broadinstitute.org/) database (positive rational number).
+    9. **Conservation: [prediction program] rankscore / score / neutral value**:
+    filtering by conservation scores obtained using prediction by various programs
+    ([FitCons](http://compgen.cshl.edu/fitCons/),
+    [GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html),
+    [PhyloP](https://ccg.epfl.ch/mga/hg19/phylop/phylop.html),
+    [PhastCons](http://compgen.cshl.edu/phast/phastCons-HOWTO.html),
+    [SiPhy](http://portals.broadinstitute.org/genome_bio/siphy/documentation.html), BStatistic)
+    (positive rational number).
+    10. **Conservation: [ pA / pG / pC / pT ]**: filtering by stationary distribution of alleles A, G, C or T in
+    the site, estimated using the [SiPhy](http://portals.broadinstitute.org/genome_bio/siphy/documentation.html)
+    algorithm (positive rational number).
+    11. **ExAC: Allele frequency**: filtering by the total allele frequency in the
+    [ExAC](http://exac.broadinstitute.org/) database (positive rational number).
+    12. **ExAC: Allele count**: filtering by alternative allele count in the
+    [ExAC](http://exac.broadinstitute.org/) database (natural number).
+    13. **ExAC: Adjusted AF**: filtering by allele frequency in a population with genotype quality ≥20 and
+    depth ≥10 in the [ExAC](http://exac.broadinstitute.org/) database (positive rational number).
+    14. **ExAC: Adjusted allele count**: filtering by alternative allele count in a population with genotype
+    quality ≥20 and depth ≥10 in the [ExAC](http://exac.broadinstitute.org/) database (natural number).
+    15. **ExAC: [population] AF / allele count**: filtering by total allele frequency (AF) or
+    by alternative allele count in different populations (African & African American, American, East Asian,
+    Finnish, Non-Finnish European, South Asian) in the [ExAC](http://exac.broadinstitute.org/) database
+    (positive rational number).
+    16. **ExAC: [cohort] AF / Allele count / adjusted AF / adjusted allele count**: filtering by total allele
+    frequency (AF), by alternative allele count, or by allele frequency or alternative allele count in
+    a population with genotype quality ≥20 and depth ≥10 in different cohorts (Non-TCGA, Non-Psych) in the
+    [ExAC](http://exac.broadinstitute.org/) database (positive rational number for AF and natural number for
+    allele count).
+    17. **ExAC: \[cohort] \[population] AF / allele count**: filtering by total allele frequency (AF) or
+    by alternative allele count in different populations (African & African American, American, East Asian,
+    Finnish, Non-Finnish European, South Asian) in different cohorts (Non-TCGA, Non-Psych) in the
+    [ExAC](http://exac.broadinstitute.org/) database (positive rational number for AF and natural number
+    for allele count).
+    18. **Protein function effect: [prediction algorithm] rankscore / score / omega / p-value**: filtering by
+    prediction scores of the effect of amino acid substitution on protein function, obtained using various algorithms
+    and programs ([SIFT](https://sift.bii.a-star.edu.sg/),
+    [Polyphen](http://genetics.bwh.harvard.edu/pph/pph_help.html),
+    [SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/), LRT, MutationAssessor,
+    [FAtHMM](http://fathmm.biocompute.org.uk/), [Provean](http://provean.jcvi.org/index.php),
+    [Meta SVM](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5270233/), Meta LR,
+    [M-CAP](http://bejerano.stanford.edu/mcap/), [MutPred](http://mutpred.mutdb.org/), MVP, MPC,
+    [Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/), DEOGEN2,
+    [DANN](https://cbcl.ics.uci.edu/public_data/DANN/),
+    [FAtHMM-MKL](http://fathmm.biocompute.org.uk/), [FAtHMM-XF](http://fathmm.biocompute.org.uk/), Eigen)
+    (positive rational number).
+    19. **Other frequencies: 1000G Allele frequency**: filtering by total allele frequency in
+    [the 1000 Genomes Project](https://www.internationalgenome.org/) (positive rational number).
+    20. **Other frequencies: 1000G [population] AF / allele count**: filtering by total allele frequency or
+    by alternative allele count in different populations (East Asian, European, African, American, South Asian,
+    African American, European American) in [the 1000 Genomes Project](https://www.internationalgenome.org/)
+    (positive rational number for AF and natural number for allele count).
+    21. **Other frequencies: UK10K allele frequency**: filtering by total allele frequency in combined genotypes
+    in the UK10K cohort from [the UK10K project](https://www.uk10k.org/) (positive rational number).
+    22. **Other frequencies: UK10K allele count**: filtering by alternative allele count in combined genotypes
+    in the UK10K cohort from [the UK10K project](https://www.uk10k.org/) (natural number).
+    23. **Other frequencies: UK10K [cohort] AF / allele count**: filtering by total allele frequency or by
+    alternative allele count in combined genotypes in different cohorts (TwinsUK, ALSPAC) from
+    [the UK10K project](https://www.uk10k.org/) (positive rational number for AF and natural number for allele count).
+    24. **Other: Coding sequence position**: filtering by coding sequence position (natural number).
+    25. **Other: Protein position**: filtering by protein position (natural number).
+    26. **Other: Amino acid position**: filtering by amino acid position (natural number).
+
+### 5. Filters with any value
+
+- Ability to enter the required column value.
+- The way of adding a filter condition:
+
+1. Select ***a filter column*** from the list of all columns;
+2. Select ***a filter operator***:
+    * "starts with" (there is no such option for the "HGVSc" column);
+    * "contains";
+    * "not contains" (there is no such option for the "HGVSc" column);
+    * "not empty": the selected column has a non-empty value in the annotation for the searched variants
+    (there is no such option for the "Reference allele" column);
+    * "empty": the selected column has no value in the annotation for the searched variants
+     (there is no such option for the "Reference allele" column).
+
+<p align="center">
+<img src={require('/img/vv/hgvsp_operator.png').default} width="650"/>
+</p>
+
+3. If the operators "starts with", "contains" or "not contains" were selected, click on the input box ("-")
+and enter ***filter column value***:
+
+<p align="center">
+<img src={require('/img/vv/hgvsp_value.png').default} width="650"/>
+</p>
+
+4. To complete adding the condition, press Enter or click outside edit value container.
+
+- The columns:
+    1. **Reference allele** (the "Alteration" column): filtering by reference allele of the variant.
+    2. **Alternative allele** (the "Alteration" column): filtering by alternative allele of the variant.
+    3. **HGVSc**: filtering by nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/)
+    (genomic position of the substituted nucleotide + reference allele > alternative allele). Starts with a prefix:
+    “c.” (coding; for a substitution in the coding sequence), “n.” (non-coding; for a substitution in the non-coding
+    sequence).
+    4. **HGVSp (short)** (the "HGVSp" column): filtering by amino acid substitution using
+    [the HGVS notation](https://varnomen.hgvs.org/) in the single-letter amino acid code (“p.” prefix
+    (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
+    e.g.: p.P72R.
+    5. **HGVSp (long)** (the "HGVSp" column): filtering by amino acid substitution using
+    [the HGVS notation](https://varnomen.hgvs.org/) in the three-letter amino acid code. Written with transcript:
+    Ensembl transcript ID + “p.” prefix (protein) + reference amino acid +
+    amino acid position in protein + new amino acid resulting from the substitution. e.g.:
+    ENSP00000269305.4:p.Pro72Arg.
+    6. **Common: RefSeq Transcript**: filtering by transcript ID from the
+    [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database (NM_\*\*\*\*\*\.\*\).
+    7. **GnomAD: Coverage**: filtering by average coverage depth by bases
+    in the [gnomAD](https://gnomad.broadinstitute.org/) database: &lt;10, 10-100, ⩾100.
+    8. **ClinVar: Phenotypes**: filtering by the phenotypic significance of the variant according to the
+    [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
+    9. **ClinVar: Phenotypes cross references**: filtering by phenotype references in various databases
+    ([Orphanet](https://www.orpha.net/consor/cgi-bin/index.php),
+    [MedGen](https://www.ncbi.nlm.nih.gov/medgen/), [MONDO](https://monarchinitiative.org/),
+    [OMIM](https://www.omim.org/), etc.)
+    10. **ClinVar: Haplotype phenotypes**: filtering by the phenotypic significance of the variant that is part
+    of the haplotype, according to the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
+    11. **ClinVar: Haplotype phenotypes cross references**: filtering by references to the phenotype of a variant
+    that is part of the haplotype in various databases ([Orphanet](https://www.orpha.net/consor/cgi-bin/index.php),
+    [MedGen](https://www.ncbi.nlm.nih.gov/medgen/), [MONDO](https://monarchinitiative.org/),
+    [OMIM](https://www.omim.org/), etc.)
+    12. **ClinVar: Review status**: filtering by the summary score of the data source, in which the clinical
+    significance of the phenotype is declared. Possible value options and their descriptions can be
+    found [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/variation_report/#review_status).
+    13. **ClinVar: Cross references**: filtering by variant references in various databases
+    ([ClinGen](https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/landing),
+    [UniProtKB](https://www.uniprot.org/uniprotkb/), [OMIM](https://www.omim.org/),
+    [GTR](https://www.ncbi.nlm.nih.gov/gtr/), etc.)
+    14. **Conservation: Ancestral allele**: filtering by ancestral allele predicted by
+    [EPO](https://www.ensembl.org/info/genome/compara/epo_anchors_info.html).
+    15. **Conservation: Altai Neanderthal**: filtering by Altai Neanderthal genotype.
+    16. **Conservation: Denisova**: filtering by Denisova genotype.
+    17. **Conservation: Vindija Neanderthal**: filtering by Vindija Neanderthal genotype.
+    18. **Protein function effect (additional): Transcript ID**: filtering by transcript ID from the
+    [UniProtKB](https://www.ncbi.nlm.nih.gov/nuccore/) database (P\*\*\*\*\*\) for which the effect of amino acid
+    substitution on protein function has been predicted by [MutPred](http://mutpred.mutdb.org/).
+    19. **Protein function effect (additional): Amino acid change**: filtering by amino acid substitution whose
+    effect on protein function was predicted by [MutPred](http://mutpred.mutdb.org/). e.g.: G35r.
+    20. **Protein function effect (additional): Top 5 features**: filtering by the top five substitution effects
+    on protein function predicted by [MutPred](http://mutpred.mutdb.org/).
+    21. **Other: Amino acids**: filtering by reference amino acid.
+    22. **Other: Codons**: filtering by nucleotide substitution written as codons. e.g.: GAA/GAG.
+    23. **Other: GTEx v7 Gene**: filtering by gene from [GTEx](https://www.gtexportal.org/).
+    24. **Other: GTEx v7 Tissue**: filtering by tissue from [GTEx](https://www.gtexportal.org/).
+    25. **Other: Geuvadis EQTL target gene**: filtering by gene from eQTL data analysis
+    [GEUVADIS](http://www.geuvadis.org/).
+
+### 6. Filter by HPO
+
+- Filtering by a term from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>.
+- The way of adding a filter condition:
+
+1. Select "**HPO Phenotype**" filter from the list of all filters. The filter operator "is" is automatically
+selected for the filter;
+2. Click on the filter value row:
+
+<p align="center">
+<img src={require('/img/vv/hpo_advanced.png').default} width="280"/>
+</p>
+
+You will see the term search window:
+
+<p align="center">
+<img src={require('/img/vv/hpo_search.png').default} width="800"/>
+</p>
+
+The drop-down list contains the main term groups.
+You can filter variants either by the whole group or by a specific term.
+The term can be found in the group's list of terms, or by searching by name or ID
+from [Human Phenotype Ontology](https://hpo.jax.org/app/).
+For example, several terms are found when searching for the term “glioma”:
+
+<p align="center">
+<img src={require('/img/vv/glioma_search.png').default} width="800"/>
+</p>
+
+By selecting one of them (for example, "Glioma"), you will be redirected to this term page:
+
+<p align="center">
+<img src={require('/img/vv/glioma_page.png').default} width="800"/>
+</p>
+
+On the left, there are the term definition and a comment.
+In the middle, there is the hierarchy of the term: the terms above the selected Glioma
+term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
+and the terms below Glioma are its child terms.
+On the right, there are the genes associated with this term (in this case, 45 genes were found).
+To filter variants by these genes, click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
+
+### 7. Filters by Per-Sample Data
+
+- Works only if there is data about the sequencing sample.
+- The way of adding a filter condition (for all filters of this type except
+"[Per-sample data: Genotype](/results/main/snvs_indels/advanced_filtering#8-filter-by-genotype)"):
+
+1. Select ***a filter*** from the list of all filters;
+2. Select ***a filter function***:
+    * "Max": maximum value;
+    * "Min": minimum value;
+    * "Avg": mean;
+    * "Sum": total value.
+
+<p align="center">
+<img src={require('/img/vv/function.png').default} width="650"/>
+</p>
+
+3. Select ***a filter operator***:
+
+<p align="center">
+<img src={require('/img/vv/sample_data_operator.png').default} width="650"/>
+</p>
+
+4. If a mathematical operator was selected as the filter operator, click on input box:
+
+<p align="center">
+<img src={require('/img/vv/sample_data_value.png').default} width="200"/>
+</p>
+
+5. Enter ***the filter threshold*** (natural number for filters by depth, ref and alt count, and positive rational
+number for AF);
+6. To complete adding the condition, press Enter or click outside edit value container.
+
+- The filters:
+    1. "**Per-sample data: Read depth**" (the "Depth (Alt/Ref)" column): filtering by sequencing depth that is
+    the total number of reads of the sequence overlapping the variant position for this sample.
+    2. "**Per-sample data: Ref count**": filtering by the number of times the reference nucleotide was read
+    in the sequence for this sample.
+    3. "**Per-sample data: Alt count**": filtering by the number of times the alternative nucleotide was read
+    in the sequence for this sample.
+    4. "**Per-sample data: AF**": filtering by alternative allele frequency for this sample.
+
+### 8. Filter by Genotype
+
+- Filtering by genotype, i.e. reference and alternative allele values for the sample.
+- Works only if there is data about the sequencing sample.
+- Genotypes are filtered ignoring phasing information.
+- The way of adding a filter condition:
+
+1. Select "**Per-sample data: Genotype**" filter (the "GT" column) from the list of all filters;
+2. Select ***a sample to filter***:
+    * "Some": any sample has the required genotype;
+    * "Every": each sample has the required genotype;
+    * Sample name.
+
+<p align="center">
+<img src={require('/img/vv/gt_samples.png').default} width="650"/>
+</p>
+
+3. Select ***a filter operator***:
+
+<p align="center">
+<img src={require('/img/vv/gt_opertators.png').default} width="650"/>
+</p>
+
+4. Select the required ***filter value*** by clicking on the value row:
+    * "REF": only reference allele at the site, (e.g., `0/0`, `0|0`, `0/0/0`);
+    * "ALT": there is at least one alternative allele at the site (e.g., `1/1`, `1|1`, `0/1`, `1/0`,
+    `0|1`, `1|0`, `1/.`, `1|.`, `./1`, `.|1`, `1`, `0/0/1`, `0/2`, `1/2`);
+    * "HOM": homozygous site, can be as in reference or alternative (e.g., `1|1`, `1/1`, `1/1/1`, `0/0`, `0|0`);
+    * "HET": heterozygous site, containing at least two different alleles (e.g., `0/1`, `1/0`, `0|1`,
+    `1|0`, `2/0`, `0/1/2`);
+    * "HOM_ALT": homozygous site in alternative (e.g., `1/1`, `1|1|1`);
+    * "MIS": information is missing for the site (e.g., `./.`).
+
+### 9. Filters by custom annotation columns
+
+- Ability to enter the required column value.
+- Shown only if at least one custom annotation has been added. How to add an annotation is
+described [here](/settings/custom-annotations).
+- The way of adding a filter condition:
+
+1. Select a filter column like "**Custom annotation sources: [custom annotation name]: [column]**"
+from the list of all columns;
+2. Select ***a filter operator***:
+
+<p align="center">
+<img src={require('/img/vv/custom_filter.png').default} width="650"/>
+</p>
+
+3. If the operators "starts with", "contains" or "not contains" were selected, click on the input box ("-")
+and enter ***filter column value***.
+6. To complete adding the condition, press Enter or click outside edit value container.
+
+## Editing a condition
+
+You can change the ***operator*** and/or ***value*** in an already created condition.
+To do this, you need to click on the corresponding field:
+
+<p align="center">
+<img src={require('/img/vv/edit_condition.png').default} width="700"/>
+</p>
+
+and choose another option:
+
+<p align="center">
+<img src={require('/img/vv/change_operator.png').default} width="700"/>
+</p>
+
+## Turning off a condition
+
+Turning off a condition is useful if you don’t want to lose the added condition, but at the moment you
+don’t need to filter by it. To turn off a condition, hover over it and
+click on <img src={require('/img/vv/turn_off_btn.png').default} width="25"/>:
+
+<p align="center">
+<img src={require('/img/vv/turn_off_condition.png').default} width="700"/>
+</p>
+
+## Removing a condition
+
+To remove a condition, hover over it and
+click on <img src={require('/img/vv/delete_condition.png').default} width="25"/>:
+
+<p align="center">
+<img src={require('/img/vv/turn_off_condition.png').default} width="700"/>
+</p>
+
+:::tip
+A condition that has not yet been filled in can also be removed
+(if it's not the very first condition in the Query Builder):
+
+<p align="center">
+<img src={require('/img/vv/delete_new_condition.png').default} width="600"/>
+</p>
+:::
+
+## Adding the following condition
+
+If you want to add another condition to the query, first decide whether you want the variant you are looking for to
+strictly ***match both conditions*** (the one already added and the new one), or whether the variant can
+***match one of the conditions***.
+
+### The searched variant match both conditions
+
+1. After adding the first condition, click on <img src={require('/img/vv/and_btn.png').default} width="120"/>.
+2. Complete the condition as described
+in [the corresponding section](/results/main/snvs_indels/advanced_filtering#adding-the-first-filter-condition).
+To get started, click on the highlighted window:
+
+<p align="center">
+<img src={require('/img/vv/and_cond_field.png').default} width="700"/>
+</p>
+
+### The searched variant match one of the conditions
+
+1. After adding the first condition, hover over it and
+click on <img src={require('/img/vv/or_btn.png').default} width="80"/>.
+2. Complete the condition as described
+in [the corresponding section](/results/main/snvs_indels/advanced_filtering#adding-the-first-filter-condition).
+To get started, click on the highlighted window:
+
+<p align="center">
+<img src={require('/img/vv/or_cond_field.png').default} width="700"/>
+</p>
+
+## Applying a Query
+
+After you have completed all the conditions for the sought variants,
+click on <img src={require('/img/vv/apply.png').default} width="150"/>.
+The Query Builder closes and the query is applied to the variants.
+Уou can see which query has been applied at the top of the table:
+
+<p align="center">
+<img src={require('/img/vv/filtered_var.png').default} width="1100"/>
+</p>
+
+You can turn the condition off by clicking on <img src={require('/img/vv/turn_off_created.png').default} width="20"/>,
+or you can delete it by clicking on <img src={require('/img/vv/turn_off_cond_on_vv.png').default} width="20"/>:
+
+<p align="center">
+<img src={require('/img/vv/condition.png').default} width="250"/>
+</p>
+
+To ***remove all conditions*** from the query,
+click on <img src={require('/img/vv/clear_all_filters_btn.png').default} width="45"/>.
+
+To ***change or save your query*** or ***create a new one***, open the Query Builder by
+clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>.
+
+To return to the Variant Viewer main page,
+click on <img src={require('/img/vv/basic_filtering_btn.png').default} width="120"/>.
+
+## Saving a Query
+
+If you want to reuse the created query in the future, save it.
+To do this, open the Query Builder by
+clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>, and then
+click on <img src={require('/img/vv/save_to_library_btn.png').default} width="150"/>.
+Enter the query name:
+
+<p align="center">
+<img src={require('/img/vv/query_name.png').default} width="600"/>
+</p>
+
+and click on <img src={require('/img/group_analysis/save_btn.png').default} width="150"/>.
+
+The saved query will appear in the **Saved queries** list, on the left in the Query Builder.
+To apply a saved query, click on its line:
+
+<p align="center">
+<img src={require('/img/vv/select_saved_query.png').default} width="200"/>
+</p>
+
+and then click on <img src={require('/img/vv/apply.png').default} width="150"/>.
+
+In addition, the saved query will appear in [the Basic Filtering mode](/results/main/snvs_indels/basic_filtering).
+
+If you want to ***delete*** a saved query, click on the query line and
+then on <img src={require('/img/vv/delete_saved_query.png').default} width="25"/>.

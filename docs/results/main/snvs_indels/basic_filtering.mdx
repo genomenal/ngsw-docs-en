@@ -1,0 +1,125 @@
+---
+sidebar_position: 4
+sidebar_label: Basic Filtering of Variants
+---
+
+# Basic Filtering of Variants
+
+Basic filtering columns are at the top of the table:
+
+<p align="center">
+<img src={require('/img/vv/basic_filtering.png').default} width="900"/>
+</p>
+
+### Basic Filtering columns
+
+1. <font size="4"><b>Origin</b></font>: filtering by mutation type: Somatic, Germline.
+
+:::note
+"Origin" filter column is hidden in the Basic Filtering mode
+of [Variant Viewer with germline mutations](/results/main/snvs_indels/variant-viewer).
+:::
+
+Both here and in all subsequent cases, <b><i>the filtering algorithm</i></b> is as follows:
+- Click on the filter window;
+- Select the needed filtering option from the drop-down list, or type the option you are looking for in the
+search box and select from the found.
+
+Done! Filter applied. The selected filter can be seen in the window (in this case, the "Somatic" origin is selected):
+
+<p align="center">
+<img src={require('/img/vv/set_option.png').default} width="150"/>
+</p>
+
+2. <font size="4"><b>Gene panel</b></font>.
+You can add your own gene panel on the "<b>Gene panels</b>" page, which is described in
+detail in <a href="/settings/gene_panels">the corresponding section</a>, or you can import panels from
+the Library of the most common clinical panels. To import, click on "<b>Import from Library</b>":
+
+<p align="center">
+<img src={require('/img/vv/gene_panel.png').default} width="300"/>
+</p>
+
+Select the required panels by ticking them in the window that opens:
+
+<p align="center">
+<img src={require('/img/gene_panels/checked_panels.png').default} width="600"/>
+</p>
+
+and click on <img src={require('/img/gene_panels/import_btn.png').default} width="150"/> to add panel.
+
+3. <font size="4"><b>Gene</b></font>: filtering by gene transcript (shown in brackets). You can filter variants
+by several genes at once. To do this, tick the required genes:
+
+<p align="center">
+<img src={require('/img/vv/filter_by_gene.png').default} width="200"/>
+</p>
+
+:::note
+If several transcripts are known for a gene, the list presents all of them:
+<p align="center">
+<img src={require('/img/vv/many_transcripts.png').default} height="400"/>
+</p>
+:::
+
+4. <font size="4"><b>HPO</b></font>: filtering by a term
+from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>. Click on the HPO filter container to open
+the term search window:
+
+<p align="center">
+<img src={require('/img/vv/hpo_search.png').default} width="800"/>
+</p>
+
+The drop-down list contains the main term groups.
+You can filter variants either by the whole group or by a specific term.
+The term can be found in the group's list of terms, or by searching by name or ID
+from [Human Phenotype Ontology](https://hpo.jax.org/app/).
+For example, several terms are found when searching for the term “glioma”:
+
+<p align="center">
+<img src={require('/img/vv/glioma_search.png').default} width="800"/>
+</p>
+
+By selecting one of them (for example, "Glioma"), you will be redirected to this term page:
+
+<p align="center">
+<img src={require('/img/vv/glioma_page.png').default} width="800"/>
+</p>
+
+On the left, there are the term definition and a comment.
+In the middle, there is the hierarchy of the term: the terms above the selected Glioma
+term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
+and the terms below Glioma are its child terms.
+On the right, there are the genes associated with this term (in this case, 45 genes were found).
+To filter variants by these genes, click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
+
+To ***cancel filtering***, click on the cross in the HPO filter field:
+
+<p align="center">
+<img src={require('/img/vv/cancel_hpo.png').default} width="150"/>
+</p>
+
+5. <font size="4"><b>Min depth level</b></font> is filtering by sequencing depth.
+You can vary the level using both the plus/minus and the slider.
+
+<p align="center">
+<img src={require('/img/vv/seq_depth.png').default} width="350"/>
+</p>
+
+6. <font size="4"><b>Saved queries</b></font>.
+You can read how to save a query <a href="/results/main/snvs_indels/advanced_filtering#saving-a-query">here</a>.
+
+### Filtering reset
+
+To clear ***all*** filters, click on <img src={require('/img/vv/clear_filters.png').default} width="40"/>.
+
+To reset an ***individual filter***:
+- Click on the filter window and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+- If the filter allows to select several options at once (for example, filter by Gene), then you can remove
+one of the selected filter options. To do this, click on the filter window and then on the line of the selected
+option so that it is unchecked.
+- To reset the HPO filter, click on the cross in the HPO filter field:
+
+<p align="center">
+<img src={require('/img/vv/cancel_hpo.png').default} width="150"/>
+</p>
