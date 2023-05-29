@@ -17,7 +17,7 @@ through the navigation panel on the left:
 <img src={require('/img/custom-annot/custom_annot_page.png').default} width="900"/>
 </p>
 
-## Adding a Custom Annotation
+## Adding a Custom Annotation {#add-custom-annotation}
 
 To open the page for adding a custom annotation,
 click on <img src={require('/img/custom-annot/upload_btn.png').default} width="170"/>.
@@ -28,7 +28,7 @@ by clicking on "**-**" (by default, the annotation name will be the file name):
 <img src={require('/img/custom-annot/name.png').default} height="170"/>
 </p>
 
-### 1. Upload file
+### 1. Upload file {#upload-file}
 
 Upload the annotation file in **VCF**, **CSV** or **TSV** format.
 To do this, drop the file into the window or click on it to open File Browser:
@@ -45,7 +45,7 @@ Specify annotation source reference genome (hg19 or hg38) for proper variant ide
 
 Immediately after uploading, you will see a preview of the first 7 lines of the annotation.
 
-### 2. Defining the type of a custom annotation
+### 2. Defining the type of a custom annotation {#define-annotation-type}
 
 The following types of custom annotations are available for adding:
 1. **Pathogenicity database** is an annotation that contains a column with the pathogenicity
@@ -64,7 +64,7 @@ this annotation as the pathogenicity base. To do this, click on the switch:
 </p>
 
 The result of annotation of variants by pathogenicity base will be presented in
-[the "Pathogenicity" column in the Variant Viewer](/results/main/snvs_indels/variant-viewer#description-of-table-columns).
+[the "Pathogenicity" column in the Variant Viewer](/results/main/snvs-indels/variant-viewer#columns-description).
 
 :::info
 As a pathogenicity database, you can define as many user annotations as you like - all of them will be
@@ -82,7 +82,7 @@ this annotation as a COSMIC database. To do this, click on the switch:
 </p>
 
 The result of annotation of variants by COSMIC will be presented in
-[the "External links" column in the Variant Viewer](/results/main/snvs_indels/variant-viewer#description-of-table-columns): <img src={require('/img/vv/cosmic.png').default} width="35"/>.
+[the "External links" column in the Variant Viewer](/results/main/snvs-indels/variant-viewer#columns-description): <img src={require('/img/vv/cosmic.png').default} width="35"/>.
 
 :::info
 Only one custom annotation can be defined as a COSMIC database.
@@ -92,7 +92,7 @@ When defining a new annotation as a COSMIC database, the definition of the previ
 3. **An annotation with any other information about the variant** - in this case,
 the annotation type does not need to be defined.
 
-### 3. Map columns
+### 3. Map columns {#map-columns}
 
 If you have uploaded an annotation file ***in VCF format***, the columns required to identify a variant 
 (CHROM, POS, REF, ALT) will be determined ***automatically***.
@@ -137,7 +137,7 @@ column is selected with auto-detection):
 <img src={require('/img/custom-annot/id.png').default} width="300"/>
 </p>
 
-### 4. Adding an annotation column
+### 4. Adding an annotation column {#add-annotation-column}
 
 - Not available if you have defined the annotation as *a pathogenicity database*.
 - Available, but not required, if you have defined the annotation as *a COSMIC database*.
@@ -182,7 +182,7 @@ click on <img src={require('/img/custom-annot/delete_column.png').default} width
 
 You can add multiple annotation columns in the same way.
 
-### 5. Perform source preparation
+### 5. Perform source preparation {#perform-source-preparation}
 
 To perform the annotation preparation, click on <img src={require('/img/custom-annot/start.png').default} width="200"/>.
 
@@ -228,10 +228,10 @@ To return to the list of all custom annotations,
 click on <img src={require('/img/custom-annot/back_btn.png').default} width="230"/>.
 
 The values of the columns selected for the annotation of variants will be located 
-[on the Variant Viewer page](/results/main/snvs_indels/snv_details_panel#custom-annotation-sources)
+[on the Variant Viewer page](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab)
 and in the file with variants, which can be downloaded from the main page of the sample.
 
-## Editing a Custom Annotation
+## Editing a Custom Annotation {#edit-annotation}
 
 - If you want to edit an already prepared annotation (add, remove or edit annotation columns, change source
 reference genome or change the selection of required fields), you can do it on its page. To do this, make
@@ -251,7 +251,7 @@ If you want a newly created or edited annotation to annotate variants of a sampl
 the "SNVs/Indels Annotation" stage has already been completed, restart the sample processing or this stage.
 :::
 
-## Deleting a Custom Annotation
+## Deleting a Custom Annotation {#delete-annotation}
 
 To remove a custom annotation, follow these steps:
 

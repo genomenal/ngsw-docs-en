@@ -21,11 +21,10 @@ clinical treatment.
 
 :::caution
 ACMG 73 secondary findings report generation has its limitations due to variant annotation using ClinVar.
-These limitations are
-described [below](/results/acmg73_report#report-limitations-in-clinvar-as-a-database-source).
+These limitations are described [below](/results/acmg73-report#acmg73-limitations).
 :::
 
-### Conditions for the report generation
+### Conditions for the report generation {#acmg73-conditions}
 
 The report is generated for the sample if the following conditions are met:
 1. The sample is uploaded in FASTQ or BAM format or as a VCF file with a single sample.
@@ -34,10 +33,10 @@ The report is generated for the sample if the following conditions are met:
 "Germline SNVs/Indels annotation" stage if Germline origin was selected when creating a report template,
 or "Somatic SNVs/Indels annotation", if Somatic origin.
 4. The report template including "SNVs/Indels in ACMG 73 genes" block
-was [created](/settings/report-templates/report-templates#add-report-template) before the sample was processed.
+was [created](/settings/report-templates/report-templates#add-template) before the sample was processed.
 5. The report template including "SNVs/Indels in ACMG 73 genes" block is active.
 
-### Report content
+### Report content {#acmg73-content}
 
 The report displays a table with variants that meet the conditions listed above:
 
@@ -54,7 +53,7 @@ If you click on a gene, you will see a window with all the gene transcripts:
 </p>
 
 You can find the description of the transcripts' table
-columns [here](/results/main/snvs_indels/snv_details_panel#common-the-basic-information-about-the-variant).
+columns [here](/results/main/snvs-indels/snv-details-panel#common-tab).
 
 2. **Position** is a coordinate of the variant in the genome (chromosome + start position).
 3. **Genetic variant** is the nucleotide and amino acid substitutions
@@ -67,22 +66,22 @@ amino acid resulting from the substitution.
 (NM_xxxxxx.x). If you click on a transcript, you will see the same window with all the gene transcripts, as when
 you click on the "Gene" field.
 5. **Consequence** is the effect of the variant on genes. A detailed description of the possible values
-can be found [here](/results/main/snvs_indels/variant-viewer#consequences-of-variants-in-the-annotation).
+can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
 6. **Allele frequency** is an alternative allele frequency for the sample (in percentages).
 7. **Coverage depth** is a sequencing depth; the total number of reads of the sequence overlapping the variant
 position for the sample.
 8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
 [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
-it was [uploaded as a custom annotation](/settings/custom-annotations#2-defining-the-type-of-a-custom-annotation)).
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
 9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="25"/> is
 a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
 a variant detail page in Variant Viewer.
 
-### Report limitations in ClinVar as a database source
+### Report limitations in ClinVar as a database source {#acmg73-limitations}
 
 ACMG 73 secondary findings report generation has limitations
-of [phenotypic](/results/acmg73_report#limitations-of-phenotypic-data)
-and [pathogenicity](/results/acmg73_report#limitations-of-pathogenicity-data) data
+of [phenotypic](/results/acmg73-report#phenotypic-data)
+and [pathogenicity](/results/acmg73-report#pathogenicity-data) data
 due to variant annotation using [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
 
 ACMG guidelines for secondary findings in sequencing data provide a list of genes and
@@ -102,7 +101,7 @@ Briefly, it can be described as:
 <img src={require('/img/eng/acmg73_disclaimer.png').default} width="500"/>
 </p>
 
-#### Limitations of phenotypic data
+#### Limitations of phenotypic data {#phenotypic-data}
 
 For some of variants in ClinVar, it is impossible to obtain information about phenotype (or condition,
 or disease). Missense of phenotypic information in Clinvar can stem from inconsistencies in "Conditions"
@@ -116,7 +115,7 @@ Genomenal does not attempt to match ClinVar phenotypes and phenotypes from the l
 <i>As a result, variants from the list of genes with irrelevant
 phenotypic information can be a source of overreporting or variants.</i>
 
-#### Limitations of pathogenicity data
+#### Limitations of pathogenicity data {#pathogenicity-data}
 
 Usually variants are classified according to ACMG guidelines. ClinVar database is populated
 by reports of pathogenicity from laboratories assuming that the responsible submitter fully

@@ -11,9 +11,9 @@ used for alignment. By default, alignment is performed using the ***BWA-MEM2*** 
 tool, which is the next and faster version of the BWA-MEM algorithm, which is based on backward search with
 Burrows–Wheeler Transform (BWT) and efficiently and quickly aligns short sequencing reads against the human
 genome, allowing mismatches and gaps[^1]. You can find out how to change the alignment tool in
-the [corresponding section](/settings/settings/alignment_settings#change-alignment-tool).
+the [corresponding section](/settings/settings/alignment-settings#change-alignment-tool).
 
-### Disable alignment
+### Disable alignment {#disable-alignment}
 
 :::info
 If alignment is disabled, further analysis (SNVs/Indels, structural variations, and copy number variations
@@ -26,7 +26,7 @@ If you want to disable alignment, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_alignment.png').default} width="400"/>
 </p>
 
-### Disable re-pair
+### Disable re-pair {#disable-repair}
 
 When aligning paired-end sequence (in this case, both ends of a DNA fragment are sequenced towards each
 other on opposite strands), it is essential that each read from one file contains a mate in the second.
@@ -41,7 +41,7 @@ then you can disable this stage by turning off the toggle:
 <img src={require('/img/eng/turn_off_repair.png').default} width="400"/>
 </p>
 
-### Change alignment tool
+### Change alignment tool {#change-alignment-tool}
 
 In addition to the default BWA-MEM2 (BWA2 Burrows-Wheeler Aligner), the following alignment tools
 are available for selection:
@@ -57,7 +57,7 @@ To change the alignment tool, click on the value of the "Alignment tools" field 
 <img src={require('/img/eng/change_alignment_tool.png').default} width="420"/>
 </p>
 
-### Use singleton reads
+### Use singleton reads {#use-singleton-reads}
 
 If a read in one file has no mate in paired file, it is called a singleton read. Such situation can
 occur if paired-end and single-read sequencing results are mixed in one file, or if paired read
@@ -73,7 +73,7 @@ want to use singleton reads in alignment, turn on the corresponding toggle:
 This option is only applicable to BWA or BWA2 aligners.
 :::
 
-### Sequencing type detection
+### Sequencing type detection {#sequencing-type}
 
 If you know exactly what sequencing type was used to obtain your data, you can choose
 the appropriate type to speed up analysis. This can be whole genome sequencing (WGS)
@@ -96,7 +96,7 @@ You can choose a bed file appropriate for your exome capture kit from the built-
 You can upload your Capture Kit on the "Capture kits" page from the "Settings" section.
 Usually appropriate Capture Kit can be obtained from kit producer website.
 
-### Alignment metrics
+### Alignment metrics {#alignment-metrics}
 
 <table>
   <tr>
@@ -144,7 +144,7 @@ If the metric value in the sample alignment file does not meet the set threshold
 then the alignment is considered faulty by this metric, which is noted in the alignment quality warning
 (the alignment completes with an error, the message of which contains the number of failed metrics).
 
-### Change metric thresholds
+### Change metric thresholds {#change-metric-thresholds}
 
 To change the metric threshold value, click on the current value and edit.
 To save changes, press Enter or click outside edit value container.

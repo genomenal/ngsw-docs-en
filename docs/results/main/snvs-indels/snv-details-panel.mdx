@@ -16,9 +16,9 @@ You can also collapse or expand the panel by
 clicking on <img src={require('/img/vv/expand.png').default} width="30"/>
 or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively.
 
-## Detailed Information Panel tabs
+## Detailed Information Panel tabs {#panel-tabs}
 
-### Common: the basic information about the variant
+### Common: the basic information about the variant {#common-tab}
 
 1. **Gene** is data about the gene in which the variant is located:
 - ***Official full name***. When hovering over the gene name, you can see where it was taken from:
@@ -40,7 +40,7 @@ with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The
 for the variant is highlighted by a frame. Impact, HGVSp and HGVSc values for this transcript are shown for the
 variant in the Variant Viewer table.
 - ***IMPACT*** is the predicted effect of the variant on the protein (see more information
-[here](/results/main/snvs_indels/variant-viewer#impacts-of-variants-in-the-annotation)).
+[here](/results/main/snvs-indels/variant-viewer#variant-impacts)).
 - ***HGVSp*** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
 (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
 - ***HGVSc*** - is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position
@@ -57,7 +57,7 @@ alternative allele etc.), divided by ”/” (for unphased genotype) or “|” 
 - ***Alt count*** is the alternative allele reads count for this sample.
 - ***AF*** is the allelic frequency for this sample.
 
-### ClinVar: data on the relationships among variants and phenotypes from the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database
+### ClinVar: data on the relationships among variants and phenotypes from the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database {#clinvar-tab}
 
 1. **Haplotype phenotypes** section is present if the variant is part of a haplotype:
 * ***Variant Haplotype ID*** is a link to the genotype including the given variant.
@@ -83,7 +83,7 @@ of the variant (on the right in the table).
 * ***Cross references*** are links to a variant in various databases.
 * ***Phenotype*** is phenotypic trait or disease associated with a variant (with links to various databases).
 
-### GnomAD: data on allele frequencies of the variant from the [gnomAD](https://gnomad.broadinstitute.org/) database:
+### GnomAD: data on allele frequencies of the variant from the [gnomAD](https://gnomad.broadinstitute.org/) database {#gnomad-tab}
 
 * ***Allele frequency*** is total allele frequency in gnomAD.
 * ***Coverage*** is median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100.
@@ -93,18 +93,18 @@ South Asian, Latino/Admixed American, European (non-Finnish), East Asian, Middle
 There are the total allele frequency, frequencies in XX, XY subpopulations and the number of homozygotes
 for each population.
 
-### ExAC: data on allele frequencies from the [ExAC](http://exac.broadinstitute.org/) database
+### ExAC: data on allele frequencies from the [ExAC](http://exac.broadinstitute.org/) database {#exac-tab}
 
 - Allele frequencies and count in different populations (African/African American, American, East Asian, Finnish,
 European (non-Finnish), South Asian).
 In addition, there are allele frequencies in the non-TCGA and non-Psych cohorts.
 
-### Other frequencies
+### Other frequencies {#other-frequencies-tab}
 
 - Data on allele frequencies of the variant from [the 1000 Genomes Project](https://www.internationalgenome.org/)
 and in combined genotypes in the UK10K cohort from [the UK10K project](https://www.uk10k.org/).
 
-### Conservation: data on the conservation of the variant
+### Conservation: data on the conservation of the variant {#conservation-tab}
 
 * ***Ancestral allele*** predicted by [EPO](https://www.ensembl.org/info/genome/compara/epo_anchors_info.html).
 * ***Genotypes*** of Altai Neanderthal, Denisova, Vindijia Neandertal.
@@ -114,7 +114,7 @@ and in combined genotypes in the UK10K cohort from [the UK10K project](https://w
 [PhastCons](http://compgen.cshl.edu/phast/phastCons-HOWTO.html),
 [SiPhy](http://portals.broadinstitute.org/genome_bio/siphy/documentation.html), BStatistic).
 
-### Protein function effect
+### Protein function effect {#protein-function-effect-tab}
 
 - Prediction results of the effect of amino acid substitution on protein function, obtained using various algorithms
 and programs such as [SIFT](https://sift.bii.a-star.edu.sg/),
@@ -125,9 +125,9 @@ MutationAssessor, [FAtHMM](http://fathmm.biocompute.org.uk/), [Provean](http://p
 [Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/), MPC, DEOGEN2,
 [DANN](https://cbcl.ics.uci.edu/public_data/DANN/), Eigen.
 
-### Other: additional information about the variant
+### Other: additional information about the variant {#other-tab}
 
-### Custom annotation sources
+### Custom annotation sources {#custom-annotation-sources-tab}
 
 - Custom annotation column values corresponding to the found variant. You can add custom annotations on the
 "**Custom annotations**" page (you can read more about this in [the corresponding section](/settings/custom-annotations)).

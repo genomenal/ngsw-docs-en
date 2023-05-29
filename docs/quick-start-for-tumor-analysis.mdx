@@ -7,7 +7,7 @@ sidebar_label: Quick Start for Tumor Analysis
 
 If you would like to perform tumor analysis with Genomenal, then this section is for you.
 
-### 1. Create Patient
+### 1. Create Patient {#create-patient}
 
 import Login from '/docs/imported_components/_login.mdx';
 
@@ -28,17 +28,17 @@ import PatientPage from '/docs/imported_components/_patient_page.mdx';
 <img src={require('/img/eng/patient_page_somatic.png').default} width="900"/>
 </p>
 
-### 2. Customize Analysis Settings
+### 2. Customize Analysis Settings {#customize-settings}
 
 To search for somatic and germline mutations in tumor sample, the
-**[Somatic and germline variant analysis](/settings/settings/main_presets#1-somatic-and-germline-variant-analysis)**
+**[Somatic and germline variant analysis](/settings/settings/main-presets#somаtic-and-germline-variant-analysis)**
 analysis setting is best suited:
 
 <p align="center">
 <img src={require('/img/eng/TN_preset.png').default} width="900"/>
 </p>
 
-### 3. Upload Samples
+### 3. Upload Samples {#upload-samples}
 
 Select tumor sample file(s) to analyze. Commonly, the sample is a paired-end sequencing data in FASTQ format.
 
@@ -64,7 +64,7 @@ import FillCard from '/docs/imported_components/_fill_out_patient_card.mdx';
 <img src={require('/img/eng/fill_patient_card_somatic.png').default} width="900"/>
 </p>
 
-### 4. Start Analysis
+### 4. Start Analysis {#start-analysis}
 
 Click on <img src={require('/img/eng/start_analysis_btn.png').default} width="200"/> to start sample analysis.
 
@@ -78,7 +78,7 @@ You can see that the sample analysis is complete when all stage statuses are gre
 <img src={require('/img/eng/7a-stage-statuses.png').default} width="150"/>
 </p>
 
-## 5. Analysis Results
+## 5. Analysis Results {#analysis-results}
 
 When the analysis is complete, you can examine the results. Open the tumor sample page by clicking on sample row:
 

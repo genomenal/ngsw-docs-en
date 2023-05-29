@@ -7,7 +7,7 @@ sidebar_label: Main
 
 The "Main" tab on the sample page contains the following information:
 
-#### 1. The analysis results
+#### 1. The analysis results {#analysis-results}
 
 The section contains the main results of the analysis: a separate section with the results corresponds to a
 separate stage of the analysis. The availability of the results of a particular stage depends on whether it
@@ -18,12 +18,12 @@ was carried out and completed successfully.
 </p>
 
 You can read more about each section in the corresponding section of the documentation:
-1. [Somatic and Germline SNVs/Indels](/results/main/snvs_indels/snvs_indels)
-2. [Somatic and Germline Structural Variations](/results/main/structural_variations)
+1. [Somatic and Germline SNVs/Indels](/results/main/snvs-indels/snvs-indels)
+2. [Somatic and Germline Structural Variations](/results/main/structural-variations)
 3. [Somatic and Germline Copy Number Variations](/results/main/cnvs)
 4. [Alignments](/results/main/alignments)
 
-#### 2. Sample Info
+#### 2. Sample Info {#sample-info}
 
 <p align="center">
 <img src={require('/img/results/sample_info.png').default} width="900"/>
@@ -46,7 +46,7 @@ defined, it can be changed by clicking on it and selecting a different type from
 sequencing), Low-pass WGS (whole-genome sequencing with low coverage), UNKNOWN (the sequencing type may not be
 recognized for some samples uploaded in VCF format). Determined automatically, can be based on the sequencing type
 and Capture Kit that were selected while adding sample set. Can be changed on [the Parameters tab](/results/parameters)
-(["Sequencing Type" parameter](/settings/settings/alignment_settings#sequencing-type-detection):
+(["Sequencing Type" parameter](/settings/settings/alignment-settings#sequencing-type):
 the "WGS" option corresponds to either type "WGS" or "Low-pass WGS", the "Targeted selection" option corresponds to
 either type "Panel" or "WES").
 - ALIAS is a synonymous name for the sample, which can be entered by clicking on the value field.
@@ -64,7 +64,7 @@ as it occurred at the time the sample was taken for sequencing.
 - THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
 for sequencing.
 
-#### 3. Workflow
+#### 3. Workflow {#workflow}
 
 The section is a table with analysis stages and their statuses.
 
@@ -92,7 +92,7 @@ adding sample set or on [the "Parameters" tab](/results/parameters) of the sampl
 
 You can view the details of each stage by
 clicking on <img src={require('/img/results/show_details.png').default} width="25"/>.
-Then you will see this stage section on [the "Workflow details" tab](/results/workflow_details/workflow-details).
+Then you will see this stage section on [the "Workflow details" tab](/results/workflow-details/workflow-details).
 
 If you want to restart the analysis from the very beginning (not counting the uploading of the sample files),
 click on <img src={require('/img/results/restart_analysis.png').default} width="180"/>.

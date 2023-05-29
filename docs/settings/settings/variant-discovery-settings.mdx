@@ -5,7 +5,7 @@ sidebar_label: Variant Discovery Settings
 
 # Variant Discovery Settings
 
-### PCR duplicates filtration
+### PCR duplicates filtration {#pcr-duplicates-filtration}
 
 After the alignment stage, the results go through several preprocessing steps.
 This increases the sensitivity for low frequency variants, contributes to a more accurate copy number count,
@@ -13,7 +13,7 @@ which depends on the number of reads, and also speeds up variant calling.
 If you want to keep every read in the process of variant calling (for example, if you are working with amplicon data),
 then disable Mark Duplicates and Limit Reads options.
 
-#### Disable mark duplicates
+#### Disable mark duplicates {#disable-mark-duplicates}
 
 During the sequencing process, the number of original sequences of fragmented DNA is increased in the polymerase
 chain reaction (PCR). For further analysis, it is essential to take into account duplicate reads of the
@@ -28,7 +28,7 @@ To disable the duplicates marking, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_mark_dupl.png').default} width="400"/>
 </p>
 
-#### Disable limit reads per alignment
+#### Disable limit reads per alignment {#disable-limit-reads}
 
 After a certain threshold (50 reads per site for GATK), increasing coverage (number of reads)
 of the site used to call a variant is not informative, imposes unreasonable computational
@@ -47,9 +47,9 @@ turn off the corresponding toggle:
 This option is only applicable to the germline SNVs/indels discovery.
 :::
 
-### SNVs/Indels filtration
+### SNVs/Indels filtration {#snvs-filtration}
 
-#### Filter SNVs/indels by Capture Kit target and disable it
+#### Filter SNVs/indels by Capture Kit target and disable it {#filter-snvs-by-capture-kit}
 
 Generally, for samples obtained as a result of targeted sequencing, variant call is carried out in the
 same genomic intervals in which sequencing was performed. Thus, if a Capture Kit has been defined for the sample,
@@ -64,7 +64,7 @@ To disable filtering by Capture Kit, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_filter_by_ck.png').default} width="400"/>
 </p>
 
-#### Allow only variants passing all filters and disable it
+#### Allow only variants passing all filters and disable it {#allow-filtered-variants}
 
 All variants discovered by the caller necessarily go through the filtering stage,
 during which it is checked whether they pass quality criteria.
@@ -85,7 +85,7 @@ This option only affects the display of unfiltered variants in the Variant Viewe
 In further analysis (for example, in a group analysis), only filtered variants will still be accepted.
 :::
 
-### Somatic SNVs/indels discovery
+### Somatic SNVs/indels discovery {#somatic-snvs-discovery}
 
 Somatic mutations are acquired after birth and characteristic of the tumor process.
 Therefore, such mutations discovery is carried out only in tumor tissue samples
@@ -96,7 +96,7 @@ which works primarily by matching a tumor sample with a normal sample (tumor-nor
 It can also work to discover variants in a tumor without control (tumor-only mode),
 but such discovery is characterized by a high level of false positives.
 
-#### Disable somatic SNVs/indels discovery
+#### Disable somatic SNVs/indels discovery {#disable-somatic-snvs-discovery}
 
 To disable the somatic SNVs/indels discovery, turn off the corresponding toggle:
 
@@ -104,7 +104,7 @@ To disable the somatic SNVs/indels discovery, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_somatic.png').default} width="400"/>
 </p>
 
-#### Select Panel of Normal
+#### Select Panel of Normal {#panel-of-normal}
 
 Panel of Normal (PON) is a panel made from normal samples (that is, healthy tissue that is believed
 to not have any somatic alterations) to capture recurrent technical artifacts in order to improve the
@@ -138,7 +138,7 @@ field and select the panel you need:
 <img src={require('/img/eng/change_pon.png').default} width="400"/>
 </p>
 
-#### Disable somatic tumor only discovery
+#### Disable somatic tumor only discovery {#disable-somatic-tumor-only-discovery}
 
 To disable the somatic SNVs/indels discovery in a single tumor tissue sample (tumor-only mode),
 turn off the corresponding toggle:
@@ -151,14 +151,14 @@ turn off the corresponding toggle:
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
 :::
 
-### Germline SNVs/indels discovery
+### Germline SNVs/indels discovery {#germline-snvs-discovery}
 
 Germline mutations are inherited and can be found in every cell in the body. The discovery of such
 mutations is carried out for single tumor samples without control and for normal samples.
 Germline single-nucleotide variants (SNVs) and short insertions/deletions (indels) are discovered using
 the ***[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)*** tool.
 
-#### Disable germline SNVs/indels discovery
+#### Disable germline SNVs/indels discovery {#disable-germline-snvs-discovery}
 
 To disable the germline SNVs/indels discovery, turn off the corresponding toggle:
 
@@ -166,7 +166,7 @@ To disable the germline SNVs/indels discovery, turn off the corresponding toggle
 <img src={require('/img/eng/turn_off_germline.png').default} width="400"/>
 </p>
 
-#### Disable germline tumor only discovery
+#### Disable germline tumor only discovery {#disable-germline-tumor-only-discovery}
 
 To disable the germline SNVs/indels discovery in a single tumor tissue sample,
 turn off the corresponding toggle:
@@ -179,7 +179,7 @@ turn off the corresponding toggle:
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
 :::
 
-#### The germline SNVs/indels hard-filtering parameters
+#### The germline SNVs/indels hard-filtering parameters {#hard-filtration}
 
 <details>
 <summary>Click to read about hard-filtering parameters and their thresholds</summary>
@@ -283,7 +283,7 @@ Disabling this option does not affect the analysis pipeline for sample sets that
 If at least one of the hard-filtering parameters of a variant satisfies the set threshold,
 then this variant does not pass the filtering.
 
-#### Disable or enable hard-filtering parameters and change their thresholds
+#### Disable or enable hard-filtering parameters and change their thresholds {#tweak-hard-filtration}
 
 To ***change*** the hard-filtering parameter threshold value, click on the current value and edit.
 To save changes, press Enter or click outside edit value container.
@@ -293,7 +293,7 @@ Turned on toggle is blue and shifted to the right: <img src={require('/img/eng/t
 and turned off toggle is gray and shifted to the
 left: <img src={require('/img/eng/toggle_off.png').default} width="35"/>.
 
-#### Enable CNN variant scoring
+#### Enable CNN variant scoring {#enable-cnn-scoring}
 
 In addition to hard-filtering, germline variants can be annotated with FILTERs based on scores from a pre-trained
 Convolutional Neural Network (CNN) implemented in
@@ -305,7 +305,7 @@ To enable CNN scoring of germline SNVs/indels, turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_cnn.png').default} width="400"/>
 </p>
 
-### Structural variations discovery
+### Structural variations discovery {#sv-discovery}
 
 Structural variations (SVs) are long deletions, tandem duplications, inversions and translocations.
 SVs are detected using the ***Delly***[^1] tool, an integrated structural variant prediction method
@@ -315,7 +315,7 @@ For a single normal or tumor sample, pipeline without control sample is applied.
 tumor-only sample discovery, a mixture of somatic and germline SVs is discovered due to lack of
 the proper control sample.
 
-#### Disable structural variations discovery
+#### Disable structural variations discovery {#disable-sv-discovery}
 
 To disable structural variations discovery in sample, turn off the corresponding toggle:
 
@@ -323,7 +323,7 @@ To disable structural variations discovery in sample, turn off the corresponding
 <img src={require('/img/eng/turn_off_structural.png').default} width="400"/>
 </p>
 
-### Copy number variations discovery
+### Copy number variations discovery {#cnv-discovery}
 
 Copy number variation (CNV) is a phenomenon in which the number of repeats of DNA fragments in the
 genome varies between individuals. The length of such fragments usually ranges from 1 thousand to
@@ -340,7 +340,7 @@ For a single normal or tumor sample, no control-based normalization is applied.
 Also, for tumor-only sample discovery, a mixture of somatic and germline CNVs is discovered due to lack of
 the proper control sample.
 
-#### Disable copy number variations discovery
+#### Disable copy number variations discovery {#disable-cnv-discovery}
 
 To disable copy number variations discovery in sample, turn off the corresponding toggle:
 
@@ -348,7 +348,7 @@ To disable copy number variations discovery in sample, turn off the correspondin
 <img src={require('/img/eng/turn_off_cnv.png').default} width="400"/>
 </p>
 
-#### Choose the minimal bin size for WGS data
+#### Choose the minimal bin size for WGS data {#minimal-bin-size}
 
 Bin is a span within which the reads are counted. If you have low coverage data,
 choose high values for the minimal bin size (e.g. up to 500,000 for low-pass WGS data),
@@ -356,7 +356,7 @@ and if you have high coverage data, choose low values (e.g. 1000 for 10X covered
 The default minimal bin size is 100,000. To change it, click on the current value and edit.
 To save changes, press Enter or click outside edit value container.
 
-#### Call germline aneuploidies only
+#### Call germline aneuploidies only {#germline-aneuploidies-only}
 
 By default, for normal sample, a discovery of copy number variation of both whole chromosomes and
 their arms (q and p) is made. If you want to detect only germline aneuploidies (variations in the
@@ -366,7 +366,7 @@ number of copies of chromosomes), turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_aneuploidies.png').default} width="400"/>
 </p>
 
-#### Select reference samples panel
+#### Select reference samples panel {#reference-panel}
 
 CNV analysis is more powerful when a batch of reference samples is used for normalization.
 By default, the panel is not selected (None), but you can select the ***WGA reference samples*** panel,
@@ -377,7 +377,7 @@ click on the value of the "CNV analysis reference samples panel" field and selec
 <img src={require('/img/eng/change_panel.png').default} width="450"/>
 </p>
 
-### Phenotype prediction
+### Phenotype prediction {#phenotype-prediction}
 
 Phenotypes are predicted from single nucleotide polymorphisms (SNPs) associated with a particular
 trait expression according to multinomial logistic regression (MLR) models. We use models that
@@ -386,7 +386,7 @@ blood type, alcohol metabolism, body odour (axillary osmidrosis), earwax type, b
 sensitivity, sex, and pharmacokinetics of some drugs. Phenotype prediction can be performed on
 genotyping data in GT format or annotated germline SNVs/indels in VCF format.
 
-#### Enable phenotype prediction
+#### Enable phenotype prediction {#enable-phenotype-prediction}
 
 To enable phenotype prediction in sample, turn on the corresponding toggle:
 
@@ -394,7 +394,7 @@ To enable phenotype prediction in sample, turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_phenotypes.png').default} width="400"/>
 </p>
 
-#### Disable quality control and imputation
+#### Disable quality control and imputation {#disable-qc-and-imputation}
 
 The phenotype prediction pipeline includes three preprocessing steps before the prediction itself:
 1. Quality control, that is a filtering SNPs (markers) by quality and is done using

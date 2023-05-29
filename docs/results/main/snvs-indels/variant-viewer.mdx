@@ -5,7 +5,7 @@ sidebar_label: Variant Viewer
 
 # Variant Viewer
 
-## Overview
+## Overview {#overview}
 
 Variant Viewer is an embedded service for viewing and analyzing variants.
 Located on **[Main tab](/results/main/main)** of the sample.
@@ -23,7 +23,7 @@ The ***normal*** sample page presents a Variant Viewer with ***germline*** mutat
 <img src={require('/img/vv/germline_only.png').default} width="600"/>
 </p>
 
-## The main page
+## The main page {#main-page}
 
 After clicking on <img src={require('/img/results/vv_btn.png').default} width="130"/>, you
 will see the main page of the service:
@@ -38,10 +38,10 @@ The main object of Variant Viewer is a table with variants - each variant is on 
 <img src={require('/img/vv/snv_row.png').default} width="950"/>
 </p>
 
-### Variant information
+### Variant information {#variant-information}
 
 Besides of the information presented in the table (see
-[Description of table columns](/results/main/snvs_indels/variant-viewer#description-of-table-columns)),
+[Description of table columns](/results/main/snvs-indels/variant-viewer#columns-description)),
 for each variant there are several embedded modules with additional information:
 
 1. **Variant detailed information panel**. Click on the variant row to see a panel:
@@ -51,7 +51,7 @@ for each variant there are several embedded modules with additional information:
 </p>
 
 You can read more about the panel and its tabs
-in [the corresponding section](/results/main/snvs_indels/snv_details_panel).
+in [the corresponding section](/results/main/snvs-indels/snv-details-panel).
 
 2. **Variant detailed information page** - here you can add the variant interpretation, include the variant to the
 report, and much more. Click on <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in the variant
@@ -70,7 +70,7 @@ that appears click on "**ACMG Classification**":
 4. **Integrative Genomics Viewer (IGV)** is a module for visualization of variant on the genome.
 Click on <img src={require('/img/vv/igv_var.png').default} width="33"/> in the variant row to open the module.
 
-### Pinning variants
+### Pinning variants {#pin-variant}
 
 The variants you want can be pinned. Click on <img src={require('/img/vv/pin_variant.png').default} width="28"/>
 in the variant line to pin it. The pinned variant will appear at the top of the table (the row highlighted in green):
@@ -83,17 +83,17 @@ in the variant line to pin it. The pinned variant will appear at the top of the 
 Variant remains pinned when you exit the Variant Viewer page.
 :::
 
-### Sorting and filtering variants
+### Sorting and filtering variants {#sort-and-filter}
 
 You can ***sort*** the table in ascending or descending order of the values of the "Locus", "Origin", "Position",
 "Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity". To sort by the column, click on its name
 (one click to sort in ascending order, two clicks - in descending order).
 
 ***Filtering of variants*** in Variant Viewer is described in the
-[Basic Filtering](/results/main/snvs_indels/basic_filtering) and
-[Advanced Filtering](/results/main/snvs_indels/advanced_filtering) sections.
+[Basic Filtering](/results/main/snvs-indels/basic-filtering) and
+[Advanced Filtering](/results/main/snvs-indels/advanced-filtering) sections.
 
-### Export of variants
+### Export of variants {#export}
 
 Variant Viewer allows to export variants in CSV format:
 
@@ -105,7 +105,7 @@ the "All to CSV" option:
 </p>
 
 - ***Export of only filtered variants***: filter the needed variants by
-[Basic](/results/main/snvs_indels/basic_filtering) or [Advanced](/results/main/snvs_indels/advanced_filtering)
+[Basic](/results/main/snvs-indels/basic-filtering) or [Advanced](/results/main/snvs-indels/advanced-filtering)
 filtering, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
 the "All to CSV" option:
 
@@ -113,7 +113,7 @@ the "All to CSV" option:
 <img src={require('/img/vv/all_to_csv.png').default} width="200"/>
 </p>
 
-- ***Export of only pinned variants***: [pin](/results/main/snvs_indels/variant-viewer#pinning-variants)
+- ***Export of only pinned variants***: [pin](/results/main/snvs-indels/variant-viewer#pin-variant)
 the needed variants, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
 the "Pinned only to CSV" option:
 
@@ -121,16 +121,16 @@ the "Pinned only to CSV" option:
 <img src={require('/img/vv/only_pinned.png').default} width="200"/>
 </p>
 
-## Description of table columns
+## Description of table columns {#columns-description}
 
 By default, the table has the following columns (the set and order of the columns can be changed - how to do it is
-described [here](/results/main/snvs_indels/edit_table_columns)):
+described [here](/results/main/snvs-indels/edit-table-columns)):
 
 1. **Locus** is the common name of the gene in which the variant is located.
 2. **Origin** is a mutation type (somatic or germline).
 
 :::info
-"Origin" column is hidden in [Variant Viewer with germline mutations](/results/main/snvs_indels/variant-viewer)
+"Origin" column is hidden in [Variant Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
 and in Variant Viewer with somatic mutations if "Origin is Somatic" filter is on.
 :::
 
@@ -170,7 +170,7 @@ The column cells are colored depending on the depth value:
 allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
 9. **Consequence** is the effect of the variant on genes.
 
-#### Consequences of variants in the annotation
+#### Consequences of variants in the annotation {#variant-consequences}
 
 <table>
   <tr>
@@ -363,9 +363,9 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
 </table>
 
 ***Impact** is the predicted effect of the variant on the protein. The corresponding column can be added in
-[the Edit Table Columns window](/results/main/snvs_indels/edit_table_columns).
+[the Edit Table Columns window](/results/main/snvs-indels/edit-table-columns).
 
-#### Impacts of variants in the annotation
+#### Impacts of variants in the annotation {#variant-impacts}
 
 <table>
   <tr>
@@ -409,7 +409,7 @@ The "Consequence" column cells are colored depending on the impact:
 
 10. **External links** are links to pages with variant information
 in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>.
-There may also be a link to the variant in <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if it was [uploaded as a custom annotation](/settings/custom-annotations#2-defining-the-type-of-a-custom-annotation)).
+There may also be a link to the variant in <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
 
 11. **gnomAD AF** is the allele frequency according to the [gnomAD](https://gnomad.broadinstitute.org/) database.
 
@@ -420,6 +420,6 @@ The column cells are colored depending on the allele frequency value:
 - red if AF < 0.01.
 
 12. **Pathogenicity** is the variant pathogenicity, which can be determined either manually, by ACMG criteria, or
-according to the pathogenicity base. If you have not [uploaded the pathogenicity database](/settings/custom-annotations#2-defining-the-type-of-a-custom-annotation)
+according to the pathogenicity base. If you have not [uploaded the pathogenicity database](/settings/custom-annotations#define-annotation-type)
 or have not determined the variant pathogenicity, then the column
 value will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> (No interpretation).

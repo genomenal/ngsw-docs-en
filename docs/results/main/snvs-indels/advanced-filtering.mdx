@@ -14,14 +14,14 @@ You will see the Query Builder:
 </p>
 
 :::note
-If you are on the page of [Variant Viewer with somatic mutations](/results/main/snvs_indels/variant-viewer),
+If you are on the page of [Variant Viewer with somatic mutations](/results/main/snvs-indels/variant-viewer),
 the somatic mutation filter ("Origin in Somatic") will be selected by default:
 <p align="center">
 <img src={require('/img/vv/somatic_origin.png').default} width="550"/>
 </p>
 :::
 
-## Adding the First Filter Condition
+## Adding the First Filter Condition {#add-condition}
 
 To add a new condition, click on the highlighted window:
 
@@ -37,7 +37,7 @@ You will see a list of **annotation columns** available for filtering variants:
 
 The way of adding a filter condition depends on **the filter type**:
 
-### 1. Multiselect Filters
+### 1. Multiselect Filters {#multiselect-filters}
 
 - Ability to select multiple column values at once.
 - The way of adding a filter condition:
@@ -68,12 +68,12 @@ by clicking on the value rows:
     1. **Gene** (the "Locus" column, the "Gene" basic filter): filtering by gene transcript (shown in brackets).
     2. **Impact**: filtering by the predicted effect of the variant on the protein:
     High, Moderate, Low, Modifier. Column values are described
-    [here](/results/main/snvs_indels/variant-viewer#impacts-of-variants-in-the-annotation).
+    [here](/results/main/snvs-indels/variant-viewer#variant-impacts).
     3. **Genome position**: filtering by variant position in the genome: Exonic (in exon),
     Intronic (in intron), Intergenic (in the intergenic region).
     4. **Consequence**: filtering by the effect of the variant on genes.
     Column values are described
-    [here](/results/main/snvs_indels/variant-viewer#consequences-of-variants-in-the-annotation).
+    [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
     5. **Pathogenicity**: filtering by variant pathogenicity, which have been determined either manually, by ACMG
     criteria, or according to the pathogenicity base.
     6. **Chromosome** (the "Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
@@ -99,7 +99,7 @@ by clicking on the value rows:
     13. **Other: APPRIS annotation** filtering by human splicing isoforms
     ([APPRIS](http://appris.bioinfo.cnio.es) annotation): Principal 1-5; Alternative 1-2.
 
-### 2. Single Value Filters
+### 2. Single Value Filters {#single-value-filters}
 
 - Ability to select only one filter value.
 - The way of adding a filter condition:
@@ -115,14 +115,14 @@ filters of this type;
 - The filters:
     1. **Gene panel**: filtering by gene panel.
     You can add your own gene panel on the "Gene panels" page, which is described in
-    detail in [the corresponding section](/settings/gene_panels). In addition, it is possible to import panels from
+    detail in [the corresponding section](/settings/gene-panels). In addition, it is possible to import panels from
     the Library of the most common clinical panels - such option is available in the "Gene panel" filter in the
-    [Basic Filtering](/results/main/snvs_indels/basic_filtering) mode. If you don't have any gene panels added,
+    [Basic Filtering](/results/main/snvs-indels/basic-filtering) mode. If you don't have any gene panels added,
     the list of filter values will be empty.
     2. **Onco Relevance**: filtering by the significance of the variant for any oncological disease:
     Relevant, Irrelevant.
 
-### 3. Filters with ID input
+### 3. Filters with ID input {#id-filters}
 
 - Ability to enter the required column value.
 - The way of adding a filter condition:
@@ -156,7 +156,7 @@ filters of this type;
     5. **ClinVar: Variant Haplotype ID**: filtering by ID of the variant that is part of the haplotype (Variation ID)
     according to the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
 
-### 4. Numeric Filters
+### 4. Numeric Filters {#numeric-filters}
 
 - Ability to enter the required column value.
 - The way of adding a filter condition:
@@ -266,7 +266,7 @@ filters of this type;
     25. **Other: Protein position**: filtering by protein position (natural number).
     26. **Other: Amino acid position**: filtering by amino acid position (natural number).
 
-### 5. Filters with any value
+### 5. Filters with any value {#any-value-filters}
 
 - Ability to enter the required column value.
 - The way of adding a filter condition:
@@ -352,7 +352,7 @@ and enter ***filter column value***:
     25. **Other: Geuvadis EQTL target gene**: filtering by gene from eQTL data analysis
     [GEUVADIS](http://www.geuvadis.org/).
 
-### 6. Filter by HPO
+### 6. Filter by HPO {#hpo-filter}
 
 - Filtering by a term from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>.
 - The way of adding a filter condition:
@@ -394,11 +394,11 @@ and the terms below Glioma are its child terms.
 On the right, there are the genes associated with this term (in this case, 45 genes were found).
 To filter variants by these genes, click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
 
-### 7. Filters by Per-Sample Data
+### 7. Filters by Per-Sample Data {#sample-data-filters}
 
 - Works only if there is data about the sequencing sample.
 - The way of adding a filter condition (for all filters of this type except
-"[Per-sample data: Genotype](/results/main/snvs_indels/advanced_filtering#8-filter-by-genotype)"):
+"[Per-sample data: Genotype](/results/main/snvs-indels/advanced-filtering#genotype-filter)"):
 
 1. Select ***a filter*** from the list of all filters;
 2. Select ***a filter function***:
@@ -436,7 +436,7 @@ number for AF);
     in the sequence for this sample.
     4. "**Per-sample data: AF**": filtering by alternative allele frequency for this sample.
 
-### 8. Filter by Genotype
+### 8. Filter by Genotype {#genotype-filter}
 
 - Filtering by genotype, i.e. reference and alternative allele values for the sample.
 - Works only if there is data about the sequencing sample.
@@ -469,7 +469,7 @@ number for AF);
     * "HOM_ALT": homozygous site in alternative (e.g., `1/1`, `1|1|1`);
     * "MIS": information is missing for the site (e.g., `./.`).
 
-### 9. Filters by custom annotation columns
+### 9. Filters by custom annotation columns {#custom-annotations-filters}
 
 - Ability to enter the required column value.
 - Shown only if at least one custom annotation has been added. How to add an annotation is
@@ -488,7 +488,7 @@ from the list of all columns;
 and enter ***filter column value***.
 6. To complete adding the condition, press Enter or click outside edit value container.
 
-## Editing a condition
+## Editing a condition {#edit-condition}
 
 You can change the ***operator*** and/or ***value*** in an already created condition.
 To do this, you need to click on the corresponding field:
@@ -503,7 +503,7 @@ and choose another option:
 <img src={require('/img/vv/change_operator.png').default} width="700"/>
 </p>
 
-## Turning off a condition
+## Turning off a condition {#turn-off-condition}
 
 Turning off a condition is useful if you don’t want to lose the added condition, but at the moment you
 don’t need to filter by it. To turn off a condition, hover over it and
@@ -513,7 +513,7 @@ click on <img src={require('/img/vv/turn_off_btn.png').default} width="25"/>:
 <img src={require('/img/vv/turn_off_condition.png').default} width="700"/>
 </p>
 
-## Removing a condition
+## Removing a condition {#remove-condition}
 
 To remove a condition, hover over it and
 click on <img src={require('/img/vv/delete_condition.png').default} width="25"/>:
@@ -531,36 +531,36 @@ A condition that has not yet been filled in can also be removed
 </p>
 :::
 
-## Adding the following condition
+## Adding the following condition {#add-another-condition}
 
 If you want to add another condition to the query, first decide whether you want the variant you are looking for to
 strictly ***match both conditions*** (the one already added and the new one), or whether the variant can
 ***match one of the conditions***.
 
-### The searched variant match both conditions
+### The searched variant match both conditions {#and-condition-matching}
 
 1. After adding the first condition, click on <img src={require('/img/vv/and_btn.png').default} width="120"/>.
 2. Complete the condition as described
-in [the corresponding section](/results/main/snvs_indels/advanced_filtering#adding-the-first-filter-condition).
+in [the corresponding section](/results/main/snvs-indels/advanced-filtering#add-condition).
 To get started, click on the highlighted window:
 
 <p align="center">
 <img src={require('/img/vv/and_cond_field.png').default} width="700"/>
 </p>
 
-### The searched variant match one of the conditions
+### The searched variant match one of the conditions {#or-condition-matching}
 
 1. After adding the first condition, hover over it and
 click on <img src={require('/img/vv/or_btn.png').default} width="80"/>.
 2. Complete the condition as described
-in [the corresponding section](/results/main/snvs_indels/advanced_filtering#adding-the-first-filter-condition).
+in [the corresponding section](/results/main/snvs-indels/advanced-filtering#add-condition).
 To get started, click on the highlighted window:
 
 <p align="center">
 <img src={require('/img/vv/or_cond_field.png').default} width="700"/>
 </p>
 
-## Applying a Query
+## Applying a Query {#apply-query}
 
 After you have completed all the conditions for the sought variants,
 click on <img src={require('/img/vv/apply.png').default} width="150"/>.
@@ -587,7 +587,7 @@ clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="1
 To return to the Variant Viewer main page,
 click on <img src={require('/img/vv/basic_filtering_btn.png').default} width="120"/>.
 
-## Saving a Query
+## Saving a Query {#save-query}
 
 If you want to reuse the created query in the future, save it.
 To do this, open the Query Builder by
@@ -610,7 +610,7 @@ To apply a saved query, click on its line:
 
 and then click on <img src={require('/img/vv/apply.png').default} width="150"/>.
 
-In addition, the saved query will appear in [the Basic Filtering mode](/results/main/snvs_indels/basic_filtering).
+In addition, the saved query will appear in [the Basic Filtering mode](/results/main/snvs-indels/basic-filtering).
 
 If you want to ***delete*** a saved query, click on the query line and
 then on <img src={require('/img/vv/delete_saved_query.png').default} width="25"/>.

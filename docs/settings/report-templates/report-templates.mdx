@@ -19,7 +19,7 @@ via the navigation panel on the left:
 <img src={require('/img/report_templates/rt_page.png').default} width="900"/>
 </p>
 
-## Add report template
+## Add report template {#add-template}
 
 Click on <img src={require('/img/eng/add_template.png').default} width="170"/> to open the page of adding a report
 template:
@@ -55,7 +55,7 @@ or otherwise, the template will not be saved. The saved template page looks like
 <img src={require('/img/report_templates/saved_template.png').default} width="900"/>
 </p>
 
-## Edit report template
+## Edit report template {#edit-template}
 
 In addition to the fields described in the previous section ("Name", "Active", "Report title", "Report description"),
 you can edit template blocks on the saved template page.
@@ -63,7 +63,7 @@ you can edit template blocks on the saved template page.
 In order for a template to be active, at least one block must be added to it (in addition to the "Active" option
 enabled).
 
-### Add template block
+### Add template block {#add-block}
 
 To add a template block, click on the search box and select the block type you need from the opened list
 (block types are detailed below):
@@ -76,7 +76,7 @@ After selecting the block type, fill in all the required fields
 and click on <img src={require('/img/report_templates/add_btn.png').default} width="160"/>.
 To cancel block type selection, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
 
-#### Types of report template blocks and their editing
+#### Types of report template blocks and their editing {#block-types}
 
 <table>
   <tr>
@@ -182,7 +182,7 @@ To cancel block type selection, click on <img src={require('/img/report_template
    To add a condition, click on <img src={require('/img/report_templates/query_builder.png'). default} width="137"/>.
    Then the Query Builder opens, which is exactly the same as the Advanced Filtering Query Builder on the Variant
    Viewer page. You can read about how to set up
-   conditions <a href="/results/main/snvs_indels/advanced_filtering">here</a>.</td>
+   conditions <a href="/results/main/snvs-indels/advanced-filtering">here</a>.</td>
   </tr>
   <tr>
    <td><b>Immunotherapy markers</b></td>
@@ -368,7 +368,7 @@ To cancel block type selection, click on <img src={require('/img/report_template
    </tr>
 </table>
 
-### Added report template
+### Added report template {#added-template}
 
 Added report template looks like this (example: the "Sample info" block):
 
@@ -378,32 +378,32 @@ Added report template looks like this (example: the "Sample info" block):
 
 The block name is written at the top, and information about its content is given in the main part.
 
-#### Move a block in a template
+#### Move a block in a template {#move-block}
 
 To lift the added block up in the template (above the previous block),
 click on <img src={require('/img/report_templates/up.png').default} width="25"/>,
 and to bring it down - click on <img src={require('/img/report_templates/down.png').default} width="25"/>.
 
-#### Edit template block
+#### Edit template block {#edit-block}
 
 To edit the added block,
 click on <img src={require('/img/report_templates/edit.png').default} width="23"/>, edit, and then
 click on <img src={require('/img/report_templates/add_btn.png').default} width="170"/> to save changes.
 To cancel your changes, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
 
-#### Delete template block
+#### Delete template block {#delete-block}
 
 To delete the added block, click on <img src={require('/img/report_templates/delete.png').default} width="23"/>, and
 then click on <img src={require('/img/eng/delete.png').default} width="160"/> in the appeared confirmation window.
 To cancel deletion, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
 
-## Export report template
+## Export report template {#export-template}
 
 The export option is available on the template page if at least one block has been added to the saved template.
 To export a report template in JSON format,
 click on <img src={require('/img/report_templates/export.png').default} width="160"/>.
 
-## Import report template
+## Import report template {#import-template}
 
 To import a report template into the system,
 click on <img src={require('/img/eng/template_import.png').default} width="200"/> on the "Report templates" page.
@@ -411,14 +411,14 @@ Drag and drop JSON template file into the opened window, or click on the window 
 Once the template has uploaded,
 click on <img src={require('/img/report_templates/import_btn.png').default} width="180"/>.
 
-## Delete report template
+## Delete report template {#delete-template}
 
 To delete a report template, hover over the template row on the "Report templates" page and
 click on <img src={require('/img/eng/delete_btn.png').default} width="20"/>, and then
 click on <img src={require('/img/eng/delete.png').default} width="160"/> in the appeared confirmation window.
 To cancel deletion, click on <img src={require('/img/report_templates/cancel.png').default} width="160"/>.
 
-## About a report generation
+## About a report generation {#report-generation}
 
 A report is generated for a sample if the following conditions are met:
 1. The sample type matches the type to which the report template is applicable (Any, Tumor, or Normal).
