@@ -72,7 +72,12 @@ Click on <img src={require('/img/vv/igv_var.png').default} width="33"/> in the v
 
 ### Pinning variants {#pin-variant}
 
-The variants you want can be pinned. Click on <img src={require('/img/vv/pin_variant.png').default} width="28"/>
+The variants you want can be pinned. Pinned variants are not
+affected by [filtering and sorting](/results/main/snvs-indels/variant-viewer#sort-and-filter) the
+table and always remain at the top of the table. Pinned variants are sorted by the variant start position
+("Position" column).
+
+Click on <img src={require('/img/vv/pin_variant.png').default} width="28"/>
 in the variant line to pin it. The pinned variant will appear at the top of the table (the row highlighted in green):
 
 <p align="center">
@@ -85,6 +90,7 @@ Variant remains pinned when you exit the Variant Viewer page.
 
 ### Sorting and filtering variants {#sort-and-filter}
 
+By default, the table is sorted by the variant start position ("Position" column).
 You can ***sort*** the table in ascending or descending order of the values of the "Locus", "Origin", "Position",
 "Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity". To sort by the column, click on its name
 (one click to sort in ascending order, two clicks - in descending order).
@@ -126,7 +132,8 @@ the "Pinned only to CSV" option:
 By default, the table has the following columns (the set and order of the columns can be changed - how to do it is
 described [here](/results/main/snvs-indels/edit-table-columns)):
 
-1. **Locus** is the common name of the gene in which the variant is located.
+1. **Locus** is the common name of the gene in which the variant is located. If the gene is unknown,
+the locus is designated as <img src={require('/img/vv/no_gene.png').default} width="110"/>.
 2. **Origin** is a mutation type (somatic or germline).
 
 :::info
@@ -144,7 +151,7 @@ was predicted for and HGVSp with amino acids in the three letter code:
 <img src={require('/img/vv/hgvsp_tooltip.png').default} width="350"/>
 </p>
 
-4. **Alteration** is a nucleotide substitution (reference allele > alternative allele(s)).
+4. **Alteration** is a nucleotide substitution (reference allele > alternative allele).
 5. **HGVSc** is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position of
 the substituted nucleotide + reference allele > alternative allele). Starts with a prefix: “c.” (coding; for a
 substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence). When hovering
@@ -163,7 +170,7 @@ Also the percentage of the share of the alternative allele reads count among all
 The column cells are colored depending on the depth value:
 
 - green if depth > 60;
-- yellow if depth ≤ 60;
+- yellow if 20 ≤ depth ≤ 60;
 - red if depth < 20.
 
 8. **GT** is a genotype; allelic values (0 - reference allele, 1 - first alternative allele, 2 - second alternative
@@ -184,70 +191,24 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Transcript ablation</td>
-   <td>Deletion of a transcript</td>
-   <td>HIGH</td>
+   <td>Downstream</td>
+   <td>Downstream of a gene</td>
+   <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Splice acceptor</td>
-   <td>The variant hits a splice acceptor site</td>
-   <td>HIGH</td>
+   <td>Feature elongation</td>
+   <td>A sequence variant that causes the extension of a genomic feature</td>
+   <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Splice donor</td>
-   <td>The variant hits a splice donor site</td>
-   <td>HIGH</td>
-  </tr>
-  <tr>
-   <td>Stop gained</td>
-   <td>Variant causes a STOP codon</td>
-   <td>HIGH</td>
+   <td>Feature truncation</td>
+   <td>A sequence variant that causes the reduction of a genomic feature</td>
+   <td>MODIFIER</td>
   </tr>
   <tr>
    <td>Frameshift</td>
    <td>Insertion or deletion causes a frame shift</td>
    <td>HIGH</td>
-  </tr>
-  <tr>
-   <td>Stop lost</td>
-   <td>Variant causes stop codon to be mutated into a non-stop codon</td>
-   <td>HIGH</td>
-  </tr>
-  <tr>
-   <td>Start lost</td>
-   <td>Variant causes start codon to be mutated into a non-start codon</td>
-   <td>HIGH</td>
-  </tr>
-  <tr>
-   <td>Transcript amplification</td>
-   <td>A feature amplification of a region containing a transcript</td>
-   <td>HIGH</td>
-  </tr>
-  <tr>
-   <td>Inframe insertion</td>
-   <td>One or many codons are inserted</td>
-   <td>MODERATE</td>
-  </tr>
-  <tr>
-   <td>Inframe deletion</td>
-   <td>One or many codons are deleted</td>
-   <td>MODERATE</td>
-  </tr>
-  <tr>
-   <td>Missense</td>
-   <td>Variant causes a codon that produces a different amino acid</td>
-   <td>MODERATE</td>
-  </tr>
-  <tr>
-   <td>Protein altering</td>
-   <td>A variant which is predicted to change the protein encoded in the coding sequence</td>
-   <td>MODIFIER</td>
-  </tr>
-  <tr>
-   <td>Splice region</td>
-   <td>A sequence variant in which a change has occurred within the region of the splice site, either within 1-3
-   bases of the exon or 3-8 bases of the intron</td>
-   <td>LOW</td>
   </tr>
   <tr>
    <td>Incomplete terminal codon</td>
@@ -256,19 +217,24 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>LOW</td>
   </tr>
   <tr>
-   <td>Start retained</td>
-   <td>Variant causes start codon to be mutated into another start codon</td>
-   <td>LOW</td>
+   <td>Inframe deletion</td>
+   <td>One or many codons are deleted</td>
+   <td>MODERATE</td>
   </tr>
   <tr>
-   <td>Stop retained</td>
-   <td>Variant causes stop codon to be mutated into another stop codon</td>
-   <td>LOW</td>
+   <td>Inframe insertion</td>
+   <td>One or many codons are inserted</td>
+   <td>MODERATE</td>
   </tr>
   <tr>
-   <td>Synonymous</td>
-   <td>Variant causes a codon that produces the same amino acid</td>
-   <td>LOW</td>
+   <td>Intergenic variant</td>
+   <td>The variant is in an intergenic region</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Intron</td>
+   <td>The variant is located in the intron</td>
+   <td>MODIFIER</td>
   </tr>
   <tr>
    <td>Mature miRNA</td>
@@ -276,24 +242,9 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>UTR5</td>
-   <td>A variant hits 5'UTR region</td>
-   <td>MODIFIER</td>
-  </tr>
-  <tr>
-   <td>UTR3</td>
-   <td>A variant hits 3'UTR region</td>
-   <td>MODIFIER</td>
-  </tr>
-  <tr>
-   <td>Non coding transcript exon</td>
-   <td>A sequence variant that changes non-coding exon sequence in a non-coding transcript</td>
-   <td>MODIFIER</td>
-  </tr>
-  <tr>
-   <td>Intron</td>
-   <td>The variant is located in the intron</td>
-   <td>MODIFIER</td>
+   <td>Missense</td>
+   <td>Variant causes a codon that produces a different amino acid</td>
+   <td>MODERATE</td>
   </tr>
   <tr>
    <td>NMD transcript</td>
@@ -306,14 +257,75 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Upstream</td>
-   <td>Upstream of a gene</td>
+   <td>Non coding transcript exon</td>
+   <td>A sequence variant that changes non-coding exon sequence in a non-coding transcript</td>
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Downstream</td>
-   <td>Downstream of a gene</td>
+   <td>Protein altering</td>
+   <td>A variant which is predicted to change the protein encoded in the coding sequence</td>
    <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Regulatory region ablation</td>
+   <td>Deletion of a regulatory region</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Regulatory region amplification</td>
+   <td>Amplification of regulatory region</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Regulatory region variant</td>
+   <td>The variant hits a regulatory feature</td>
+   <td>MODIFIER</td>
+  </tr>
+  <tr>
+   <td>Splice acceptor</td>
+   <td>The variant hits a splice acceptor site</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Splice donor</td>
+   <td>The variant hits a splice donor site</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Splice region</td>
+   <td>A sequence variant in which a change has occurred within the region of the splice site, either within 1-3
+   bases of the exon or 3-8 bases of the intron</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Start lost</td>
+   <td>Variant causes start codon to be mutated into a non-start codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Start retained</td>
+   <td>Variant causes start codon to be mutated into another start codon</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Stop gained</td>
+   <td>Variant causes a STOP codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Stop lost</td>
+   <td>Variant causes stop codon to be mutated into a non-stop codon</td>
+   <td>HIGH</td>
+  </tr>
+  <tr>
+   <td>Stop retained</td>
+   <td>Variant causes stop codon to be mutated into another stop codon</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Synonymous</td>
+   <td>Variant causes a codon that produces the same amino acid</td>
+   <td>LOW</td>
   </tr>
   <tr>
    <td>TF binding site</td>
@@ -331,33 +343,28 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>HIGH</td>
   </tr>
   <tr>
-   <td>Regulatory region ablation</td>
-   <td>Deletion of a regulatory region</td>
+   <td>Transcript ablation</td>
+   <td>Deletion of a transcript</td>
    <td>HIGH</td>
   </tr>
   <tr>
-   <td>Regulatory region amplification</td>
-   <td>Amplification of regulatory region</td>
+   <td>Transcript amplification</td>
+   <td>A feature amplification of a region containing a transcript</td>
    <td>HIGH</td>
   </tr>
   <tr>
-   <td>Feature elongation</td>
-   <td>A sequence variant that causes the extension of a genomic feature</td>
+   <td>Upstream</td>
+   <td>Upstream of a gene</td>
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Regulatory region variant</td>
-   <td>The variant hits a regulatory feature</td>
+   <td>UTR3</td>
+   <td>A variant hits 3'UTR region</td>
    <td>MODIFIER</td>
   </tr>
   <tr>
-   <td>Feature truncation</td>
-   <td>A sequence variant that causes the reduction of a genomic feature</td>
-   <td>MODIFIER</td>
-  </tr>
-  <tr>
-   <td>Intergenic variant</td>
-   <td>The variant is in an intergenic region</td>
+   <td>UTR5</td>
+   <td>A variant hits 5'UTR region</td>
    <td>MODIFIER</td>
   </tr>
 </table>

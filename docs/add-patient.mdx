@@ -9,12 +9,209 @@ import PatientInfo from '/docs/imported_components/_patient_def.mdx';
 
 <PatientInfo />
 
-In case you want to upload samples for a patient who is not yet in the system, click on "**Add Patient**" to create a patient entry.
+In case you want to upload samples for a patient who is not yet in
+the system, click on <img src={require('/img/eng/add_patient_btn.png').default} width="170"/> on "All Patients" page:
 
 import PatientPage from '/docs/imported_components/_patient_page.mdx';
 
 <PatientPage />
 
+You will see the patient page.
+
+## Patient Page {#patient-page}
+
+The patient page without uploaded samples looks like this:
+
 <p align="center">
 <img src={require('/img/eng/patient_page_somatic.png').default} width="900"/>
 </p>
+
+Uploading sample sets is described in the relevant sections of the documentation:
+- [Uploading a Pair of Tumor/Normal Samples](/uploading-samples/tumor-normal/upload-for-new-patient) - to analyze
+the results of sequencing of tumor and normal (control) tissues of the same patient;
+- [Uploading Tumor Samples](/uploading-samples/tumor-only/upload-for-new-patient) - to analyze
+the results of sequencing of the patient's tumor tissue (without control, i.e. sample of matched non-tumor tissue);
+- [Uploading Normal Samples](/uploading-samples/normal-sample/upload-for-new-patient) - to analyze
+the results of sequencing of normal (non-tumor) human tissue.
+
+The patient page with uploaded samples looks like this:
+
+<p align="center">
+<img src={require('/img/eng/patient_page_with_samples.png').default} width="900"/>
+</p>
+
+There can be two tabs on the page: "Main" and ["CNV Report"](/results/cnv-report/patient-cnv-report)
+if "CNV Report" has been generated (see conditions [here](/results/cnv-report/cnv-report#cnv-report-conditions)),
+or there are no tabs on the page if "CNV Report" has not been generated.
+
+:::info
+On ["Profile Settings" page](/settings/profile#patient-page),
+you can configure which tab you will see first when you open the patient page: "Main" or "CNV Report".
+:::
+
+There are two main entities on the patient page: [Sample Set](/add-patient#sample-set)
+and [Sample](/add-patient#sample).
+
+### 1. Sample Set {#sample-set}
+
+A sample set consists of one or more samples of the same patient.
+The date and time the set was added are indicated in the blue bar at the top of the set.
+In the following example, the sample set consists of a tumor/control sample pair:
+
+<p align="center">
+<img src={require('/img/eng/sample_set.png').default} width="900"/>
+</p>
+
+#### Edit Sample Set {#edit-sample-set}
+
+To edit a sample set, click on the button <img src={require('/img/report_templates/edit.png').default} width="25"/>
+located on the blue bar at the top of the set. A sample set editing window will open:
+
+<p align="center">
+<img src={require('/img/eng/edit_sample_set_window.png').default} height="600"/>
+</p>
+
+The window appearance will depend on the analysis mode
+that [was selected](/settings/settings/settings#general-analysis-settings) when creating a sample set
+(if "Somatic and germline variant analysis" was selected, then there will be a tumor sample placeholder,
+and if "Germline variant analysis" was selected, then there will not be one).
+
+In edit mode, you can:
+- ***remove one of the samples from the set*** (or change it to another). To do this, hover over the sample
+and click on <img src={require('/img/eng/remove.png').default} width="20"/>. The sample will be moved
+to the "Uncategorized Samples" section, located on the left side of the editing window (which is also a
+Compose Sample Set window). From there, the sample can be deleted by hovering over it and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="24"/>. If the sample will be left
+in the "Uncategorized Samples" section, it will be available for reusing in another sample set without
+having to repeat the Upload, Identify and Verify stages. Please note that if a sample is removed from the set,
+the rest of the sample analysis progress will be lost.
+- ***add another sample to the set*** (in addition to the ones already added or instead of one of them).
+To do this, upload the sample (see the documentation sections about uploading samples) and add it to the
+sample set by dragging it to the tumor tissue or non-tumor tissue placeholder, or by clicking on the placeholder
+and selecting the uploaded sample.
+- ***change the sample type***: for example, from tumor to non-tumor or vice versa. To do this, drag the
+sample to a differently-typed placeholder not occupied by another sample. If the placeholder is occupied,
+then first remove the sample from it by clicking on <img src={require('/img/eng/remove.png').default} width="20"/>,
+and only then drag the sample to the placeholder. In this way, you can swap the samples in types if necessary.
+- ***change a patient for a set***: click on the patient selection window and select a patient from the already
+added patients or create a new one by
+clicking on <img src={require('/img/eng/add_new_patient.png').default} width="130"/> and filling out the form
+as described above.
+
+To save the changes, click on <img src={require('/img/eng/analyze_samples_btn.png').default} width="150"/>, and
+to cancel all the changes made, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the editing window. If you change the sample set composition, the analysis of the set
+will restart from the necessary stages.
+
+#### Delete Sample Set {#delete-sample-set}
+
+To delete a sample set, click on the button <img src={require('/img/report_templates/delete.png').default} width="25"/>
+located on the blue bar at the top of the set. The sample set deletion confirmation window will open:
+
+<p align="center">
+<img src={require('/img/eng/approve_delete_window.png').default} width="350"/>
+</p>
+
+To permanently delete the sample set from the system,
+click on <img src={require('/img/eng/delete_green_btn.png').default} width="135"/>.
+To delete the sample set, but leave the samples in the "Uncategorized Samples" section (so that they
+will be available for reusing in another sample set without having to repeat the Upload, Identify and Verify stages),
+uncheck <img src={require('/img/eng/check.png').default} width="25"/> and then
+click on <img src={require('/img/eng/delete_green_btn.png').default} width="135"/>.
+To cancel deleting a set, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+### 2. Sample {#sample}
+
+:::note
+A sample is a single sample from [a sample set](/add-patient#sample-set).
+:::
+
+To open [the sample page](/results/results), click on its row:
+
+<p align="center">
+<img src={require('/img/eng/sample_row.png').default} width="900"/>
+</p>
+
+The sample row contains the following information:
+1. **Sample file names** (with extension). The tumor sample file is
+designated as <img src={require('/img/eng/tumor_success.png').default} width="20"/>, the non-tumor sample
+file as <img src={require('/img/eng/normal_success.png').default} width="20"/>. A pair of tumor sample
+files: <img src={require('/img/eng/tumor_pair.png').default} height="40"/>, a pair of non-tumor sample
+files: <img src={require('/img/eng/normal_pair.png').default} height="40"/>.
+2. **Sample type** is the type that was selected when uploading the sample (TUMOR or NORMAL (non-tumor)).
+You can change the sample type in the editing window (see above).
+3. **Sample interpretation summary** is the information on the number of variants of a particular pathogenicity
+class found in the sample and added to the report
+(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+Interpretation summary is displayed only
+if [the sample interpretation has been completed](/results/main/snvs-indels/snv-details-page#sample-interpretation).
+If the interpretation has not been completed, but variants with a particular pathogenicity class have been
+added to the report, then the interpretation summary will be "*Interpretation not completed*". If the
+sample interpretation has been completed, but no variants with a particular pathogenicity class have been
+added to the report, then the interpretation summary will be "*No pathogenic variants found*".
+4. **The last complete analysis stage status** or the status of the stage currently being
+in progress: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - the stage is currently in
+progress; <img src={require('/img/eng/success.png').default} width="20"/> - the stage was completed
+successfully, <img src={require('/img/eng/problems_status.png').default} width="28"/> - the stage was completed
+successfully, but not all quality metrics meet the
+criteria, <img src={require('/img/eng/failed_status.png').default} width="25"/> - the stage was failed.
+5. **Sample analysis progress tiles**. Each tile is an analysis stage.
+Blue tiles <img src={require('/img/eng/blue_in_progress.png').default} width="25"/> represent stages in progress;
+green <img src={require('/img/eng/green.png').default} width="25"/> - successfully completed stages;
+orange <img src={require('/img/eng/orange.png').default} width="25"/> - successfully completed stages,
+not all quality metrics of which meet the criteria;
+red <img src={require('/img/eng/red.png').default} width="25"/> - failed stages;
+gray <img src={require('/img/eng/grey.png').default} width="25"/> - stages that have not been completed
+(either because these stages are turned off, or because the previous analysis stages, the results of which are
+necessary to complete the stage, have not yet been completed). The number of tiles may vary depending
+on the possible course of the analysis:
+- The analysis progress tiles of the tumor sample in FASTQ
+or BAM format: <img src={require('/img/eng/tumor_analysis.png').default} width="120"/>
+- The analysis progress tiles of the non-tumor sample in FASTQ
+or BAM format: <img src={require('/img/eng/normal_analysis.png').default} width="120"/>
+- The analysis progress tiles of the sample in VCF, TXT
+or TSV format: <img src={require('/img/eng/vcf_analysis.png').default} width="50"/>
+
+### Patient Info {#patient-info}
+
+<p align="center">
+<img src={require('/img/eng/patient_info.png').default} width="900"/>
+</p>
+
+- PATIENT ID is a code entered when creating a patient (you can edit it by clicking on the code).
+Can include any characters.
+- REGISTRATION DATE is the patient creation date in M/d/yyyy format.
+- FIRST NAME, MIDDLE NAME, LAST NAME of the patient. Can be specified by clicking on the value fields.
+- SEX of the patient: male, female. Sex can be specified by clicking on the value field and selecting
+the value from the drop-down list.
+- DATE OF BIRTH of the patient in M/d/yyyy format. Can be specified by clicking on the value field.
+- AGE of the patient is calculated automatically after entering the patient's date of birth.
+- COHORT is a group of patients associated by a common feature (for example, by pathology type or data source).
+You can read more about cohorts and their creation in [the corresponding section](/cohorts). To add a patient
+to an already created cohort, click on the value field and select the cohort in the drop-down list:
+
+<p align="center">
+<img src={require('/img/group_analysis/cohort_options.png').default} width="350"/>
+</p>
+
+- PROVIDED DIAGNOSIS is the patient's diagnosis at the moment of obtaining the sequencing sample.
+Can be specified by clicking on the value field.
+- DATE OF DIAGNOSIS in M/d/yyyy format. Can specified by clicking on the value field.
+- COMMENTS is a field for additional information about the patient. A comment can be added by
+clicking on the value field.
+- ATTACHMENTS are the additional files of any format. To attach a file,
+click on <img src={require('/img/eng/add_attachment_btn.png').default} width="25"/> and drag and drop files
+or folder containing files into the drop-area, or click on it to open the File Browser:
+
+<p align="center">
+<img src={require('/img/eng/attach.png').default} width="400"/>
+</p>
+
+In the same way, you can attach as many files as you need. To remove an attachment, hover over it and
+click on <img src={require('/img/eng/remove.png').default} width="20"/>. To download an attached file,
+click on its row.

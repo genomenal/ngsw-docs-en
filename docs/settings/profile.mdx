@@ -1,0 +1,235 @@
+---
+sidebar_position: 5
+sidebar_label: Profile Settings
+---
+
+# Profile Settings
+
+The "Profile settings" page contains your personal settings: account settings
+(email, login, password), the Program navigation panel settings, patient page settings
+and Variant Viewer settings.
+
+To open "Profile settings" page, hover over your username at the bottom of the navigation panel
+and click on the three<br></br>dots <img src={require('/img/eng/profile_options.png').default} height="20"/>.
+In the opened menu, select "**Profile**":
+
+<p align="center">
+<img src={require('/img/eng/profile.png').default} width="200"/>
+</p>
+
+You will see a settings page:
+
+<p align="center">
+<img src={require('/img/eng/profile_page.png').default} width="900"/>
+</p>
+
+## Account settings {#account-settings}
+
+### Email address {#email}
+
+Здесь вы можете посмотреть, какой email вы использовали при регистрации в Системе.
+Для того чтобы его поменять, нажмите на ,
+а затем в открывшемся окне введите новый адрес почты и ваш действующий пароль аккаунта для подтверждения
+действия:
+
+Here you can see what email you used when registering in the System. In order to change it,
+click on <img src={require('/img/eng/change_mail.png').default} width="110"/>, and then in the
+window that opens, enter a new email address and your current account password to confirm the action:
+
+<p align="center">
+<img src={require('/img/eng/change_email.png').default} width="450"/>
+</p>
+
+After filling out the form, click on <img src={require('/img/eng/change_email_btn.png').default} width="170"/>.
+Now check the inbox of the email that you indicated as new, and confirm the change of address in the letter.
+
+### Login {#login}
+
+Here you can see which login you used when registering in the System. In order to change it,
+click on <img src={require('/img/eng/change_login.png').default} width="110"/>, and then in the
+window that opens, enter a new login and your current account password to confirm the action:
+
+<p align="center">
+<img src={require('/img/eng/change_login_window.png').default} width="450"/>
+</p>
+
+After filling out the form, click on <img src={require('/img/eng/change_login_btn.png').default} width="170"/>.
+Login successfully changed!
+
+### Password {#password}
+
+To change the password for logging into the System,
+click on <img src={require('/img/eng/change_password.png').default} width="140"/>, and then in
+the window that opens, enter your current account password to confirm the action and enter the new password twice:
+
+<p align="center">
+<img src={require('/img/eng/change_password_window.png').default} width="450"/>
+</p>
+
+After filling out the form, click on <img src={require('/img/eng/change_password_btn.png').default} width="170"/>.
+Password successfully changed!
+
+### Program Language {#language}
+
+Here you can choose the Program language that is more convenient for you.
+To do this, click on the language selection field and select the language in the drop-down list:
+
+<p align="center">
+<img src={require('/img/eng/language.png').default} width="250"/>
+</p>
+
+## Navigation panel {#navigation-panel}
+
+The section displays which page sections are shown on the Program navigation panel (all are selected by default):
+
+<p align="center">
+<img src={require('/img/eng/navigation_panel.png').default} width="600"/>
+</p>
+
+To remove a section from the panel, uncheck it.
+
+:::info
+
+You can remove all page sections, but at least one of the "Patients" or "Runs" sections must remain:
+
+<p align="center">
+<img src={require('/img/eng/only_patients.png').default} width="600"/>
+</p>
+
+:::
+
+## Patient page {#patient-page}
+
+There can be two tabs on [the patient page](/add-patient#patient-page): ["Main"](/add-patient#patient-page)
+and ["CNV Report"](/results/cnv-report/patient-cnv-report) if "CNV Report" has been generated
+(see conditions [here](/results/cnv-report/cnv-report#cnv-report-conditions)):
+
+<p align="center">
+<img src={require('/img/eng/patient_page_with_samples.png').default} width="900"/>
+</p>
+
+In this section, you can configure which tab you will see first when you open the patient page:
+- the "Main" tab, which contains information about the patient and uploaded sample sets (chosen by default);
+- the "CNV Report" tab with a report on the results of the copy number analysis in the patient samples.
+
+<p align="center">
+<img src={require('/img/eng/patient_page.png').default} width="400"/>
+</p>
+
+:::info
+If the patient "CNV Report" has not been generated at all or is still being generated,
+then even if you have selected the "CNV Report" tab here, the "Main" tab will open.
+:::
+
+## Variant Viewer {#variant-viewer}
+
+Variant Viewer is an embedded service for viewing and analyzing variants.
+It is described in detail in [the corresponding section](/results/main/snvs-indels/variant-viewer).
+
+### Filtering mode {#filtering-mode}
+
+Variant Viewer has two variant filtering modes: [Basic](/results/main/snvs-indels/basic-filtering) with
+basic filters and [Advanced](/results/main/snvs-indels/advanced-filtering) with more
+filters and the ability to compose complex queries with multiple filter conditions.
+
+In this section, you can configure which filtering mode you will see when you first open
+the sample Variant Viewer page (Basic Filtering chosen by default):
+
+<p align="center">
+<img src={require('/img/eng/search.png').default} width="250"/>
+</p>
+
+### Filters in Basic Filtering mode {#basic-mode-filters}
+
+The default filters are described [here](/results/main/snvs-indels/basic-filtering#basic-filtering-columns):
+
+<p align="center">
+<img src={require('/img/vv/basic_filtering.png').default} width="900"/>
+</p>
+
+You can change the choice of filters (remove or add new ones):
+
+<p align="center">
+<img src={require('/img/eng/filters.png').default} width="400"/>
+</p>
+
+Available filters:
+- **Samples** is a filter of variants by run samples in which these variants were discovered.
+Displayed only in [the run Variant Viewer](/runs#run-variant-viewer). Added [by default](/runs#samples-filter).
+- **Sample Interpretation Status** is a filter of variants by the interpretation status of the run sample
+in which these variants were discovered (completed or not completed interpretation).
+Displayed only in [the run Variant Viewer](/runs#run-variant-viewer).
+- **Origin** is a variant filter by mutation type: Somatic or Germline.
+Added [by default](/results/main/snvs-indels/basic-filtering#basic-filtering-columns). Not displayed
+in [Variant Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
+and [the group analysis Variant Viewer](/group-analysis#group-analysis-variant-viewer).
+- **Gene panel** is a variant filter by [gene panel](/settings/gene-panels).
+Added [by default](/results/main/snvs-indels/basic-filtering#basic-filtering-columns).
+- **Gene** is a variant filter by gene transcripts in which variants are located.
+Added [by default](/results/main/snvs-indels/basic-filtering#basic-filtering-columns).
+- **Human Phenotype Ontology** (HPO) is a variant filter by association with a term
+from  <a href="https://hpo.jax.org/app/">a vocabulary of phenotypic abnormalities encountered in human disease</a>.
+Added [by default](/results/main/snvs-indels/basic-filtering#basic-filtering-columns).
+- **Pathogenicity** is a variant filter by [pathogenicity](/results/main/snvs-indels/pathogenicity)
+determined [manually by the user](/results/main/snvs-indels/pathogenicity#manually-determined-pathogenicity),
+[by ACMG criteria](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab)
+or [by pathogenicity database](/results/main/snvs-indels/pathogenicity#define-pathogenicity-by-base): Pathogenic,
+Likely pathogenic, Uncertain significance conflict (conflicting pathogenicity interpretation), Uncertain significance,
+Likely benign, Benign, Undefined.
+- **Label** is a variant filter by the label value manually determined by the user:
+High significance, Moderate significance, Low significance, Sequencing error.
+- **ClinVar** is a variant filter by the clinical significance of the phenotype
+according to [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database (you can find the
+description of values [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
+- **Consequence** is a variant filter by effects on genes.
+The values are described [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
+- **Caller Filters** is a variant filter by GATK variant filters.
+- **Min Depth level** is a variant filtering scale by the minimum level of sequencing depth.
+Added [by default](/results/main/snvs-indels/basic-filtering#basic-filtering-columns).
+
+<p align="center">
+<img src={require('/img/vv/seq_depth.png').default} width="350"/>
+</p>
+
+- **Trio GT** is a variant filter by inheritance: *De novo* variants, Newly formed homozygotes
+(homozygotes in proband that are heterozygous in parents) or Single parent-inherited.
+Added by default, available only in [Family group analysis](/group-analysis#group-analysis-variant-viewer)
+for Trio case (Proband, Father and Mother).
+- **gnomAD AF** is a variant filter by allele frequency in [gnomAD](https://gnomad.broadinstitute.org/) database:
+* <0.05 (threshold between common and rare variants) or empty (no allele frequency data in gnomAD);
+* <0.02 (conditional threshold of a hypomorph) or empty;
+* <0.01 (estimated threshold of autosomal recessive inheritance) or empty;
+* <0.005 (estimated threshold of X-linked inheritance) or empty;
+* <0.0001 (estimated threshold of autosomal dominant inheritance) or empty.
+
+### Advanced filtering conditions {#advanced-filtering-conditions}
+
+In [advanced filtering mode](/results/main/snvs-indels/advanced-filtering), the query conditions for
+the searched variants are displayed at the top of the Variant Viewer table. When there are a lot of
+conditions in a query, it is convenient to [collapse](/results/main/snvs-indels/advanced-filtering#apply-query)
+them so that they do not take up much space on the page.
+
+In this section, you can configure whether the query conditions will be expanded (by default) or
+collapsed immediately after applying the filtering query:
+
+<p align="center">
+<img src={require('/img/eng/query_conditions.png').default} width="250"/>
+</p>
+
+### Variant details bottom panel {#variant-details-bottom-panel}
+
+[The variant detailed information panel](/results/main/snvs-indels/snv-details-panel) contains
+main information about the selected variant. By default, it is expanded at the bottom of the
+Variant Viewer table. If you don't usually use the panel, you can hide it from Variant Viewer
+by selecting the "Collapse" option:
+
+<p align="center">
+<img src={require('/img/eng/hidden_panel.png').default} width="350"/>
+</p>
+
+## Return to default settings {#default-settings}
+
+If you have made changes to the language selection, navigation bar, patient page, or Variant Viewer settings,
+you can return to the default settings by clicking on <img src={require('/img/eng/default.png').default} width="150"/>.
+Please note that the action will immediately reset all changes that you made on the page (except for changes
+to email, login and password).
