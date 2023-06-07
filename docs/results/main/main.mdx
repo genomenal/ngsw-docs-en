@@ -42,25 +42,26 @@ you can change it by clicking on it and selecting another type from the drop-dow
 - SEQUENCER is the type of sequencer on which the sequence was sequenced (ILLUMINA, ION TORRENT, BGI or UNKNOWN).
 The type is determined according to the ID of the reads from the file in FASTQ format. If a sequencer is not correctly
 defined, it can be changed by clicking on it and selecting a different type from the drop-down list.
-- SEQUENCING TYPE: Panel (sequencing using a targeted panel), WES (whole-exome sequencing), WGS (whole-genome
+- SEQUENCING TYPE: Panel (targeted sequencing), WES (whole-exome sequencing), WGS (whole-genome
 sequencing), Low-pass WGS (whole-genome sequencing with low coverage), UNKNOWN (the sequencing type may not be
-recognized for some samples uploaded in VCF format). Determined automatically, can be based on the sequencing type
-and Capture Kit that were selected while adding sample set. Can be changed on [the Parameters tab](/results/parameters)
+detected for some samples in VCF format). Detected automatically by Genomenal, may be based on Sequencing Type
+and Capture Kit selected while adding sample set. The type can be changed
+on ["Parameters" tab](/results/parameters)
 (["Sequencing Type" parameter](/settings/settings/alignment-settings#sequencing-type):
-the "WGS" option corresponds to either type "WGS" or "Low-pass WGS", the "Targeted selection" option corresponds to
-either type "Panel" or "WES").
+"WGS" option corresponds to either type "WGS" or "Low-pass WGS", "Targeted selection" option corresponds to
+"Panel" or "WES" type).
 - ALIAS is a synonymous name for the sample, which can be entered by clicking on the value field.
-- CAPTURE KIT is a targeted panel used in targeted selection. Determined automatically by Genomenal, or by user while
+- CAPTURE KIT is a panel used in targeted selection. Detected automatically by Genomenal, or by user while
 adding sample set. If the capture kit is defined incorrectly, it can be changed
-on [the Parameters tab](/results/parameters). You can use both built-in capture kits (standard panels often used in
-sequencing) and custom capture kits uploaded by the user (on the "Capture kits" page of the "Settings" page block).
+on [Parameters tab](/results/parameters). You can use both built-in capture kits (standard panels often used in
+sequencing) and custom capture kits uploaded by the user (on ["Capture kits" page](/settings/capture-kits)).
 - SAMPLE LOCATION (ORGAN) is the organism part from which the sample was taken for sequencing. Can be specified by
 clicking on the value field.
 - SAMPLE COLLECTION DATE is the date in the format M/d/yyyy. Can be specified by clicking on the value field.
 - METHODOLOGY is the method of extracting the sample. Can be specified by clicking on the value field.
 - COMMENTS - can be specified by clicking on the value field.
-- ONCOLOGICAL DISEASE, STAGE and STAGE DETAILS are the patient's oncological disease, its stage and stage details
-as it occurred at the time the sample was taken for sequencing.
+- ONCOLOGICAL DISEASE, STAGE and STAGE DETAILS are the patient's oncological disease, its stage and stage details,
+which were defined for the patient at the time the sample was taken for sequencing.
 - THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
 for sequencing.
 

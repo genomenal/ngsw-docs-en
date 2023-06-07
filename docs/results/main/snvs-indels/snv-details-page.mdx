@@ -1,0 +1,323 @@
+---
+sidebar_position: 7
+sidebar_label: Variant Details Page
+---
+
+# Variant Details Page
+
+The variant details page contains:
+- [Detailed variant annotation](/results/main/snvs-indels/snv-details-page#annotation-tab);
+- [Sample and Patient info](/results/main/snvs-indels/snv-details-page#sample-tab);
+- [ACMG classification](/results/main/snvs-indels/snv-details-page#acmg-tab);
+- [Scientific publications associated with the variant](/results/main/snvs-indels/snv-details-page#literature-tab);
+- [Clinical guidelines](/results/main/snvs-indels/snv-details-page#clinical-guidelines-tab)
+(if the variant is [onco relevant](/results/main/snvs-indels/onco-relevance));
+- [Variant report](/results/main/snvs-indels/snv-details-page#reporting-tab).
+
+To go to the variant details page from Variant Viewer,
+click on <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in the variant row.
+
+On the variant details page, the main information about the variant is given at the top:
+- The name of the gene in which the variant is located;
+- Nucleotide substitution: either in [the HGVS notation](https://varnomen.hgvs.org/)
+(HGVSc = prefix (“c.” (coding; for a substitution in the coding sequence) or “n.” (non-coding; for a
+substitution in the non-coding sequence)) + genomic position of the substituted nucleotide + reference
+allele > alternative allele), or as a substitution like "g." prefix (genomic; for a linear genomic reference
+sequence) + the variant start position in the genome + reference allele > alternative allele);
+- The variant position in the genome (chromosome + start position);
+- Nucleotide substitution (reference allele > alternative allele);
+- The transcript ID chosen as main for the variant from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
+database (ENSTxxxxxxxxxxx);
+- The exon number in the transcript which is affected by the variant;
+- The variant consequence for genes;
+see possible consequences [here](/results/main/snvs-indels/variant-viewer#variant-consequences);
+- Link to the variant in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a> database.
+
+To ***include a variant to the report*** from the details page,
+turn on <img src={require('/img/vv/to_report.png').default} width="180"/>. You will
+see ["Reporting" tab](/results/main/snvs-indels/snv-details-page#reporting-tab).
+Variants included to report will be included in report
+blocks of ["SNVs/Indels selected by user for reports" type](/settings/report-templates/report-templates#block-types).
+To remove a variant from the report, turn the switch back off. Variants included to report can also
+be removed from report on the page of the report itself.
+
+To ***pin a variant*** in Variant Viewer table (read more about pinned
+variants [here](/results/main/snvs-indels/variant-viewer#pin-variant)) from the details page,
+click on <img src={require('/img/vv/pin_on_details_page.png').default} width="40"/>. To unpin, click again
+on the same button <img src={require('/img/vv/unpin_on_details_page.png').default} width="40"/>.
+
+To open the built-in ***module for visualization of variant on the genome*** (Integrative Genomics Viewer; ***IGV***),
+click on  <img src={require('/img/vv/igv_btn.png').default} width="40"/>.
+
+To ***close the variant details page***, click on <img src={require('/img/vv/close_page.png').default} width="40"/>.
+
+**The pathogenicity scale** in the upper right corner of the page is
+described in [the corresponding section](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab):
+
+<p align="center">
+<img src={require('/img/vv/pathogenicity_not_defined.png').default} width="500"/>
+</p>
+
+### Adding Variant Interpretation {#add-interpretation}
+
+Variant interpretation (comment) will be displayed:
+- on Variant Viewer page when
+hovering over <img src={require('/img/vv/interpreted_btn.png').default} width="28"/> in the variant row:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_text.png').default} width="400"/>
+</p>
+
+- in the report, if the variant is included in such report blocks as "SNVs/Indels selected by user for reports",
+"Pinned SNVs/Indels", "SNVs/Indels suitable for the specified conditions ", "SNVs/Indels in ACMG 73 genes",
+"Glioma: Germline pathogenic for gliomas", "Glioma: Germline pathogenic for any other diseases",
+"Glioma: Germline glioma associated". Please note that if you want to add variant interpretation
+to an already generated report (except "SNVs/Indels selected by user for reports" and "Pinned SNVs/Indels"
+blocks), you should restart "Generate reports" stage for the sample.
+
+<p align="center">
+<img src={require('/img/vv/interpretation_on_report.png').default} width="900"/>
+</p>
+
+To add an interpretation or comment to a variant, click on the input box and enter text:
+
+<p align="center">
+<img src={require('/img/vv/var_interpretation.png').default} width="800"/>
+</p>
+
+You can also cite in the interpretation any text from the details page. There are 2 ways to do that:
+- Click on <img src={require('/img/vv/citate_btn.png').default} width="25"/> and then click on the desired
+text. The text will appear in the interpretation input box. This way is useful if you want to cite the entire
+text of the element (for example, full gene name).
+- Highlight the desired text and then
+click on <img src={require('/img/vv/citate_second_btn.png').default} width="25"/>. The selected text will
+appear in the interpretation input box. This way is useful if you want to cite only a part of the element's
+text (for example, one sentence from the article abstract).
+
+## 1. "Annotation" tab {#annotation-tab}
+
+The "Annotation" tab includes those annotation sections that contain at least one non-empty annotation field.
+Annotation sections correspond to the variant details panel tabs, you can find a detailed description of the
+tabs [here](/results/main/snvs-indels/snv-details-panel#panel-tabs).
+
+## 2. "Sample" tab {#sample-tab}
+
+There are two sections on "Sample" tab:
+1. **Sample Info** corresponds to the sample info
+from ["Main" tab of the sample page](/results/main/main#sample-info). Most of the fields (except for
+Sequencing Type and Capture Kit) can be edited both on the sample page and here, on "Sample" tab.<br></br>The
+section contains the following sample information:
+- SEQUENCING TYPE: Panel (targeted sequencing), WES (whole-exome sequencing),
+WGS (whole-genome sequencing), Low-pass WGS (whole-genome sequencing with low coverage),
+UNKNOWN (the sequencing type may not be detected for some samples in VCF format).
+Detected automatically  by Genomenal, may be based on Sequencing Type and Capture Kit selected while
+adding sample set. The type can be changed on ["Parameters" tab](/results/parameters)
+(["Sequencing Type" parameter](/settings/settings/alignment-settings#sequencing-type): "WGS" option corresponds
+to "WGS" or "Low-pass WGS" type, "Targeted selection" option corresponds to "Panel" or "WES" type).
+- SAMPLE COLLECTION DATE is the date in the format M/d/yyyy. Can be specified by clicking on the value field.
+- CAPTURE KIT is a panel used in targeted selection. Detected automatically by Genomenal, or by user while
+adding sample set. If the capture kit is defined incorrectly, it can be changed
+on [Parameters tab](/results/parameters). You can use both built-in capture kits (standard panels often used in
+sequencing) and custom capture kits uploaded by the user (on ["Capture kits" page](/settings/capture-kits)).
+- SAMPLE LOCATION (ORGAN) is the organism part from which the sample was taken for sequencing. Can be specified by
+clicking on the value field.
+- METHODOLOGY is the method of extracting the sample. Can be specified by clicking on the value field.
+- ONCOLOGICAL DISEASE, STAGE and STAGE DETAILS are the patient's oncological disease, its stage and stage details,
+which were defined for the patient at the time the sample was taken for sequencing.
+- THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
+for sequencing.
+- INTERPRETATION SUMMARY is the information on the number of variants of a particular pathogenicity
+class discovered in the sample and included to report
+(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+After including variants with a particular pathogenicity class to report, the interpretation summary
+will be "*Interpretation not completed*". If the sample interpretation has been completed, but no variants
+with a particular pathogenicity class have been included to report, then the interpretation summary will be
+"*No pathogenic variants found*". Read more about sample
+interpretation [below](/results/main/snvs-indels/snv-details-page#sample-interpretation).
+2. **Patient Info** corresponds to the patient info from [the patient page](/add-patient#patient-info).
+The field can be edited both on the patient page and here, on the "Sample" tab.<br></br>The section
+contains the following patient information:
+- PATIENT ID is a code entered when creating a patient (you can edit it by clicking on the code).
+Can include any characters.
+- LAST NAME and FIRST NAME of the patient. Can be specified by clicking on the value fields.
+- DATE OF BIRTH of the patient in M/d/yyyy format. Can be specified by clicking on the value field.
+- SEX of the patient: male, female. Sex can be specified by clicking on the value field and selecting
+the value from the drop-down list.
+- PROVIDED DIAGNOSIS is the patient's diagnosis at the time the sample was taken for sequencing.
+Can be specified by clicking on the value field.
+
+### Sample Interpretation: complete and resume {#sample-interpretation}
+
+The sample interpretation is an interpretation of the pathogenicity of sample variants.
+To add the variant discovered in the sample to the interpretation summary, you need to:
+- determine the variant pathogenicity class (see [here](/results/main/snvs-indels/pathogenicity));
+- include the variant to report ([from Variant Viewer page](/results/main/snvs-indels/variant-viewer#include-to-report)
+or from the variant details page (see above)).
+
+:::note
+Variants can be added to the sample interpretation even after its completion.
+:::
+
+To ***complete interpretation***,
+click on <img src={require('/img/vv/finish_interpretation.png').default} width="210"/> on "Sample" tab of
+the variant details page. In the window that appears, you will see the number of variants of a particular
+pathogenicity class discovered in the
+sample and <a href="/results/main/snvs-indels/variant-viewer#include-to-report">included to report</a> (Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+If no variants with a particular pathogenicity class have been included to report, then the interpretation
+summary will be "*No pathogenic variants found*".
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} height="500"/>
+</p>
+
+
+In the same window, you can specify the patient's oncological disease, its stage and stage details,
+which were defined for the patient, as well as the therapy line
+used to treat the patient's disease, at the time the sample was taken for sequencing.
+
+To complete interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+To ***resume interpretation***, click on <img src={require('/img/vv/restart_interpretation.png').default} width="210"/>
+on "Sample" tab of the variant details page.
+
+## 3. "ACMG Classification" tab {#acmg-tab}
+
+The tab includes the variant interpretation criteria developed by [ACMG](https://www.acmg.net/).
+The tab is described in detail
+in [the corresponding section of the documentation](/results/main/snvs-indels/pathogenicity#acmg-classification).
+
+## 4. "Literature" tab {#literature-tab}
+
+The tab includes scientific publications associated with the variant found
+in [NCBI LitVar](https://www.ncbi.nlm.nih.gov/CBBresearch/Lu/Demo/LitVar/). Searching for variants in
+the database can take some time, so when you first open "Literature" tab for a variant, you may see the message
+"*Looking for literature in [LitVar](https://www.ncbi.nlm.nih.gov/CBBresearch/Lu/Demo/LitVar/api.html). It can take about a minute.*"
+In this case, just wait until the literature is loaded. If literature for a variant was not found in LitVar,
+you will see the message
+"*Literature not found in [LitVar](https://www.ncbi.nlm.nih.gov/CBBresearch/Lu/Demo/LitVar/api.html). You can: Add PMID or Search on Google Scholar.*"
+(see below how to add a publication by PMID and to search publications on Google Scholar).
+
+An example of a publication card found for variant TP53:c.215C>G:
+
+<p align="center">
+<img src={require('/img/vv/article_example.png').default} width="900"/>
+</p>
+
+For each article, there are journal name, publication date, link to the article
+in [PubMed](https://pubmed.ncbi.nlm.nih.gov/) (PMID), title, authors, and abstract of the article.
+You can add an article to curated (bookmarked) articles by
+clicking on <img src={require('/img/vv/add_to_curated.png').default} width="20"/>. Then, you can
+filter articles and see only curated ones by
+clicking on <img src={require('/img/vv/curated.png').default} width="100"/>.
+To remove an article from curated, click on <img src={require('/img/vv/remove_from_curated.png').default} width="20"/>.
+To search for a specific publication among the found ones, use the search box.
+
+You can add the missing publication to the list. To do this:
+1. Click on <img src={require('/img/vv/add_pmid.png').default} width="130"/>;
+2. In the opened window, enter the publication's PMID and
+click on <img src={require('/img/vv/add_pmid_btn.png').default} width="130"/>:
+
+<p align="center">
+<img src={require('/img/vv/pmid_window.png').default} width="350"/>
+</p>
+
+You can use [Google Scholar](https://scholar.google.com/) to search for additional publications associated
+with the variant. To do this, click on <img src={require('/img/vv/search_in_google_scholar.png').default} width="230"/>.
+
+### Link a publication with an ACMG criterion {#associate-article-with-acmg-criterion}
+
+A publication can be associated with an ACMG criterion/criteria. You can find a description of the ACMG
+criteria [here](/results/main/snvs-indels/pathogenicity#population-data). To link a publication with criterion,
+click on the publication card, and then on the criterion toggle. You can also leave a comment here:
+
+<p align="center">
+<img src={require('/img/vv/assign_to_acmg_criterion.png').default} width="350"/>
+</p>
+
+Once a publication is linked with an ACMG criterion, it is automatically added to curated (bookmarked) publications.
+If you remove all connections of a publication with criteria (turn off all toggles), then it will be automatically
+removed from the curated publications. The publication linked to the criterion (active link to the article
+in [PubMed](https://pubmed.ncbi.nlm.nih.gov/)) and the comment will be located in "Literature" section
+(in the expanded area of criterion
+on ["ACMG Classification" tab](/results/main/snvs-indels/pathogenicity#acmg-classification)):
+
+<p align="center">
+<img src={require('/img/vv/criterion_literature.png').default} width="900"/>
+</p>
+
+## 5. "Clinical Guidelines" tab {#clinical-guidelines-tab}
+
+The "Clinical Guidelines" tab appears on the variant details page only if this variant
+is [onco relevant](/results/main/snvs-indels/onco-relevance) for non-small cell lung carcinoma, melanoma,
+neoplasm of the pancreas, breast carcinoma, ovarian neoplasm, prostate cancer, anaplastic thyroid carcinoma,
+or colorectal carcinoma. The tab contains clinical guidelines developed by [RUSSCO](https://www.rosoncoweb.ru/),
+[АОР](https://oncology-association.ru/), [КР МЗ РФ](https://cr.minzdrav.gov.ru/), [NCCN](https://www.nccn.org/),
+[ESMO](https://www.esmo.org/) for patients with certain oncological disease (with which the variant is associated),
+its stage, stage's details and therapy line. The tab is described in detail
+in [the corresponding section](/results/main/snvs-indels/onco-relevance#clinical-guidelines) of the documentation.
+
+## 6. "Reporting" tab {#reporting-tab}
+
+On the "Reporting" tab, you can include a variant to the report, see how the variant information will look in
+the report, and export the report with this variant.
+
+To ***include a variant to the report*** from the variant details page, turn on the corresponding
+toggle <img src={require('/img/vv/to_report_2.png').default} width="170"/>. Variants included to report will
+be included in report blocks
+of ["SNVs/Indels selected by user for reports" type](/settings/report-templates/report-templates#block-types).
+To remove a variant from the report, turn the switch back off. Variants included to report can also be
+removed from report on the page of the report itself.
+
+After including a variant to the report, you will see a preview of the variant in the report:
+
+<p align="center">
+<img src={require('/img/vv/variant_review.png').default} width="900"/>
+</p>
+
+In the report, the variant is displayed in a table with the following columns:
+1. **Gene** is the common name of the gene in which the variant is located.
+If you click on a gene, you will see a window with all the gene transcripts:
+
+<p align="center">
+<img src={require('/img/vv/transcripts.png').default} width="600"/>
+</p>
+
+You can find the description of the transcripts' table
+columns [here](/results/main/snvs-indels/snv-details-panel#common-tab).
+
+2. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+3. **Genetic variant** is the nucleotide and amino acid substitutions
+using [the HGVS notation](https://varnomen.hgvs.org/). Nucleotide substitution: “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+Amino acid substitution: “p.” prefix (protein) + reference amino acid + amino acid position in protein + new
+amino acid resulting from the substitution.
+4. **Transcript** is the main transcript ID from the [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x). If you click on a transcript, you will see the same window with all the gene transcripts, as when
+you click on the "Gene" field.
+5. **Consequence** is the effect of the variant on genes. A detailed description of the possible values
+can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
+6. **Allele frequency** is an alternative allele frequency for the sample (in percentages).
+7. **Coverage depth** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+position for the sample.
+8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="25"/> is
+a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
+a variant details page in Variant Viewer
+(["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
+
+Under the variant row in the table, there may be the variant interpretation added as
+described [above](/results/main/snvs-indels/snv-details-page#add-interpretation).
+
+To ***export a variant report*** in PDF format,
+click on <img src={require('/img/results/export_pdf.png').default} width="160"/>.
