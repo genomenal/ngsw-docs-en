@@ -1,0 +1,752 @@
+---
+sidebar_position: 8
+sidebar_label: Variant Pathogenicity
+---
+
+# Variant Pathogenicity
+
+The variant pathogenicity can be determined either manually (by user), by the ACMG classification, or by
+the pathogenicity database uploaded as a custom annotation. Information about the variant pathogenicity is located
+in "Pathogenicity" column in Variant Viewer. If the pathogenicity was not determined, then the column value
+will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> (not applicable).
+
+## Manually determined pathogenicity {#manually-determined-pathogenicity}
+
+To determine the variant pathogenicity by yourself, click on the pathogenicity
+button <img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> in the variant row
+("**Pathogenicity**" column) and select the required option in the dialog:
+
+<p align="center">
+<img src={require('/img/vv/pathogenicity_list.png').default} width="300"/>
+</p>
+
+:::info
+If a variant has been determined as Pathogenic or Likely pathogenic, it is
+automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
+(if pathogenicity has been [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity)).
+:::
+
+Pathogenicity can be overdetermined in the same dialog.
+
+You can also determine pathogenicity in "**ACMG Classification**" tab using the ACMG criteria, as
+described [here](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab).
+
+:::info
+The variant pathogenicity class determined manually is stored in the system and will automatically be
+determined for the same variant in samples annotated later
+with [a warning to confirm the pathogenicity](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity).
+:::
+
+## Variant ACMG Classification {#acmg-classification}
+
+"ACMG Classification" is a tab on [the variant details page](/results/main/snvs-indels/snv-details-page)
+that provides the variant interpretation criteria developed
+by [American College of Medical Genetics and Genomics (ACMG)](https://www.acmg.net/). To get to the tab,
+click on the pathogenicity button <img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> in
+the variant row ("**Pathogenicity**" column) and click on the "ACMG Classification" option in the dialog:
+
+<p align="center">
+<img src={require('/img/vv/acmg_on_dialog.png').default} width="300"/>
+</p>
+
+You will see "ACMG classification" tab on [the variant details page](/results/main/snvs-indels/snv-details-page)
+(you can also access the tab from other tabs on the page).
+
+import Highlight from '@site/src/components/Highlight';
+
+On the left side of the tab, there is a **navigation bar for ACMG criteria** grouped by category.
+When you click on the name of a certain criteria group, it will be displayed on the right side of the page,
+and when you click on a certain criterion, you will see the corresponding group criterion.
+Criteria that are undefined for the variant are shown in <Highlight color="#999AAB">grey</Highlight>;
+criteria that does not meet the variant - in <Highlight color="#141E29">black</Highlight>;
+benign criteria that meet the variant - in <Highlight color="#219653">green</Highlight>;
+and pathogenic criteria that meet the variant - in <Highlight color="#E95726">orange</Highlight>.
+
+<p align="center">
+<img src={require('/img/vv/criteria_review.png').default} height="600"/>
+</p>
+
+On the right side of the tab, there is a detailed information about each criterion by group.
+For each criterion, there are:
+1. **Criterion's code and significance** presented as an icon. The icon color matches the color on
+the navigation bar on the left: <Highlight color="#999AAB">grey</Highlight> means that the criterion is
+undefined for the variant; <Highlight color="#141E29">black</Highlight> - the criterion doesn't meet the
+variant;<br></br><Highlight color="#219653">green</Highlight> - the benign criterion that meets the
+variant; <Highlight color="#E95726">orange</Highlight> - the pathogenic criterion that meets the variant.
+2. **Decision**: Automatic (the criterion state is determined automatically), UNDEFINED (the criterion state
+is undefined) or MANUALLY CHANGED (the criterion state was determined by the user; to return to automatic
+determination of the criterion's state and significance,
+click on <img src={require('/img/vv/clear_criterion.png').default} width="25"/>);
+3. **Criterion state**: UNDEFINED - the criterion is not defined for the variant; UNMET - the criterion
+does not meet the variant; MET - the criterion meets the variant. The selected state is indicated in blue.
+The state of the criterion can be changed by clicking on the button of the required state.
+
+<p align="center">
+<img src={require('/img/vv/criterion_status.png').default} width="360"/>
+</p>
+
+4. The criterion can be expanded by clicking on <img src={require('/img/vv/show_info.png').default} width="15"/>.
+Here you can add **a comment** to the criterion and change **the criterion significance level**: supporting,
+moderate (if if there is no "Stand alone" option), strong; very strong (if if there is no "Stand alone" option);
+stand alone (if there are no options "Moderate" and "Very strong"; independent criterion of very high significance).
+There will also be "Literature" section with a list of publications associated with the criterion, if such
+associations were
+added on ["Literature" tab](/results/main/snvs-indels/snv-details-page#associate-article-with-acmg-criterion).
+
+### 1. Population data {#population-data}
+
+At the top of the section, there are:
+- GnomAD AF is the total allele frequency in [gnomAD](https://gnomad.broadinstitute.org/) database;
+- ExAC AF is the total allele frequency in [ExAC](http://exac.broadinstitute.org/) database;
+- 1000G AF is the total allele frequency in [the 1000 Genomes Project](https://www.internationalgenome.org/);
+- Max AF is the maximum allele frequency among all frequencies in different populations according to different
+databases;
+- Min AF is the minimum allele frequency among all frequencies in different populations according to different
+databases.
+
+#### Population data criteria {#population-data-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Moderate 2 (PM2)</b></td>
+   <td>Moderate</td>
+   <td>Pathogenic</td>
+   <td><b>Absent</b> from controls (or <b>at extremely low frequency</b> if recessive: ≤0.01% for autosomal
+   dominant diseases or ≤0.5% for autosomal recessive diseases)
+   in <a href="https://gnomad.broadinstitute.org/">gnomAD</a>, <a href="https://www.internationalgenome.org/">1000 Genomes</a> or <a href="http://exac.broadinstitute.org/">ExAC</a>.
+   Must be covered to a sufficient read depth/quality (>100) in database.</td>
+  </tr>
+  <tr>
+   <td><b>Stand-alone evidence of benign impact 1 (BA1)</b></td>
+   <td>Very strong; independent criterion</td>
+   <td>Benign</td>
+   <td>The population <b>allele frequency is above 5%</b> in <a href="https://gnomad.broadinstitute.org/">gnomAD</a>, <a href="https://www.internationalgenome.org/">1000 Genomes</a>, or <a href="http://exac.broadinstitute.org/">ExAC</a> and
+   the variant is not on <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6188666/table/T1/?report=objectonly">the exception list by ClinGen SVI</a>.</td>
+  </tr>
+  <tr>
+   <td><b>Strong evidence of benign 1 (BS1)</b></td>
+   <td>Strong</td>
+   <td>Benign</td>
+   <td><b>Allele frequency is above 1%</b> and is greater than expected for disorder:<br></br>
+   1. Variants known to be pathogenic for <i>dominant</i> disorders should have allele frequencies in the
+   general population <i>below the disease incidence</i>.<br></br>
+   2. Variant known to be pathogenic for <i>recessive</i> disorders should have heterozygous
+   frequencies <i>consistent with their disease incidence</i>.<br></br>
+   - For an autosomal dominant disorder with high penetrance it is acceptable to use this criterion as
+   stand-alone evidence to classify a variant as likely benign.<br></br>
+   - Be cautious using this code based on a low number of alleles in gnomAD if the disease is late onset
+   or has variable penetrance/expressivity.<br></br>
+   - To avoid duplication, the criterion is applied as UNMET if the variant meets the BA1 or PM2 criteria.</td>
+  </tr>
+  <tr>
+   <td><b>Strong evidence of benign 2 (BS2)</b></td>
+   <td>Strong</td>
+   <td>Benign</td>
+   <td>Observed <b>in a healthy adult individual</b> for a (1) recessive (homozygous), (2) dominant (heterozygous), or
+   (3) X-linked (hemizygous) <b>disorder with full penetrance expected at an early age</b>.<br></br>
+   - Use the criterion if it is reasonable to believe that individuals with the variant in large population
+   databases are truly unaffected. The evidence can be accessed from gnomAD, the literature, or in-house data.
+   For example, gnomAD shows the age distribution of heterozygous or homozygous variant carriers.<br></br>
+   - Be cautious using this criterion based on a low numbers if the disease is late-onset or has variable
+   penetrance/expressivity.</td>
+  </tr>
+</table>
+
+### 2. Odds ratio {#odds-ratio}
+
+#### Odds ratio criterion {#odds-ratio-criteria}
+
+<table>
+<tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+   <td>Additional options</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Pathogenic Strong 4 (PS4)</b></td>
+   <td valign="top">Strong</td>
+   <td valign="top">Pathogenic</td>
+   <td><b>The prevalence of the variant in affected individuals is significantly higher than in controls</b>.
+   Relative risk or odds ratio, as obtained from case-control studies, is >5.0, and the confidence interval around
+   the estimate does not include 1.0.<br></br>
+   - Case-control study data is rarely available and do not reach statistical significance for very rare variants
+   and rare diseases, therefore use the criterion:<br></br>
+   1. <i>at moderate level</i> if the same variant has been previously identified in multiple (two or more)
+   unrelated affected individuals and has not been reported in gnomAD (or at extremely low frequency if autosomal
+   recessive);<br></br>
+   2. <i>at supporting level</i> if the same variant has been previously identified in one unrelated affected
+   individual and has not been reported in gnomAD (or at extremely low frequency if autosomal recessive);<br></br>
+   3. <i>at supporting level</i> if the same variant has been previously identified in multiple unrelated
+   individuals but is not absent in controls.<br></br>
+   - The patient phenotype must be consistent with the known disease spectrum.<br></br>
+   - In practice this is most applicable to autosomal dominant disorders (for autosomal recessive disorders
+   use <a href="/results/main/snvs-indels/pathogenicity#cis-trans-criteria">PM3</a>).<br></br>
+   - Both PS4 and <a href="/results/main/snvs-indels/pathogenicity#population-data-criteria">PM2</a> can be
+   used together.</td>
+   <td valign="top">To open a variant in <a href="https://www.ebi.ac.uk/gwas/">GWAS Catalog</a> for human
+   genome-wide associations, expand the criterion description by
+   clicking on <img src={require('/img/vv/show_info.png').default} width="15"/>, and then
+   click on <img src={require('/img/vv/search_in_gwas.png').default} width="160"/>.</td>
+   </tr>
+</table>
+
+### 3. Uniq Pheno {#uniq-pheno}
+
+#### Uniq Pheno criterion {#uniq-pheno-criteria}
+
+<table>
+<tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Supporting evidence of pathogenicity 4 (PP4)</b></td>
+   <td valign="top">Supporting</td>
+   <td valign="top">Pathogenic</td>
+   <td><b>Patient’s phenotype or family history is highly specific for a disease</b> with a single genetic
+   etiology.<br></br>
+   Before using the criterion, it is essential to make sure that:<br></br>
+   1. all the known genes associated with the disorder have been analysed using a highly sensitive method
+   appropriate for the reported types of variants;<br></br>
+   2. variants in these known genes explain the majority of cases with that clinical diagnosis.</td>
+  </tr>
+</table>
+
+### 4. Cosegregation {#cosegregation}
+
+At the top of the section, you can calculate **the logarithm of the odds (LOD) score** for a certain type
+of segregation. LOD scores calculated in different families with the same variant can be added to assign
+a final score. The final LOD score can then be used to determine the criterion significance level.
+To calculate LOD score, do the following:
+1. Select segregation type: dominant/X-linked or recessive;
+2. Enter the values of the number of affected segregations and unaffected segregations (if the recessive
+segregation was chosen) (natural numbers);
+3. Click outside the input box.
+
+The LOD score for dominant/X-linked segregation is calculated by the formula:
+
+<p align="center">
+<img src={require('/img/vv/lod_dominant.png').default} width="450"/>
+</p>
+
+The LOD score for recessive segregation is calculated by the formula:
+
+<p align="center">
+<img src={require('/img/vv/lod_recessive.png').default} width="420"/>
+</p>
+
+#### Cosegregation criteria {#cosegregation-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of pathogenicity 1 (PP1)</b></td>
+   <td>Supporting</td>
+   <td>Pathogenic</td>
+   <td>Located <b>in a gene definitively known to cause the disease</b> and that
+   has <b>a co-segregation with this disease</b> in multiple affected family members.<br></br>
+   - Before using the criterion, determine the segregation of a variant with disease phenotypes in
+   pedigrees with affected patients. Use the criterion with an appropriate significance level
+   if <i>a variant was found to co-segregate with multiple affected family members</i>.
+   Use BS4 if there is a lack of segregation of a variant with affected members.<br></br>
+   - Based on the recommendations from
+   ClinGen <a href="https://clinicalgenome.org/working-groups/clinical-domain/hearing-loss/">The Hearing Loss Working Group</a>,
+   use the criterion:<br></br>
+   1. at supporting level if LOD = 0.6;<br></br>
+   2. at moderate level if LOD = 1.2;<br></br>
+   3. at strong level if LOD = 1.5.</td>
+  </tr>
+  <tr>
+   <td><b>Strong evidence of benign 4 (BS4)</b></td>
+   <td>Strong</td>
+   <td>Benign</td>
+   <td>Located in a gene that has <b>lack of segregation with the disease</b> in affected family members.<br></br>
+   - Before using the criterion, determine the segregation of a variant with disease phenotypes in
+   pedigrees with affected patients. Use the criterion if there is <i>a lack of segregation of a variant
+   with affected members</i>. Use PP1 with an appropriate significance level if a variant was found to
+   co-segregate with multiple affected family members.</td>
+  </tr>
+</table>
+
+### 5. *De novo* Variants {#de-novo-variants}
+
+[The Sequence Variant Interpretation (SVI) Working Group](https://clinicalgenome.org/working-groups/sequence-variant-interpretation/)
+proposes [a point-based system](https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf)
+to determine the strength of *de novo* evidence (PS2 and PM6 criteria) based upon three parameters:
+- choose PS2 if *de novo* status confirmed and PM6 if not;
+- phenotypic consistency;
+- number of *de novo* observations.
+
+
+#### *De novo* Variants criteria {#de-novo-variants-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Strong 2 (PS2)</b></td>
+   <td>Strong</td>
+   <td>Pathogenic</td>
+   <td><b><i>De novo</i> in a patient with the disease</b> and no family history. <b>Maternity and paternity
+   confirmation</b> is required.</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Moderate 6 (PM6)</b></td>
+   <td>Moderate</td>
+   <td>Pathogenic</td>
+   <td><b>Assumed <i>de novo</i></b>, but without confirmation of paternity and maternity.</td>
+  </tr>
+</table>
+
+
+For *De novo* Variants criteria, you can add ***additional unrelated patients (probands) with the same phenotype***:
+1. Expand the criterion description by clicking on <img src={require('/img/vv/show_info.png').default} width="15"/>;
+2. For Proband 1 (the name can be changed by clicking on the current one and entering a new one), click on
+the search box and select the appropriate consistency between phenotype and gene;
+
+<p align="center">
+<img src={require('/img/vv/proband.png').default} width="500"/>
+</p>
+
+3. To add another patient, click on <img src={require('/img/vv/add_proband.png').default} width="150"/>.
+
+After adding all patients, click on the button that appears to apply the criterion significance level
+corresponding to the phenotypes of the patients:
+
+<p align="center">
+<img src={require('/img/vv/change_strength.png').default} width="700"/>
+</p>
+
+After that, the criterion state will change to MET (the criterion meets the variant) and the criterion
+significance level will correspond to the phenotypes of the added patients.
+
+To delete a patient, click on <img src={require('/img/vv/turn_off_cond_on_vv.png').default} width="20"/>.
+
+### 6. Cis-trans {#cis-trans}
+
+#### Cis-trans criteria {#cis-trans-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+   <td>Additional options</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Pathogenic Moderate 3 (PM3)</b></td>
+   <td valign="top">Moderate</td>
+   <td valign="top">Pathogenic</td>
+   <td valign="top">Detected <b>in trans with a pathogenic variant</b> for recessive disorders.<br></br>
+   - <a href="https://clinicalgenome.org/working-groups/sequence-variant-interpretation/">The Sequence Variant Interpretation (SVI) Working Group</a> proposes <a href="https://www.clinicalgenome.org/site/assets/files/3717/svi_proposal_for_pm3_criterion_-_version_1.pdf">a point-based system</a> to
+   determine the criterion significance level for variants in trans observations based upon variant phasing
+   and classification of the variant occurring on the other allele.<br></br>
+   - SVI recommends a revision to the criterion definition: "for recessive disorders, detected in trans with
+   a pathogenic <b><i>or likely pathogenic variant in an affected patient</i></b>".</td>
+   <td>You can add additional unrelated patients (probands) with the same variant:<br></br>
+   1. Expand the criterion description by clicking on <img src={require('/img/vv/show_info.png').default} width="15"/>;<br></br>
+   2. For Proband 1 (the name can be changed by clicking on the current one and entering a new one), click on
+   the search box and select the variant phase;<br></br>
+   3. In the activated search box, select the variant classification;<br></br>
+   4. To add another patient, click on <img src={require('/img/vv/add_proband.png').default} width="150"/>.<br></br>
+   After adding all patients, click on the button that appears to apply the criterion significance level
+   corresponding to the added patients. After that, the criterion state will change to MET (the criterion meets
+   the variant) and the criterion significance level will correspond to the variant classification in added
+   patients.<br></br>
+   To delete a patient, click on <img src={require('/img/vv/turn_off_cond_on_vv.png').default} width="20"/>.</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Supporting evidence of benign impact 2 (BP2)</b></td>
+   <td valign="top">Supporting</td>
+   <td valign="top">Benign</td>
+   <td valign="top">Observed either <b>in trans</b> with a (likely) pathogenic variant for a fully
+   penetrant <b>dominant</b> disorder, or <b>in cis</b> with a (likely) pathogenic variant for a fully
+   penetrant disorder in any inheritance pattern.</td>
+   <td></td>
+  </tr>
+</table>
+
+### 7. *In vitro* or functional studies {#in-vitro-or-functional-studies}
+
+Functional studies (*in vitro* or *in vivo*), considered when applying this section criteria,
+should be validated, shown to be reproducible and robust in a clinical diagnostic laboratory setting.
+Do not use *in silico* studies including protein modelling.
+
+#### *In vitro* or functional studies criteria {#in-vitro-or-functional-studies-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Strong 3 (PS3)</b></td>
+   <td>Strong</td>
+   <td>Pathogenic</td>
+   <td>Functional studies prove <b>a damaging effect</b> of the variant on the gene or gene product.<br></br>
+   - The criterion significance level depends on strength of evidence (e.g. if only one reference is available,
+   use the criterion with lower significance). Generally, <i>in vivo</i> studies provide stronger evidence than
+   <i>in vitro</i> studies, and assays that rescue phenotypes provide stronger evidence than assays manipulating
+   them.<br></br>
+   - If studies provide support at the gene rather than variant level (e.g. biochemical analysis), this should
+   be incorporated within the phenotypic specificity
+   criterion <a href="/results/main/snvs-indels/pathogenicity#uniq-pheno-criteria">PP4</a>.</td>
+  </tr>
+  <tr>
+   <td><b>Strong evidence of benign 3 (BS3)</b></td>
+   <td>Strong</td>
+   <td>Benign</td>
+   <td>Functional studies show <b>no effect</b> of the variant on the gene or gene product.</td>
+  </tr>
+</table>
+
+### 8. Protein-truncating variants {#protein-truncating-variants}
+
+#### Protein-truncating variants criteria {#protein-truncating-variants-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+   <td>Additional options</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Pathogenic Very Strong 1 (PVS1)</b></td>
+   <td valign="top">Very strong</td>
+   <td valign="top">Pathogenic</td>
+   <td valign="top"><b>LoF-variants</b> in a gene where loss of function (LoF) is a known mechanism of disease.
+   LoF-variants are genetic variants predicted to severely disrupt protein-coding genes: nonsense, frameshift,
+   canonical ±1 or ±2 splice sites, or initiation codon mutations, or single or multi-exon
+   deletions/duplications.<br></br>
+   - Do not use in combination with PM4 or <a href="/results/main/snvs-indels/pathogenicity#in-silico-predictions-criteria">PP3</a>.</td>
+   <td valign="top">To use <b>a decision tree to determine the LoF effect of a variant</b> in the context of gene
+   structure and molecular etiology, such as alternative splicing or nonsense-mediated mRNA decay (NMD),<br></br>
+   click on <img src={require('/img/vv/pvs1_btn.png').default} width="146"/>. In the window that opens, step
+   by step, select the characteristics that correspond to the variant. You can move between steps<br></br>
+   using <img src={require('/img/vv/next_btn.png').default} width="140"/> and <img src={require('/img/vv/back_btn.png').default} width="140"/>.
+   As a result, you will get a decision: the state and strength (significance level) of the PVS1 criterion,
+   depending on the specific LoF effect of the variant.</td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Pathogenic Moderate 4 (PM4)</b></td>
+   <td valign="top">Moderate</td>
+   <td valign="top">Pathogenic</td>
+   <td valign="top"><b>An in-frame deletion/insertion or a stop-loss variant in a non-repeat region</b> of a gene
+   that result in protein length changes.<br></br>
+   - Do not use in combination with PVS1
+   or <a href="/results/main/snvs-indels/pathogenicity#in-silico-predictions-criteria">PP3</a>.<br></br>
+   - Use at supporting level for single amino acid in-frame deletion/insertion.</td>
+   <td></td>
+  </tr>
+  <tr>
+   <td valign="top"><b>Supporting evidence of benign impact 3 (BP3)</b></td>
+   <td valign="top">Supporting</td>
+   <td valign="top">Benign</td>
+   <td valign="top"><b>In-frame deletions/insertions in a repetitive region</b> of a gene. Without a known
+   function.<br></br>
+   - Do not use in combination
+   with <a href="/results/main/snvs-indels/pathogenicity#in-silico-predictions-criteria">BP4</a>.</td>
+   <td></td>
+  </tr>
+</table>
+
+### 9. Missense variants {#missense-variants}
+
+#### Missense variants criteria {#missense-variants-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Strong 1 (PS1)</b></td>
+   <td>Strong</td>
+   <td>Pathogenic</td>
+   <td>Results in a substitution with <b>the same amino acid change</b> as <b>a previously established variant
+   determined to be pathogenic</b> for this disease.<br></br>
+   - Generally, used for missense variants, but may also be used at moderate level for initiation codon
+   variants.<br></br>
+   - Use at supporting level for different intronic change with the same or more severe splicing effect with
+   reference to the predicted impact on the mRNA/protein.<br></br>
+   - Beware of changes that impact splicing rather than at the amino acid/protein level.</td>
+  </tr>
+  <tr>
+   <td><b>Pathogenic Moderate 5 (PM5)</b></td>
+   <td>Moderate</td>
+   <td>Pathogenic</td>
+   <td>Novel missense change at an amino acid residue where a different <b>missense change determined to be
+   pathogenic</b> has been seen before.<br></br>
+   - Use at strong level if there are multiple observations of different pathogenic variants at the same
+   residue.<br></br>
+   - Use at supporting level if the variant is classified as likely pathogenic and there is only one case
+   reported.<br></br>
+   - Beware of changes that impact splicing rather than at the amino acid/protein level.</td>
+  </tr>
+   <tr>
+   <td><b>Pathogenic Moderate 1 (PM1)</b></td>
+   <td>Moderate</td>
+   <td>Pathogenic</td>
+   <td>Located in a mutational <b>hotspot</b> and/or critical and well-established <b>functional domain</b> (e.g.
+   active site of an enzyme) <b>without benign variation</b>. A mutational hotspot can be considered
+   if pathogenic variants are observed at a high frequency in one or several nearby residues. <i>In silico</i> protein
+   modelling data can be included as supporting evidence.<br></br>
+   - Use at strong level for very specific residues that are critical for protein structure or function.</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of pathogenicity 2 (PP2)</b></td>
+   <td>Supporting</td>
+   <td>Pathogenic</td>
+   <td>Missense variant in a gene that has <b>a low rate of benign missense variation</b> and where missense
+   variants are <b>a common mechanism of disease</b>.<br></br>
+   - Z scores ≥3.09 (marked amber in gnomAD) are significant, but it is important to consider constraint for
+   the region encompassing the variant, not just across the entire gene. Z score is calculated by comparing
+   the expected versus observed number of missense variants. The higher Z score, the higher the constraint
+   or intolerance to variation.</td>
+  </tr>
+   <tr>
+   <td><b>Supporting evidence of benign impact 1 (BP1)</b></td>
+   <td>Supporting</td>
+   <td>Benign</td>
+   <td>Missense variant in a gene for which <b>primarily truncating variants</b> are known to cause disease.<br></br>
+   - Use the criterion if all or nearly all (e.g., >90%) of the disease-causing variants are truncations.</td>
+  </tr>
+</table>
+
+### 10. *In silico* predictions {#in-silico-predictions}
+
+At the top of the section, there are the results of predicting the effect of amino acid substitution
+on protein function:
+- DBNSFP DANN score is an effect prediction score made using [DANN](https://cbcl.ics.uci.edu/public_data/DANN/);
+- DBNSFP MetaLR prediction is an effect prediction value made using Meta LR;
+- DBNSFP GERP++ RS is an effect prediction score (rankscore) made
+using [GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html).
+
+#### *In silico* predictions criteria {#in-silico-predictions-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of pathogenicity 3 (PP3)</b></td>
+   <td>Supporting</td>
+   <td>Pathogenic</td>
+   <td>At least three lines of computational evidence support <b>a deleterious effect</b> on the gene or gene
+   product (conservation, evolutionary, splicing impact, etc).<br></br>
+   Caveat: as many <i>in silico</i> algorithms use the same or very similar input for their predictions,
+   each algorithm <b>should not be counted as an independent criterion</b>.<br></br>
+   - The criterion can be used only once in any evaluation of a variant.<br></br>
+   - Do not use in combination with <a href="/results/main/snvs-indels/pathogenicity#protein-truncating-variants-criteria">PVS1</a> or <a href="/results/main/snvs-indels/pathogenicity#критерии-раздела-варианты-с-укорочением-белка">PM4</a>.<br></br>
+   - Use PP3 if 2/3 tools predict deleterious effect, and use BP4 if 2/3 tools predict benign effect and
+   there is no conservation or 3/3 tools predict benign effect.</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of benign impact 4 (BP4)</b></td>
+   <td>Supporting</td>
+   <td>Benign</td>
+   <td>At least three lines of computational evidence suggest <b>no impact</b> on gene or gene product
+   (conservation, evolutionary, splicing impact, etc).<br></br>
+   Caveat: As many <i>in silico</i> algorithms use the same or very similar input for their predictions,
+   each algorithm <b>should not be counted as an independent criterion</b>.
+   BP4 can be used only once in any evaluation of a variant.<br></br>
+   - The criterion can be used only once in any evaluation of a variant.<br></br>
+   - Do not use in combination with <a href="/results/main/snvs-indels/pathogenicity#in-vitro-or-functional-studies-criteria">BS3</a>.<br></br>
+   - Use PP3 if 2/3 tools predict deleterious effect, and use BP4 if 2/3 tools predict benign effect and
+   there is no conservation or 3/3 tools predict benign effect.<br></br>
+   - Use in combination with BP7 for synonymous variants affecting weakly conserved nucleotides
+   which do not impact on splicing.</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of benign impact 7 (BP7)</b></td>
+   <td>Supporting</td>
+   <td>Benign</td>
+   <td>A synonymous (silent) variant for which splicing prediction algorithms predict <b>no impact to the splice
+   consensus sequence</b> nor the creation of a new splice site, and <b>the nucleotide is not highly
+   conserved</b>.<br></br>
+   - Use in combination with BP4 for synonymous variants affecting weakly conserved nucleotides which
+   do not impact on splicing.</td>
+  </tr>
+</table>
+
+### 11. Literature data {#literature-data}
+
+#### Literature data criteria {#literature-data-criteria}
+
+<table>
+  <tr>
+   <td>Criterion</td>
+   <td>Criterion significance level</td>
+   <td>Criterion pathogenicity</td>
+   <td>Description of the variant that meets the criterion</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of benign impact 5 (BP5)</b></td>
+   <td>Supporting</td>
+   <td>Benign</td>
+   <td>Found in a case with <b>an alternate molecular basis for disease</b> (basis that can explain the patient’s
+   phenotype).<br></br>
+   - Generally, the criterion is more applicable to dominant disorders with an obvious alternate mechanism.<br></br>
+   - For recessive disorders, incidental carriers can harbor pathogenic variants unrelated to the disease
+   phenotype.</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of pathogenicity 5 (PP5)</b></td>
+   <td>Supporting</td>
+   <td>Pathogenic</td>
+   <td>Reputable source recently reports variant as <b>pathogenic</b>, but the evidence is not available to
+   the laboratory to perform an independent evaluation.<br></br>
+   - The ClinGen <a href="https://clinicalgenome.org/working-groups/sequence-variant-interpretation/">Sequence Variant Interpretation (SVI) Working Group</a> (2018) <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6709533/">recommends</a> not
+   to use PP5 and BP6 criteria.</td>
+  </tr>
+  <tr>
+   <td><b>Supporting evidence of benign impact 6 (BP6)</b></td>
+   <td>Supporting</td>
+   <td>Benign</td>
+   <td>Reputable source recently reports variant as <b>benign</b> but the evidence is not available to the
+   laboratory to perform an independent evaluation.<br></br>
+   - The ClinGen <a href="https://clinicalgenome.org/working-groups/sequence-variant-interpretation/">Sequence Variant Interpretation (SVI) Working Group</a> (2018) <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6709533/">recommends</a> not
+   to use PP5 and BP6 criteria.</td>
+  </tr>
+</table>
+
+## Determination of pathogenicity on "ACMG Classification" tab {#define-pathogenicity-on-acmg-tab}
+
+- The first time you open "ACMG Classification" tab, the variant criteria status will be determined automatically.
+- You can change the state and significance level of the criteria and add comments to them.
+- To ***erase all results of variant interpretation***,
+click on <img src={require('/img/vv/erase.png').default} width="38"/>.
+- To ***reset to automatic variant interpretation***,
+click on <img src={require('/img/vv/reset.png').default} width="38"/>.
+After automatic interpretation is restored,
+[a warning to confirm the interpretation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity) will appear.
+
+As a result of combining the criteria, the variant is ***classified by pathogenicity*** (Benign, Likely benign,
+Uncertain significance, Conflicting interpretations of pathogenicity, Likely pathogenic, Pathogenic)
+and the interpretation result is set on the pathogenicity scale:
+
+<p align="center">
+<img src={require('/img/vv/acmg_scale.png').default} width="500"/>
+</p>
+
+- To ***manually classify a variant by pathogenicity***, click on the name or point with the value
+on the pathogenicity scale:
+
+<p align="center">
+<img src={require('/img/vv/scale_by_user.png').default} width="500"/>
+</p>
+
+:::info
+The variant pathogenicity class determined manually is stored in the system and will automatically be
+determined for the same variant in samples annotated later
+with [a warning to confirm the pathogenicity](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity).
+:::
+
+:::info
+If a variant has been determined as Pathogenic or Likely pathogenic, it is
+automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
+(if pathogenicity has been [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity)).
+:::
+
+## Determination of pathogenicity by pathogenicity base {#define-pathogenicity-by-base}
+
+If you have uploaded a pathogenicity database into the system as
+described [here](/settings/custom-annotations#define-annotation-type), the base will annotate sample variants.
+Thus, if variants are presented in the base, their pathogenicity will correspond to the pathogenicity class in
+the base (and marked as "manually determined"), but such a pathogenicity needs to
+be [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity).
+
+## Determined variant pathogenicity in Variant Viewer {#defined-pathogenicity-in-vv}
+
+After completing the classification of the variant by pathogenicity (according to ACMG or manually)
+or after annotating the variants by pathogenicity base, the pathogenicity button will change accordingly:
+
+- Pathogenic variant: <img src={require('/img/vv/pathogenic.png').default} width="40"/>
+- Likely pathogenicity variant: <img src={require('/img/vv/probably_pathogenic.png').default} width="40"/>
+- Variant of uncertain significance: <img src={require('/img/vv/uncertain_significance.png').default} width="44"/>
+- Variant with conflicting interpretations of
+pathogenicity: <img src={require('/img/vv/conflicting_pathogenicity.png').default} width="45"/>
+- Likely benign variant: <img src={require('/img/vv/likely_benign.png').default} width="40"/>
+- Benign variant: <img src={require('/img/vv/benign.png').default} width="40"/>
+
+:::info
+If a variant has been determined as Pathogenic or Likely pathogenic, it is
+automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
+(if pathogenicity has been [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity)).
+:::
+
+The way of determining the variant pathogenicity ("by ACMG" or "manually determined") can be found in the
+tooltip by hovering over the pathogenicity button.
+
+Variants can be ***sorted*** from pathogenic to benign by clicking on "Pathogenicity" column name once,
+and from benign to pathogenic by clicking on the column name twice.
+
+Variants can be ***filtered*** by pathogenicity:
+- ["Pathogenicity" filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters) in advanced filtering mode;
+- an additional filter "Pathogenicity" in basic filtering mode
+(can be added on ["Profile" page](/settings/profile#basic-mode-filters)).
+
+The result of the classification of a variant by pathogenicity can be ***cleared*** by clicking on the
+pathogenicity button in the variant row and selecting "Clear" option in the dialog:
+
+<p align="center">
+<img src={require('/img/vv/clear_on_dialog.png').default} width="300"/>
+</p>
+
+## Confirmation of the variant pathogenicity {#confirm-pathogenicity}
+
+Confirmation of the pathogenicity class of a variant may be required in the following cases:
+1. The automatic variant pathogenicity classification by ACMG was restored after any manipulations with
+the criteria on "ACMG Classification" tab;
+2. Variant annotation or earlier sample analysis stages have been reprocessed;
+3. The pathogenicity class of the variant was obtained
+from [the pathogenicity base](/settings/custom-annotations#define-annotation-type).
+4. The pathogenicity class of the variant was stored in the system after
+[manual determination of pathogenicity](/results/main/snvs-indels/pathogenicity#manually-determined-pathogenicity).
+
+On Variant Viewer page, variants that require pathogenicity confirmation are
+indicated by <img src={require('/img/vv/bell.png').default} width="18"/> next to the pathogenicity button.
+If you agree with the variant pathogenicity, click on the bell or the pathogenicity button and
+select "Confirm Pathogenicity" option in the dialog:
+
+<p align="center">
+<img src={require('/img/vv/confirm_pathogenicity.png').default} width="300"/>
+</p>
+
+On "ACMG Classification" tab, the confirmation warning looks like this:
+
+<p align="center">
+<img src={require('/img/vv/warning_acmg.png').default} width="900"/>
+</p>
+
+If you agree with the variant pathogenicity,
+click on <img src={require('/img/vv/validate_pathogenicity.png').default} width="150"/>.
