@@ -1,0 +1,101 @@
+---
+sidebar_position: 11
+sidebar_label: Cohorts
+---
+
+# Cohorts
+
+Grouping patients into cohorts can be useful if patients are related in some way
+(for example, by pathology type or data source).
+
+### Add Cohort {#add-cohort}
+
+1. Open "Cohorts" block on the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/group_analysis/cohort_section_opened.png').default} width="170"/>
+</p>
+
+2. Click on the block content or on the
+button <img src={require('/img/eng/add_cohort.png').default} width="20"/> highlighted here:
+
+<p align="center">
+<img src={require('/img/group_analysis/click_here.png').default} width="170"/>
+</p>
+
+3. In the window that opens, enter the cohort name in **Name** field.
+You can also add a cohort description here:
+
+<p align="center">
+<img src={require('/img/group_analysis/create_cohort_form.png').default} height="500"/>
+</p>
+
+4. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
+
+Now the added cohort has appeared in "Cohorts" block:
+
+<p align="center">
+<img src={require('/img/group_analysis/first_cohort.png').default} width="170"/>
+</p>
+
+### Cohort Page {#cohort-page}
+
+The cohort page only contains data for patients included in that cohort. Please note that the patient page
+is the same on "Patients" block pages and on "Cohorts" block pages. Thus, any changes on the patient
+page will be displayed on all pages at once. Archiving a patient on the cohort page transfers the patient's
+data to "Archive" page of "Patients" block.
+
+To open the cohort page, open "Cohorts" block on the navigation panel on the left and click on the cohort line:
+
+<p align="center">
+<img src={require('/img/group_analysis/cohort_page.png').default} width="900"/>
+</p>
+
+### Add New Patient and Upload Samples to Cohort {#add-patient-and-upload-samples}
+
+To add a new patient to a cohort, open the cohort page and add a patient as described [here](/add-patient).
+Next, you can upload patient samples. The patient data will be displayed on both the cohort page and "All Patients"
+page. In addition, you can use the page for multiple uploading of samples in different patients by
+clicking on <img src={require('/img/eng/upload_samples_btn.png').default} width="170"/>.
+
+### Add Previously Created Patient to Cohort {#add-existing-patient}
+
+To add a previously created patient to a cohort, open "All Patients" page from "Patients" page block and
+open the patient page by clicking on its row. On the right, in "Patient Info" section, click on the cohort field:
+
+<p align="center">
+<img src={require('/img/group_analysis/change_cohort.png').default} width="900"/>
+</p>
+
+Select the cohort from the drop-down list:
+
+<p align="center">
+<img src={require('/img/group_analysis/cohort_options.png').default} width="300"/>
+</p>
+
+Now the patient has been added to the cohort, his data will be displayed on the cohort page.
+
+### Cohort Analysis {#cohort-analysis}
+
+Cohort analysis is the combining of germline variants (SNVs/Indels) discovered in samples included in a cohort.
+Only those cohort samples that were uploaded in FASTQ or BAM format and for which Germline SNVs/Indels discovery
+and annotation stages have successfully completed are available for cohort analysis.
+
+To start the cohort analysis creation,
+click on <img src={require('/img/eng/consolidate_cohort_btn.png').default} width="170"/>. Then follow the
+instructions described [here](/group-analysis#add-group-analysis). After creating an analysis, you will see
+its page in "Group analysis" block.
+
+### Edit and Delete Cohort {#change-and-delete-cohort}
+
+To ***edit*** the cohort name or description, hover over the cohort line in the navigation bar,
+click on <img src={require('/img/eng/cohort_options.png').default} height="20"/> and then on "Edit" option.
+In the cohort editing window, make the necessary changes and
+click on <img src={require('/img/group_analysis/save_btn.png').default} width="150"/>.
+
+If you want to ***remove a patient from cohort*** without deleting patient data from the system,
+go to the patient page and change "Cohort" field value in "Patient Info" section to "-".
+
+To ***delete a cohort***, hover over the cohort line in the navigation bar,
+click on <img src={require('/img/eng/cohort_options.png').default} height="20"/> and then on "Delete" option.
+When deleting a cohort, the patients included in it are not deleted from the system.
