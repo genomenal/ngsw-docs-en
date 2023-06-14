@@ -1,0 +1,358 @@
+---
+sidebar_position: 9
+sidebar_label: Runs
+---
+
+# Runs
+
+On "Runs" page, you can upload multiple samples without defining a patient for each sample.
+[Run Variant Viewer](/runs#run-variant-viewer) contains all the variants found in all run samples.
+
+To open the page with runs, open "**Runs**" page from the page block of the same name via
+the navigation panel on the left:
+
+<p align="center">
+<img src={require('/img/runs/run_page.png').default} width="900"/>
+</p>
+
+### Create Run {#add-run}
+
+To add run, click on  <img src={require('/img/runs/add_run.png').default} width="150"/> and enter the run name:
+
+<p align="center">
+<img src={require('/img/runs/add_run_modal.png').default} height="350"/>
+</p>
+
+Then select the type of run samples: ***NORMAL*** if the run will consist mainly of non-tumor tissue samples,
+or ***TUMOR*** if the run will consist mainly of tumor tissue samples:
+
+<p align="center">
+<img src={require('/img/runs/sample_type.png').default} height="350"/>
+</p>
+
+:::info
+The type of any run sample can be changed [on the run upload page](/runs/#change-sample-type)
+or [after submitting the samples](/runs/#run-sample).
+:::
+
+To create run, click on <img src={require('/img/runs/create_btn.png').default} width="130"/>.
+You will see the run upload page:
+
+<p align="center">
+<img src={require('/img/runs/new_run_page.png').default} width="900"/>
+</p>
+
+### Workflow Settings {#workflow-settings}
+
+Select the sample [workflow setting](/settings/settings/settings). Note that this setting will be
+applied to all run samples and must match the selected type of run samples (TUMOR or NORMAL).
+For example, [Germline variant analysis](/settings/settings/main-presets#germline-variant-analysis) setting
+cannot be used if tumor sample type has been selected, as it is only suitable for analyzing non-tumor tissue samples.
+
+### Sequencing Type {#sequencing-type}
+
+import SequencingType from '/docs/imported_components/_seq_type.mdx';
+
+<SequencingType set="run" />
+
+### Add Samples to Run {#upload-samples}
+
+Upload samples using one of the methods below. The number of samples in run is not limited.
+
+import UploadFiles from '/docs/imported_components/_upload_files_from_different_sources.mdx';
+
+<UploadFiles />
+
+#### Recognizing Paired Files {#recognize-pair}
+
+import RecognizePair from '/docs/imported_components/_recognize_pair.mdx';
+
+<RecognizePair />
+
+#### Change Sample Type {#change-sample-type}
+
+The type of each sample is indicated to the right of the sample card and matches the type that was selected
+when the run was created. The selected type is highlighted in blue. If necessary, the type of any sample can
+be changed by clicking on another type:
+
+<p align="center">
+<img src={require('/img/runs/change_sample_type.png').default} width="500"/>
+</p>
+
+The type of any sample can be changed after submitting the samples.
+
+### Submit Samples {#submit}
+
+Once all samples have been added,
+click on <img src={require('/img/runs/analyze_samples_btn.png').default} width="200"/> to start analyzing run samples.
+
+### Run Page {#run-page}
+
+After submitting the samples, you will see the run page:
+
+<p align="center">
+<img src={require('/img/runs/beginning.png').default} width="900"/>
+</p>
+
+At the top of the page, there are the run name and the run description, which can be changed by clicking
+on the value field and entering a new text. Below there is a table in which each row is a run sample:
+
+<p align="center">
+<img src={require('/img/runs/sample_of_run.png').default} width="900"/>
+</p>
+
+### Run Sample {#run-sample}
+
+The run sample row contains the following information:
+1. **Sample name** - the names of the sample files with the extension. Tumor sample file is
+designated as <img src={require('/img/eng/tumor_success.png').default} width="20"/>, non-tumor sample
+file as <img src={require('/img/eng/normal_success.png').default} width="20"/>. A pair of tumor sample
+files: <img src={require('/img/eng/tumor_pair.png').default} height="40"/>, a pair of non-tumor sample
+files: <img src={require('/img/eng/normal_pair.png').default} height="40"/>.
+2. **Status** of the last completed analysis stage or the status of the stage currently being
+in progress: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - the stage is currently in
+progress; <img src={require('/img/eng/success.png').default} width="20"/> - the stage was completed
+successfully, <img src={require('/img/eng/problems_status.png').default} width="28"/> - the stage was completed
+successfully, but not all quality metrics meet the
+criteria, <img src={require('/img/eng/failed_status.png').default} width="25"/> - the stage was failed.
+3. **Stages** - sample analysis progress tiles. Each tile is an analysis stage.
+Blue tiles <img src={require('/img/eng/blue_in_progress.png').default} width="25"/> represent stages in
+progress;<br></br>green <img src={require('/img/eng/green.png').default} width="25"/> - successfully completed stages;
+orange <img src={require('/img/eng/orange.png').default} width="25"/> - successfully completed stages,
+not all quality metrics of which meet the criteria;
+red <img src={require('/img/eng/red.png').default} width="25"/> - failed stages;
+gray <img src={require('/img/eng/grey.png').default} width="25"/> - stages that have not been completed
+(either because these stages are turned off, or because the previous analysis stages, the results of which are
+necessary to complete the stage, have not yet been completed). The number of tiles may vary depending
+on the possible course of the analysis:
+- The analysis progress tiles of the tumor sample in FASTQ
+or BAM format: <img src={require('/img/eng/tumor_analysis.png').default} width="120"/>
+- The analysis progress tiles of the non-tumor sample in FASTQ
+or BAM format: <img src={require('/img/eng/normal_analysis.png').default} width="120"/>
+- The analysis progress tiles of the sample in VCF, TXT
+or TSV format: <img src={require('/img/eng/vcf_analysis.png').default} width="50"/>
+4. **Interpretation** is the information on the number of variants of a
+particular [pathogenicity class](/results/main/snvs-indels/pathogenicity)
+discovered in the sample and [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
+(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+Interpretation is displayed only
+if [the sample interpretation has been completed](/runs#sample-interpretation).
+If the interpretation has not been completed, but variants with a particular pathogenicity class have been
+included to report, then the interpretation will be "*Interpretation not completed*". If the
+sample interpretation has been completed, but no variants with a particular pathogenicity class have been
+included to report, then the interpretation will be "*No pathogenic variants found*".
+5. **Sample type** is the type that was selected while creating the run or uploading samples: TUMOR or
+NORMAL (non-tumor). You can change the sample type by clicking on the current value in the sample row and
+selecting another type:
+
+<p align="center">
+<img src={require('/img/runs/change_type.png').default} width="900"/>
+</p>
+
+6. **Patient** is the patient from whom the sequencing sample was obtained. To define a patient for a sample,
+click on the current value ("-") in the sample row and select the patient from drop-down list or add a new one:
+
+<p align="center">
+<img src={require('/img/runs/patient_options.png').default} width="900"/>
+</p>
+
+After defining a patient for a sample, the sample data will be presented not only ***on the run page***:
+
+<p align="center">
+<img src={require('/img/runs/patient_1.png').default} width="900"/>
+</p>
+
+but also ***on this patient page***:
+
+<p align="center">
+<img src={require('/img/runs/patient_sample.png').default} width="900"/>
+</p>
+
+In this case, the sample page is the same - regardless of whether you accessed it from the run page or
+from the patient page. Any changes, including deleting the sample, will be reflected on both pages.
+
+#### Sample Analysis Results {#sample-analysis-results}
+
+The results for each run sample are on its page. The sample run page is the same as the sample patient page.
+A description of the results can be found [here](/results/results).
+
+#### Change the Sample Workflow {#tweak-sample-workflow}
+
+You can change the sample workflow (on ["Parameters" tab](/results/parameters) on the sample page)
+and [restart sample processing](/results/main/main#workflow). Changes in the workflow
+only affect the analysis of the specific sample for which they are made.
+
+#### Delete Sample {#delete-sample}
+
+To delete a sample, hover over its row and click on <img src={require('/img/eng/delete_btn.png').default} width="20"/>.
+You will see a confirmation window for deleting the sample:
+
+<p align="center">
+<img src={require('/img/eng/approve_delete_window.png').default} width="350"/>
+</p>
+
+To permanently delete the sample from the system,
+click on <img src={require('/img/eng/delete_green_btn.png').default} width="135"/>.
+To remove the sample from the run, but leave the samples in the "Uncategorized Samples" section (so that they
+will be available for reusing in sample set without having to repeat the Upload, Identify and Verify stages),
+uncheck <img src={require('/img/eng/check.png').default} width="25"/> and then
+click on <img src={require('/img/eng/delete_green_btn.png').default} width="135"/>.
+To cancel deleting a sample, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+### Run Variant Viewer {#run-variant-viewer}
+
+Run Variant Viewer is an embedded service for viewing and analyzing the variants discovered in all run samples
+for which the germline or somatic SNVs/Indels annotation stage has been successfully completed. Run Variant Viewer
+is not much different from Sample Variant Viewer (a detailed description of Sample Variant Viewer can be
+found [here](/results/main/snvs-indels/variant-viewer)). Run Variant Viewer and Run Sample Variant Viewer
+are connected with each other: if you pin or interpret a variant, etc. in Run Variant Viewer, the variant
+state is immediately updated in Run Sample Variant Viewer, and vice versa.
+
+To open Run Variant Viewer, click on <img src={require('/img/runs/vv_btn.png').default} width="120"/> on the run page.
+
+**Features of Run Variant Viewer (as opposed to Sample Variant Viewer):**
+
+#### 1. "Sample" Column {#sample-column}
+
+Run Variant Viewer has an additional "**Sample**" column that contains the name of the run sample in which
+the variant was discovered. By "Sample" column, you can sort the table in ascending or descending order (to do this,
+you need to click on the column name once to sort in ascending order, and twice - in descending order).
+You can open Variant Viewer page of a particular sample by clicking on its name and selecting the corresponding option:
+
+<p align="center">
+<img src={require('/img/runs/open_vv.png').default} width="290"/>
+</p>
+
+:::info
+The variants in Run Variant Viewer are the result of combining the variants discovered in all run samples but
+not their intersection. Variants that are identical but discovered in different samples will always differ
+in the value of "Sample" column.
+:::
+
+#### 2. Basic Filtering Column "Samples" {#samples-filter}
+
+To filter variants by "Sample" column, there is a basic filtering column "**Samples**" in Run Variant Viewer
+(added [by default](/settings/profile#basic-mode-filters)). In order to filter the variants by the run samples
+in which they were discovered, click on the filter
+window <img src={require('/img/runs/sample_filtering.png').default} width="150"/> and check the boxes for
+required samples
+in the drop-down list (or click on <img src={require('/img/runs/choose_all.png').default} width="100"/>):
+
+<p align="center">
+<img src={require('/img/runs/sample_choice.png').default} width="300"/>
+</p>
+
+Done! The filter has been applied. The samples that have been selected for filtering the variants
+can be seen in the same window:
+
+<p align="center">
+<img src={require('/img/runs/sample_name.png').default} width="160"/>
+</p>
+
+To see all the full sample names, hover over the filter window.
+
+To clear the filter by samples, click on the filter window,
+and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+
+:::info
+The basic filtering column "Samples" is also available
+in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Run Variant Viewer:
+
+<p align="center">
+<img src={require('/img/runs/in_advanced_search.png').default} width="900"/>
+</p>
+
+:::
+
+#### 3. Sample Interpretation {#sample-interpretation}
+
+There is an additional way to complete and resume sample interpretation in Run Variant Viewer
+apart from the way described [here](/results/main/snvs-indels/snv-details-page#sample-interpretation) (on the
+variant details page). To ***complete sample interpretation***, click on the sample name in variant row and select
+the corresponding option:
+
+<p align="center">
+<img src={require('/img/runs/finish_interpretation.png').default} width="290"/>
+</p>
+
+In the window that appears, you will see the number of variants of a particular pathogenicity class discovered in the
+sample and <a href="/results/main/snvs-indels/variant-viewer#include-to-report">included to report</a> (Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+If no variants with a particular pathogenicity class have been included to report, then the interpretation
+will be "*No pathogenic variants found*".
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} height="500"/>
+</p>
+
+In the same window, you can specify the patient's oncological disease, its stage and stage details,
+which were defined for the patient, as well as the therapy line
+used to treat the patient's disease, at the time the sample was taken for sequencing.
+
+To complete interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+Interpreted run samples will be marked with <img src={require('/img/runs/done.png').default} width="25"/>:
+
+<p align="center">
+<img src={require('/img/runs/done_sample.png').default} height="110"/>
+</p>
+
+To ***resume sample interpretation***, click on the sample name in variant row and select
+the corresponding option:
+
+<p align="center">
+<img src={require('/img/runs/restore_interpretation.png').default} width="300"/>
+</p>
+
+#### 4. Basic Filter "Sample status" {#sample-interpretation-status-filter}
+
+To filter variants by sample interpretation status (completed or uncompleted), there is a basic filter
+"**Sample status**" in Run Variant Viewer. The filter is not available by default; it can be added
+on ["Profile settings" page](/settings/profile#basic-mode-filters) ("Sample Interpretation Status" option).
+In order to filter the variants by the interpretation status of run samples
+in which the variants were discovered, click on the filter
+window <img src={require('/img/runs/sample_status.png').default} width="150"/> and
+select the required status from the drop-down list:
+
+<p align="center">
+<img src={require('/img/runs/interpretation_options.png').default} width="330"/>
+</p>
+
+To clear the filter, click on the filter window,
+and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+
+You can also filter by sample interpretation status
+in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering)
+using ["Sample Status" filter](/results/main/snvs-indels/advanced-filtering#single-value-filters). In this case,
+it is not necessary to add an additional basic filter "Sample status" in the settings.
+
+### Archive, Restore and Delete Run {#delete-run}
+
+To ***archive run*** and its samples, hover over the run row on "Runs" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>. The run will be moved to
+"**Archive**" page from "Runs" page block. On "Archive" page, you can:
+1. ***Restore run*** by hovering over the run row and
+clicking on <img src={require('/img/eng/restore_btn.png').default} width="22"/>. The run will then be moved
+back to "Runs" page.
+2. ***Delete run*** and its samples by hovering over the run row and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+Then you will see a confirmation window for deleting the run:
+
+<p align="center">
+<img src={require('/img/runs/confirmation_run.png').default} width="350"/>
+</p>
+
+To confirm the run deletion, click on <img src={require('/img/runs/confirm.png').default} width="150"/>.
+To cancel deleting a run, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+In addition, you can delete all archived runs by
+clicking on <img src={require('/img/runs/clear_archive_btn.png').default} width="170"/>.

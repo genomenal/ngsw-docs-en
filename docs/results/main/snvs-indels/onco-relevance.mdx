@@ -1,0 +1,73 @@
+---
+sidebar_position: 9
+sidebar_label: Variant Onco Relevance
+---
+
+# Variant Onco Relevance
+
+A variant is called onco-relevant if it is associated with oncological diseases.
+For such onco-relevant variants, clinical guidelines for the drug treatment of malignant tumors and
+maintenance therapy in oncology were developed by groups of experts studying
+cancer: [Russian Society of Clinical Oncology (RUSSCO)](https://www.rosoncoweb.ru/),
+[Association of oncologists of Russia (Ассоциация онкологов России, АОР)](https://oncology-association.ru/),
+[the Ministry of Health of the Russian Federation (Министерство здравоохранения Российской Федерации, МЗ РФ)](https://cr.minzdrav.gov.ru/),
+[National Comprehensive Cancer Network (NCCN)](https://www.nccn.org/),
+[European Society for Medical Oncology (ESMO)](https://www.esmo.org/).
+
+In Variant Viewer, you can add "Onco Relevance" column (not included in the default columns)
+in [column edit mode](/results/main/snvs-indels/edit-table-columns#add-columns).
+If the variant is onco-relevant, then there will be the onco relevance
+button <img src={require('/img/vv/onco_relevance_btn.png').default} width="30"/> in this column.
+To open "Clinical Guidelines" tab of the variant details page, click on this button.
+
+:::note
+Variants can be filtered by "Onco Relevance" column
+using ["Onco Relevance" filter](/results/main/snvs-indels/advanced-filtering#single-value-filters) in
+advanced filtering mode.
+:::
+
+## Clinical Guidelines {#clinical-guidelines}
+
+<p align="center">
+<img src={require('/img/vv/clinical_recommendations.png').default} width="1000"/>
+</p>
+
+The tab contains sections with clinical guidelines corresponding to a certain oncological disease
+(with which the variant is associated), its stage with details and therapy lines, which are indicated
+at the top of the section. Each section have subsections indicating the source of the guideline
+([RUSSCO](https://www.rosoncoweb.ru/), [АОР](https://oncology-association.ru/),
+[КР МЗ РФ](https://cr.minzdrav.gov.ru/), [NCCN](https://www.nccn.org/), [ESMO](https://www.esmo.org/)) and
+containing the guideline itself. At the end of the section, the recommended drug is indicated
+(international nonproprietary name (международное непатентованное наименование, МНН)):
+
+<p align="center">
+<img src={require('/img/vv/recommended_drag.png').default} width="180"/>
+</p>
+
+### Specification of guidelines for the patient {#clinical-guidelines-specification}
+
+If you want to specify guidelines for the patient, please indicate his **oncological disease**,
+**disease stage** (I-IV) with **details** (relapse, progressing, inoperable, brain metastases)
+and **therapy line** (1-4 line, adjuvant or neoadjuvant therapy, perioperative, preoperative or induction chemotherapy).
+You can do this on [the sample page](/results/main/main#sample-info) or
+on ["Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page.
+
+At Genomenal, clinical guidelines for variants associated with the following **oncological diseases** are available:
+- Non-small cell lung carcinoma;
+- Melanoma;
+- Neoplasm of the pancreas;
+- Breast carcinoma;
+- Ovarian neoplasm;
+- Prostate cancer;
+- Anaplastic thyroid carcinoma;
+- Colorectal carcinoma.
+
+Guidelines corresponding to the selected disease, stage, stage details and therapy line are
+marked<br></br>with <img src={require('/img/vv/satisfies_parameters.png').default} width="160"/>:
+
+<p align="center">
+<img src={require('/img/vv/satisfied_clinical_rec.png').default} width="1000"/>
+</p>
+
+How to obtain a report with selected onco-relevant variants and clinical guidelines is described
+in [the corresponding section](/results/onco-genetic-testing-report).

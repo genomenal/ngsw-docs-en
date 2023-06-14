@@ -88,6 +88,21 @@ in the variant line to pin it. The pinned variant will appear at the top of the 
 Variant remains pinned when you exit the Variant Viewer page.
 :::
 
+### Including variants to report {#include-to-report}
+
+Variants included to report will be included in report blocks
+of ["SNVs/Indels selected by user for reports"](/settings/report-templates/report-templates#block-types) type.
+To include a variant to the report,
+click on <img src={require('/img/vv/include_to_report.png').default} width="25"/> in the variant row.
+To exclude a variant from the report, click the same
+button <img src={require('/img/vv/remove_from_report.png').default} width="25"/> in the variant row.
+Variants included to report can also be removed from the report on the page of the report itself.
+
+:::info
+When a variant is [determined](/results/main/snvs-indels/pathogenicity) as pathogenic or likely pathogenic,
+it is automatically included to report.
+:::
+
 ### Sorting and filtering variants {#sort-and-filter}
 
 By default, the table is sorted by the variant start position ("Position" column).
