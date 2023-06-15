@@ -1,0 +1,380 @@
+---
+sidebar_position: 4
+sidebar_label: Glioma Report
+---
+
+# Glioma Report
+
+Glioma report is a clinical report on the characteristics of gliomas (including recurrent glioblastoma)
+based on the onco-markers discovered in samples and a base built on the basis of expert knowledge and
+scientific publications on this topic.
+
+:::caution
+The results of the report should be interpreted using all available clinical and laboratory data and
+should not be used in isolation for diagnosis and treatment.
+:::
+
+Glioma report is generated for the sample if the following conditions are met:
+1. The sample is uploaded as a tumor tissue sample.
+2. The sample analysis was successfully completed (that is, all stages of the analysis have the status "Complete").
+3. For a single tumor sample (tumor-only), at least one of the following stages was successfully completed:
+"Somatic SNVs/Indels annotation", "Germline SNVs/Indels annotation", or "Copy number variations discovery".
+If you have a set of tumor and corresponding non-tumor samples (tumor-normal), then it is necessary that the
+"Somatic SNVs/Indels annotation" stage was successfully completed for tumor sample, and "Germline SNVs/Indels
+annotation" stage was successfully completed for normal sample.
+4. [The corresponding report template](/settings/report-templates/main-templates#glioma-report) is created
+(before the sample was processed) and active.
+
+## Applicability to Analysis of Other Pathologies {#applicability-to-other-pathologies}
+
+The report contains both information specific to gliomas and sections that can be used to present
+the analysis results of other pathologies.
+
+**Sections specific to gliomas:**
+- [Tier I: Variants of Strong Clinical Significance](/results/glioma-report#tier-i);
+- [Tier II: Variants of Potential Clinical Significance](/results/glioma-report#tier-ii);
+- [Suggested diagnosis](/results/glioma-report#suggested-diagnosis);
+- [Suggested drugs](/results/glioma-report#suggested-drugs);
+- [Mutations details](/results/glioma-report#mutations-details);
+- [Tier III: Mutations in other Cancer-panel genes](/results/glioma-report#tier-iii);
+- [Glioma genes panel details](/results/glioma-report#glioma-genes-panel-details);
+- [Pathogenic or likely pathogenic for gliomas](/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma);
+- [Pathogenic or likely pathogenic for any other genes/diseases](/results/glioma-report#pathogenic-or-likely-pathogenic-for-others);
+- [Glioma associated](/results/glioma-report#glioma-associated);
+- [Reference list](/results/glioma-report#reference-list).
+
+**Sections not specific to gliomas:**
+- [Patient info](/results/glioma-report#patient-info);
+- [Tumor sample info](/results/glioma-report#tumor-sample-info);
+- [Immunotherapy markers](/results/glioma-report#immunotherapy-markers);
+- [Clinical trials](/results/glioma-report#clinical-trials);
+- [Control sample info](/results/glioma-report#control-sample-info);
+- [ACMG73 secondary findings](/results/glioma-report#acmg73-secondary-findings);
+- [Technical limitations](/results/glioma-report#technical-limitations).
+
+## Patient Info {#patient-info}
+
+- Corresponds to ["Patient info" template block](/settings/report-templates/report-templates#block-types).
+- Contains basic data about the patient: Patient ID, Last name, First name, Date of birth, Sex, Diagnosis.
+You can also add fields with patient Middle name, Age, Date of diagnosis and Comments
+in [the report template](/settings/report-templates/report-templates#edit-block).
+- Section fields can be filled in or edited on the report page, on [the patient page](/add-patient#patient-info),
+or on ["Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page.
+Information is updated in the report automatically, regardless of where the data was updated.
+
+<p align="center">
+<img src={require('/img/results/patient_info.png').default} width="800"/>
+</p>
+
+## 1. Somatic Mutations Report {#somatic-mutations-report}
+
+- This section contains information obtained from the tumor sample analysis.
+
+### Tumor Sample Info {#tumor-sample-info}
+
+- Corresponds to ["Sample info" template block](/settings/report-templates/report-templates#block-types).
+- Contains basic data about the tumor sample: Sequencing type, Sample collection date, Capture Kit, Sample
+location (Organ), Methodology. You can also add fields with sample Short name, Sample type, Oncological
+disease, Onco stage, Onco stage details, Therapy line and Comments
+in [the report template](/settings/report-templates/report-templates#edit-block).
+- Section fields can be filled in or edited on the report page,
+on [the tumor sample page](/results/main/main#sample-info),
+or on ["Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page.
+Information is updated in the report automatically, regardless of where the data was updated.
+
+<p align="center">
+<img src={require('/img/results/tumor_info.png').default} width="800"/>
+</p>
+
+### Tier I: Variants of Strong Clinical Significance {#tier-i}
+
+- Corresponds to ["Glioma: Tier I variants" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if somatic variants were discovered and successfully annotated in the tumor sample
+("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
+- Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
+variations) of strong clinical significance associated with gliomas discovered in a tumor sample. Such onco-markers
+are very important for diagnostics and treatment of gliomas (Tier I).
+
+#### Hereinafter, single nucleotide variants and indels are presented as following: {#snvs-and-indels}
+
+<p align="center">
+<img src={require('/img/results/snvs_indels.png').default} width="900"/>
+</p>
+
+1. **Gene** is the common name of the gene in which the variant is located.
+If you click on a gene, you will see a window with all the gene transcripts:
+
+<p align="center">
+<img src={require('/img/vv/transcripts.png').default} width="600"/>
+</p>
+
+You can find the description of the transcripts' table columns
+in [the description of "Transcripts" section on the variant details panel](/results/main/snvs-indels/snv-details-panel#common-tab).
+
+2. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+3. **Genetic variant** is the nucleotide and amino acid substitutions
+using [the HGVS notation](https://varnomen.hgvs.org/). Nucleotide substitution: “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+Amino acid substitution: “p.” prefix (protein) + reference amino acid + amino acid position in protein + new
+amino acid resulting from the substitution.
+4. **Transcript** is the main transcript ID from the [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x). If you click on a transcript, you will see the same window with all the gene transcripts, as when
+you click on the "Gene" field.
+5. **Consequence** is the effect of the variant on genes. A detailed description of the possible values
+can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
+6. **Allele frequency** is an alternative allele frequency for the sample (in percentages).
+7. **Coverage depth** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+position for the sample.
+8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="25"/> is
+a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
+a variant details page in Variant Viewer
+(["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
+
+**Hereinafter, structural and copy number variations presented as following:**
+
+<p align="center">
+<img src={require('/img/results/variations.png').default} width="900"/>
+</p>
+
+1. **Locus** is the genome region affected by the variation (gene, chromosome, chromosome arm).
+2. **SV type**: deletion, duplication, inversion, translocation, amplification (for structural variations) and
+copy number gain/loss (for copy number variations).
+3. **Location** is the variation coordinates in the genome (chromosome (if the entire chromosome is affected);
+chromosome + arm; chromosome + start and final positions on it).
+
+### Tier II: Variants of Potential Clinical Significance {#tier-ii}
+
+- Corresponds to ["Glioma: Tier II variants" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if somatic variants were discovered and successfully annotated in the tumor sample
+("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
+- Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
+variations) of potential clinical significance discovered in a tumor sample. These variations are likely
+associated with gliomas, but this association is less well studied
+compared to [Tier I variations](/results/glioma-report#tier-i).
+
+### Immunotherapy Markers {#immunotherapy-markers}
+
+- Corresponds to ["Immunotherapy markers" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if tumor sample was uploaded in FASTQ or BAM format and the
+somatic variants were discovered and successfully annotated in this sample
+("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
+- Contains a calculated tumor mutation burden (TMB) level, which is the average number of non-inherited somatic
+mutations per million bases (Mb). High TMB (more than 19 mutations per 1 Mb) may predict response to
+immunotherapy, and low TMB (less than 6 mutations per 1 Mb) may predict no susceptibility to immunotherapy.
+
+<p align="center">
+<img src={require('/img/results/tmb.png').default} width="200"/>
+</p>
+
+### Suggested Diagnosis {#suggested-diagnosis}
+
+- Corresponds to ["Glioma: Suggested diagnosis" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if tumor sample was uploaded in FASTQ or BAM format and the somatic variants were
+discovered and successfully annotated ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation"
+stages) and the copy number variations were successfully discovered ("Copy number variations discovery" stage)
+in this sample.
+- Contains a suggested diagnosis based on [Tier I](/results/glioma-report#tier-i)
+and [Tier II](/results/glioma-report#tier-ii) mutations discovered in the sample and a knowledge
+base containing more than 170 markers (single nucleotide variants, indels, structural variations, copy number
+variations) associated with glioma. Suggestions are made under the assumption that the tumor sample DNA has
+been extracted from glioma. In case of uncertainty, up to three most probable diagnosis suggestions are proposed.
+- For a specific diagnosis, there are a rationale as a list of Tier I and Tier II markers, the predicted survival
+times with excerpts from the publications from which the prediction was made, and links to publications.
+
+:::caution
+All interpretations are based on published research and are provided for informational purposes only.
+They are not intended to be a substitute for professional medical advice, diagnosis, or treatment.
+:::
+
+<p align="center">
+<img src={require('/img/results/diagnosis.png').default} width="900"/>
+</p>
+
+### Suggested Drugs {#suggested-drugs}
+
+- Corresponds to ["Glioma: Suggested drugs" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the somatic variants were discovered and successfully annotated in the tumor sample
+("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
+- Contains tumor-targeting drugs that are potentially effective and ineffective against glioma,
+selected in [CIVIC](https://civicdb.org/statistics/drugs) and [CGI](https://www.cancergenomeinterpreter.org) databases
+based on the biomarkers discovered in the sample.
+- For each drug there is a table with the following columns:
+1. **Markers** are biomarkers (single nucleotide variant, indel, structural variation or copy number variation) of
+[Tier I](/results/glioma-report#tier-i) or [Tier II](/results/glioma-report#tier-ii) that were discovered in the sample
+and which correspond to the drug.
+2. **Disease** for treatment which the drug is approved (if the marker was discovered).
+3. **Evidence level** describes the reliability of the study supporting the evidence:
+- A (validated association): a good research-based evidence to support association;
+- B (clinical evidence): a fair research-based evidence to support association, confirmed by clinical trials
+or other primary data;
+- C (case study): the association is shown in individual case reports from clinical journals;
+- D (preclinical evidence): the association supported by *in vivo* and *in vitro* models.
+4. **References**: a link to a publication that confirms the drug as tumor-targeting if this marker
+is discovered.<br></br>For some markers, an excerpt from a publication with proof of association is provided.
+
+<p align="center">
+<img src={require('/img/results/drugs.png').default} width="700"/>
+</p>
+
+###  Mutations Details {#mutations-details}
+
+- Corresponds to ["Glioma: Mutations details" template block](/settings/report-templates/report-templates#block-types).
+- Contains description of mutations listed in [Tier I](/results/glioma-report#tier-i)
+and [Tier II](/results/glioma-report#tier-ii). For each mutation, there is a row from the table
+described [above](/results/glioma-report#snvs-and-indels), and excerpts from scientific publications confirming
+the association of the mutation with gliomas with links to the publications.
+
+<p align="center">
+<img src={require('/img/results/mutation.png').default} width="900"/>
+</p>
+
+### Tier III: Mutations in Other Cancer-Panel Genes {#tier-iii}
+
+- Corresponds to ["Glioma: Tier III variants" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the somatic variants were discovered and successfully annotated in the tumor sample
+("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
+- Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
+variations) of high gene product impact detected in genes associated with cancers other than glioma (Tier III).
+
+### Clinical Trials {#clinical-trials}
+
+- Corresponds to ["Clinical trials" template block](/settings/report-templates/report-templates#block-types).
+- Lists ongoing clinical trials of various interventions (drugs, devices, procedures, etc.) involving
+patients with a specific phenotype selected in the template block (in this case, glioma)
+from [ClinicalTrials](https://clinicaltrials.gov) database.
+- The table with clinical trials has the following columns:
+1. **Title** of the study with a link to a page with detailed information about
+it in [ClinicalTrials](https://clinicaltrials.gov) database.
+2. **Conditions** is the disease, disorder, syndrome, illness, or injury being studied.
+It may also include other health-related issues, such as lifespan, quality of life, and health risks.
+3. **Interventions** are processes or actions that are the focus of a clinical study.
+Interventions include drugs, medical devices, procedures, vaccines, and other products that are either
+investigational or already available. Interventions can also include noninvasive approaches, such as education
+or modifying diet and exercise.
+4. **Locations** are locations of the studies (institution, city, country).
+
+<p align="center">
+<img src={require('/img/results/clinical_trials.png').default} width="900"/>
+</p>
+
+### Glioma Genes Panel Details {#glioma-genes-panel-details}
+
+- Corresponds
+to ["Glioma: Glioma genes panel details" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if tumor sample was uploaded in FASTQ or BAM format.
+- Contains information on coverage (fraction of the exonic part of the longest transcript covered by at least
+50 sequenced reads (50X)) of glioma-specific genes with strong or potential clinical significance related to glioma,
+discovered in the tumor sample. Shows an assessment of the completeness and quality of the source data for this
+report. The higher the percent of coverage, the more completely a transcript is sequenced.
+
+<p align="center">
+<img src={require('/img/results/gene_panels.png').default} width="900"/>
+</p>
+
+## 2. Germline Variants Report {#germline-variants-report}
+
+- The section contains information obtained from the analysis of a non-tumor (control) sample.
+It is support section containing germline variants that are pathogenic and/or associated with gliomas.
+
+### Control Sample Info {#control-sample-info}
+
+- Corresponds
+to ["Control (normal) sample info" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the analyzed sample set includes a non-tumor (control) sample in addition to the tumor sample.
+- Contains basic data about the control sample: Sequencing type, Sample collection date, Capture Kit, Sample
+location (Organ), Methodology. You can also add fields with sample Short name, Sample type, Oncological
+disease, Onco stage, Onco stage details, Therapy line and Comments
+in [the report template](/settings/report-templates/report-templates#edit-block).
+- Section fields can be filled in or edited on the report page,
+on [the non-tumor sample page](/results/main/main#sample-info),
+or on ["Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page.
+Information is updated in the report automatically, regardless of where the data was updated.
+
+<p align="center">
+<img src={require('/img/results/normal_info.png').default} width="800"/>
+</p>
+
+### Pathogenic or Likely Pathogenic for Gliomas {#pathogenic-or-likely-pathogenic-for-glioma}
+
+- Corresponds
+to ["Glioma: Germline pathogenic for gliomas" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
+sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
+- Contains single nucleotide germline variants, discovered in the control sample and associated with gliomas
+according to published research. These variants meet at least one of the following conditions:
+1. Marked as pathogenic in [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/);
+2. Marked as likely pathogenic in [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/);
+3. Have high gene product impact;
+4. Have moderate gene product impact and frequency less than 10% in population;
+5. Rare (have frequency less than 5% in population).
+- In addition to the table described [above](/results/glioma-report#snvs-and-indels), for each variant,
+there are excerpts from scientific publications confirming its association with gliomas with links to the publications.
+
+<p align="center">
+<img src={require('/img/results/germline_pathogenic.png').default} width="900"/>
+</p>
+
+### ACMG73 secondary findings {#acmg73-secondary-findings}
+
+- Corresponds
+to ["SNVs/Indels in ACMG 73 genes" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the samples were uploaded in FASTQ or BAM formats or as VCF files (each with a single
+sample) and germline variants were discovered and successfully annotated in a non-tumor (control) sample
+or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
+- Includes the variants discovered in the sample, which are located in 73 genes
+on [the American College of Medical Genetics and Genomics (ACMG)](https://www.nature.com/articles/s41436-021-01172-3/tables/1)
+list, for which specific mutations are known to be causative of disorders with defined phenotypes that are
+clinically actionable by an accepted intervention. The ACMG recommends that variants detected in any of these
+genes should be reported as they are of medical relevance and could be used in the future to inform
+clinical treatment.
+- The variants in the report meet at least one of the following conditions:
+1. Pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
+2. Likely pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
+3. Having high gene product impact;
+4. Having moderate gene product impact and frequency less than 10% in population;
+5. Rare (having frequency less than 2% in population).
+
+:::caution
+Annotating variants with ClinVar to generate ACMG 73 secondary findings report has the limitations
+described [here](/results/acmg73-report#acmg73-limitations).
+:::
+
+### Pathogenic or Likely Pathogenic for Any Other Genes/Diseases {#pathogenic-or-likely-pathogenic-for-others}
+
+- Corresponds to ["Glioma: Germline pathogenic for any other diseases" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
+sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
+- Contains single nucleotide germline variants discovered in the sample, marked as pathogenic or likely
+pathogenic in [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and associated with diseases other than gliomas.
+
+### Glioma Associated {#glioma-associated}
+
+- Corresponds
+to ["Glioma: Germline glioma associated" template block](/settings/report-templates/report-templates#block-types).
+- Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
+sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
+- Contains single nucleotide germline variants discovered in the sample, associated with gliomas according to
+published research, but not included
+in ["Pathogenic or likely pathogenic for gliomas" section](/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma).
+- In addition to the table described [above](/results/glioma-report#snvs-and-indels), for each variant,
+there are excerpts from scientific publications confirming its association with gliomas with links to the publications.
+
+<p align="center">
+<img src={require('/img/results/assosiated.png').default} width="900"/>
+</p>
+
+## 3. Reference List {#reference-list}
+
+- Corresponds to ["Glioma: Literature" template block](/settings/report-templates/report-templates#block-types).
+- Contains links to articles, publications, and books related to glioma research that were used in compiling
+the report.
+
+## 4. Technical Limitations {#technical-limitations}
+
+- Corresponds to ["Disclaimer" template block](/settings/report-templates/report-templates#block-types).
+- Contains a message about the limitations of the use of the report (the text can be edited
+in [the template](/settings/report-templates/report-templates#edit-block)).
