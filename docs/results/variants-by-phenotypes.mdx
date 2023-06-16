@@ -1,0 +1,114 @@
+---
+sidebar_position: 3
+sidebar_label: ClinVar Phenotypes Report
+---
+
+# ClinVar Phenotypes Report
+
+The report includes ***conditions*** (ClinVar phenotypes) that have the risk of developing in the patient
+due to pathogenic or likely pathogenic variants discovered in patient sample and associated with these
+conditions, and ***recommendations*** that can prevent these conditions.
+
+To obtain such a report, create [a report template](/settings/report-templates/report-templates#add-template)
+that includes "SNVs/Indels by ClinVar phenotypes" block.
+
+The report is divided into three main
+sections: [Report result and Recommendations](/results/variants-by-phenotypes#report-result-and-recommendations),
+[Detailed report](/results/variants-by-phenotypes#detailed-report)
+and [Excluded variants](/results/variants-by-phenotypes#excluded-variants).
+
+### 1. Report Result and Recommendations {#report-result-and-recommendations}
+
+The sections includes:
+- A list of conditions (ClinVar phenotypes) that have the risk of developing in the patient or patient's closest
+relatives due to pathogenic or likely pathogenic variants discovered in patient sample and associated with these
+conditions. The report may flag conditions that are characteristic of a person of the opposite sex.
+This means that the variants found may not affect the risk of developing the condition in the patient
+but may be transmitted from patient to a person or may have been inherited by patient from a person
+who also may be at risk.
+- Pathogenic or likely pathogenic variants associated with the conditions listed above. Listed in a table with
+the following columns:
+1. **Gene** is the common name of the gene in which the variant is located;
+2. **Genetic variant** is a variant ID in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) database (rsId);
+3. **Zygosity** type of the variant: heterozygous or homozygous.
+
+<p align="center">
+<img src={require('/img/results/associated_variants.png').default} width="700"/>
+</p>
+
+- Recommendations for the patient (consultation with a medical geneticist).
+- Information for the doctor: a brief summary of how the report is compiled.
+
+### 2. Detailed Report {#detailed-report}
+
+A detailed report of the conditions listed in the first section. For each state, the following is indicated:
+- **Name**: corresponds to "Report name" field
+from [the template](/settings/report-templates/report-templates#block-types).
+- **Variants** discovered in the sample that are associated with the condition (with MedGen ID
+and/or ClinVar name in the template). **Each variant meets the following conditions**:
+1. Pathogenic or likely pathogenic in ClinVar ("Clinical significance" field);
+2. Not homozygous for reference (has at least one alternative allele);
+3. The total allele frequency in gnomAD is above the frequency threshold for extremely rare pathogenic variants
+and below the frequency threshold for too frequent pathogenic variants
+(thresholds are set in [the template](/settings/report-templates/report-templates#block-types)).
+- **Recommendations** that can help reduce the risk of this condition
+(added in [the template](/settings/report-templates/report-templates#block-types)).
+
+<p align="center">
+<img src={require('/img/results/phenotype_info.png').default} width="900"/>
+</p>
+
+### 3. Excluded Variants {#excluded-variants}
+
+Contains variants that were **excluded from the detailed report** according to one of the following criteria
+(while these variants meet all of the above conditions for being included in the report):
+1. **Criterion 1**: variants with **too high frequency** in the human population (greater than 15%).
+Possible pathogenicity of these variants is inconsistent with such a high frequency.
+2. **Criterion 2**: variants that are **homozygous** and that have **frequency of less than 1%** in the
+human population. According to [publication](https://www.bmj.com/content/372/bmj.n214), these variants
+could be detected as a result of a genotyping error carried out using microarray technology.
+3. **Criterion 3**: variants that have a high probability of detection, expected based on the binomial
+distribution and the probability of detecting a genetic variant among the identified populations.
+The probability of the variant detection is below the reliability threshold, which is set
+in [the template](/settings/report-templates/report-templates#block-types).<br></br>The probability
+is calculated as *(1 - Bin(n; m; p; 1))*,<br></br>where
+*Bin(n; m; p; 1)* is the probability, expected based on the binomial distribution, that the variant
+is detected *n* times among *m* representatives (samples) of the population;<br></br>
+*n* is the number of representatives of the population (samples) in which this variant was detected;<br></br>
+*m* is the total number of representatives (samples) in the population;<br></br>
+*p* is the probability of detecting the variant in the human population (total allele frequency
+in [gnomAD](https://gnomad.broadinstitute.org/) database). If there is no data on the frequency in the
+population, then the probability is taken as 0.001.<br></br>
+Thus, variants are excluded from the report if they were detected more than *n* times among *m* samples
+of the population, but at the same time have a low frequency in the human population, i.e. possible
+pathogenicity of these variants is inconsistent with such a high frequency among representatives (samples)
+of the population.<br></br>
+The values of *n* and *m* are taken
+from [the custom frequency database](/settings/custom-annotations#define-annotation-type). If the database
+has not been uploaded into the system, variants will not be excluded by Criterion 3.
+
+#### Each variant is presented in the report as follows: {#variant}
+
+<p align="center">
+<img src={require('/img/results/variant.png').default} width="900"/>
+</p>
+
+1. **Gene** is the common name of the gene in which the variant is located.
+2. **Variant ID** is a variant ID in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) database (rsId).
+3. **Reference allele** of the variant.
+4. **Alternative allele** of the variant.
+5. **gnomAD AF** is the total allele frequency in [gnomAD](https://gnomad.broadinstitute.org/) database.
+6. **Chromosome** is the chromosome in which the variant is located.
+7. **Start** is the start position of the variant on the chromosome.
+8. **End** is the end position of the variant on the chromosome.
+9. **Amino acid change**: exon number in the transcript that the variant affected; amino acid and nucleotide
+substitutions using [the HGVS notation](https://varnomen.hgvs.org/). Amino acid substitution: “p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
+Nucleotide substitution:  “c.” (coding; for a substitution in the coding sequence) or “n.” (non-coding;
+for a substitution in the non-coding sequence) + genomic position of the substituted nucleotide + reference
+allele > alternative allele.
+10. **Transcript** is the main transcript ID from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x).
+11. An indication of the variant zygosity: **heterozygous** or **homozygous**.
+12. For variants **excluded** from the detailed report, there is an indication of the criterion by which
+they were excluded.
