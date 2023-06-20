@@ -87,7 +87,9 @@ Click on <img src={require('/img/vv/igv_var.png').default} width="33"/> in the v
 
 The variants you want can be pinned. Pinned variants are not
 affected by [filtering and sorting](/results/main/snvs-indels/variant-viewer#sort-and-filter) the
-table and always remain at the top of the table. Pinned variants are sorted by the variant start position
+table and always remain at the top of the table. The visibility of pinned variants in the table can
+only be affected by filtering by origin (for example, pinned germline variants will not be presented
+in a table filtered by somatic origin). Pinned variants are sorted by the variant start position
 ("Position" column).
 
 Click on <img src={require('/img/vv/pin_variant.png').default} width="28"/>
@@ -96,6 +98,12 @@ in the variant line to pin it. The pinned variant will appear at the top of the 
 <p align="center">
 <img src={require('/img/vv/pinned_variant.png').default} width="950"/>
 </p>
+
+To unpin a variant, click on the same button <img src={require('/img/vv/unpin.png').default} width="28"/> in the
+variant row.
+
+You can also pin or unpin a variant using keyboard shortcuts. To do this, select the variant row (the selected row
+is highlighted in blue) and press **P** on the keyboard.
 
 :::note
 Variant remains pinned when you exit the Variant Viewer page.
@@ -130,6 +138,9 @@ At the same time, they are displayed in the table under any condition of variant
 
 To make a hidden variant visible, click on <img src={require('/img/vv/show_btn.png').default} width="25"/> in its row.
 
+You can also hide or show a variant using keyboard shortcuts. To do this, select the variant row (the selected row
+is highlighted in blue) and press **H** on the keyboard.
+
 :::note
 When you pin a hidden variant, it not only becomes pinned in Variant Viewer table, but also becomes visible.
 :::
@@ -140,9 +151,12 @@ Variants included to report will be included in report blocks
 of ["SNVs/Indels selected by user for reports"](/settings/report-templates/report-templates#block-types) type.
 To include a variant to the report,
 click on <img src={require('/img/vv/include_to_report.png').default} width="25"/> in the variant row.
-To exclude a variant from the report, click the same
+To remove a variant from the report, click the same
 button <img src={require('/img/vv/remove_from_report.png').default} width="25"/> in the variant row.
 Variants included to report can also be removed from the report on the page of the report itself.
+
+You can also include a variant to report or remove a variant from report using keyboard shortcuts.
+To do this, select the variant row (the selected row is highlighted in blue) and press **R** on the keyboard.
 
 :::info
 When a variant is [determined](/results/main/snvs-indels/pathogenicity) as pathogenic or likely pathogenic,
@@ -195,12 +209,48 @@ You can ***sort*** the table in ascending or descending order of the values of t
 [Basic Filtering](/results/main/snvs-indels/basic-filtering) and
 [Advanced Filtering](/results/main/snvs-indels/advanced-filtering) sections.
 
+### Keyboard Shortcuts in Variant Viewer {#hotkeys}
+
+In Variant Viewer, you can interact with variants using keyboard shortcuts.
+To use keyboard shortcuts, click on a variant row, or press one of keys: **W**, **S**, ⬆️, or ⬇️ to select
+the first variant in the table.
+
+**Available keyboard shortcuts**
+
+<table>
+  <tr>
+   <td>Press this key</td>
+   <td>To do this</td>
+  </tr>
+  <tr>
+   <td><b>W</b> or ⬆️</td>
+   <td>Move to the row of the previous variant (or the first variant in the table if no variant was selected)</td>
+  </tr>
+  <tr>
+   <td><b>S</b> or ⬇️</td>
+   <td>Move to the row of the next variant (or the first variant in the table if no variant was selected)</td>
+  </tr>
+  <tr>
+   <td><b>P</b></td>
+   <td><a href="/results/main/snvs-indels/variant-viewer#pin-variant">Pin/unpin</a> variant</td>
+  </tr>
+  <tr>
+   <td><b>H</b></td>
+   <td><a href="/results/main/snvs-indels/variant-viewer#hide-variants">Hide/show</a> variant</td>
+  </tr>
+  <tr>
+   <td><b>R</b></td>
+   <td><a href="/results/main/snvs-indels/variant-viewer#include-to-report">Include variant to report</a> or
+   remove it from report</td>
+  </tr>
+</table>
+
 ### Export Variants {#export}
 
 Variant Viewer allows to export variants in CSV format:
 
 - ***Export of all variants***: click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
-the "All to CSV" option:
+"*All to CSV*" option:
 
 <p align="center">
 <img src={require('/img/vv/all_to_csv.png').default} width="200"/>
@@ -209,7 +259,7 @@ the "All to CSV" option:
 - ***Export of only filtered variants***: filter the needed variants by
 [Basic](/results/main/snvs-indels/basic-filtering) or [Advanced](/results/main/snvs-indels/advanced-filtering)
 filtering, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
-the "All to CSV" option:
+"*All to CSV*" option:
 
 <p align="center">
 <img src={require('/img/vv/all_to_csv.png').default} width="200"/>
@@ -217,11 +267,36 @@ the "All to CSV" option:
 
 - ***Export of only pinned variants***: [pin](/results/main/snvs-indels/variant-viewer#pin-variant)
 the needed variants, then click on <img src={require('/img/vv/export_btn.png').default} width="90"/> and select
-the "Pinned only to CSV" option:
+"*Pinned only to CSV*" option:
 
 <p align="center">
 <img src={require('/img/vv/only_pinned.png').default} width="200"/>
 </p>
+
+:::note
+If no variant has been pinned in Variant Viewer, then "*Pinned only to CSV*" option will not be in the
+drop-down list of export options.
+:::
+
+- ***Export of only modified variants***: click
+on <img src={require('/img/vv/export_btn.png').default} width="100"/> and select "*Modified only to CSV*" option:
+
+<p align="center">
+<img src={require('/img/vv/modified_only.png').default} width="230"/>
+</p>
+
+**Modified variants** are variants for which any of the following has been done:
+- a variant is [pinned](/results/main/snvs-indels/variant-viewer#pin-variant) in Variant Viewer table;
+- a variant is [included to report](/results/main/snvs-indels/variant-viewer#include-to-report);
+- [interpretation was added](/results/main/snvs-indels/snv-details-page#add-interpretation) for a variant;
+- [pathogenicity was determined](/results/main/snvs-indels/pathogenicity) for a variant;
+- a variant is [interpreted by significance](/results/main/snvs-indels/variant-viewer#label).
+
+:::note
+If Variant Viewer table is filtered by some condition, then the table of exported modified variants
+will include only those modified variants that match this condition. An exception is pinned variants,
+whose visibility in the table can only be affected by filtering by origin.
+:::
 
 ## Table Columns' Description {#columns-description}
 
