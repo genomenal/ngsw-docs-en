@@ -65,7 +65,7 @@ by clicking on the value rows:
 4. To complete adding the condition, click outside edit value container.
 
 - The columns:
-    1. **Gene** (the "Locus" column, the "Gene" basic filter): filtering by gene transcript (shown in brackets).
+    1. **Gene** ("Locus" column, "Gene" basic filter): filtering by gene transcript (shown in brackets).
     2. **Impact**: filtering by the predicted effect of the variant on the protein:
     High, Moderate, Low, Modifier. Column values are described
     [here](/results/main/snvs-indels/variant-viewer#variant-impacts).
@@ -74,22 +74,25 @@ by clicking on the value rows:
     4. **Consequence**: filtering by the effect of the variant on genes.
     Column values are described
     [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
-    5. **Pathogenicity**: filtering by variant pathogenicity, which have been determined either manually, by ACMG
-    criteria, or according to the pathogenicity base.
-    6. **Chromosome** (the "Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
+    5. **Pathogenicity** ("Pathogenicity" column and basic filter): filtering by variant pathogenicity, which have
+    been determined either manually, by ACMG criteria, or according to the pathogenicity base.
+    6. **Label** ("Label" column and basic filter): filtering
+    by [variant significance defined by the user](/results/main/snvs-indels/variant-viewer#label): High significance,
+    Moderate significance, Low significance, Sequencing error, Undefined.
+    7. **Chromosome** (the "Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
     chrX, chrY, chrM, chromosomes like chrN\_random (contigs located in the N chromosome but could not be reliably
     ordered within the sequence, or sequences for alternative haplotypes), chromosomes like chrUn_ (contigs that
     cannot be confidently placed on a specific chromosome), chrEBV.
-    7. **Origin**: filtering by mutation type: Somatic, Germline.
-    8. **Caller Filters**: filtering by GATK variant filters.
-    9. **ClinVar: Clinical significance** (the "ClinVar" column/basic filter): filtering by the clinical
+    8. **Origin**: filtering by mutation type: Somatic, Germline.
+    9. **Caller Filters**: filtering by GATK variant filters.
+    10. **ClinVar: Clinical significance** (the "ClinVar" column/basic filter): filtering by the clinical
     significance of the phenotype (you can find the description of
     values [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
-    10. **ClinVar: Allele origin**: filtering by variant allele origin.
-    11. **Conservation: [CS] confidence value**: filtering by confidence value of various conservative
+    11. **ClinVar: Allele origin**: filtering by variant allele origin.
+    12. **Conservation: [CS] confidence value**: filtering by confidence value of various conservative
     scores: Highly significant; Significant; Informative; Other,
     where **[CS]** is a conservation score: Integrated, GM12878, H1-hESC, HUVEC.
-    12. **Protein function effect: [PA] prediction**: filtering by the results of predicting
+    13. **Protein function effect: [PA] prediction**: filtering by the results of predicting
     the effect of amino acid substitution on protein function, obtained using various algorithms and programs,
     where **[PA]** is a prediction algorithm: [Polyphen](http://genetics.bwh.harvard.edu/pph/pph_help.html),
     [SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/), LRT, [FAtHMM](http://fathmm.biocompute.org.uk/),
@@ -97,9 +100,9 @@ by clicking on the value rows:
     Meta LR, [M-CAP](http://bejerano.stanford.edu/mcap/),
     [Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/),
     [FAtHMM-MK](http://fathmm.biocompute.org.uk/), [FAtHMM-XF](http://fathmm.biocompute.org.uk/).
-    13. **Other: APPRIS annotation**: filtering by human splicing isoforms
+    14. **Other: APPRIS annotation**: filtering by human splicing isoforms
     ([APPRIS](http://appris.bioinfo.cnio.es) annotation): Principal 1-5; Alternative 1-2.
-    14. **Trio GT (Genotype)**: filtering by variant inheritance: *De novo* variants, Newly formed
+    15. **Trio GT (Genotype)**: filtering by variant inheritance: *De novo* variants, Newly formed
     homozygotes (homozygotes in proband that are heterozygous in parents) or Single parent-inherited.
     Available only in [Family group analysis](/group-analysis#group-analysis-variant-viewer) for Trio case
     (Proband, Father and Mother).

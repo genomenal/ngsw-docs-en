@@ -23,7 +23,7 @@ The ***normal*** sample page presents a Variant Viewer with ***germline*** mutat
 <img src={require('/img/vv/germline_only.png').default} width="600"/>
 </p>
 
-## The main page {#main-page}
+## Main Page {#main-page}
 
 After clicking on <img src={require('/img/results/vv_btn.png').default} width="130"/>, you
 will see the main page of the service:
@@ -38,7 +38,7 @@ The main object of Variant Viewer is a table with variants - each variant is on 
 <img src={require('/img/vv/snv_row.png').default} width="950"/>
 </p>
 
-### Variant information {#variant-information}
+### Variant Info {#variant-information}
 
 Besides of the information presented in the table (see
 [Description of table columns](/results/main/snvs-indels/variant-viewer#columns-description)),
@@ -53,24 +53,37 @@ for each variant there are several embedded modules with additional information:
 You can read more about the panel and its tabs
 in [the corresponding section](/results/main/snvs-indels/snv-details-panel).
 
-2. **Variant detailed information page** - here you can add the variant interpretation, include the variant to the
-report, and much more. Click on <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in the variant
-row to open the page.
-
-3. **ACMG Classification** is a page with the criteria developed by [ACMG](https://www.acmg.net/) for the variant
-interpretation. To open the page, click on the pathogenicity
-button (<img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> if the pathogenicity class of this
-variant has not previously been determined) in the variant row (the "**Pathogenicity**" column) and in the dialog
-that appears click on "**ACMG Classification**":
+2. **Variant details page**. To open the page,
+click on <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in the variant row.
+On the page, you can [add a variant interpretation](/results/main/snvs-indels/snv-details-page#add-interpretation),
+[determine a variant pathogenicity](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab), and
+find more information about the variant. The page may include the following sections:
+- [Detailed variant annotation](/results/main/snvs-indels/snv-details-page#annotation-tab).
+- [Sample and Patient info](/results/main/snvs-indels/snv-details-page#sample-tab).
+- [ACMG classification](/results/main/snvs-indels/snv-details-page#acmg-tab): includes criteria for variant
+interpretation developed by [ACMG](https://www.acmg.net/). You can read more about this page
+in [the corresponding section](/results/main/snvs-indels/pathogenicity#acmg-classification). To open
+the page directly, click on the pathogenicity button
+(<img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> if the variant pathogenicity has not
+been previously determined) in the variant row ("**Pathogenicity**" column) and click on "**ACMG Classification**"
+option in the dialog:
 
 <p align="center">
-<img src={require('/img/vv/acmg_on_dialog.png').default} width="250"/>
+<img src={require('/img/vv/acmg_on_dialog.png').default} width="300"/>
 </p>
 
-4. **Integrative Genomics Viewer (IGV)** is a module for visualization of variant on the genome.
+- [Scientific publications associated with the variant](/results/main/snvs-indels/snv-details-page#literature-tab).
+- [Clinical guidelines](/results/main/snvs-indels/snv-details-page#clinical-guidelines-tab).
+The page is available if the variant is [onco relevant](/results/main/snvs-indels/onco-relevance).
+To open page directly, click on <img src={require('/img/vv/onco_relevance_btn.png').default} width="30"/> in
+the variant row ("**Onco Relevance**" column - can be added
+in [column edit mode](/results/main/snvs-indels/edit-table-columns#add-columns)).
+- [Variant report](/results/main/snvs-indels/snv-details-page#reporting-tab).
+
+3. **Integrative Genomics Viewer (IGV)** is a module for visualization of variant on the genome.
 Click on <img src={require('/img/vv/igv_var.png').default} width="33"/> in the variant row to open the module.
 
-### Pinning variants {#pin-variant}
+### Pin Variants {#pin-variant}
 
 The variants you want can be pinned. Pinned variants are not
 affected by [filtering and sorting](/results/main/snvs-indels/variant-viewer#sort-and-filter) the
@@ -88,7 +101,40 @@ in the variant line to pin it. The pinned variant will appear at the top of the 
 Variant remains pinned when you exit the Variant Viewer page.
 :::
 
-### Including variants to report {#include-to-report}
+### Hide Variants {#hide-variants}
+
+Variants can be hidden from Variant Viewer table. To do this,
+click on <img src={require('/img/vv/hide_btn.png').default} width="25"/> in the variant row.
+Hidden variants will only be available when a specific filter condition is applied.
+
+**Variant Visibility Filter**: in the upper right corner of Variant Viewer page (regardless of variant filtering mode),
+there is a variant visibility filter button: <img src={require('/img/vv/without_hidden.png').default} width="150"/>
+(default state):
+
+<p align="center">
+<img src={require('/img/vv/filter_hide_options.png').default} width="200"/>
+</p>
+
+- By default, only visible (not hidden) variants are shown in Variant Viewer table (filter
+option "***Without hidden***").
+- To see in the table all variants discovered and annotated in the sample, click on the filter button
+and select "***Show all***" option. Then the table will display all variants, including hidden ones.
+The visible variants in the row have a button to hide: <img src={require('/img/vv/hide_btn.png').default} width="25"/>,
+while the hidden variants have a button to show: <img src={require('/img/vv/show_btn.png').default} width="25"/>.
+- To see only hidden variants, click on the filter button and select "***Hidden only***" option.
+
+:::note
+[Pinned variants](/results/main/snvs-indels/variant-viewer#pin-variant) are always visible.
+At the same time, they are displayed in the table under any condition of variant visibility filter.
+:::
+
+To make a hidden variant visible, click on <img src={require('/img/vv/show_btn.png').default} width="25"/> in its row.
+
+:::note
+When you pin a hidden variant, it not only becomes pinned in Variant Viewer table, but also becomes visible.
+:::
+
+### Include Variants to Report {#include-to-report}
 
 Variants included to report will be included in report blocks
 of ["SNVs/Indels selected by user for reports"](/settings/report-templates/report-templates#block-types) type.
@@ -103,7 +149,42 @@ When a variant is [determined](/results/main/snvs-indels/pathogenicity) as patho
 it is automatically included to report.
 :::
 
-### Sorting and filtering variants {#sort-and-filter}
+### Variant Significance Label {#label}
+
+You can interpret a variant by its significance (clinical or for your study, etc.) To do this,
+add "**Label**" column in [column edit mode](/results/main/snvs-indels/edit-table-columns#add-columns) (not
+added by default). The column contains a label
+button <img src={require('/img/vv/label_non_defined.png').default} width="25"/> ("*Undefined significance*"
+if the label value has not been defined).
+
+To interpret a variant by significance, click on the label
+button <img src={require('/img/vv/label_non_defined.png').default} width="25"/> and select the required value
+in the drop-down list:
+
+<p align="center">
+<img src={require('/img/vv/label_drop_down.png').default} width="250"/>
+</p>
+
+You can later redefine the significance in the same way or clear it by clicking on the label button
+and selecting "*Clear*" option:
+
+<p align="center">
+<img src={require('/img/vv/clear_label.png').default} width="250"/>
+</p>
+
+As a result of the variant interpretation by significance, the label button will change color:
+- High significance: <img src={require('/img/vv/high_label.png').default} width="25"/>
+- Moderate significance: <img src={require('/img/vv/medium_label.png').default} width="25"/>
+- Low significance: <img src={require('/img/vv/low_label.png').default} width="25"/>
+- Sequencing error: <img src={require('/img/vv/seq_error.png').default} width="25"/>
+
+Variants can be sorted by significance: from high significance to sequencing error by clicking on "Label" column
+name once, and vice versa by clicking on the name twice. In addition, variants can be filtered by significance:
+- ["Label" filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters) in advanced filtering mode;
+- an additional filter "Label" in basic filtering mode
+(can be added on ["Profile" page](/settings/profile#basic-mode-filters)).
+
+### Sort and Filter Variants {#sort-and-filter}
 
 By default, the table is sorted by the variant start position ("Position" column).
 You can ***sort*** the table in ascending or descending order of the values of the "Locus", "Origin", "Position",
@@ -114,7 +195,7 @@ You can ***sort*** the table in ascending or descending order of the values of t
 [Basic Filtering](/results/main/snvs-indels/basic-filtering) and
 [Advanced Filtering](/results/main/snvs-indels/advanced-filtering) sections.
 
-### Export of variants {#export}
+### Export Variants {#export}
 
 Variant Viewer allows to export variants in CSV format:
 
@@ -142,7 +223,7 @@ the "Pinned only to CSV" option:
 <img src={require('/img/vv/only_pinned.png').default} width="200"/>
 </p>
 
-## Description of table columns {#columns-description}
+## Table Columns' Description {#columns-description}
 
 By default, the table has the following columns (the set and order of the columns can be changed - how to do it is
 described [here](/results/main/snvs-indels/edit-table-columns)):
