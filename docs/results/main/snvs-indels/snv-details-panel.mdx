@@ -16,12 +16,142 @@ You can also collapse or expand the panel by
 clicking on <img src={require('/img/vv/expand.png').default} width="30"/>
 or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively.
 
-## Details panel tabs {#panel-tabs}
+:::info
+On ["Profile settings" page](/settings/profile#variant-details-bottom-panel), you can adjust whether
+the variant details panel is expanded or collapsed in Variant Viewer by default.
+:::
 
-### Common: the basic information about the variant {#common-tab}
+## Details Panel Tabs {#panel-tabs}
 
-1. **Gene** is data about the gene in which the variant is located:
-- ***Official full name***. When hovering over the gene name, you can see where it was taken from:
+The panel is divided into 11 tabs (or 10 if there are no [custom annotations](/settings/custom-annotations) in
+the system):
+1. [Common](/results/main/snvs-indels/snv-details-panel#common-tab)
+2. [Gene](/results/main/snvs-indels/snv-details-panel#gene)
+3. [ClinVar](/results/main/snvs-indels/snv-details-panel#clinvar-tab)
+4. [GnomAD](/results/main/snvs-indels/snv-details-panel#gnomad-tab)
+5. [ExAC](/results/main/snvs-indels/snv-details-panel#exac-tab)
+6. [Other frequencies](/results/main/snvs-indels/snv-details-panel#other-frequencies-tab)
+7. [Conservation](/results/main/snvs-indels/snv-details-panel#conservation-tab)
+8. [Protein function effect](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+9. [Protein function effect (additional)](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+10. [Other](/results/main/snvs-indels/snv-details-panel#other-tab)
+11. [Custom annotation sources](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab) (if
+at least one custom annotation was [added](/settings/custom-annotations#add-custom-annotation) to the system
+before the variants in the sample were annotated)
+
+On the panel, only those tabs are visually highlighted that include at least one non-empty variant annotation
+field. For example, "ClinVar" tab filled with data looks
+like this: <img src={require('/img/vv/clinvar_full.png').default} width="80"/>, and empty - like
+this: <img src={require('/img/vv/clinvar_empty.png').default} width="80"/>.
+
+You can navigate through the panel tabs using keyboard shortcuts. The navigation will be carried out only
+through non-empty tabs of the panel.
+
+**Available keyboard shortcuts**
+
+<table>
+  <tr>
+   <td>Press this key</td>
+   <td>To do this</td>
+  </tr>
+  <tr>
+   <td><b>D</b> or ➡️</td>
+   <td>Move to the next tab that has at least one non-empty variant annotation field</td>
+  </tr>
+  <tr>
+   <td><b>A</b> or ⬅️</td>
+   <td>Move to the previous tab that has at least one non-empty variant annotation field</td>
+  </tr>
+</table>
+
+As you move between variants in the table, the selected panel tab is retained.
+
+### Common {#common-tab}
+
+<p align="center">
+<img src={require('/img/vv/common_tab.png').default} width="1000"/>
+</p>
+
+The tab contains basic information about the
+variant: [external links](/results/main/snvs-indels/snv-details-panel#external-links),
+[samples' info](/results/main/snvs-indels/snv-details-panel#sample-info) and
+[variant interpretation](/results/main/snvs-indels/snv-details-panel#variant-interpretation).
+There may also be information
+about [the normalized variant](/results/main/snvs-indels/snv-details-panel#normalized-variant)
+and [the phasing group](/results/main/snvs-indels/snv-details-panel/#phasing-group).
+
+#### External Links {#external-links}
+
+Links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) (rsId),
+[VarSome](https://varsome.com/), [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/),
+[COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if the database
+was [uploaded as a custom annotation](/settings/custom-annotations)),
+[Franklin](https://franklin.genoox.com/clinical-db/home), [UCSC](https://genome-euro.ucsc.edu/),
+[gnomAD](https://gnomad.broadinstitute.org/), [RUSeq](http://ruseq.ru/#/) (if the database
+was [uploaded as a custom annotation](/settings/custom-annotations)).
+
+#### Samples Info {#sample-info}
+
+1. Table with samples with the following columns:
+- ***Name*** is a name of the sample, for which the analysis was performed.
+- ***Genotype*** is an allele combination for this sample (0 - reference allele, 1 - first alternative allele,
+2 - second alternative allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
+The number of alleles suggests ploidy of the sample.
+- ***Read depth*** is a total number of reads of the sequence overlapping the variant position for this sample.
+- ***Ref count*** is a reference allele reads count for this sample.
+- ***Alt count*** is an alternative allele reads count for this sample.
+- ***AF*** is an allelic frequency for this sample.
+2. Information about the variant occurrences in other samples uploaded in the system.
+By clicking on the link, you will see "Occurrences" tab of the variant details page.
+
+#### Variant Interpretation / Comment {#variant-interpretation}
+
+There may be displayed the variant interpretation if it has been added by the user.
+Interpretation can be added and edited:
+1. On the variant details panel: to do this, click on the text field, enter the text and click outside
+the text field to save the interpretation:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_on_panel.png').default} width="400"/>
+</p>
+
+2. On the variant details page, as described [here](/results/main/snvs-indels/snv-details-page#add-interpretation).
+
+No matter where an interpretation has been added, the text is automatically updated everywhere.
+
+After adding an interpretation, the information about the interpretation author (the name of the user who
+interpreted the variant) will appear in parentheses next to the section name:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_author_on_panel.png').default} width="500"/>
+</p>
+
+#### Normalized Variant {#normalized-variant}
+
+Start position, reference allele, or alternative allele of some variants in the uploaded VCF file may
+not be left-normalized. In this case, the variant will be written in Variant Viewer table in the same form
+as in the original VCF file, and the normalized data will be shown on the details panel:
+
+<p align="center">
+<img src={require('/img/vv/normalized_variant.png').default} width="800"/>
+</p>
+
+#### Phasing Group Info {#phasing-group}
+
+### Gene {#gene}
+
+<p align="center">
+<img src={require('/img/vv/gene_tab.png').default} width="900"/>
+</p>
+
+The tab contains basic information about [the gene](/results/main/snvs-indels/snv-details-panel#gene-info)
+and [the transcripts](/results/main/snvs-indels/snv-details-panel#transcripts) in which the variant is located.
+If you are granted access to OMIM database, there may also be information
+on [gene-phenotype relations](/results/main/snvs-indels/snv-details-panel#omim-phenotypes).
+
+#### 1. Gene {#gene-info}
+
+- ***Official full name***. When hovering over the gene name, you can see from which databases it was taken:
 
 <p align="center">
 <img src={require('/img/vv/gene_source.png').default} width="300"/>
@@ -30,104 +160,447 @@ or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively
 - ***Links*** to pages with information about the gene in various databases
 ([Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index), [UniProt](https://www.uniprot.org/uniprot/),
 [GTEx](https://www.gtexportal.org/home/), [OMIM](https://www.omim.org/), [NCBI](https://www.ncbi.nlm.nih.gov/gene/)).
-2. **Transcripts** is data on gene transcripts in which the variant is located:
-- ***Transcript IDs*** from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) (ENSTxxxxxxxxxxx) and
-[RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) (NM_xxxxxx.x). You can open the transcript page by clicking on the ID.
-The main gene transcript according to [MANE Select](https://www.ncbi.nlm.nih.gov/refseq/MANE/#Select),
+- ***Search for all variants in gene***: search for all variants discovered in the sample and located in the same
+gene. To search, click on "*All variants in gene*" link and new tab with Variant Viewer filtered by this gene
+will open.
+
+:::note
+If you make any changes on the new tab, they will be saved in Variant Viewer. In this case, if variants
+were filtered and/or sorted on the original Variant Viewer page, these filtering and sorting may be reset
+or changed, and the state of Variant Viewer on the new tab will retain.
+:::
+
+#### 2. Transcripts {#transcripts}
+
+A table with all gene transcripts from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) database
+with the following columns:
+- ***Transcript*** is a transcript ID from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) database
+(ENSTxxxxxxxxxxx). For the first, main transcript, a transcript from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/)
+(NM_xxxxxx.x) is also given. You can open the transcript page by clicking on the ID.
+The main gene transcript, according to [MANE Select](https://www.ncbi.nlm.nih.gov/refseq/MANE/#Select),
 [MANE plus clinical](https://www.ncbi.nlm.nih.gov/refseq/MANE/#:~:text=MANE%20Plus%20Clinical%3A%20The%20MANE,variants%20available%20in%20public%20resources.)
-or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html) is marked
-with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen as main
-for the variant is highlighted by a frame. Impact, HGVSp and HGVSc values for this transcript are shown for the
-variant in the Variant Viewer table.
-- ***IMPACT*** is the predicted effect of the variant on the protein (see more information
-[here](/results/main/snvs-indels/variant-viewer#variant-impacts)).
-- ***HGVSp*** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
-(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
-- ***HGVSc*** - is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position
-of the substituted nucleotide + reference allele > alternative allele). Starts with a prefix: “c.” (coding; for a
-substitution in the coding sequence), “n.” (non-coding; for a substitution in the non-coding sequence).
-3. **External links** are links to pages with variant information
-in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>, <a href="https://varsome.com/">VarSome</a>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>, <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a> (if it was [uploaded as a custom annotation](/settings/custom-annotations)).
-4. **Samples info**:
-- ***Name*** is a name of the sample, the analysis of which discovered the variant.
-- ***Genotype*** is the allelic values for this sample (0 - reference allele, 1 - first alternative allele, 2 - second
-alternative allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
-- ***Read depth*** is the total number of reads of the sequence overlapping the variant position for this sample.
-- ***Ref count*** is the reference allele reads count for this sample.
-- ***Alt count*** is the alternative allele reads count for this sample.
-- ***AF*** is the allelic frequency for this sample.
+or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html), is marked
+with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen
+as the main one for this variant is framed. Impact, HGVSp, and HGVSc values for this transcript are shown
+for the variant in Variant Viewer table.
 
-### ClinVar: data on the relationships among variants and phenotypes from the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database {#clinvar-tab}
+import Highlight from '@site/src/components/Highlight';
 
-1. **Haplotype phenotypes** section is present if the variant is part of a haplotype:
-* ***Variant Haplotype ID*** is a link to the genotype including the given variant.
-* ***Phenotype*** is a phenotype name (with links to various databases).
-* ***Clinical Significance*** is a clinical significance of the phenotype (you can find the description of
+- ***IMPACT*** is the predicted effect of the variant on the protein
+(see [table with variant impacts values in the annotation](/results/main/snvs-indels/variant-viewer#variant-impacts)).
+HIGH impact value is colored <Highlight color="#E95726">red</Highlight>, MODERATE
+is colored <Highlight color="#E2CC81">yellow</Highlight>, and LOW and MODIFIER are
+colored <Highlight color="#999AAB">gray</Highlight>.
+- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
+- ***HGVSc*** - is a nucleotide substitution using [HGVS notation](https://varnomen.hgvs.org/): “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+
+#### 3. OMIM Gene-Phenotype Relationships {#omim-phenotypes}
+
+Access to data from [OMIM](https://www.omim.org/) database inside Genomenal is provided if the user has a
+license to access the database. If you have been granted access to OMIM, there will be information on the
+phenotypes associated with the gene in which the variant is located on the right side of "Gene" tab:
+
+<p align="center">
+<img src={require('/img/vv/omim_phenotypes.png').default} width="500"/>
+</p>
+
+The information is presented in the form of a table with the following columns:
+1. ***Phenotype*** is the full name of the phenotype associated with the gene. For some phenotypes,
+there is a question mark before the name (e.g. "<b>?</b>Bleeding disorder, platelet-type, 22"), which
+indicates that the relationship between the phenotype and gene is provisional. Some phenotypes are enclosed
+in square brackets (e.g. "<b>[</b>Urate oxidase deficiency<b>]</b>"), which indicates mainly genetic variations
+that lead to apparently abnormal laboratory test values. Some phenotypes are enclosed in curly brackets
+(e.g. "<b>{</b>Prostate cancer/brain cancer susceptibility, somatic<b>}</b>"), which indicates mutations
+that contribute to susceptibility to multifactorial disorders or to susceptibility to infection.
+2. ***Phenotype MIM number*** is a phenotype ID in OMIM database.
+You can open the phenotype page by clicking on the link.
+3. ***Inheritance*** is a pattern of inheritance phenotype: <b>AD</b> - autosomal
+dominant; <b>AR</b> - autosomal recessive; <b>DD</b> - digenic dominant; <b>DR</b> - digenic
+recessive; <b>IC</b> - isolated cases; <b>Mi</b> - mitochondrial; <b>Mu</b> - multifactorial; <b>PADom</b> -
+pseudoautosomal dominant; <b>PARec</b> - pseudoautosomal recessive; <b>SomMos</b> - somatic
+mosaicism; <b>SMu</b> - somatic mutation; <b>XL</b> - X-linked; <b>XLD</b> - X-linked
+dominant; <b>XLR</b> - X-linked recessive; <b>YL</b> - Y-linked.
+4. ***Phenotype mapping key*** is an OMIM phenotype map key (the map displays relationships of the
+phenotype with associated phenotypes, phenotypic series and genes): <b>1</b> - the phenotype is placed on
+the map due to its association with a gene, but the underlying defect is not known; <b>2</b> - the phenotype
+has been placed on the map by statistical methods, no mutation has been found; <b>3</b> - the molecular basis of the
+disorder is known; <b>4</b> - a contiguous gene duplication or deletion syndrome in which multiple genes are involved.
+
+### ClinVar {#clinvar-tab}
+
+<p align="center">
+<img src={require('/img/vv/clinvar_tab.png').default} width="1000"/>
+</p>
+
+The tab contains information
+about [haplotype phenotype significance](/results/main/snvs-indels/snv-details-panel#haplotype-phenotypes),
+if the variant is part of a haplotype, and
+about [variant phenotype significance](/results/main/snvs-indels/snv-details-panel#phenotypes)
+from [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database. Both sections contain a table of
+phenotypes that have been observed in individuals with this haplotype/variant and reported to ClinVar.
+The table has the following columns:
+1. ***Phenotype*** is a phenotype name (with links to various databases).
+2. ***Clinical Significance*** is a clinical significance of the phenotype (you can find the description of
 significances [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
-* ***Review status*** is the level of review supporting the assertion of clinical significance for the
-variant (you can find the description of review
+Benign significance is colored <Highlight color="#219653">dark green</Highlight>; Likely
+benign - <Highlight color="#0EB555">light green</Highlight>; Likely
+pathogenic - <Highlight color="#F2994A">orange</Highlight>;
+Pathogenic - <Highlight color="#E95726">red</Highlight>; all other values, including ones mixed from
+different clinical significances, are colored <Highlight color="#141E29">black</Highlight>.
+3. ***Review status*** is an assessment of the data source in which the clinical significance of the phenotype
+was reported (you can find the description of review
 statuses [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/variation_report/#review_status)).
-2. **Phenotypes** section includes data on the phenotypic significance of the variant:
-* ***Clinical significance*** is a clinical significance of the phenotype (you can find the description of
-significances [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
-There are both the total clinical significance for the variant (on the left) and the clinical significance
-of each phenotype of the variant (on the right in the table).
-* ***ClinVar ID*** is link to a variant in the [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
-* ***Review status*** is the level of review supporting the assertion of clinical significance for the variant
-(you can find the description of review
-statuses [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/variation_report/#review_status)).
-There are both the total review status for the variant (on the left) and the review status of each phenotype
-of the variant (on the right in the table).
-* ***Allele ID*** is the variant ID in ClinVar.
-* ***Allele origin*** of the variant (Germline or Somatic).
-* ***Cross references*** are links to a variant in various databases.
-* ***Phenotype*** is phenotypic trait or disease associated with a variant (with links to various databases).
 
-### GnomAD: data on allele frequencies of the variant from the [gnomAD](https://gnomad.broadinstitute.org/) database {#gnomad-tab}
+#### Haplotype Phenotypes {#haplotype-phenotypes}
 
-* ***Allele frequency*** is total allele frequency in gnomAD.
-* ***Coverage*** is median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100.
-* ***Number of Homozygotes*** is count of homozygous individuals.
-* ***Frequencies in different populations*** (Ashkenazi Jewish, Amish, African/African American, European (Finnish),
-South Asian, Latino/Admixed American, European (non-Finnish), East Asian, Middle Eastern, Other).
-There are the total allele frequency, frequencies in XX, XY subpopulations and the number of homozygotes
-for each population.
+The section is present on the tab if the variant is part of a haplotype. The section includes:
+- ***Variant Haplotype ID*** is a haplotype ID in which the variant is included.
+You can open the haplotype page in ClinVar by clicking on the link.
+- A table with phenotypes that have been observed in individuals with this haplotype and reported in
+ClinVar (see table column descriptions above).
 
-### ExAC: data on allele frequencies from the [ExAC](http://exac.broadinstitute.org/) database {#exac-tab}
+#### Phenotypes {#phenotypes}
 
-- Allele frequencies and count in different populations (African/African American, American, East Asian, Finnish,
-European (non-Finnish), South Asian).
-In addition, there are allele frequencies in the non-TCGA and non-Psych cohorts.
+The section on the variant phenotype significance includes the following information:
+- ***Clinical significance*** is the overall clinical significance of all phenotypes that were observed in
+individuals with this variant and were reported in ClinVar. You can find the description of
+significances [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv).
+- ***ClinVar ID*** is a variant ID in [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/).
+You can open the variant page in ClinVar by clicking on the link.
+- ***Review status*** is the total assessment of all data sources in which the clinical significance
+of the phenotypes associated with the variant was reported. You can find the description of review
+statuses [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/variation_report/#review_status).
+- ***Allele ID*** is a variant allele ID in ClinVar.
+- ***Allele origin*** is a total allele origin of the variant in different sources provided by ClinVar.
+- ***Cross references*** are links to a variant in various databases.
+- A table with phenotypes that have been observed in individuals with this variant and reported in
+ClinVar (see table column descriptions above).
 
-### Other frequencies {#other-frequencies-tab}
+### GnomAD {#gnomad-tab}
 
-- Data on allele frequencies of the variant from [the 1000 Genomes Project](https://www.internationalgenome.org/)
-and in combined genotypes in the UK10K cohort from [the UK10K project](https://www.uk10k.org/).
+<p align="center">
+<img src={require('/img/vv/gnomad_tab.png').default} width="1000"/>
+</p>
 
-### Conservation: data on the conservation of the variant {#conservation-tab}
+The tab contains the information about allele frequencies of the variant
+from the [gnomAD](https://gnomad.broadinstitute.org/) database.
+On the left, there is a general information about the variant:
+- ***Allele frequency*** is a total alternative allele frequency of the variant in high quality genotypes;
+- ***Coverage*** is a median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100;
+- ***Number of Homozygotes*** is a number of individuals homozygous for alternative allele;
+- ***XY samples AF*** is a total alternative allele frequency in XY subpopulation;
+- ***XX samples AF*** is a total alternative allele frequency in XX subpopulation.
 
-* ***Ancestral allele*** predicted by [EPO](https://www.ensembl.org/info/genome/compara/epo_anchors_info.html).
-* ***Genotypes*** of Altai Neanderthal, Denisova, Vindijia Neandertal.
-* ***Conservation scores*** obtained using prediction by various programs ([FitCons](http://compgen.cshl.edu/fitCons/),
-[GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html),
-[PhyloP](https://ccg.epfl.ch/mga/hg19/phylop/phylop.html),
-[PhastCons](http://compgen.cshl.edu/phast/phastCons-HOWTO.html),
-[SiPhy](http://portals.broadinstitute.org/genome_bio/siphy/documentation.html), BStatistic).
+On the right, there are variant frequencies in different populations: Ashkenazi Jewish, Amish,
+African/African American, European (Finnish), South Asian, Latino/Admixed American, European (non-Finnish),
+East Asian, Middle Eastern and Other (includes the samples that were not uniquely assigned to other
+ancestries by the random forest model). For each population, there are total alternative allele frequency (AF)
+in high quality genotypes in the population, AFs in XY and XX subpopulations, and the number of homozygotes
+in the population:
+
+<p align="center">
+<img src={require('/img/vv/af_example.png').default} width="260"/>
+</p>
+
+### ExAC {#exac-tab}
+
+<p align="center">
+<img src={require('/img/vv/exac_tab.png').default} width="1000"/>
+</p>
+
+The tab contains information about the allele frequencies of the variant
+in [ExAC](http://exac.broadinstitute.org/) database:
+- ***Allele frequency*** is a total alternative allele frequency of the variant.
+- ***Adjusted AF*** is an alternative allele frequency of the variant in the population with
+genotype quality ≥20 and depth of coverage ≥10.
+- Alternative allele frequencies in African/African American, American, East Asian, Finnish, European
+(non-Finnish), South Asian populations.
+- Alternative allele frequencies in non-TCGA (cohort from which normal tissue samples from cancer patients
+were excluded) and non-Psych (cohort from which normal tissue samples from patients with mental disorders
+were excluded) cohorts: a total alternative allele frequency (AF) in cohort, AF in cohort of the population with
+genotype quality ≥20 and depth of coverage ≥10 (adjusted AF), and AFs in cohort of different populations:
+African/African American, American, East Asian, Finnish, European (non-Finnish), South Asian.
+
+For each frequency, there is an alternative allele count in high quality genotypes (***Allele count***):
+
+<p align="center">
+<img src={require('/img/vv/allele_count.png').default} width="170"/>
+</p>
+
+### Other Frequencies {#other-frequencies-tab}
+
+<p align="center">
+<img src={require('/img/vv/other_freq.png').default} width="1000"/>
+</p>
+
+The tab contains information about the allele frequencies of the variant
+from [1000 Genomes](https://www.internationalgenome.org/) (1000G), [UK10K](https://www.uk10k.org/)
+and [NHLBI GO Exome Sequencing Project](https://esp.gs.washington.edu/drupal/) (ESP) projects.
+
+From 1000 Genomes project, there are:
+- ***Allele frequency*** is a total alternative allele frequency of the variant;
+- Alternative allele frequencies in East Asian, European, African, American, South Asian populations.
+
+From UK10K project, there are:
+- ***Allele frequency*** is a total alternative allele frequency of the variant in combined genotypes
+in UK10K cohort (TwinsUK + ALSPAC);
+- ***TWINSUK AF*** is an alternative allele frequency in TwinsUK, that is a cohort of adult twins living in the UK;
+- ***ALSPAC AF*** is an alternative allele frequency in ALSPAC, that is a cohort of fetuses.
+
+From ESP project, there are alternative allele frequencies in African American and European American populations.
+
+For frequencies from UK10K and ESP projects, there is an alternative allele count in high quality
+genotypes (***Allele count***):
+
+<p align="center">
+<img src={require('/img/vv/allele_count_uk10k.png').default} width="170"/>
+</p>
+
+### Conservation {#conservation-tab}
+
+<p align="center">
+<img src={require('/img/vv/conservation_tab.png').default} width="1000"/>
+</p>
+
+The tab contains the information on the variant conservation:
+- ***Ancestral allele*** inferred from
+the [Enredo-Pecan-Ortheus (EPO)](https://www.ensembl.org/info/genome/compara/epo_anchors_info.html) multiple
+alignments using a probabilistic method Ortheus. **ACTG** - high-confidence alleles, ancestral state supported
+by the other two sequences; **actg** - low-confidence alleles, ancestral state supported by one sequence
+only; **N** - failure, the ancestral state is not supported by any other sequence; **-** - the extant species
+contains an insertion at this position; **.** - no coverage in the alignment.
+- ***Altai Neanderthal*** is a genotype of a deep-sequenced Altai Neanderthal.
+- ***Denisova*** is a genotype of a deep-sequenced Denisova.
+- ***Vindija Neanderthal*** is a genotype of a deep-sequenced Vindija Neanderthal.
+- Conservation scores for the variant position in the genome estimated
+using [fitCons](http://compgen.cshl.edu/fitCons/) method. fitCons is a computational method that estimates
+the likelihood of a mutation at any genomic position to affect fitness. It integrates functional assays
+(such as ChIP-Seq) with selective pressure inferred using the INSIGHT method. The result of the prediction
+is a score ρ in the range [0-1] that indicates the fraction of genomic positions evincing a particular pattern
+of functional assay results, that are under selective pressure.
+From fitCons results, there are ***Integrated FitCons rankscore***, that is an integrated score obtained by
+combining scores from three cell lines (HUVEC, H1 hESC and GM12878), and ***GM12878 FitCons rankscore***,
+***H1-hESC FitCons rankscore***, ***HUVEC fitCons rankscore***, that are conservation scores in GM12878, H1 hESC
+and HUVEC cell lines, respectively. For each rankscore, there are also score and confidence value.
+- Conservation scores for the variant position in the genome estimated
+using [GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html) program. GERP (Genomic Evolutionary
+Rate Profiling) identifies constrained elements in multiple alignments by quantifying substitution deficits. 
+These deficits represent substitutions that would have occurred if the element were neutral DNA, but did not 
+occur because the element has been under functional constraint. GERP authors refer to these deficits as "Rejected
+Substitutions" (RS). RS score is defined as the number of substitutions expected under neutrality minus the
+number of substitutions "observed" at the position. From GERP++ results, there are ***GERP++ RS rankscore***,
+neutral rate and score.
+- ***PhyloP vertebrate conservation rankscore***, ***PhyloP mammalian conservation rankscore***
+and ***PhyloP primate conservation rankscore***, and corresponding scores are conservation scores
+derived from alignment of vertebrate, mammalian, and primate species, respectively, by
+[PhyloP](https://ccg.epfl.ch/mga/hg19/phylop/phylop.html) (phylogenetic P-values) program.
+Interpretations of the scores are compared to the evolution that is expected under neutral drift.
+- ***PhastCons vertebrate conservation rankscore***, ***PhastCons mammalian conservation rankscore***
+and ***PhastCons primate conservation rankscore***, and corresponding scores are conservation scores
+derived from alignment of vertebrate, mammalian, and primate species, respectively, by
+[phastCons](http://compgen.cshl.edu/phast/phastCons-HOWTO.html) program.
+PhastCons is a program for identifying evolutionarily conserved elements in a multiple alignment,
+given a phylogenetic tree. It is based on a phylogenetic hidden Markov model.
+- ***SiPhy rankscore*** and score are conservation scores for the variant position in the genome estimated
+by [SiPhy](http://portals.broadinstitute.org/genome_bio/siphy/documentation.html) using a simple generalization
+of the substitution pattern estimation.
+- ***BStatistic rankscore*** is a conservation score for the variant position in the genome,
+derived from analysis of the genomic distributions of human polymorphisms and sequence differences
+among five primate species relative to the locations of conserved sequence features
+(you can read more [here](//doi.org/10.1371%2Fjournal.pgen.1000471)).
 
 ### Protein function effect {#protein-function-effect-tab}
 
-- Prediction results of the effect of amino acid substitution on protein function, obtained using various algorithms
-and programs such as [SIFT](https://sift.bii.a-star.edu.sg/),
-[Polyphen](http://genetics.bwh.harvard.edu/pph/pph_help.html), [SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/), LRT,
-MutationAssessor, [FAtHMM](http://fathmm.biocompute.org.uk/), [Provean](http://provean.jcvi.org/index.php),
-[Meta SVM](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5270233/), Meta LR, [M-CAP](http://bejerano.stanford.edu/mcap/),
-[MutPred](http://mutpred.mutdb.org/), [MVP](https://www.nature.com/articles/s41467-020-20847-0),
-[Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/), MPC, DEOGEN2,
-[DANN](https://cbcl.ics.uci.edu/public_data/DANN/), Eigen.
+<p align="center">
+<img src={require('/img/vv/protein_func_eff.png').default} width="1000"/>
+</p>
 
-### Other: additional information about the variant {#other-tab}
+The tab contains the results of the prediction of amino acid substitution effect on protein function,
+obtained using the following algorithms and programs:
+- **[SIFT](https://sift.bii.a-star.edu.sg/)** (Sorting Intolerant From Tolerant) predicts whether
+an amino acid substitution affects protein function basing on sequence homology and the physical properties
+of amino acids. The result of the prediction is **rankscore** and **score**, the values of which
+vary from 0 to 1. An amino acid substitution is considered damaging if score ≤ 0.05 and tolerated if score > 0.05.
+- **[PolyPhen](http://genetics.bwh.harvard.edu/pph2/)** (Polymorphism Phenotyping) predicts possible
+impact of an amino acid substitution on the structure and function of a protein using
+sequence homology and different databases and tools. The result is:<br></br>1. **prediction**:
+***Benign*** (colored <Highlight color="#219653">green</Highlight>); ***Possibly damaging***
+(colored <Highlight color="#F2994A">orange</Highlight>); ***Probably damaging***
+(colored <Highlight color="#E95726">red</Highlight>);<br></br>2. **score** whose values vary from 0
+to 1: the lower, the more likely that the variant is benign, the higher - damaging.
+- **[SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/AboutSIFT4G.html)** (SIFT Databases for Genomes) is a
+faster version of SIFT. The result of SIFT4G is **prediction**: ***Tolerated***
+(colored <Highlight color="#219653">green</Highlight>), or ***Damaging***
+(colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**.
+- **[LRT](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2752137/)** (Likelihood Ratio Test)
+identifies deleterious mutations that disrupt highly conserved amino acids within protein-coding
+sequences basing on the evolutionary models of the DNA sequence. The result is **prediction**:
+***Neutral*** (colored <Highlight color="#219653">green</Highlight>), or
+***Deleterious*** (colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**; **omega**.
+- **[FAtHMM](http://fathmm.biocompute.org.uk/)** (Functional Analysis through Hidden Markov Models)
+predicts the functional consequences of both coding variants and non-coding variants
+basing on sequence homology. The result is **prediction**: ***Tolerated***
+(colored <Highlight color="#219653">green</Highlight>), or ***Damaging***
+(colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**.
+- **[SpliceAI](https://spliceailookup.broadinstitute.org/)** is a deep neural network that predicts
+the probability of the position to be a splice acceptor or donor from a pre-mRNA sequence.
+The result is: <br></br>1. **Delta score** (DS) is the probability of the variant being splice-altering
+at any position within a given interval (+/-50 bp between the variant and gained/lost splice site by default).
+Delta scores range from 0 to 1:<br></br>- ***Acceptor gain*** is the probability of a position within a
+given interval to be splice acceptor; <br></br>- ***Acceptor loss*** is the probability of a position within a
+given interval not to be splice acceptor; <br></br>- ***Donor gain*** is the probability of a position within a
+given interval to be splice donor; <br></br>- ***Donor loss*** is the probability of a position within a
+given interval not to be splice donor. <br></br>DS is defined as the maximum of these four scores.
+Values 0 &leq; DS < 0.2 are colored <Highlight color="#141E29">black</Highlight>,
+0.2 &leq; DS < 0.5 - <Highlight color="#219653">green</Highlight>,<br></br>0.5 &leq; DS <
+0.8 - <Highlight color="#F2994A">orange</Highlight>, 0.8 &leq; DS &leq;
+1 - <Highlight color="#E95726">red</Highlight>. <br></br>2. **Delta position** conveys information about
+the location where splicing changes relative to the variant position (positive values are downstream of
+the variant, negative values are upstream). Delta positions corresponds to the DS
+scores.<br></br>3. Link to [SpliceAI Lookup](https://spliceailookup.broadinstitute.org/) website for
+more detailed information about the scores for the variant.
+- **[CADD](https://cadd.gs.washington.edu/)** (Combined Annotation-Dependent Depletion) scores the
+deleteriousness of a variant by integrating multiple annotations into one metric by contrasting variants
+that survived natural selection with simulated mutations. The result is: <br></br>- **Raw** score has
+relative meaning and is interpretable as the extent to which the annotation profile for a variant
+suggests that the variant is likely to be "observed" (negative values) vs "simulated" (positive values).
+Higher values indicate that a variant is more likely to have deleterious
+effect. <br></br>- **Phred** is a Phred-scaled score. Phred < 10 is
+colored <Highlight color="#219653">green</Highlight>, 10 &leq; Phred <
+20 - <Highlight color="#F2994A">orange</Highlight>, Phred &ge;
+20 - <Highlight color="#E95726">red</Highlight>.
+- **[MaxEntScan](http://hollywood.mit.edu/burgelab/maxent/Xmaxentscan_scoreseq.html)** predicts
+the fitness of a variant position as either a donor or an acceptor splice site based on a maximum entropy model.
+The result of prediction is scores for alternative (**Alt score**) and reference (**Ref score**) alleles necessary
+to predict the loss of a native splice site for a variant. The difference between these scores (**Diff**) is also
+given.<br></br>Alt score < -19 is colored <Highlight color="#E95726">red</Highlight>, -19 &leq;
+Alt score < -3 - <Highlight color="#F2994A">orange</Highlight>, Alt
+score ≥ -3 - <Highlight color="#219653">green</Highlight>.
+- **[MutationAssessor](http://mutationassessor.org/r3/)** predicts the functional impact of variant amino acid
+substitution in proteins basing on evolutionary conservation of the affected amino acid in protein homologs.
+The result is:<br></br>1. **Prediction**: predicted functional, i.e. ***High***
+(colored <Highlight color="#E95726">red</Highlight>) or ***Medium***
+(colored <Highlight color="#F2994A">orange</Highlight>), or predicted non-functional, i.e.
+***Low*** or ***Neutral*** (both are colored <Highlight color="#219653">green</Highlight>).<br></br>2.
+**Score**. Score ≥ 3,5 corresponds to the high impact, 3,5 < Score &leq; 1,935 - to the medium impact,
+1,935 < Score &leq; 0,8 - to the low impact, 0,8 < Score - to the neutral impact.
+
+Additional results of the prediction of amino acid substitution effect on protein function are located
+on ***Protein function effect (additional)*** tab:
+
+<p align="center">
+<img src={require('/img/vv/protein_func_add.png').default} width="1000"/>
+</p>
+
+- **[PROVEAN](http://provean.jcvi.org/index.php)** (Protein Variation Effect Analyzer) predicts whether
+an amino acid substitution has an impact on the biological function of a protein. The result
+is **prediction**: ***Neutral*** (colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**.
+- **[Meta SVM](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5270233/)**
+is a meta-analytic support vector machine (SVM) that accommodates 10 component scores (SIFT, PolyPhen-2 HDIV,
+PolyPhen-2 HVAR, GERP++, MutationTaster, MutationAssessor, FATHMM, LRT, SiPhy, PhyloP) and the maximum
+frequency observed in the 1000 genomes populations. The result is **prediction**:
+***Tolerated*** (colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**; **reliability index**.
+- **[Meta LR](https://academic.oup.com/hmg/article/24/8/2125/651446)** is a meta-analytic
+logistic regression (LR) that accommodates 10 component scores (SIFT, PolyPhen-2 HDIV,
+PolyPhen-2 HVAR, GERP++, MutationTaster, MutationAssessor, FATHMM, LRT, SiPhy, PhyloP) and the maximum
+frequency observed in the 1000 genomes populations. The result is **prediction**:
+***Tolerated*** (colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**; **reliability index**.
+- **[M-CAP](http://bejerano.stanford.edu/mcap/)** (Mendelian Clinically Applicable Pathogenicity) is a
+pathogenicity classifier for rare missense variants in the human genome that is tuned to the high sensitivity
+required in the clinic. It combines various pathogenicity scores (including SIFT, Polyphen-2 and CADD)
+with novel features and a powerful model. The result is **prediction**: ***Tolerated***
+(colored <Highlight color="#219653">green</Highlight>) or ***Damaging***
+(colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**.
+- **[MutPred](https://academic.oup.com/bioinformatics/article/25/21/2744/227925)** classifies an
+amino acid substitution as disease-associated or neutral and predicts molecular cause of disease.
+The result is **rankscore**, **score**, **transcript ID** (from [UniProtKB](https://www.ncbi.nlm.nih.gov/nuccore/)),
+**amino acid change**, **top 5 features**. Higher score values indicate that a variant is more
+likely to have deleterious effect.
+- **[MVP](https://www.nature.com/articles/s41467-020-20847-0)** (Missense Variant Pathogenicity)
+is a prediction method that uses deep residual network to leverage large training data sets and
+many correlated predictors. The result is **rankscore** and **score**.
+- **[MPC](https://www.biorxiv.org/content/10.1101/148353v1)** (Missense badness, PolyPhen-2, and Constraint)
+is a *de novo* missense deleteriousness metric based on identifying sub-genic regions that are depleted
+of missense variation. The result is **rankscore** and **score**. Higher score values indicate that
+a variant is more likely to be pathogenic.
+- **[Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/)**
+is a deep residual neural network for classifying the pathogenicity of missense mutations
+based on the common missense variants in non-human primate species. The result is **prediction**:
+***Tolerated*** (colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **score**; **rankscore**.
+- **[DEOGEN2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5570203/)**
+is a method that predicts whether a protein-coding variant likely affects the carrier individual's health.
+The method incorporates heterogeneous information about the molecular effects of the variants,
+the domains involved, the relevance of the gene and the interactions in which it participates.
+The result of the prediction is **rankscore**.
+- **[DANN](https://cbcl.ics.uci.edu/public_data/DANN/)** (Domain-Adversarial Neural Network)
+is a deep neural network trained on the same feature set and training data as CADD.
+The result is **rankscore** and **score**. Higher score values indicate that a variant is more
+likely to have deleterious effect.
+- **[FAtHMM-MKL](https://fathmm.biocompute.org.uk/fathmmMKL.htm)** (Multiple Kernel Learning)
+is a machine learning approach that integrates functional annotations from ENCODE with nucleotide-based
+sequence conservation measures. The result is **prediction**: ***Neutral***
+(colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **p-value**; **rankscore**; **group of features**.
+- **[FAtHMM-XF](http://fathmm.biocompute.org.uk/fathmm-xf/)** (eXtended Feature)
+is a method for predicting pathogenic point mutations in the human genome based on an extensive feature set.
+It outperforms competitors particularly in non-coding regions. The result is **prediction**: ***Neutral***
+(colored <Highlight color="#219653">green</Highlight>) or
+***Damaging*** (colored <Highlight color="#E95726">red</Highlight>); **p-value** (lower p-value indicate
+that a variant is more likely to have deleterious effect); **rankscore**.
+- **[Eigen](http://www.columbia.edu/~ii2135/eigen.html)** is a spectral approach integrating functional
+genomic annotations for coding and non-coding variants. The result is **rankscore** and **score**.
+- **[Eigen-PC](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731313/)** is a conceptually simpler meta-score,
+which is based on the decomposition of the annotation covariance matrix, and using the lead vector
+to weight the individual annotations. The result is **rankscore**, **score** and **score in phred scale**.
+
+### Other {#other-tab}
+
+<p align="center">
+<img src={require('/img/vv/other_tab.png').default} width="1000"/>
+</p>
+
+The tab contains additional information about the variant:
+- **Coding sequence position** is a genomic position of a variant reference allele.
+- **Protein position** is a reference amino acid position in protein.
+- **Amino acids**: reference amino acid / new amino acid resulting from the substitution.
+- **Codons** is an amino acid substitution written as codons (e.g. GAA/GAG).
+- **Amino acid position** is a reference amino acid position in protein.
+- **[APPRIS](https://appris.bioinfo.cnio.es/#/) annotation** is an annotation of principal splice isoforms of human.
+The isoform for each gene is selected as the principal one by combining protein structural information,
+functionally important residues and evidence from cross-species alignments.
+Possible annotation values: PRINCIPAL1-5 (principal isoforms, with 1 being the most reliable),
+ALTERNATIVE1 (candidate transcript model conserved in at least three tested non-primate species),
+ALTERNATIVE2 (candidate transcript model conserved in fewer than three tested non-primate species).
+- **Geuvadis EQTL target gene** is target gene IDs from [Ensembl](https://www.ensembl.org/index.html)
+identified by the analysis of expression quantitative trait loci (eQTL)
+in [GEUVADIS](https://www.biorxiv.org/content/10.1101/008797v1) (Genetic European Variation in Disease) project.
+- **ENIGMA clinical significance** is a clinical significance of the variant located in the
+known or suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*)
+determined by [ENIGMA](https://enigmaconsortium.org/) consortium.
+Benign significance is colored <Highlight color="#219653">dark green</Highlight>; Likely
+benign - <Highlight color="#0EB555">light green</Highlight>; Likely
+pathogenic - <Highlight color="#F2994A">orange</Highlight>;
+Pathogenic - <Highlight color="#E95726">red</Highlight>; all other values, including ones mixed from
+different clinical significances, are colored <Highlight color="#141E29">black</Highlight>.
+When hovering over a field value, you will see a comment on clinical significance.
 
 ### Custom annotation sources {#custom-annotation-sources-tab}
 
-- Custom annotation column values corresponding to the found variant. You can add custom annotations on the
-"**Custom annotations**" page (you can read more about this in [the corresponding section](/settings/custom-annotations)).
+The tab is present in the details panel if at least one custom annotation
+was [added](/settings/custom-annotations#add-custom-annotation) to the system
+before the variants in the sample were annotated. The tab contains the column values from the
+custom annotations that the variant was annotated with:
+
+<p align="center">
+<img src={require('/img/vv/custom_annot_tab.png').default} width="1000"/>
+</p>
+
+Deleted annotation data are marked "*deleted*" for variants that were annotated with
+it before it was deleted.
