@@ -5,10 +5,11 @@ sidebar_label: Custom Annotations
 
 # Custom Annotations
 
-If you want to annotate the discovered variants using additional data, 
+If you want to annotate discovered variants using additional data,
 upload a custom annotation containing this data.
-In addition, you can add annotations containing data on the pathogenicity of variants,
-and an annotation from the COSMIC database.
+In addition, you can add to the system pathogenicity database, annotation
+from [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database, frequency database and
+annotation from [RUSeq](http://ruseq.ru/#/) database.
 
 To open the section with custom annotations, go to the "**Custom annotations**" page from the "Settings" page block
 through the navigation panel on the left:
@@ -89,8 +90,59 @@ Only one custom annotation can be defined as a COSMIC database.
 When defining a new annotation as a COSMIC database, the definition of the previous annotation is deleted.
 :::
 
-3. **An annotation with any other information about the variant** - in this case,
-the annotation type does not need to be defined.
+3. **Frequency database** is an annotation in TSV or CSV format, which contains "Samples_with_SNP"
+column with the number of samples in which the variant was discovered and "Number_of_samples" column
+with the total number of samples tested (both columns' values are natural numbers).
+If the uploaded annotation has the columns with such values, the system will prompt you to define
+this annotation as a frequency database. To do this, click on the switch:
+
+<p align="center">
+<img src={require('/img/custom-annot/frequencies_base.png').default} width="500"/>
+</p>
+
+The result of annotation of variants by frequency database will be used to calculate the probability
+of the variant detection when generating [ClinVar phenotypes report](/results/variants-by-phenotypes).
+
+:::info
+Only one custom annotation can be defined as a frequency database.
+When defining a new annotation as a frequency database, the definition of the previous annotation is deleted.
+:::
+
+4. **RUSeq database** is an annotation in VCF format, which contains the following
+columns from [RUSeq](http://ruseq.ru/#/) database:
+"AC", "AF", "AN", "BaseQRankSum", "CSQ", "ExcessHet", "FS", "InbreedingCoeff", "MLEAC", "MLEAF", "MQ", "MQRankSum",
+"QD", "ReadPosRankSum", "SOR", "VQSLOD", "culprit", "MEAN_DP", "MIN_DP", "MEAN_GQ", "AC_diseased", "AF_diseased",
+"AN_diseased", "n_hom_diseased", "AC_healthy", "AF_healthy", "AN_healthy", "n_hom_healthy", "AC_clust1", "AF_clust1",
+"AN_clust1", "n_hom_clust1", "AC_clust2", "AF_clust2", "AN_clust2", "n_hom_clust2", "AC_clust3", "AF_clust3",
+"AN_clust3", "n_hom_clust3".
+
+If the loaded annotation has all the columns listed above
+If the uploaded annotation has all columns listed above, the system will prompt you to define
+this annotation as RUSeq database. To do this, click on the switch:
+
+<p align="center">
+<img src={require('/img/custom-annot/ruseq.png').default} width="500"/>
+</p>
+
+As a result of variant annotation by RUSeq database, you will see in Variant Viewer:
+- a link to the variant in RUSeq database
+in ["External links" column](/results/main/snvs-indels/variant-viewer#columns-description) or
+on ["Common" tab of the variant details panel](/results/main/snvs-indels/snv-details-panel#external-links): <img src={require('/img/vv/ruseq.png').default} width="35"/>;
+- the variant alternative allele frequency in RUSeq database in "RUSeq AF" column (not added by default).
+
+:::info
+Only one custom annotation can be defined as RUSeq database.
+When defining a new annotation as RUSeq database, the definition of the previous annotation is deleted.
+:::
+
+5. **An annotation with any other information about the variant** - in this case,
+you don't need to define the annotation type.
+The result of the variant annotation by all custom annotations is presented
+on ["Custom annotation sources" tab of the variant details panel](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab):
+
+<p align="center">
+<img src={require('/img/vv/custom_annot_tab.png').default} width="1000"/>
+</p>
 
 ### 3. Map columns {#map-columns}
 
@@ -123,18 +175,41 @@ If you have defined an annotation as ***a pathogenicity database***, then you ne
 <img src={require('/img/custom-annot/gene_column.png').default} width="300"/>
 </p>
 
-- a column with the pathogenicity class of the variants (make sure the correct column is selected with auto-detection):
+- a column with the pathogenicity classes of the variants (the column will be determined
+automatically, make sure that it was selected correctly)
 
 <p align="center">
 <img src={require('/img/custom-annot/pathogenicity_column.png').default} width="300"/>
 </p>
 
-If you have defined an annotation as ***a COSMIC database***, then you need to define a column with variant ID
-from the [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database (COSV\*\*\*\*\*\*\*\*\) (make sure the correct
-column is selected with auto-detection):
+If you have defined an annotation as ***a COSMIC database***, then
+a column with variant ID from [COSMIC](https://cancer.sanger.ac.uk/cosmic/) will be
+determined automatically for annotation:
 
 <p align="center">
 <img src={require('/img/custom-annot/id.png').default} width="300"/>
+</p>
+
+If you have defined an annotation as ***a frequency database***, then
+the following columns will be determined automatically for annotation:
+- a column with the number of samples in which the variant was discovered:
+
+<p align="center">
+<img src={require('/img/custom-annot/samples_with_snp.png').default} width="300"/>
+</p>
+
+- a column with the total number of samples tested:
+
+<p align="center">
+<img src={require('/img/custom-annot/number_of_samples.png').default} width="300"/>
+</p>
+
+If you have defined an annotation as ***RUSeq database***, then
+a column with the variant alternative allele frequencies from [RUSeq](http://ruseq.ru/#/) ("AF") will
+be determined automatically for annotation:
+
+<p align="center">
+<img src={require('/img/custom-annot/info_af.png').default} width="300"/>
 </p>
 
 ### 4. Adding an annotation column {#add-annotation-column}
@@ -189,7 +264,8 @@ To perform the annotation preparation, click on <img src={require('/img/custom-a
 :::caution
 If you skipped one of the required steps of creating an annotation (uploading file, 
 selecting source reference genome, filling in the required fields to identify a variant, 
-or adding at least one annotation column for annotations other than pathogenicity or COSMIC databases),
+or adding at least one annotation column for annotations other than pathogenicity, COSMIC, frequency or
+RUSeq databases),
 then the button <img src={require('/img/custom-annot/start_inactive.png').default} width="180"/>
 will be inactive. Variants will not be annotated with such file that has not been processed.
 :::
@@ -243,7 +319,8 @@ just leave the page - the changes will not be saved.
 <img src={require('/img/eng/apply_annot_changing.png').default} width="400"/>
 </p>
 
-- If you want to stop defining an already prepared annotation as a pathogenicity or COSMIC database,
+- If you want to stop defining an already prepared annotation as pathogenicity, COSMIC, frequency
+or RUSeq database,
 turn off the corresponding toggle on the annotation page. In this case, you do not need to save changes.
 
 :::tip

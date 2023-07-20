@@ -138,6 +138,40 @@ as in the original VCF file, and the normalized data will be shown on the detail
 
 #### Phasing Group Info {#phasing-group}
 
+Phasing group is a merging of homozygous variants located within a specific genomic interval
+(window of size N, which can be changed as
+described [here](/settings/settings/variant-discovery-settings#pg-merge-distance)).
+In addition, the phasing group is merged in such a way that at least one variant from the group
+has an effect on the protein-coding part of at least one gene.
+
+The phasing group details panel shows the variants that the group contains
+(you can open the variant details pages by clicking on the links):
+
+<p align="center">
+<img src={require('/img/vv/pg_includes.png').default} width="280"/>
+</p>
+
+The details panel of a variant included in the phasing groups shows these groups
+(you can open the phasing group details pages by clicking on the links):
+
+<p align="center">
+<img src={require('/img/vv/in_pg.png').default} width="300"/>
+</p>
+
+If a variant is a part of phasing group with discordant amino acid substitutions, then that variant is
+marked with <img src={require('/img/eng/problems_status.png').default} width="28"/>. If the variant is a
+part of phasing group with concordant amino acid substitution, then the variant is not marked with such icon.
+
+**Example of phasing group representation in IGV:** phasing groups are located in "phasing groups" track.
+There are three phasing groups on the left in the track: chr15:48505102 CA>TT (contains 2 variants),
+chr15:48505102 CAA>TTG (contains 3 variants), chr15:48505103 AA>TG (contains 2 variants).
+There are one phasing group in the middle of the track: chr15:48505109 CA>TG (contains 2 variants),
+and one phasing group on the right in the track: chr15:48505117 CA>AG (contains 2 variants).
+
+<p align="center">
+<img src={require('/img/vv/pg_example_igv.png').default} width="1000"/>
+</p>
+
 ### Gene {#gene}
 
 <p align="center">
@@ -570,7 +604,7 @@ The tab contains additional information about the variant:
 - **Coding sequence position** is a genomic position of a variant reference allele.
 - **Protein position** is a reference amino acid position in protein.
 - **Amino acids**: reference amino acid / new amino acid resulting from the substitution.
-- **Codons** is an amino acid substitution written as codons (e.g. GAA/GAG).
+- **Codons** is an amino acid substitution written as codons (e.g. GAG/CAG = E/Q (Glutamic acid -> Glutamine)).
 - **Amino acid position** is a reference amino acid position in protein.
 - **[APPRIS](https://appris.bioinfo.cnio.es/#/) annotation** is an annotation of principal splice isoforms of human.
 The isoform for each gene is selected as the principal one by combining protein structural information,
@@ -581,7 +615,7 @@ ALTERNATIVE2 (candidate transcript model conserved in fewer than three tested no
 - **Geuvadis EQTL target gene** is target gene IDs from [Ensembl](https://www.ensembl.org/index.html)
 identified by the analysis of expression quantitative trait loci (eQTL)
 in [GEUVADIS](https://www.biorxiv.org/content/10.1101/008797v1) (Genetic European Variation in Disease) project.
-- **ENIGMA clinical significance** is a clinical significance of the variant located in the
+- **ENIGMA clinical significance** is a clinical significance of the variant if it's located in the
 known or suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*)
 determined by [ENIGMA](https://enigmaconsortium.org/) consortium.
 Benign significance is colored <Highlight color="#219653">dark green</Highlight>; Likely

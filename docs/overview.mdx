@@ -336,20 +336,29 @@ You can read more about custom annotations [here](/settings/custom-annotations).
 
 #### The "Custom annotations" page presents the table with the following columns: {#custom-annotations-columns}
 
-- «NAME» - contains the custom annotation name (can be set or changed until the annotation is successfully processed,
+- "NAME" - contains the custom annotation name (can be set or changed until the annotation is successfully processed,
 otherwise matches the name of the uploaded annotation file);
 - "STATUS" - contains information about the statuses of uploaded
-annotations: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - in
-progress; <img src={require('/img/eng/success_status.png').default} width="25"/> -
-success, <img src={require('/img/eng/problems_status.png').default} width="28"/> -
-problems, <img src={require('/img/eng/failed_status.png').default} width="25"/> - failed;
-- «TYPE» - if the annotation has <img src={require('/img/eng/cosmic.png').default} width="100"/> type it is used as
-COSMIC base; if the annotations have <img src={require('/img/eng/pathogenicity.png').default} width="130"/> type they
-are used as pathogenicity base (data on the variant pathogenicity);
+annotations: <img src={require('/img/eng/process_not_started.png').default} width="160"/> - the
+annotation preparation has not
+been <a href="/settings/custom-annotations#perform-source-preparation">started</a> yet; <img src={require('/img/eng/process_not_started_custom.png').default} width="120"/> - the annotation
+preparation has started but not yet
+completed; <img src={require('/img/eng/success_annot.png').default} width="100"/> - the annotation
+preparation completed successfully; <img src={require('/img/eng/problems_annot.png').default} width="100"/> - the
+annotation preparation has completed successfully, but there were non-critical problems during
+processing (details can be found on the custom annotation page in <a href="/settings/custom-annotations#perform-source-preparation">"Status" section</a>); <img src={require('/img/eng/failed_annot.png').default} width="75"/> - the
+annotation preparation failed (details can be found on the custom annotation page in <a href="/settings/custom-annotations#perform-source-preparation">"Status" section</a>);
+- "TYPE" - if the annotation has <img src={require('/img/eng/cosmic.png').default} width="100"/> type it is used as
+COSMIC database; if the annotation<br></br>has <img src={require('/img/eng/pathogenicity.png').default} width="130"/> type
+it is used as pathogenicity database (data on the variant pathogenicity); if the annotation
+has <img src={require('/img/custom-annot/freq_base.png').default} width="140"/> type it is used
+as frequency database (data on the variant occurrence in the population); if the
+annotation has <img src={require('/img/custom-annot/ruseq_button.png').default} width="140"/> type
+it is used as RUseq database;
 - "MODIFIED" - contains the date of the last change in the custom annotation in the format "month day, year".
 
 If you hover over a custom annotation's row, you will see an active
-element <img src={require('/img/eng/delete_btn.png').default} width="18"/> to to delete annotation.
+element <img src={require('/img/eng/delete_btn.png').default} width="23"/> to to delete annotation.
 
 At the top of the page there is a button <img src={require('/img/eng/upload_custom_annot.png').default} width="170"/> to
 add custom annotation.

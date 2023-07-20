@@ -179,6 +179,22 @@ turn off the corresponding toggle:
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
 :::
 
+#### Phasing group merging setting {#pg-merge-distance}
+
+Phasing group is a merging of homozygous variants located within a specific genomic interval
+(window of size N).
+
+To disable merging variants into phasing groups, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/pg_off.png').default} width="400"/>
+</p>
+
+To adjust the genomic distance within which homozygotes will be merged into a phasing group,
+click on the current value (window of size N = 3 bp by default) and edit (min value = 1, max value = 10).
+To save the changes, press "Enter" key or click the left mouse button in an empty space on the page.
+To save changes, press Enter or click outside edit value container.
+
 #### The germline SNVs/indels hard-filtering parameters {#hard-filtration}
 
 <details>

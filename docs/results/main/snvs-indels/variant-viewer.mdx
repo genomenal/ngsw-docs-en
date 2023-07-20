@@ -198,16 +198,94 @@ name once, and vice versa by clicking on the name twice. In addition, variants c
 - an additional filter "Label" in basic filtering mode
 (can be added on ["Profile" page](/settings/profile#basic-mode-filters)).
 
-### Sort and Filter Variants {#sort-and-filter}
+### Filter and Sort Variants {#sort-and-filter}
 
-By default, the table is sorted by the variant start position ("Position" column).
-You can ***sort*** the table in ascending or descending order of the values of the "Locus", "Origin", "Position",
-"Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity". To sort by the column, click on its name
-(one click to sort in ascending order, two clicks - in descending order).
-
-***Filtering of variants*** in Variant Viewer is described in the
+***Filtering of variants*** in Variant Viewer is described in
 [Basic Filtering](/results/main/snvs-indels/basic-filtering) and
 [Advanced Filtering](/results/main/snvs-indels/advanced-filtering) sections.
+
+By default, the table is sorted by the variant start position ("Position" column).
+You can ***sort*** the table by the values of the following columns:
+- [default columns](/results/main/snvs-indels/variant-viewer#columns-description): "Locus", "Origin",
+"Position", "Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity";
+- all columns [not added by default](/results/main/snvs-indels/edit-table-columns#add-columns).
+
+To sort a table by column values, click on the column name (click once to sort in ascending order,
+or twice to sort in descending order). After that, you will see an arrow next to the column
+name: <img src={require('/img/vv/sort_asc.png').default} width="17"/> (when sorting in ascending order)
+or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when sorting in descending order).
+
+You can sort a table by 1-3 columns at the same time to group data by the same value in one column, and
+then sort another column within that group of equal values. The sort order will depend on the order in which
+you click on the corresponding column names. The sort arrow will be presented for the column that was sorted last.
+
+To reset sorting, use the clear all filters
+button: <img src={require('/img/vv/clear_filters.png').default} width="35"/>.
+Please note that this will also reset the filtering of variants.
+
+The basic sorting orders are alphabetical for columns with text values (e.g. "Locus" column),
+or smallest to largest and vice versa for columns with numeric values (e.g. "gnomAD AF" column).
+However, the sorting order is special for some columns:
+- "**[Consequence](/results/main/snvs-indels/variant-viewer#variant-consequences)**" column:
+sorting from most significant consequence to least significant: Transcript ablation, Splice acceptor, Splice donor,
+Stop gained, Frameshift, Stop lost, Start lost, Transcript amplification, Inframe insertion,
+Inframe deletion, Missense, Protein altering, Splice region, Incomplete terminal codon, Start
+retained, Stop retained, Synonymous, Coding sequence, Mature miRNA, UTR5, UTR3, Non coding transcript
+exon, Intron, NMD transcript, Non coding transcript, Upstream, Downstream, TFBS ablation,
+TFBS amplification, TF binding site, Regulatory region ablation, Regulatory region amplification,
+Feature elongation, Regulatory region variant, Feature truncation, Intergenic variant,
+Splice donor 5th base variant, Splice donor region variant, Splice polypyrimidine tract variant, Unknown.
+Composite values (containing multiple consequences) are sorted by the least significant value in the list.
+- "**[Pathogenicity](/results/main/snvs-indels/pathogenicity)**" column: sorting from pathogenic
+to benign variant: Pathogenic, Likely pathogenic, Conflicting interpretations of pathogenicity,
+Uncertain significance, Likely benign, Benign.
+- "**Impact**" column (not added by default,
+values are described [here](/results/main/snvs-indels/variant-viewer#variant-impacts)):
+sorting from high to low impact: HIGH, MODERATE, LOW, MODIFIER.
+- "**Genome position**" column (not added by default): sorting by the significance of the variant
+location in the genome: Exonic, Intronic, Intergenic.
+- "**Label**" column (not added by default, described [here](/results/main/snvs-indels/variant-viewer#label)):
+sorting from significant to insignificant
+variants: <img src={require('/img/vv/high_label.png').default} width="25"/> (high
+significance), <img src={require('/img/vv/medium_label.png').default} width="25"/> (moderate
+significance), <img src={require('/img/vv/low_label.png').default} width="25"/> (low
+significance), <img src={require('/img/vv/seq_error.png').default} width="25"/> (sequencing
+error).
+- "**Caller Filters**" column (not added by default,
+described [here](/results/main/snvs-indels/variant-viewer#added-columns)):
+sorting from variants which didn't pass filtration to variants satisfying all filters: FAIL, N/A, PASS.
+- "**ClinVar**" column (not added by default,
+described [here](/results/main/snvs-indels/variant-viewer#added-columns)):
+sorting from unconditionally significant variants to insignificant ones:
+1. Pathogenic;
+2. Pathogenic, low penetrance;
+3. Likely pathogenic;
+4. Likely pathogenic, low penetrance;
+5. Composite values including "Pathogenic" or "Pathogenic, low penetrance";
+6. Composite values including "Likely pathogenic" or "Likely pathogenic, low penetrance";
+7. Uncertain significance;
+8. Conflicting interpretations of patogenicity / Conflicting data from submitters;
+9. Established risk allele;
+10. Likely risk allele;
+11. Uncertain risk allele;
+12. Risk factor;
+13. Affects;
+14. Drug response;
+15. Association;
+16. Confers sensitivity;
+17. Protective;
+18. Likely benign;
+19. Association not found;
+20. Benign;
+21. Other;
+22. Not provided.
+
+Composite values (other than those that include the values "Pathogenic", "Pathogenic, low penetrance",
+"Likely pathogenic", or "Likely pathogenic, low penetrance") are sorted by the most significant value from the list.
+- "**ENIGMA**" column (not added by default,
+described [here](/results/main/snvs-indels/variant-viewer#added-columns)): sorting from significant to
+insignificant variants: Pathogenic, Likely pathogenic, Likely benign, Benign, Not provided.
+Composite values are sorted by the most significant value from the list.
 
 ### Keyboard Shortcuts in Variant Viewer {#hotkeys}
 
@@ -305,6 +383,8 @@ described [here](/results/main/snvs-indels/edit-table-columns)):
 
 1. **Locus** is the common name of the gene in which the variant is located. If the gene is unknown,
 the locus is designated as <img src={require('/img/vv/no_gene.png').default} width="110"/>.
+You can copy the gene name to the clipboard by moving the cursor over the column value and
+clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
 2. **Origin** is a mutation type (somatic or germline).
 
 :::info
@@ -313,6 +393,8 @@ and in Variant Viewer with somatic mutations if "Origin is Somatic" filter is on
 :::
 
 3. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+You can copy the variant position to the clipboard by moving the cursor over the column value and
+clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
 4. **HGVSp** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
 (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
 When hovering over the value of the "HGVSp" column for a variant, you can see the transcript which the substitution
@@ -340,9 +422,11 @@ Also the percentage of the share of the alternative allele reads count among all
 
 The column cells are colored depending on the depth value:
 
-- green if depth > 60;
-- yellow if 20 ≤ depth ≤ 60;
-- red if depth < 20.
+import Highlight from '@site/src/components/HighlightBlackText';
+
+- <Highlight color="#DEF1DB">green</Highlight> if depth > 60;
+- <Highlight color="#FFFAEB">yellow</Highlight> if 20 ≤ depth ≤ 60;
+- <Highlight color="#F9DAE0">red</Highlight> if depth &lt; 20.
 
 8. **GT** is a genotype; allelic values (0 - reference allele, 1 - first alternative allele, 2 - second alternative
 allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
@@ -463,6 +547,23 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
    <td>HIGH</td>
   </tr>
   <tr>
+   <td>Splice donor 5th base variant</td>
+   <td>A variant causes a change at the 5th base pair after the start of the intron in the orientation of
+   the transcript</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Splice donor region variant</td>
+   <td>A variant falls in the region between the 3rd and 6th base after splice junction (5' end of intron)</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
+   <td>Splice polypyrimidine tract variant</td>
+   <td>A variant falls in the polypyrimidine tract at 3' end of intron between 17 and 3 bases from the end
+   (acceptor -3 to acceptor -17)</td>
+   <td>LOW</td>
+  </tr>
+  <tr>
    <td>Splice region</td>
    <td>A sequence variant in which a change has occurred within the region of the splice site, either within 1-3
    bases of the exon or 3-8 bases of the intron</td>
@@ -540,8 +641,20 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
   </tr>
 </table>
 
-***Impact** is the predicted effect of the variant on the protein. The corresponding column can be added in
-[the Edit Table Columns window](/results/main/snvs-indels/edit-table-columns).
+Cells of "Consequence" column are colored depending on the impact*:
+- <Highlight color="#F9DAE0">red</Highlight> if the impact is HIGH;
+- <Highlight color="#FFFAEB">yellow</Highlight> if the impact is MODERATE;
+- no color if the impact is LOW or MODIFIER.
+
+Values that include multiple consequences are indicated with an asterisk.
+You can see the full list of consequences by hovering over a cell:
+
+<p align="center">
+<img src={require('/img/vv/consequences.png').default} width="250"/>
+</p>
+
+***Impact** is the predicted effect of the variant on the protein. The column is not added
+to the table by default, it can be added in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns).
 
 #### Impacts of variants in the annotation {#variant-impacts}
 
@@ -579,25 +692,110 @@ allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased 
   </tr>
 </table>
 
-The "Consequence" column cells are colored depending on the impact:
-
-- red if the impact is HIGH;
-- yellow if the impact is MODERATE;
+The "Impact" column cells are colored:
+- <Highlight color="#F9DAE0">red</Highlight> if the impact is HIGH;
+- <Highlight color="#FFFAEB">yellow</Highlight> if the impact is MODERATE;
 - no color if impact is LOW or MODIFIER.
 
 10. **External links** are links to pages with variant information
-in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>.
-There may also be a link to the variant in <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>, <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if
+COSMIC database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>), <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>: <img src={require('/img/vv/franklin.png').default} width="35"/>, <a href="https://genome-euro.ucsc.edu/">UCSC</a>: <img src={require('/img/vv/ucsc.png').default} width="35"/>, <a href="https://gnomad.broadinstitute.org/">gnomAD</a>: <img src={require('/img/vv/gnomad.png').default} width="35"/>, <a href="http://ruseq.ru/#/">RUSeq</a>: <img src={require('/img/vv/ruseq.png').default} width="35"/> (if
+RUSeq database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>).
+There may be up to three buttons maximum in a cell. If the variant is found in more than three databases,
+then there will be three dots <img src={require('/img/vv/three_points.png').default} width="15"/> in the cell.
+By clicking on these dots, you can see all the other links:
+
+<p align="center">
+<img src={require('/img/vv/added_external_links.png').default} width="260"/>
+</p>
 
 11. **gnomAD AF** is the allele frequency according to the [gnomAD](https://gnomad.broadinstitute.org/) database.
 
 The column cells are colored depending on the allele frequency value:
 
-- green if AF ≥ 0.015;
-- yellow if 0.01 ≤ AF < 0.015;
-- red if AF < 0.01.
+- <Highlight color="#DEF1DB">green</Highlight> if AF ≥ 0.015;
+- <Highlight color="#FFFAEB">yellow</Highlight> if 0.01 ≤ AF &lt; 0.015;
+- <Highlight color="#F9DAE0">red</Highlight> if AF &lt; 0.01.
 
 12. **Pathogenicity** is the variant pathogenicity, which can be determined either manually, by ACMG criteria, or
 according to the pathogenicity base. If you have not [uploaded the pathogenicity database](/settings/custom-annotations#define-annotation-type)
 or have not determined the variant pathogenicity, then the column
 value will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> (No interpretation).
+
+### Description of Additional Table Columns {#added-columns}
+
+In addition to the columns described [above](/results/main/snvs-indels/variant-viewer#columns-description),
+other annotation columns can be added to Variant Viewer table as
+described [here](/results/main/snvs-indels/edit-table-columns#add-columns).
+The columns with special features are described below:
+- "**Label**" column, in which the variant significance can be determined, is
+described [above](/results/main/snvs-indels/variant-viewer#label).
+- "**PG**" column contains information about the phasing group of the variant.
+It is called "Phasing group status" ("Common" section)
+in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns#add-columns).
+The phasing group (i.e. a merging of homozygous variants located within a specific genomic interval)
+is indicated by <img src={require('/img/vv/pg_icon.png').default} width="35"/>.
+The variants that are part of phasing group with discordant amino acid substitutions indicated
+by <img src={require('/img/vv/variant_same_change.png').default} width="35"/>
+and the variants that are part of phasing group with concordant amino acid substitution
+indicated by <img src={require('/img/vv/variant_different_change.png').default} width="35"/>.
+- "**Caller Filters**" column contains information about the variant quality:<br></br>1.
+PASS - site contains at least one allele that satisfies all filters.
+The cell is colored <Highlight color="#DEF1DB">green</Highlight>.<br></br>2.
+N/A - the column value is unknown (dot in VCF file). The cell is
+colored <Highlight color="#FFFAEB">yellow</Highlight>.<br></br>3.
+FAIL - the variant does not satisfy one or more GATK filters. By hovering over a cell,
+you can see these filters. The cell is colored <Highlight color="#F9DAE0">red</Highlight>.
+- "**ClinVar**" column contains information about the clinical significance of the variant
+in [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
+It is called "Clinical significance" ("ClinVar" section)
+in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns#add-columns).
+Column values are represented
+as icons:<br></br><img src={require('/img/vv/affects.png').default} width="45"/> -
+Affects;<br></br><img src={require('/img/vv/assoc_not_found.png').default} width="45"/> - Association
+not found;<br></br><img src={require('/img/vv/association.png').default} width="45"/> -
+Association;<br></br><img src={require('/img/vv/benign.png').default} width="45"/> -
+Benign;<br></br><img src={require('/img/vv/conflicting_pathogenicity.png').default} width="45"/> -
+Conflicting interpretations of patogenicity or Conflicting data from
+submitters;<br></br><img src={require('/img/vv/drug_response.png').default} width="45"/> - Drug
+response;<br></br><img src={require('/img/vv/likely_benign.png').default} width="45"/> - Likely
+benign;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="45"/> - Likely
+pathogenic or Likely pathogenic, low
+penetrance;<br></br><img src={require('/img/vv/likely_risk_allele.png').default} width="45"/> - Likely
+risk allele;<br></br><img src={require('/img/vv/not_provided.png').default} width="45"/> - Not
+provided;<br></br><img src={require('/img/vv/other.png').default} width="45"/> -
+Other;<br></br><img src={require('/img/vv/pathogenic.png').default} width="45"/> - Pathogenic or
+Pathogenic, low penetrance;<br></br><img src={require('/img/vv/protective.png').default} width="45"/> -
+Protective;<br></br><img src={require('/img/vv/established_ra.png').default} width="45"/> - Established
+risk allele;<br></br><img src={require('/img/vv/risk_factor.png').default} width="45"/> - Risk
+factor;<br></br><img src={require('/img/vv/confers_sensitivity.png').default} width="45"/> -
+Confers sensitivity;<br></br><img src={require('/img/vv/uncertain_risk_allele.png').default} width="45"/> - Uncertain
+risk allele;<br></br><img src={require('/img/vv/uncertain_significance.png').default} width="44"/> -
+Uncertain significance.<br></br>
+You can see the full value by hovering over the icon.
+Values that include multiple significances are indicated with an asterisk,
+and the icon in this case indicates the first value from the list:
+
+<p align="center">
+<img src={require('/img/vv/conflict.png').default} width="360"/>
+</p>
+
+- "**ENIGMA**" column contains information about clinical significance of the variant if it's located in the known or
+suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*) determined
+by [ENIGMA](https://enigmaconsortium.org/) consortium.
+It is called "ENIGMA clinical significance" ("Other" section)
+in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns#add-columns).
+Column values are represented
+as icons:<br></br><img src={require('/img/vv/pathogenic.png').default} width="45"/> -
+Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="45"/> -
+Likely pathogenic;<br></br><img src={require('/img/vv/likely_benign.png').default} width="45"/> - Likely
+pathogenic;<br></br><img src={require('/img/vv/benign.png').default} width="45"/> -
+Benign;<br></br><img src={require('/img/vv/not_provided.png').default} width="45"/> -
+Not provided.<br></br>
+You can see the full value by hovering over the icon.
+Values that include multiple significances are indicated with an asterisk,
+and the icon in this case indicates the first value from the list:
+
+<p align="center">
+<img src={require('/img/vv/conflict_enigma.png').default} width="170"/>
+</p>

@@ -79,20 +79,25 @@ by clicking on the value rows:
     6. **Label** ("Label" column and basic filter): filtering
     by [variant significance defined by the user](/results/main/snvs-indels/variant-viewer#label): High significance,
     Moderate significance, Low significance, Sequencing error, Undefined.
-    7. **Chromosome** (the "Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
+    7. **Phasing group** ("PG" column): filtering variants
+    by [phasing group]((/results/main/snvs-indels/variant-viewer#added-columns)) (i.e. merging of homozygous variants
+    located within a specific genomic interval) status: Phasing group, Part of group consequence equal (part
+    of phasing group with concordant amino acid substitutions), Part of group consequence unequal (part
+    of phasing group with discordant amino acid substitutions).
+    8. **Chromosome** ("Position" column): filtering by the chromosome in which the variant is located: chr1-chr22,
     chrX, chrY, chrM, chromosomes like chrN\_random (contigs located in the N chromosome but could not be reliably
     ordered within the sequence, or sequences for alternative haplotypes), chromosomes like chrUn_ (contigs that
     cannot be confidently placed on a specific chromosome), chrEBV.
-    8. **Origin**: filtering by mutation type: Somatic, Germline.
-    9. **Caller Filters**: filtering by GATK variant filters.
-    10. **ClinVar: Clinical significance** (the "ClinVar" column/basic filter): filtering by the clinical
+    9. **Origin**: filtering by mutation type: Somatic, Germline.
+    10. **Caller Filters**: filtering by GATK variant filters.
+    11. **ClinVar: Clinical significance** ("ClinVar" column/basic filter): filtering by the clinical
     significance of the phenotype (you can find the description of
     values [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_scv)).
-    11. **ClinVar: Allele origin**: filtering by variant allele origin.
-    12. **Conservation: [CS] confidence value**: filtering by confidence value of various conservative
+    12. **ClinVar: Allele origin**: filtering by variant allele origin.
+    13. **Conservation: [CS] confidence value**: filtering by confidence value of various conservative
     scores: Highly significant; Significant; Informative; Other,
     where **[CS]** is a conservation score: Integrated, GM12878, H1-hESC, HUVEC.
-    13. **Protein function effect: [PA] prediction**: filtering by the results of predicting
+    14. **Protein function effect: [PA] prediction**: filtering by the results of predicting
     the effect of amino acid substitution on protein function, obtained using various algorithms and programs,
     where **[PA]** is a prediction algorithm: [Polyphen](http://genetics.bwh.harvard.edu/pph/pph_help.html),
     [SIFT4G](https://sift.bii.a-star.edu.sg/sift4g/), LRT, [FAtHMM](http://fathmm.biocompute.org.uk/),
@@ -100,9 +105,13 @@ by clicking on the value rows:
     Meta LR, [M-CAP](http://bejerano.stanford.edu/mcap/),
     [Primate AI](https://illumina.github.io/NirvanaDocumentation/3.14/data-sources/primate-ai/),
     [FAtHMM-MK](http://fathmm.biocompute.org.uk/), [FAtHMM-XF](http://fathmm.biocompute.org.uk/).
-    14. **Other: APPRIS annotation**: filtering by human splicing isoforms
+    15. **Other: APPRIS annotation**: filtering by human splicing isoforms
     ([APPRIS](http://appris.bioinfo.cnio.es) annotation): Principal 1-5; Alternative 1-2.
-    15. **Trio GT (Genotype)**: filtering by variant inheritance: *De novo* variants, Newly formed
+    16. **Other: ENIGMA clinical significance**: filtering by clinical significance of the variant located
+    in the known or suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*)
+    determined by [ENIGMA](https://enigmaconsortium.org/) consortium: Pathogenic, Likely pathogenic,
+    Benign, Likely benign, Not provided.
+    17. **Trio GT (Genotype)**: filtering by variant inheritance: *De novo* variants, Newly formed
     homozygotes (homozygotes in proband that are heterozygous in parents) or Single parent-inherited.
     Available only in [Family group analysis](/group-analysis#group-analysis-variant-viewer) for Trio case
     (Proband, Father and Mother).
@@ -388,6 +397,9 @@ and enter ***filter column value***:
     24. **Other: GTEx v7 Tissue**: filtering by tissue from [GTEx](https://www.gtexportal.org/).
     25. **Other: Geuvadis EQTL target gene**: filtering by gene from eQTL data analysis
     [GEUVADIS](http://www.geuvadis.org/).
+    26. **Other: ENIGMA clinical significance comment**: filtering by comment on clinical significance
+    of the variant located in the known or suspected breast and/or ovarian predisposition genes (such
+    as *BRCA1*, *BRCA2*) determined by [ENIGMA](https://enigmaconsortium.org/) consortium.
 
 ### 6. Filter by HPO {#hpo-filter}
 

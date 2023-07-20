@@ -7,7 +7,8 @@ import TabItem from '@theme/TabItem';
   defaultValue="pc"
   values={[
     {label: 'From computer', value: 'pc'},
-    {label: 'From FTP, HTTP or Yandex Disk servers', value: 'url'},
+    {label: 'From FTP, HTTP or Yandex.Disk servers', value: 'url'},
+    {label: 'From Google Drive', value: 'google'},
     {label: 'From NCBI SRA database', value: 'sra'}]}>
   <TabItem value="pc"><p align="center">To upload, drag and drop files or folder containing files into the drop-area
   or click on it to open the File Browser:<br />
@@ -15,6 +16,13 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="url"><p align="center">To upload, paste the link to the file or folder containing files on the
   server into the placeholder:<br />
+    <img src={require('/img/eng/10-12-url-box.png').default} width="350"/><br />
+  and click on the button <img src={require('/img/eng/11-13-url_active.png').default} width="35"/> or
+  press Enter on the keyboard.</p>
+  </TabItem>
+  <TabItem value="google"><p align="center">To upload a file from Google Drive, first share the file
+  with anyone with the link (how to do this is described <a href="https://support.google.com/drive/answer/2494822?hl=en&ref_topic=7000947&sjid=1697686373900275697-EU#zippy=%2Cshare-a-file-publicly">here</a>).
+  <br></br>Paste the resulting link into the window:<br />
   	<img src={require('/img/eng/10-12-url-box.png').default} width="350"/><br />
   and click on the button <img src={require('/img/eng/11-13-url_active.png').default} width="35"/> or
   press Enter on the keyboard.</p>
