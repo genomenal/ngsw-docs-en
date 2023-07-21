@@ -58,7 +58,7 @@ gene row, and then click on <img src={require('/img/gene_panels/remove_gene.png'
 click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
 A gene panel will be added to the system.
 
-### 2. Adding genes from HPO to the panel {#add-from-hpo}
+### 2. Adding genes associated with HPO phenotypes to the panel {#add-from-hpo}
 
 1. Click on <img src={require('/img/eng/add_gene_panel.png').default} width="170"/> to open the form of
 adding a gene panel:
@@ -71,47 +71,96 @@ adding a gene panel:
 You can also add a panel description.
 
 3. Click on <img src={require('/img/gene_panels/add_from_hpo.png').default} width="280"/>.
-The search form for <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a> will open:
+You will see <a href="https://hpo.jax.org/app/">Human Phenotype Ontology (HPO)</a> phenotype search form.
+The form presents the main groups of phenotypes in the drop-down list:
 
 <p align="center">
 <img src={require('/img/vv/hpo_search.png').default} width="800"/>
 </p>
 
-The drop-down list contains the main term groups.
-You can add to the panel both genes associated with a whole group of terms and genes associated with a specific term.
-The term can be found in the group's list of terms, or by searching by name or ID
-from [Human Phenotype Ontology](https://hpo.jax.org/app/).
-For example, several terms are found when searching for the term “glioma”:
+4. Search and select phenotypes with which the genes you want are associated in one of the following ways:
+
+- Search for a phenotype in the drop-down list. You can interact with phenotype groups
+using <img src={require('/img/vv/show.png').default} height="15"/> and <img src={require('/img/vv/hide.png').default} height="10"/> to
+expand and collapse the list of group phenotypes, respectively:
+
+<p align="center">
+<img src={require('/img/vv/list_of_phenotypes.png').default} width="270"/>
+</p>
+
+In addition, you can find a phenotype by searching for the name or ID from HPO.
+For example, when searching for the disease “glioma”, several terms are found:
 
 <p align="center">
 <img src={require('/img/vv/glioma_search.png').default} width="800"/>
 </p>
 
-By selecting one of them (for example, "Glioma"), you will be redirected to this term page:
+To select a phenotype, click on its row. You can choose both the whole group and a specific
+phenotype. By selecting one of the phenotypes (e.g. "Glioma"), you will see this disease card:
 
 <p align="center">
 <img src={require('/img/vv/glioma_page.png').default} width="800"/>
 </p>
 
-On the right, there are the term definition and a comment.
-In the middle, there is the hierarchy of the term: the terms above the selected Glioma
-term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
-and the terms below Glioma are its child terms.
-On the right, there are the genes associated with this term (in this case, 45 genes were found).
-If you want to add the found genes to the panel,
-click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
-To exit the form without adding genes to the panel,
-click on <img src={require('/img/gene_panels/cancel_btn.png').default} width="150"/>.
+Selected phenotypes are marked above the disease card. Number in parentheses
+indicates the number of genes associated with the phenotype. By clicking on a term, you will see
+the phenotype card. You can remove the term by clicking on
+the<br></br>cross <img src={require('/img/vv/delete_term_btn.png').default} width="15"/>:
 
-If you have added genes from HPO to the panel, they will be displayed in the list on the right.
-You can search among them, as well as remove genes from the panel (to do so, click on the gene row, and then
+<p align="center">
+<img src={require('/img/vv/delete_term.png').default} width="500"/>
+</p>
+
+On the left side of the phenotype card, there are its definition and comments. In the middle,
+there is the hierarchy of the disease: the terms above the selected Glioma
+disease are its ancestor phenotypes (i.e. the phenotype groups that include Glioma),
+and the terms below Glioma are its child phenotypes (i.e. the diseases that are part of the Glioma group).
+On the right, there are the genes associated with this disease (in this case, 45 genes were found).
+
+- Search for a phenotype by hierarchy in the phenotype card. By clicking on the name of the ancestor or child
+phenotype, you will see this phenotype page. If the phenotype has not yet been selected and
+genes associated with it have been found, then you can select it by
+clicking on <img src={require('/img/vv/add_term.png').default} width="150"/>.
+
+- Search for a phenotype in multiselect mode. Switch the search mode by
+clicking on <img src={require('/img/vv/switch_mode.png').default} width="120"/>. You will see a list of main
+groups of phenotypes with checkboxes. You can find a phenotype by searching for the name or ID from HPO.
+For example, when searching for the disease “glioma”, several terms are found:
+
+<p align="center">
+<img src={require('/img/vv/multiselect_hpo.png').default} width="800"/>
+</p>
+
+In multiselect mode, you can select several phenotypes at once in the drop-down list.
+To select a phenotype, click on its line:
+
+<p align="center">
+<img src={require('/img/vv/glioma_checked.png').default} width="400"/>
+</p>
+
+To complete adding phenotypes, click outside the drop-down box within the phenotype search form.
+At the top of the form, you will see selected phenotypes. Number in parentheses
+indicates the number of genes associated with the phenotype. By clicking on a term, you will see
+the phenotype card. You can remove the term by clicking on
+the cross <img src={require('/img/vv/delete_term_btn.png').default} width="15"/>.
+
+<p align="center">
+<img src={require('/img/vv/multiselect_mode.png').default} width="800"/>
+</p>
+
+To exit the form without adding the genes associated with the selected phenotypes to the panel,
+click on <img src={require('/img/gene_panels/cancel_btn.png').default} width="150"/> or outside the
+phenotype search form. To add the genes associated with the selected phenotypes to the panel,
+click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>. The added genes
+will be displayed in the list on the right. You can search among them, as well as remove genes from the
+panel (to do so, click on the gene row, and then
 click on <img src={require('/img/gene_panels/remove_gene.png').default} width="40"/>):
 
 <p align="center">
 <img src={require('/img/gene_panels/remove_hpo_gene.png').default} height="350"/>
 </p>
 
-4. After you have added all the needed genes to the panel,
+5. After you have added all the needed genes to the panel,
 click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
 A gene panel will be added to the system.
 

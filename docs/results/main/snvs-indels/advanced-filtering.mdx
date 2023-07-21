@@ -403,45 +403,19 @@ and enter ***filter column value***:
 
 ### 6. Filter by HPO {#hpo-filter}
 
-- Filtering by a term from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>.
+- Filtering by terms from <a href="https://hpo.jax.org/app/">Human Phenotype Ontology (HPO)</a>.
 - The way of adding a filter condition:
 
 1. Select "**HPO Phenotype**" filter from the list of all filters. The filter operator "is" is automatically
 selected for the filter;
-2. Click on the filter value row:
+2. Click on the filter value field:
 
 <p align="center">
 <img src={require('/img/vv/hpo_advanced.png').default} width="280"/>
 </p>
 
-You will see the term search window:
-
-<p align="center">
-<img src={require('/img/vv/hpo_search.png').default} width="800"/>
-</p>
-
-The drop-down list contains the main term groups.
-You can filter variants either by the whole group or by a specific term.
-The term can be found in the group's list of terms, or by searching by name or ID
-from [Human Phenotype Ontology](https://hpo.jax.org/app/).
-For example, several terms are found when searching for the term “glioma”:
-
-<p align="center">
-<img src={require('/img/vv/glioma_search.png').default} width="800"/>
-</p>
-
-By selecting one of them (for example, "Glioma"), you will be redirected to this term page:
-
-<p align="center">
-<img src={require('/img/vv/glioma_page.png').default} width="800"/>
-</p>
-
-On the left, there are the term definition and a comment.
-In the middle, there is the hierarchy of the term: the terms above the selected Glioma
-term are its ancestor terms (that is, the terms of the groups that include the Glioma term),
-and the terms below Glioma are its child terms.
-On the right, there are the genes associated with this term (in this case, 45 genes were found).
-To filter variants by these genes, click on <img src={require('/img/gene_panels/ok_btn.png').default} width="130"/>.
+You will see the phenotype search window. How to find and select the phenotypes in this
+form is described [here](/results/main/snvs-indels/basic-filtering#hpo).
 
 ### 7. Filters by Per-Sample Data {#sample-data-filters}
 
