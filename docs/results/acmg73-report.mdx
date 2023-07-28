@@ -12,12 +12,10 @@ clinically actionable by an accepted intervention. The ACMG recommends that vari
 genes should be reported as they are of medical relevance and could be used in the future to inform
 clinical treatment.
 
-**The variants in the report meet at least one of the following conditions:**
-1. Pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
-2. Likely pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
-3. Having high gene product impact;
-4. Having moderate gene product impact and frequency less than 10% in population;
-5. Rare (having frequency less than 2% in population).
+Only those variants that are **pathogenic** or **likely pathogenic** according
+to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) are included in the report. In the case of variants
+from the VCF file with a single sample, only those variants whose sites has at least one alternative allele
+(i.e. variants with the genotype 1/1, 1|1, 0/1, 1/0, 0|1 etc.) will be included in the report.
 
 :::caution
 ACMG 73 secondary findings report generation has its limitations due to variant annotation using ClinVar.
