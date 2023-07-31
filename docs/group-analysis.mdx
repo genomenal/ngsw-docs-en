@@ -5,12 +5,21 @@ sidebar_label: Group Analysis
 
 # Group Analysis
 
-In "Group Analysis" section, you can perform ***germline cohort analysis*** and ***family analysis***.
 Group analysis is a combining of germline variants (SNVs/Indels) discovered in samples selected for analysis.
-Typically, germline cohort analysis is used to combine and compare samples that
-are related in some way (for example, by pathology type or data source). Family group analysis is
-for combining and comparing samples from the same family (proband + one or two parents or two parents without
-a proband). Group analysis includes combining, filtering and annotating of germline variants of the samples.
+Group analysis includes combining, filtration and annotation of germline variants of the samples.
+
+Available types of group analysis:
+- **Germline cohort analysis** is used to combine and compare samples that are related in some way (e.g. by
+pathology type or data source), or samples of large families in which sibling sequencing was performed.
+The analysis can include a maximum of 25 samples. The analysis results are presented in Variant Viewer with
+all variants discovered in the samples included in the analysis.
+- **Family analysis** is used to combine and compare samples from the same family (proband + one or two parents
+or two parents without a proband). May include 2 or 3 samples. The analysis results are presented in Variant Viewer
+with all variants discovered in the samples included in the analysis. Variant Viewer has specialized filters based
+on genotypes of family members.
+- **Population analysis** is aimed at studying the distribution of the allele frequencies in a certain population.
+It can include an unlimited number of samples. The analysis results are presented as VCF file with the allele
+frequencies of the variants discovered in the samples included in the analysis.
 
 To open page with group analyses, open "**All analyses**" page from "**Group Analysis**" page block via
 the navigation panel on the left:
@@ -24,6 +33,7 @@ the navigation panel on the left:
 To start the group analysis creation,
 click on <img src={require('/img/eng/add_group_analysis_btn.png').default} width="150"/>.
 Another way to create a group analysis is to consolidate a cohort, described [here](/cohorts#cohort-analysis).
+
 In the window that opens, enter a group analysis name in **Name** field. You can also add an analysis description here.
 
 <p align="center">
@@ -37,12 +47,23 @@ If you want to use your [settings preset](/settings/settings/settings) for analy
 that configures germline SNVs/Indels filtration. If you are satisfied with the default variant filtration
 parameters, leave the default preset selected for analysis.
 
+#### Analysis Type {#analysis-type}
+
+The available group analysis types are described above. This may be *a germline cohort analysis*, *a family analysis*,
+or *a population analysis*. Select the analysis type by clicking on the corresponding container, and then
+click <img src={require('/img/group_analysis/go_on_btn.png').default} width="130"/> to proceed to the selection of
+samples for analysis.
+
 #### Samples for Analysis {#samples-for-analysis}
 
-At the bottom of the window, there is a table with samples for which group analysis can be performed.
-The table includes the sample name and the patient code or run name to which it refers. A sample of
+The table with samples for which group analysis can be performed includes the sample name and the patient
+code or run name to which it refers. A sample of
 non-tumor tissue is marked as <img src={require('/img/eng/normal_success.png').default} width="20"/>,
 a sample of tumor tissue - as  <img src={require('/img/eng/tumor_success.png').default} width="20"/>.
+
+<p align="center">
+<img src={require('/img/group_analysis/select_samples.png').default} height="600"/>
+</p>
 
 Conditions for samples that are available for group analysis:
 - Samples were uploaded in FASTQ or BAM format;
@@ -50,39 +71,28 @@ Conditions for samples that are available for group analysis:
 - Samples refer to a patient or run that is not in "Archive".
 
 Check the boxes of the samples (at least two) which you want to analyze.
+A maximum of 25 samples can be included in a germline cohort analysis, a maximum of 3 samples can be included
+in a family analysis, and an unlimited number of samples can be included in a population analysis.
 
-#### Run Analysis {#run-analysis}
+#### Family Analysis Settings {#family-analysis}
 
-If you have selected ***more than three samples*** for analysis,
-click on <img src={require('/img/eng/create_btn.png').default} width="130"/> to start analysis.
-
-If you have selected ***two or three samples***,
-click on <img src={require('/img/group_analysis/go_on_btn.png').default} width="130"/>:
-
-<p align="center">
-<img src={require('/img/group_analysis/all_chosen.png').default} height="600"/>
-</p>
-
-You will see the family analysis settings page:
+If you have selected the family type of group analysis,
+click on <img src={require('/img/group_analysis/go_on_btn.png').default} width="130"/> after selecting the
+samples for analysis. You will see the family analysis settings page:
 
 <p align="center">
 <img src={require('/img/group_analysis/family_settings.png').default} width="600"/>
 </p>
 
-If you want to perform a germline cohort analysis, turn off "Family Analysis" toggle button and
-click on <img src={require('/img/eng/create_btn.png').default} width="130"/>:
-
-<p align="center">
-<img src={require('/img/group_analysis/not_family.png').default} width="600"/>
-</p>
-
-If you want to perform a family analysis, define for each sample the "family role" of the patient
-from whom it was obtained: Proband (child), Father or Mother, and then
-click on <img src={require('/img/eng/create_btn.png').default} width="130"/>:
+Define for each sample the "family role" of the patient from whom it was obtained: Proband (child), Father or Mother:
 
 <p align="center">
 <img src={require('/img/group_analysis/family_analysis.png').default} width="600"/>
 </p>
+
+#### Run Analysis {#run-analysis}
+
+To start analysis, click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
 
 ### Group Analysis Page {#group-analysis-page}
 
@@ -105,14 +115,15 @@ On the right side of the group analysis page, there is a basic information about
 
 - NAME is the group analysis name. You can edit it by clicking on the value field.
 - CREATED is the date when the group analysis was created in m/d/yyyy format.
-- ANALYSIS TYPE: Germline cohort or Family. Can be changed by clicking on the value field and selecting
-a different type of analysis (if the samples used for analysis have not been deleted).
+- ANALYSIS TYPE: Germline cohort, Family, or Population.
+The types "Family" and "Germline cohort" can be changed between each other by clicking on the value field
+and selecting a different type of analysis (if the samples included in analysis have not been deleted).
 - SAMPLES is a list of samples for which the analysis was carried out. By clicking on the sample name,
 you can open [its page](/results/results). If a family analysis was performed, each sample will also
 be assigned to the "family role" of the patient from whom it was obtained:
 
 <p align="center">
-<img src={require('/img/group_analysis/family_roles.png').default} width="400"/>
+<img src={require('/img/group_analysis/family_roles.png').default} width="130"/>
 </p>
 
 - COMMENTS: can be entered by clicking on the value field.
@@ -120,7 +131,7 @@ be assigned to the "family role" of the patient from whom it was obtained:
 ### Analysis Workflow {#workflow}
 
 On the left side of the group analysis page, there is an information about the analysis workflow.
-The information is presented in the form of a table with analysis stages and their statuses.
+The information is presented in the form of a table with analysis stages and their statuses:
 
 <p align="center">
 <img src={require('/img/group_analysis/workflow.png').default} width="900"/>
@@ -147,16 +158,17 @@ output and processing error message (if an error occurred during the analysis).
 
 #### Group Analysis Stages: {#group-analysis-stages}
 
-1. Combine Germline SNVs/Indels: merging gVCF files resulting from germline SNVs/Indels discovery in samples
-using [GATK CombineGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360037053272-CombineGVCFs) tool;
-2. Perform Joint Genotyping of analysis samples
-using [GATK GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360037057852-GenotypeGVCFs) tool;
-3. Filter Germline SNVs/Indels: filtering variants
+1. **Combine Germline SNVs/Indels:** merging gVCF files resulting from germline SNVs/Indels discovery in samples
+using [GATK CombineGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360037053272-CombineGVCFs) tool,
+and joint genotyping of analysis samples
+using [GATK GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360037057852-GenotypeGVCFs);
+2. **Filter Germline SNVs/Indels:** filtering variants
 using [GATK VariantFiltration](https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration) tool
 based on certain filtering criteria that you can find and change on "Parameters" tab of the group analysis page;
-4. Annotate Germline SNVs/Indels: determination of the variant impact on DNA regions
+4. **Annotate Germline SNVs/Indels:** determination of the variant impact on DNA regions
 using [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html) tool and a set of tools developed by Genomenal;
-5. Store annotated variants for [Variant Viewer](/group-analysis#group-analysis-variant-viewer).
+5. **Store annotated variants for [Variant Viewer](/group-analysis#group-analysis-variant-viewer):**
+no such stage for population analysis.
 
 #### Restart Processing {#restart-processing}
 
@@ -170,20 +182,41 @@ Please note that this button is available only for analysis, all stages of which
 
 After all stages of analysis are completed successfully, the results will appear on the group analysis page:
 
-1. "***Germline SNVs/Indels***" section on "Main" tab including all the main results of group analysis:
+1. "***Germline SNVs/Indels***" section on "Main" tab including all the main results of group analysis.
+For germline cohort and family analyses, the results look like this (includes Variant Viewer):
 
 <p align="center">
 <img src={require('/img/results/germline_snvs.png').default} width="800"/>
 </p>
 
+And for the population analysis, the results look like this (no Variant Viewer included):
+
+<p align="center">
+<img src={require('/img/group_analysis/population_analysis_results.png').default} width="800"/>
+</p>
+
 - **Variant Viewer** is a embedded service for viewing and analyzing variants.
-You can read more about it in [the corresponding section](/results/main/snvs-indels/variant-viewer).
+You can read more about it [below](/group-analysis#group-analysis-variant-viewer).
+Variant Viewer is not provided for population analysis.
 Click on <img src={require('/img/results/vv_btn.png').default} width="125"/> to open Variant Viewer.
-- Text file in **CSV** (Comma-Separated Values) format. To download the file,
+- Text file in **CSV** (Comma-Separated Values) format with annotated variants. To download the file,
 click on <img src={require('/img/results/table_btn.png').default} width="120"/>.
-- File in **[VCF 4.2 (Variant Call Format)](http://samtools.github.io/hts-specs/VCFv4.2.pdf)** format.
-To download the file, click on <img src={require('/img/results/vcf_btn.png').default} width="45"/>.
-- File in **Google Spreadsheet** (only a limited number of variants can be shown). To open the file,
+- File in **[VCF 4.2 (Variant Call Format)](http://samtools.github.io/hts-specs/VCFv4.2.pdf)** format with
+annotated variants.
+For germline cohort and family analyses, click on <img src={require('/img/results/vcf_btn.png').default} width="45"/> to
+download file.
+For population analysis, click on <img src={require('/img/results/vcf_btn.png').default} width="45"/> to
+open a drop-down list with result files:
+
+<p align="center">
+<img src={require('/img/group_analysis/population_vcfs.png').default} width="120"/>
+</p>
+
+1. *Frequency* is a VCF file with the allele frequencies of the variants discovered in the samples included in
+the analysis.
+2. *Annotated* is a VCF file with annotated variants.
+
+- Annotated variants in **Google Spreadsheet** (only a limited number of variants can be shown). To open a table,
 click on <img src={require('/img/results/google_btn.png').default} width="45"/>.
 - **[Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/)** is an embedded
 module for visualization of variants on the genome. To open the module,
@@ -199,21 +232,20 @@ click on <img src={require('/img/results/export_pdf.png').default} width="150"/>
 
 #### Group Analysis Variant Viewer {#group-analysis-variant-viewer}
 
-Group Analysis Variant Viewer is almost the same as [Sample Variant Viewer](/results/main/snvs-indels/variant-viewer),
-but it has some special features:
-
+Variant Viewer is only provided for germline cohort and family analyses.
+It is described in detail in [the corresponding section](/results/main/snvs-indels/variant-viewer) on
+Sample Variant Viewer, however, Group Analysis Variant Viewer has a number of special features:
 1. **The columns "Depth (Alt/Ref)" and "GT" contain the data of all samples of the analysis**.
 For germline cohort analysis, these column names contains the name of the sample, in which the variant has
 the corresponding sequencing depth and genotype (when you hover over the column name, you can see the full
 sample name):
 
 <p align="center">
-<img src={require('/img/group_analysis/ga_gt.png').default} width="400"/>
+<img src={require('/img/group_analysis/ga_gt.png').default} width="450"/>
 </p>
 
 For family analysis, samples in which a variant has the corresponding sequencing depth and genotype
-are designated by certain patient "family roles" (when you hover over the column name, you can see the full name
-of the sample):
+are designated by certain patient "family roles" (when you hover over the column name, you can see the sample name):
 
 <p align="center">
 <img src={require('/img/group_analysis/trio_gt.png').default} width="600"/>
@@ -234,9 +266,12 @@ To clear the filter by inheritance, click on the filter window,
 and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
 
 You can also filter by trio GT in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering)
-using ["Trio GT (Genotype)" filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
+using ["Trio GT (Genotype)" filter](/results/main/snvs-indels/advanced-filtering#common).
 
-3. There is no column, basic and advanced filter "Origin", since all variants are germline.
+3. There is no [column](/results/main/snvs-indels/variant-viewer#columns-description),
+[basic filter](/results/main/snvs-indels/basic-filtering#origin)
+and [advanced filter](/results/main/snvs-indels/advanced-filtering#common) "Origin", since all variants in group
+analysis Variant Viewer are germline.
 4. There is no button to [include variants to report](/results/main/snvs-indels/variant-viewer#include-to-report),
 because no reports are generated for group analysis.
 5. The variant pathogenicity can be determined
