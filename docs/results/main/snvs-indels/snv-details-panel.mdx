@@ -214,8 +214,25 @@ or changed, and the state of Variant Viewer on the new tab will retain.
 
 #### 2. Transcripts {#transcripts}
 
-A table with all gene transcripts from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) database
-with the following columns:
+The panel contains gene transcripts from two databases: [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
+and [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/).
+Ensembl transcript models are annotated directly on the reference genome, while RefSeq annotates on mRNA sequences.
+Due to sequence differences between the reference genomes and individual mRNAs, some of the RefSeq mRNAs may not
+map perfectly to the reference genome.
+
+By default, a table with transcripts from Ensembl is shown. To open the table with transcripts from RefSeq,
+click on the corresponding switch button:
+
+<p align="center">
+<img src={require('/img/vv/refseq_transcripts.png').default} width="700"/>
+</p>
+
+:::note
+On "[Profile Settings" page](/settings/profile#transcripts), you can choose which of the gene transcript
+models will be shown by default.
+:::
+
+The gene transcript table from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) has the following columns:
 - ***Transcript*** is a transcript ID from [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) database
 (ENSTxxxxxxxxxxx). For the first, main transcript, a transcript from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/)
 (NM_xxxxxx.x) is also given. You can open the transcript page by clicking on the ID.
@@ -233,6 +250,20 @@ import Highlight from '@site/src/components/Highlight';
 HIGH impact value is colored <Highlight color="#E95726">red</Highlight>, MODERATE
 is colored <Highlight color="#E2CC81">yellow</Highlight>, and LOW and MODIFIER are
 colored <Highlight color="#999AAB">gray</Highlight>.
+- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
+- ***HGVSc*** - is a nucleotide substitution using [HGVS notation](https://varnomen.hgvs.org/): “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+
+The gene transcript table from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) has the following columns:
+- ***Transcript*** is a transcript ID from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x). You can open the transcript page by clicking on the ID.
+The main gene transcript, according to [MANE Select](https://www.ncbi.nlm.nih.gov/refseq/MANE/#Select),
+[MANE plus clinical](https://www.ncbi.nlm.nih.gov/refseq/MANE/#:~:text=MANE%20Plus%20Clinical%3A%20The%20MANE,variants%20available%20in%20public%20resources.)
+or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html), is marked
+with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen
+as the main one for this variant is framed.
 - ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
 (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
 - ***HGVSc*** - is a nucleotide substitution using [HGVS notation](https://varnomen.hgvs.org/): “c.” (coding; for a
