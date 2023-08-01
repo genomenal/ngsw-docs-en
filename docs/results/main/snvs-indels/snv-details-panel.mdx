@@ -103,6 +103,14 @@ The number of alleles suggests ploidy of the sample.
 - ***AF*** is an allelic frequency for this sample.
 2. Information about the variant occurrences in other samples uploaded in the system.
 By clicking on the link, you will see "Occurrences" tab of the variant details page.
+3. Information about the variant occurrence in run samples.
+Only presented on the variant panel in [run Variant Viewer](/runs#run-variant-viewer)
+and run sample Variant Viewer. For example, in the following case, a variant was discovered in two of the
+three run samples:
+
+<p align="center">
+<img src={require('/img/runs/occurrence.png').default} width="450"/>
+</p>
 
 #### Variant Interpretation / Comment {#variant-interpretation}
 
@@ -159,7 +167,7 @@ The details panel of a variant included in the phasing groups shows these groups
 </p>
 
 If a variant is a part of phasing group with discordant amino acid substitutions, then that variant is
-marked with <img src={require('/img/eng/problems_status.png').default} width="28"/>. If the variant is a
+marked with <img src={require('/img/eng/phasing_icon.png').default} width="28"/>. If the variant is a
 part of phasing group with concordant amino acid substitution, then the variant is not marked with such icon.
 
 **Example of phasing group representation in IGV:** phasing groups are located in "phasing groups" track.
