@@ -5,57 +5,77 @@ sidebar_label: Bioinformatic Report
 
 # Bioinformatic Report
 
-Bioinformatic report has collected the main metrics that will help to control the quality of the source data
-and the quality of alignment.
-
-![Bioinformatic report](/img/eng/35-bioinformatic-report.png)
-
+The "Bioinformatics report" tab on the sample page includes key metrics that help to control raw data quality,
+alignment quality, and data coverage, as well as reports on discovered SNVs/Indels.
 To export a report in PDF format, click on <img src={require('/img/results/export_pdf.png').default} width="150"/>.
 
-## Bioinformatic report sections: {#bioinformatic-report-sections}
-
-### 1. File statistics (only for samples uploaded in FASTQ or BAM formats) {#file-statistics}
+:::note
+Bioinformatic report of tumor sample from tumor/control sample set provides information for the tumor and
+control sample files:
 
 <p align="center">
-<img src={require('/img/results/statistic_normal.png').default} width="900"/>
+<img src={require('/img/results/file_statistics.png').default} width="900"/>
 </p>
 
-Data on reads count:
-- Start: the number of reads in the sample file after it was verified, but before cleanup.
-- Final: the number of reads in the sample file counted during the quality check after cleanup.
-- Final percent: the percentage of reads that retained in the file after cleanup.
+Bioinformatic report of non-tumor tissue samples and single tumor samples provides information about the
+files of only these samples.
+:::
 
-Data on reads length:
-- Min length: the minimum read length in the sample file.
-- Max length: the maximum read length in the sample file.
-- Median length: the average value of the read length in the sample file.
+Bioinformatic report may include different sections depending on the format of the uploaded samples and the
+analysis stages included in the pipeline. Possible sections of the report:
+1. [File statistics](/results/bioinformatic-report#file-statistics) - for samples uploaded in FASTQ or BAM format.
+2. [Quality Report](/results/bioinformatic-report#quality-report) - for samples uploaded in FASTQ or BAM format.
+3. [Alignment Report](/results/bioinformatic-report#alignment-report) - for samples uploaded in FASTQ or BAM format,
+for which the "Alignment" stage was included in the pipeline and completed successfully.
+4. [Coverage Report](/results/bioinformatic-report#coverage-report) - for samples uploaded in FASTQ or BAM format,
+for which the "Alignment" stage was included in the pipeline and completed successfully.
+5. [Tumor Sample Somatic SNVs/Indels Report](/results/bioinformatic-report#snvs-report) - for samples for which
+"Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages were included in the pipeline and
+successfully completed.
+6. [Germline SNVs/Indels Report](/results/bioinformatic-report#snvs-report) - for samples for which
+"Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages were included in the pipeline and
+successfully completed.
+
+### File statistics {#file-statistics}
+
+:::note
+Only samples uploaded in FASTQ or BAM format have this section.
+:::
+
+1. **Data on reads count:**
+- **Start**: the number of reads in the sample file after it was verified, but before cleanup.
+- **Final**: the number of reads in the sample file counted during the quality check after cleanup.
+- **Final percent**: the percentage of reads that retained in the file after cleanup.
+
+2. **Data on reads length:**
+- **Min length**: the minimum read length in the sample file.
+- **Max length**: the maximum read length in the sample file.
+- **Median length**: the average value of the read length in the sample file.
 
 :::caution
 A large number of filtered reads and a large decrease in read length indicate a low quality
 of the source data. In this case, we recommend you to consider re-sequencing the material.
 :::
 
-:::note
-Bioinformatic Report of the tumor tissue sample from the tumor/normal sample set provides information
-on the tumor and normal samples.
-:::
-
 ### Quality Report {#quality-report}
 
-This is a report on the sequence quality control metrics calculated at the “Check quality and cleanup”
-stage of the pipeline. A detailed report on metrics with visualization can be downloaded in the tab
-“**Workflow details**” -> “**Check quality and cleanup**” -> “**Check Quality**” -> “**Result files**”.
+:::note
+Only samples uploaded in FASTQ or BAM format have this section.
+:::
 
-<details>
-<summary>Click to see the description of metrics and thresholds</summary>
+The report contains the metrics of the final read quality (after cleaning, if any), calculated at the “Check
+quality and cleanup” stage. You can download a detailed report on metrics with visualization
+in [the corresponding section of "Workflow details" tab](/results/workflow-details/check-quality-and-cleanup).
 
-#### Description of metrics and thresholds {#qc-metrics}
+#### Quality Control Metrics {#qc-metrics}
 
 <table>
   <tr>
    <td>Metric</td>
    <td>Description</td>
-   <td>Threshold</td>
+   <td>The threshold value of the metric at which reads in the sample are considered to be of high
+   quality (default value, can be changed
+   in <a href="/settings/settings/quality-control-settings#change-metric-thresholds">the settings</a>)</td>
   </tr>
   <tr>
    <td>Total sequences</td>
@@ -115,10 +135,180 @@ stage of the pipeline. A detailed report on metrics with visualization can be do
   </tr>
 </table>
 
-</details>
+Metrics that meet the quality threshold are marked
+with <img src={require('/img/eng/default_setting.png').default} width="27"/>, and those that do not meet the
+threshold are marked with <img src={require('/img/eng/44-warning-status.png').default} width="30"/>.
 
 ### Alignment Report {#alignment-report}
 
-Metrics describing the alignment quality. If there are a large number of sequencing errors, incomplete data,
-high levels of contamination, or incorrect identification of the sample source (organism), the metrics will
-indicate a possible problem.
+:::note
+The section is available for samples for which [the alignment](/settings/settings/alignment-settings) was
+included in the pipeline and completed successfully.
+:::
+
+The section includes alignment statistics and metrics that describe alignment quality. If there are a lot of
+sequencing errors, incomplete data, a high level of contamination, or incorrect identification of the sample
+source (organism), the metrics will indicate a possible problem.
+
+1. **Alignment statistics**:
+- **Total reads** is the total number of reads in the alignment file.
+- **Mapped reads** is the number of sample reads that have been mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Unmapped reads** is the number of sample reads that could not be mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Multumaps reads** is the number of reads mapped to the reference genome multiple times.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Forward strand reads** is the number of forward strand reads mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Reverse strand reads** is the number of reverse strand reads mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent). Normally, the number of forward and reverse strand reads is the same. The
+difference in this number indicates that there are DNA translocations (for example, inversions) in the data.
+- **Paired reads** is the total number of paired reads in the alignment file.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Paired mapped reads** is the number of paired reads of a sample that have been mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Paired properly mapped reads** is the number of paired reads of a sample properly mapped to the reference genome.
+The proportion of the number of such reads from the total number of reads in the file is indicated in
+brackets (in percent).
+- **Total alignments** is the total number of alignments of sample reads to the reference genome
+- **Multumaps alignments** is number of alignments of a read to the reference genome several times.
+The proportion of the number of such alignments from the total number of alignments in the file is indicated in
+brackets (in percent).
+- **Forward strand alignments** is the number of forward strand read alignments to reference genome.
+The proportion of the number of such alignments from the total number of alignments in the file is indicated in
+brackets (in percent).
+- **Reverse strand alignments** is the number of reverse strand read alignments to reference genome.
+The proportion of the number of such alignments from the total number of alignments in the file is indicated in
+brackets (in percent).
+- **Percent duplication** is the proportion of the mapped sequence that was marked as a duplicate (in percent).
+The statistics is included in the report
+if [the "Mark Duplicates" stage](/settings/settings/variant-discovery-settings#disable-mark-duplicates) was
+included in the pipeline and completed successfully for the sample.
+2. **Alignment Quality Metrics**:
+
+<table>
+  <tr>
+   <td>Metric</td>
+   <td>Description</td>
+   <td>The metric threshold value by default (can be changed
+   in <a href="/settings/settings/alignment-settings#change-metric-thresholds">the settings</a>)</td>
+  </tr>
+  <tr>
+   <td><b>Mapped reads</b></td>
+   <td>The proportion of the number of mapped reads (in percent) of the total number of reads in the alignment
+   file.</td>
+   <td>&ge; 85</td>
+  </tr>
+  <tr>
+   <td><b>Multiple alignments</b></td>
+   <td>The proportion of multiple alignments of the same read to the genome (in percent) of the total number
+   of alignments in the alignment file.</td>
+   <td>&#8804; 15</td>
+  </tr>
+  <tr>
+   <td><b>Forward/reverse balance</b></td>
+   <td>The difference in the number of forward and reverse strand reads from the total number of
+   reads in the alignment file (in percent).</td>
+   <td>&#8804; 10</td>
+  </tr>
+  <tr>
+   <td><b>Paired mapped reads</b></td>
+   <td>The proportion of the number of paired mapped reads (in percent) of the total number of reads in the
+   alignment file.</td>
+   <td>&ge; 80</td>
+  </tr>
+  <tr>
+   <td><b>Paired properly mapped reads</b></td>
+   <td>The proportion of the number of paired properly mapped reads (in percent) of the total number of reads in the
+   alignment file.</td>
+   <td>&ge; 75</td>
+  </tr>
+</table>
+
+Metrics that meet the quality threshold are marked
+with <img src={require('/img/eng/default_setting.png').default} width="27"/>, and those that do not meet the
+threshold are marked with <img src={require('/img/eng/44-warning-status.png').default} width="30"/>.
+
+### Coverage Report {#coverage-report}
+
+:::note
+The section is available for samples for which [the alignment](/settings/settings/alignment-settings) was
+included in the pipeline and completed successfully.
+:::
+
+The coverage report shows how informative the analysis of the sample is.
+
+1. **Coverage per nucleotide** is the coverage per nucleotide on the genome. The metric threshold is &ge; 0.1.
+If the metric meets the quality threshold, it is marked
+with <img src={require('/img/eng/default_setting.png').default} width="27"/>,
+and if it doesn't meet the threshold, then it is
+marked with <img src={require('/img/eng/44-warning-status.png').default} width="30"/>.
+2. **PCT selected bases** is the proportion (in percent) of PF_BASES_ALIGNED (the number of filtered unique
+bases that are mapped to the reference genome with a mapping score > 0) located in or near the baited region,
+which is calculated by the formula (ON_BAIT_BASES + NEAR_BAIT_BASES)/PF_BASES_ALIGNED, where ON_BAIT_BASES is
+the number of PF_BASES_ALIGNED mapped to the baited region of the genome; NEAR_BAIT_BASES is the number of
+PF_BASES_ALIGNED mapped to the fixed interval region containing the baited region but not to the region itself.
+The metric is included in the report for samples sequenced with a targeted panel if the "Calculate coverage
+statistics" stage is successfully completed.
+3. **PCT usable bases on target** is the proportion (in percent) of the number of mapped deduplicated target
+bases out of all filtered bases. The metric is included in the report for samples sequenced with a targeted panel
+if the "Calculate coverage statistics" stage is successfully completed.
+4. **Mean target coverage** is the mean coverage of target region.
+The metric is included in the report for samples sequenced with a targeted panel if the "Calculate coverage
+statistics" stage is successfully completed.
+5. **Median target coverage** is the median coverage of the target region.
+The metric is included in the report for samples sequenced with a targeted panel if the "Calculate coverage
+statistics" stage is successfully completed.
+
+### Somatic or Germline SNVs/Indels Report  {#snvs-report}
+
+:::note
+"***Tumor Sample Somatic SNVs/Indels Report***" section is available for samples for
+which [the "Somatic SNVs/Indels discovery" stage](/settings/settings/variant-discovery-settings#somatic-snvs-discovery)
+was included in the pipeline, and the "Somatic SNVs/Indels annotation" stage was completed successfully.<br></br>"***Tumor Sample Germline SNVs/Indels Report***"
+section is available for single tumor samples (analyzed without control) for
+which [the "Germline SNVs/Indels discovery" stage](/settings/settings/variant-discovery-settings#germline-snvs-discovery)
+was included in the pipeline, and the "Germline SNVs/Indels annotation" stage was completed successfully.<br></br>"***Normal Sample Germline SNVs/Indels Report***"
+section is available for tumor (analyzed with control) and normal samples for
+which [the "Germline SNVs/Indels discovery" stage](/settings/settings/variant-discovery-settings#germline-snvs-discovery)
+was included in the pipeline, and the "Germline SNVs/Indels annotation" stage was completed successfully.
+:::
+
+1. **Variant count**:
+- **Total** is the total number of single-nucleotide variants (SNVs) and short insertions/deletions (indels)
+discovered in the sample. Number in brackets indicates the number of genes in which the discovered variants are
+located.
+- **SNV count** is the number of single-nucleotide variants (SNVs) discovered in the sample.
+- **Indel count** is the number of short insertions/deletions (indels) discovered in the sample.
+2. **Genome position**:
+- **Exonic** is the number of variants located in an exon:
+    - **Frameshift** is the number of insertions or deletions that cause a frameshift;
+    - **Start loss** is the number of variants that cause a start codon to mutate to a non-start codon;
+    - **Stop gain** is the number of variants leading to a stop codon;
+    - **Stop loss** is the number of variants that cause a stop codon to mutate to a non-stop codon;
+    - **Missense** is the number of variants resulting in a codon that codes for a different amino acid;
+    - **Inframe indel** is the number of insertions/deletions of one or more codons;
+    - **Synonymous** is the number of variants resulting in a codon that codes for the same amino acid;
+    - **5'UTR** is the number of variants located in the 5'-untranslated region;
+    - **3'UTR** is the number of variants located in the 3'-untranslated region;
+- **Intronic** is the number of variants located in an intron.
+- **Intergenic** is the number of variants located in the intergenic region:
+    - **Upstream** is the number of variants located 5' of a gene;
+    - **Downstream** is the number of variants located 3' of a gene.
+- **In splice site** is the number of variants located in splice site.
+- **In non-protein-coding transcript** is the number of variants located in non-protein-coding transcript.
+3. **Known variants** are variants, information about which is contained in various databases, such
+as [dbSNP](https://www.ncbi.nlm.nih.gov/snp/), [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if the database
+was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)),
+[1000 Genomes](https://www.internationalgenome.org/), [gnomAD](https://gnomad.broadinstitute.org/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) (indicating the number of variants with a certain clinical
+significance of the phenotype; you can see the definitions of
+values [here](https://www.ncbi.nlm.nih.gov/clinvar/docs/clinsig/#clinsig_options_scv)),
+[dbNSFP](https://sites.google.com/site/jpopgen/dbNSFP).

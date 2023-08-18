@@ -92,7 +92,7 @@ was [uploaded as a custom annotation](/settings/custom-annotations)).
 
 #### Samples Info {#sample-info}
 
-1. Table with samples with the following columns:
+1. **Table with samples** with the following columns:
 - ***Name*** is a name of the sample, for which the analysis was performed.
 - ***Genotype*** is an allele combination for this sample (0 - reference allele, 1 - first alternative allele,
 2 - second alternative allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
@@ -101,9 +101,20 @@ The number of alleles suggests ploidy of the sample.
 - ***Ref count*** is a reference allele reads count for this sample.
 - ***Alt count*** is an alternative allele reads count for this sample.
 - ***AF*** is an allelic frequency for this sample.
-2. Information about the variant occurrences in other samples uploaded in the system.
-By clicking on the link, you will see "Occurrences" tab of the variant details page.
-3. Information about the variant occurrence in run samples.
+2. Information about **the variant occurrences in other samples** uploaded into the system:
+number of variant/number of samples.
+Here is the number of variants that completely coincide with the variant in terms of origin (somatic or germline),
+chromosome, start position, reference and alternative allele and gene. These variants contain at least one
+alternative allele (i.e. have genotype 1/1, 1|1, 0/1, 1/0, 0|1, 1|0, 1/., 1|., ./1, .|1, 1, 0/0/1, 0 /2, 1/2, etc.)
+These variants are searched among all samples uploaded into the system (including deleted ones), for which the
+stage of variant discovery (or annotation for samples uploaded in VCF format) has been successfully completed.
+To calculate the occurrences of the somatic variant, those samples are taken into account in which the stage
+"Somatic SNVs/Indels discovery" (or "Somatic SNVs/Indels annotation" stage for VCF samples) has been
+successfully completed. To calculate the occurrences of the germline variant, samples with a successfully completed
+stage "Germline SNVs/Indels discovery" (or "Germline SNVs/Indels annotation" for VCF samples) are taken into account.
+By clicking on the link, you will see ["Occurrences" tab](/results/main/snvs-indels/snv-details-page#occurrences)
+of the variant details page.
+3. Information about **the variant occurrence in run samples**.
 Only presented on the variant panel in [run Variant Viewer](/runs#run-variant-viewer)
 and run sample Variant Viewer. For example, in the following case, a variant was discovered in two of the
 three run samples:

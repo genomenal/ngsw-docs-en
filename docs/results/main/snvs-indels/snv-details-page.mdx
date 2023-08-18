@@ -5,9 +5,10 @@ sidebar_label: Variant Details Page
 
 # Variant Details Page
 
-The variant details page may include the following tabs:
+The variant details page may include tabs with the following information:
 - [Detailed variant annotation](/results/main/snvs-indels/snv-details-page#annotation-tab);
 - [Sample and Patient info](/results/main/snvs-indels/snv-details-page#sample-tab);
+- [Information about occurrences of the variant in other samples](/results/main/snvs-indels/snv-details-page#occurrences);
 - [ACMG classification](/results/main/snvs-indels/snv-details-page#acmg-tab);
 - [Scientific publications associated with the variant](/results/main/snvs-indels/snv-details-page#literature-tab);
 - [Clinical guidelines](/results/main/snvs-indels/snv-details-page#clinical-guidelines-tab)
@@ -107,13 +108,13 @@ interpreted the variant) will appear under the text box:
 <img src={require('/img/vv/interpretation_author_on_page.png').default} width="900"/>
 </p>
 
-## 1. "Annotation" tab {#annotation-tab}
+## "Annotation" tab {#annotation-tab}
 
 The "Annotation" tab includes those annotation sections that contain at least one non-empty annotation field.
 Annotation sections correspond to the variant details panel tabs, you can find a detailed description of the
 tabs [here](/results/main/snvs-indels/snv-details-panel#panel-tabs).
 
-## 2. "Sample" tab {#sample-tab}
+## "Sample" tab {#sample-tab}
 
 There are two sections on "Sample" tab:
 1. **Sample Info** corresponds to the sample info
@@ -191,7 +192,6 @@ summary will be "*No pathogenic variants found*".
 <img src={require('/img/vv/interpretation_window.png').default} height="500"/>
 </p>
 
-
 In the same window, you can specify the patient's oncological disease, its stage and stage details,
 which were defined for the patient, as well as the therapy line
 used to treat the patient's disease, at the time the sample was taken for sequencing.
@@ -201,13 +201,115 @@ To complete interpretation, click on <img src={require('/img/custom-annot/ok_btn
 To ***resume interpretation***, click on <img src={require('/img/vv/restart_interpretation.png').default} width="210"/>
 on "Sample" tab of the variant details page.
 
-## 3. "ACMG Classification" tab {#acmg-tab}
+## "Occurrences" tab {#occurrences}
+
+Among other samples uploaded by the user to the system, or [group analyzes](/group-analysis) created by the user,
+information on the occurrences of the following variants can be found:
+- **the same variants** as the variant whose details page is open. The variants found completely coincide
+with this variant in terms of origin (somatic or germline), chromosome, start position, reference and alternative
+allele and gene. The sites of the found variants contain at least one alternative allele (i.e., they have
+the genotype 1/1, 1|1, 0/1, 1/0, 0|1, 1|0, 1/., 1|., ./ 1, .|1, 1, 0/0/1, 0/2, 1/2, etc.)
+- **all variants in the same position** as the variant whose details page is open. The variants found contain
+at least one alternative allele and match this variant in terms of origin, chromosome, and start position.
+- **variants in position ± 10 bp or ± 20 bp from the starting position** of the variant whose details page is open.
+The variants found coincide with this variant in terms of origin. Their starting positions are located within the
+range of ± 10 b.p. or ± 20 b.p. from the starting position of this variant. The sites of the found variants contain
+at least one alternative allele.
+
+To the right of the buttons for switching the search for the variants described above, there is information
+about the number of such variants found in other samples:
+
+<p align="center">
+<img src={require('/img/vv/sample_amount.png').default} width="700"/>
+</p>
+
+The samples count includes all samples ever uploaded to the system (including deleted ones) for which
+the variants discovery stage (for samples uploaded in FASTQ or BAM format) or the variants annotation stage
+(for samples uploaded in VCF, TXT or TSV format) was successfully completed. Thus, to calculate the occurrences
+of the somatic variant, those samples uploaded in FASTQ or BAM format, in which the "Somatic SNVs/Indels discovery"
+stage has been successfully completed, and those samples uploaded in VCF, TXT or TSV format,
+in which the "Somatic SNVs/Indels annotation" stage has been successfully completed, are taken into account.
+To calculate the occurrences of the germline variant, samples in FASTQ or BAM format with successfully completed
+stage "Germline SNVs/Indels discovery" and samples in VCF, TXT or TSV format with successfully completed stage
+"Germline SNVs/Indels annotation" are taken into account.
+
+Below are cards with the variants found. Card example:
+
+<p align="center">
+<img src={require('/img/vv/variant_card.png').default} width="1000"/>
+</p>
+
+**The variant card includes:**
+- the name of **the gene** in which the variant is located;
+- the variant **position**: chromosome + start position;
+- the variant **alteration**: reference allele > alternative allele;
+- the variant **pathogenicity** (if
+it [has been defined](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab) for this variant;
+if the pathogenicity class requires [confirmation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity),
+then next to the pathogenicity icon there will
+be <img src={require('/img/vv/confirm_for_occurrency.png').default} width="20"/>);
+- the variant **significance** (if it [has been defined](/results/main/snvs-indels/variant-viewer#label) by the user);
+- link to **the found variant details page**:  <img src={require('/img/vv/to_variant_page.png').default} width="20"/>
+(if the sample in which the variant was discovered is deleted, then there will be no link to the variant);
+- links to **[the patient](/add-patient#patient-page)** and/or **[run](/runs)**, in which the sample with the
+variant is uploaded (if the patient and/or run is deleted, then
+the patient code or the run name will be indicated with a deletion mark instead of the links);
+- link to **the sample** in which the variant was discovered (if the sample was deleted,
+then the sample's file name will be indicated with a deletion mark instead of the link);
+- the patient's **diagnosis** made at the time the sequencing sample material was taken (can be defined
+on [the patient page](/add-patient#patient-info) or
+on ["Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page);
+- the variant **interpretation** (a variant can be interpreted on
+the variant details [page](/results/main/snvs-indels/snv-details-page#add-interpretation)
+or [panel](/results/main/snvs-indels/snv-details-panel#variant-interpretation);
+in brackets, there is the name of the user who interpreted the variant);
+- section with **comments**, which is displayed only if at least one of the comments is
+present: [patient comment](/add-patient#patient-info), [run description](/runs#run-page),
+or [sample comment](/results/main/main#sample-info);
+- **information on sequencing samples:**:
+1. ***Name*** is a name of the sample, for which the analysis was performed.
+2. ***Genotype*** is an allele combination for this sample (0 - reference allele, 1 - first alternative allele,
+2 - second alternative allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
+The number of alleles suggests ploidy of the sample.
+3. ***Read depth*** is a total number of reads of the sequence overlapping the variant position for this sample.
+4. ***Ref count*** is a reference allele reads count for this sample.
+5. ***Alt count*** is an alternative allele reads count for this sample.
+6. ***AF*** is an allelic frequency for this sample.
+
+At the end of the page, there is **information about the variant occurrences in [group analyzes](/group-analysis)**
+created by the user:
+
+<p align="center">
+<img src={require('/img/vv/occurrences_in_ga.png').default} width="1000"/>
+</p>
+
+There are also variant cards with the following information:
+- the name of **the gene** in which the variant is located;
+- the variant **position**: chromosome + start position;
+- the variant **alteration**: reference allele > alternative allele;
+- the variant **pathogenicity** (if
+it [has been defined](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab) for this variant;
+if the pathogenicity class requires [confirmation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity),
+then next to the pathogenicity icon there will
+be <img src={require('/img/vv/confirm_for_occurrency.png').default} width="20"/>);
+- the variant **significance** (if it [has been defined](/results/main/snvs-indels/variant-viewer#label) by the user);
+- link to **the found variant details page**:  <img src={require('/img/vv/to_variant_page.png').default} width="20"/>
+(if the group analysis is deleted, then there will be no link to the variant);
+- link to **[the group analysis](/group-analysis)** in which the variant was discovered (if the group analysis
+was deleted, then the group analysis name will be indicated with a deletion mark instead of the link);
+- the variant **interpretation** (a variant can be interpreted on
+the variant details [page](/results/main/snvs-indels/snv-details-page#add-interpretation)
+or [panel](/results/main/snvs-indels/snv-details-panel#variant-interpretation);
+in brackets, there is the name of the user who interpreted the variant);
+- group analysis **comment** (if it [was added](/group-analysis#group-analysis-page) on the analysis page).
+
+## "ACMG Classification" tab {#acmg-tab}
 
 The tab includes the variant interpretation criteria developed by [ACMG](https://www.acmg.net/).
 The tab is described in detail
 in [the corresponding section of the documentation](/results/main/snvs-indels/pathogenicity#acmg-classification).
 
-## 4. "Literature" tab {#literature-tab}
+## "Literature" tab {#literature-tab}
 
 The tab includes scientific publications associated with the variant found
 in [NCBI LitVar](https://www.ncbi.nlm.nih.gov/CBBresearch/Lu/Demo/LitVar/). Searching for variants in
@@ -266,7 +368,7 @@ on ["ACMG Classification" tab](/results/main/snvs-indels/pathogenicity#acmg-clas
 <img src={require('/img/vv/criterion_literature.png').default} width="900"/>
 </p>
 
-## 5. "Clinical Guidelines" tab {#clinical-guidelines-tab}
+## "Clinical Guidelines" tab {#clinical-guidelines-tab}
 
 The "Clinical Guidelines" tab appears on the variant details page only if this variant
 is [onco relevant](/results/main/snvs-indels/onco-relevance) for non-small cell lung carcinoma, melanoma,
@@ -277,7 +379,7 @@ or colorectal carcinoma. The tab contains clinical guidelines developed by [RUSS
 its stage, stage's details and therapy line. The tab is described in detail
 in [the corresponding section](/results/main/snvs-indels/onco-relevance#clinical-guidelines) of the documentation.
 
-## 6. "Reporting" tab {#reporting-tab}
+## "Reporting" tab {#reporting-tab}
 
 On the "Reporting" tab, you can include a variant to the report, see how the variant information will look in
 the report, and export the report with this variant.
