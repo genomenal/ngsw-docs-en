@@ -59,6 +59,11 @@ import SequencingType from '/docs/imported_components/_seq_type.mdx';
 
 Upload samples using one of the methods below. The number of samples in run is not limited.
 
+:::info
+It is not necessary to upload all the required samples at this stage.
+Additionally, samples can be added to the run after the start of the analysis, as described [here](/runs#upload-more).
+:::
+
 import UploadFiles from '/docs/imported_components/_upload_files_from_different_sources.mdx';
 
 <UploadFiles />
@@ -350,6 +355,21 @@ three run samples:
 Variants can be filtered by occurrence in run
 using ["Occurrence in Run" filter](/results/main/snvs-indels/advanced-filtering#common)
 in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering).
+
+### Upload More Samples {#upload-more}
+
+To add samples to the run in addition to the samples uploaded earlier, click the
+button <img src={require('/img/runs/upload_samples.png').default} width="140"/> on the run page.
+You will see new samples uploading form above the already uploaded samples:
+
+<p align="center">
+<img src={require('/img/runs/upload_page.png').default} width="1000"/>
+</p>
+
+Upload the samples as described [above](/runs#upload-samples) and
+click on <img src={require('/img/runs/analyze_samples_btn.png').default} width="200"/>.
+
+While new samples are being processed, Run Variant Viewer will be unavailable.
 
 ### Archive, Restore and Delete Run {#delete-run}
 

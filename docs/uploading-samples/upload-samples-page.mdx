@@ -1,0 +1,123 @@
+---
+sidebar_position: 4
+sidebar_label: Samples Upload Page
+---
+
+# Samples Upload Page
+
+On the samples upload page, you can perform multiple uploads of data in different patients.
+It can be useful if you have a research purpose and do not care which patient the sequencing samples
+came from. To open the samples upload page, click on
+the button <img src={require('/img/eng/upload_samples_btn.png').default} width="150"/> on the all patients page.
+You will see the following page:
+
+<p align="center">
+<img src={require('/img/eng/upload_page.png').default} width="900"/>
+</p>
+
+1. **Upload samples files.** Supported data formats are described [here](/data-for-analysis).
+
+import UploadFiles from '/docs/imported_components/_upload_files_from_different_sources.mdx';
+
+<UploadFiles />
+
+Samples uploaded by mistake can be deleted by hovering over their card and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="20"/>.
+
+#### Recognizing paired files {#recognize-pair}
+
+import RecognizePair from '/docs/imported_components/_recognize_pair.mdx';
+
+<RecognizePair />
+
+#### Merging sequencing lanes {#merge-lanes}
+
+import MergeLanes from '/docs/imported_components/_merge_lanes.mdx';
+
+<MergeLanes />
+
+2. **Select workflow settings:**
+- for a pair of **tumor/normal** samples: if you want to analyze a tumor sample to look for somatic and germline
+mutations in contrast with a normal sample, select
+[Somatic and germline variant analysis](/settings/settings/main-presets#somаtic-and-germline-variant-analysis)
+workflow setting;
+- for **tumor tissue samples**: if you want to analyze a tumor sample to look for somatic and germline mutations
+without a normal sample, select
+[Somatic and germline variant analysis](/settings/settings/main-presets#somаtic-and-germline-variant-analysis)
+workflow setting;
+- for **normal samples**: if you want to analyze a normal
+sample to look for ***germline mutations, structural and copy number variations***,
+select [Germline variant analysis](/settings/settings/main-presets#germline-variant-analysis) workflow setting,
+and if for ***prenatal genetic testing*** (copy number variations discovery),
+select [Prenatal analysis](/settings/settings/main-presets#prenatal-analysis) workflow setting.
+3. **Compose sample set:** drag the uploaded samples (the "Uncategorized samples" section on the left)
+into the sample placeholders of the corresponding type, or click on the uploaded sample card and then on
+the corresponding placeholder.<br></br>
+If you select "Somatic and germline variant analysis" as the workflow setting, then two sample placeholders are
+available: "Tumor tissue" and "Matched non-tumor tissue", which are suitable for tumor tissue samples and
+non-tumor tissue samples, respectively. You can define an unlimited number of samples as tumor (after defining
+the first sample, another placeholder for tumor tissue samples appears) and only one sample as non-tumor.<br></br>
+If you select "Germline variant analysis" or "Prenatal analysis" as the workflow setting, then only one placeholder
+will be available, which is only suitable for normal samples:
+
+<p align="center">
+<img src={require('/img/eng/only_normal.png').default} width="320"/>
+</p>
+
+You can define an unlimited number of samples as normal: after defining the first sample, another placeholder appears.
+
+If you misplaced sample, you can drag it to the sample placeholder of a different type, or return it to the
+"Uncategorized samples" section by hovering over the sample and clicking on
+the cross <img src={require('/img/eng/remove.png').default} width="20"/>.
+
+4. **Link a sample set to a patient:** select an already [added](/add-patient) patient from the list or
+link a set to a new patient - to do this, open the drop-down list in the "Patient" field and select the
+option <img src={require('/img/eng/new_patient.png').default} width="115"/>. You will see the form for
+adding a new patient to the system. Only the Patient ID field is required. You can fill out the details
+later on this patient's personal page. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/>
+to proceed:
+
+<p align="center">
+<img src={require('/img/eng/3-add-patient.png').default} height="400"/>
+</p>
+
+5. **Define the sequencing type.** The sequencing type is usually detected automatically by Genomenal.
+However, if you are sure which sequencing type was used to obtain your data, select the appropriate type
+to speed up the analysis. This can be <b>whole genome sequencing</b> (WGS)
+or <b>targeted selection</b> (sequencing with a targeted panel or whole-exome sequencing (WES)).<br></br>
+After selecting "Targeted selection" as the sequencing type, you will see an additional field "Capture kit features".
+The capture kit used during sequencing can be detected automatically by Genomenal. But if you are sure which
+targeted panel was used when obtaining your data, you can select it from the list of built-in or
+already <a href="/settings/capture-kits#upload-capture-kit">uploaded</a> panels in the system, as well as upload
+the appropriate capture kit by opening the drop-down list in the "Capture kit features" field and selecting
+the option <img src={require('/img/eng/upload_ck.png').default} width="150"/>. Then you will see a field with
+the choice of a reference genome for the capture kit. By default, the reference genome assembly corresponding to
+the genomic intervals of the uploaded capture kit is detected automatically by Genomenal. You can determine
+the assembly by clicking on the appropriate field and selecting the assembly in the drop-down list: hg19 or hg38.
+Then click on the button <img src={require('/img/eng/upload_ck_on_upload_page.png').default} width="220"/> and
+select the panel file in the opened File Browser.<br></br>Please note that by selecting the sequencing type
+and capture kit, you define them for all samples of set at once.
+6. **Add sample set** by clicking on <img src={require('/img/eng/add_sample_set.png').default} width="220"/>.
+7. **Check sample sets**: composed and added sample sets will be displayed on the right:
+
+<p align="center">
+<img src={require('/img/eng/sample_sets.png').default} width="600"/>
+</p>
+
+For each sample set, the patient, the workflow setting, and the samples included in the set are listed.
+The non-tumor sample files are located in the left column of the set and are
+marked as <img src={require('/img/eng/normal_success.png').default} width="20"/>. The tumor sample files
+are located in the right column of the set and are
+marked as <img src={require('/img/eng/tumor_success.png').default} width="20"/>. A pair of non-tumor sample
+files: <img src={require('/img/eng/normal_pair.png').default} height="40"/>,
+a pair of tumor sample files: <img src={require('/img/eng/tumor_pair.png').default} height="40"/>.
+
+You can ***edit*** the sample set by clicking on
+the button <img src={require('/img/report_templates/edit.png').default} width="25"/>. The samples will then
+return to the "2. Compose Sample Set" section. In addition, you can <i><b>delete</b></i> the sample set by clicking
+on the button <img src={require('/img/report_templates/delete.png').default} width="25"/>. Then the samples
+will return to the "Uncategorized samples" section.
+
+8. **Run samples analysis** by clicking on <img src={require('/img/eng/start_analysis_btn.png').default} width="180"/>.
+The samples upload page will close and you will see the all patients page. To see the added sample set,
+open the page of the corresponding patient with whom you have linked the set.

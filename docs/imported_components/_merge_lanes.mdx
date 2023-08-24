@@ -1,0 +1,33 @@
+- If your sequencing sample consists of multiple FASTQ files that correspond to different lanes on the
+flow cell and are named the same except for the sequencing lane designation: `_L[lane number]` (e.g. "_L01"),
+then the lane files will automatically be merged into one sample. In this case, pairing will be taken into
+account for the lanes in the same way as described above, i.e. paired lane files will be merged into a paired
+sample, and unpaired lane files will be merged into an unpaired sample.<br></br>
+An example of merging four paired lanes into one sample:
+
+<p align="center">
+<img src={require('/img/eng/lanes_sample.png').default} width="300"/>
+</p>
+
+The first file in the merged sample card is the one with the lowest lane number among the others, and
+the remaining lanes are added to it, symbolized by a plus in front of their names.
+- If the files are merged incorrectly, you can split them by clicking on
+the button <img src={require('/img/eng/split_lanes.png').default} width="250"/>, which is located under all
+uploaded files in the "Uncategorized samples" section.
+- If the necessary files are not merged into one sample, then you can merge them manually, either by
+dragging the card of one lane file to another (to merge these two files), or by clicking on
+the button <img src={require('/img/eng/merge_samples.png').default} width="250"/>, which is located under all
+uploaded files (to merge all uploaded files). Note that the button will be available only if there are samples
+of the same pairing in the "Uncategorized samples" section (i.e. either all samples are paired or all samples
+are unpaired).
+
+:::note
+After running the analysis, a sample consisting of multiple lanes will initially appear as multiple samples.
+At the bottom of each "sample" (which is actually a part of the future sample) it will be indicated that
+"This lane part will be merged with others into single sample". The merging of lanes into one sample will
+occur after the successful completion of the uploading and identification stages for all the lanes of the sample.
+
+<p align="center">
+<img src={require('/img/eng/lanes_before_merging.png').default} width="900"/>
+</p>
+:::
