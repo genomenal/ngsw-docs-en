@@ -1,28 +1,24 @@
 ---
 sidebar_position: 5
-sidebar_label: ACMG 73 Secondary Findings Report
+sidebar_label: ACMG Secondary Findings Report
 ---
 
-# ACMG 73 Secondary Findings Report
+# ACMG Secondary Findings Report
 
-The report includes the variants discovered in the sample, which are located in 73 genes
-on [the American College of Medical Genetics and Genomics (ACMG)](https://www.nature.com/articles/s41436-021-01172-3/tables/1)
-list, for which specific mutations are known to be causative of disorders with defined phenotypes that are
+The report includes the variants discovered in the sample, which are located in the genes
+from [the Secondary Findings (SF) list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) of
+American College of Medical Genetics and Genomics (ACMG). For these genes, specific mutations are known
+to be causative of disorders with defined phenotypes that are
 clinically actionable by an accepted intervention. The ACMG recommends that variants detected in any of these
 genes should be reported as they are of medical relevance and could be used in the future to inform
 clinical treatment.
 
-Only those variants that are **pathogenic** or **likely pathogenic** according
-to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) are included in the report. In the case of variants
-from the VCF file with a single sample, only those variants whose sites has at least one alternative allele
-(i.e. variants with the genotype 1/1, 1|1, 0/1, 1/0, 0|1 etc.) will be included in the report.
-
 :::caution
-ACMG 73 secondary findings report generation has its limitations due to variant annotation using ClinVar.
+ACMG secondary findings report generation has its limitations due to variant annotation using ClinVar.
 These limitations are described [below](/results/acmg73-report#acmg73-limitations).
 :::
 
-### Conditions for the report generation {#acmg73-conditions}
+### Conditions for the report generation {#acmg-sf-conditions}
 
 The report is generated for the sample if the following conditions are met:
 1. The sample is uploaded in FASTQ or BAM format or as a VCF file with a single sample.
@@ -30,19 +26,52 @@ The report is generated for the sample if the following conditions are met:
 3. For a sample, the variant annotation stage was successfully completed:
 "Germline SNVs/Indels annotation" stage if Germline origin was selected when creating a report template,
 or "Somatic SNVs/Indels annotation", if Somatic origin.
-4. The report template including "SNVs/Indels in ACMG 73 genes" block
+4. The report template including "SNVs/Indels in ACMG SF genes" block
 was [created](/settings/report-templates/report-templates#add-template) before the sample was processed.
-5. The report template including "SNVs/Indels in ACMG 73 genes" block is active.
+5. The report template including "SNVs/Indels in ACMG SF genes" block is active.
 
-### Report content {#acmg73-content}
+### Report content {#acmg-sf-content}
 
-The report displays a table with variants that meet the conditions listed above:
+Only those variants that are **pathogenic** or **likely pathogenic** according
+to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) are included in the report. In the case of variants
+from the VCF file with a single sample, only those variants whose sites has at least one alternative allele
+(i.e. variants with the genotype 1/1, 1|1, 0/1, 1/0, 0|1 etc.) will be included in the report.
+
+The report includes two sections:
+1. The most important variants for interpretation for which the following conditions are met:
+- The variant is located in a gene from [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
+- The variant is associated according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) with a
+phenotype that is listed in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for
+the gene in which the variant is located;
+- The allele frequency in [GnomAD](/results/main/snvs-indels/advanced-filtering#gnomad) is below 0.25 or empty;
+- The variant site has at least one alternative allele (i.e. has the genotype 1/1, 1|1, 0/1, 1/0, 0|1, etc.)
+in the case of a VCF file with a single sample;
+- The variant meets all the conditions specified in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/)
+for the gene in which the variant is located. These conditions may be associated with:
+   - the variant pathogenicity (only variants that are pathogenic or likely pathogenic according
+   to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) are generally included in the report);
+   - type of inheritance;
+   - the number of variants discovered in the sample that fit the conditions from the ACMG SF list
+   (for example, for some variants with an autosomal recessive inheritance to be included in the report,
+   at least two such variants must be discovered in the sample);
+   - the variant origin;
+   - the genotype (for example, some variants are reported only if they are homozygous in alternative allele);
+   - specific nucleotide and amino acid substitution of the variant.
+2. Variants that require further analysis for which the following conditions are met:
+- The variant is located in a gene from [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
+- The allele frequency in [GnomAD](/results/main/snvs-indels/advanced-filtering#gnomad) is below 0.25 or empty;
+- The variant site has at least one alternative allele (i.e. has the genotype 1/1, 1|1, 0/1, 1/0, 0|1, etc.)
+in the case of a VCF file with a single sample;
+- The variant is either not associated according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) with
+a phenotype that is listed in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene
+in which the variant is located, or it does not meet other conditions specified
+in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene in which the variant is located.
 
 <p align="center">
 <img src={require('/img/eng/acmg73.png').default} width="1000"/>
 </p>
 
-Table columns:
+Each section contains a table of variants with the following columns:
 1. **Gene** is the common name of the gene in which the variant is located.
 If you click on a gene, you will see a window with all the gene transcripts:
 
@@ -70,7 +99,10 @@ can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequence
 position for the sample.
 8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
 [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
-it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)),
+as well as links to phenotypes in [OMIM](https://www.omim.org/) and [MedGen](https://www.ncbi.nlm.nih.gov/medgen/)
+associated with the gene in which the variant is located
+in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/).
 9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="25"/> is
 a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
 a variant details page in Variant Viewer
@@ -88,11 +120,11 @@ corresponding phenotypes along with recommendations for reporting genetic varian
 regardless of the reason of genetic testing. The following three conditions should be satisfied:
 
 1. The variant affects a gene
-from [the list for secondary findings](https://www.nature.com/articles/s41436-021-01172-3/tables/1);
+from [the list of secondary findings](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
 2. The variant is reported as associated with the phenotype (condition, disease) listed with
 the gene in the list for secondary findings, or there is a possibility to establish such an association.
-3. The variant is classified as Pathogenic or Likely Pathogenic for a gene-phenotype
-pair from the list for secondary findings.
+3. The variant must meet any additional conditions specified in the list of secondary findings,
+which often include pathogenicity or likely pathogenicity of the variant.
 
 Briefly, it can be described as:
 
@@ -108,11 +140,13 @@ field in reports submitted by laboratories. The field can contain values "not re
 or can be filled with all the diseases associated with any of the pathogenic variants in the
 gene. In the latter case, correct conclusions can be only by a specialist. Moreover, mutations in
 different portions of the gene can result in different genetic diseases, while the list for secondary
-findings can contain only a fraction of these phenotypes. Taking these and other factors into consideration,
-Genomenal does not attempt to match ClinVar phenotypes and phenotypes from the list for secondary findings.
+findings can contain only a fraction of these phenotypes. Considering these and other factors, the
+ACMG Secondary Findings Report by Genomenal includes two groups of variants: those for which the phenotypes
+in the ACMG SF list match the condition reported for the variants in ClinVar, and those that are located
+in a gene in the list but have a discordant phenotype.
 
-<i>As a result, variants from the list of genes with irrelevant
-phenotypic information can be a source of overreporting or variants.</i>
+<i>Therefore, the interpretation of the variants in the second section of the report must be approached with
+caution.</i>
 
 #### Limitations of pathogenicity data {#pathogenicity-data}
 
@@ -130,15 +164,17 @@ overreporting of variants, or presence of outdated data, or underreporting of va
 which new data has emerged but it is not reflected in ClinVar. Some variants can be omitted if they
 pathogenicity is yet unknown and not detected by anyone.
 
-*As a result, the report might contain variants:*
+*The first section of the report may include variants:*
 - *with imprecise or erroneous pathogenicity status reported by the submitting laboratory;*
 - *with pathogenicity revised due to newly emerged data (confirmed* ***pathogenic*** *by new data).*
 
-*The report might miss out variants:*
+*The second section of the report will include the following variants:*
 - *not yet reported in ClinVar or newly discovered;*
 - *with pathogenicity revised due to newly emerged data (confirmed* ***benign*** *by new data).*
 
+*Therefore, the interpretation of the variants in the second section of the report must be approached with caution.*
+
 :::caution
-By using ACMG 73 secondary findings report, you agree that you understand above mentioned limitations,
+By using ACMG Secondary Findings report, you agree that you understand above mentioned limitations,
 and if clarification is needed, you are willing to discuss the result with medical specialist.
 :::

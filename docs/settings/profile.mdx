@@ -6,8 +6,8 @@ sidebar_label: Profile Settings
 # Profile Settings
 
 The "Profile settings" page contains your personal settings: account settings
-(email, login, password), the Program navigation panel settings, patient page settings
-and Variant Viewer settings.
+(email, login, password), the Program navigation panel settings, patient page settings,
+SNV Viewer and CNV Viewer settings.
 
 To open "Profile settings" page, hover over your username at the bottom of the navigation panel
 and click on the three<br></br>dots <img src={require('/img/eng/profile_options.png').default} height="20"/>.
@@ -80,23 +80,14 @@ To do this, click on the language selection field and select the language in the
 
 ## Navigation panel {#navigation-panel}
 
-The section displays which page sections are shown on the Program navigation panel (all are selected by default):
+The section displays which page sections are shown on the Program navigation panel in addition to the home
+page "Samples" (all are selected by default):
 
 <p align="center">
-<img src={require('/img/eng/navigation_panel.png').default} width="600"/>
+<img src={require('/img/eng/navigation_panel.png').default} width="500"/>
 </p>
 
 To remove a section from the panel, uncheck it.
-
-:::info
-
-You can remove all page sections, but at least one of the "Patients" or "Runs" sections must remain:
-
-<p align="center">
-<img src={require('/img/eng/only_patients.png').default} width="600"/>
-</p>
-
-:::
 
 ## Patient page {#patient-page}
 
@@ -121,19 +112,19 @@ If the patient "CNV Report" has not been generated at all or is still being gene
 then even if you have selected the "CNV Report" tab here, the "Main" tab will open.
 :::
 
-## Variant Viewer {#variant-viewer}
+## SNV Viewer {#variant-viewer}
 
-Variant Viewer is an embedded service for viewing and analyzing variants.
+SNV Viewer is an embedded service for viewing and analyzing variants.
 It is described in detail in [the corresponding section](/results/main/snvs-indels/variant-viewer).
 
 ### Filtering mode {#filtering-mode}
 
-Variant Viewer has two variant filtering modes: [Basic](/results/main/snvs-indels/basic-filtering) with
+SNV Viewer has two variant filtering modes: [Basic](/results/main/snvs-indels/basic-filtering) with
 basic filters and [Advanced](/results/main/snvs-indels/advanced-filtering) with more
 filters and the ability to compose complex queries with multiple filter conditions.
 
 In this section, you can configure which filtering mode you will see when you first open
-the sample Variant Viewer page (Basic Filtering chosen by default):
+the sample SNV Viewer page (Basic Filtering chosen by default):
 
 <p align="center">
 <img src={require('/img/eng/search.png').default} width="250"/>
@@ -155,14 +146,14 @@ You can change the choice of filters (remove or add new ones):
 
 Available filters:
 - **Samples** is a filter of variants by run samples in which these variants were discovered.
-Displayed only in [the run Variant Viewer](/runs#run-variant-viewer). Added [by default](/runs#samples-filter).
+Displayed only in [the run SNV Viewer](/runs#run-variant-viewer). Added [by default](/runs#samples-filter).
 - **Sample Interpretation Status** is a filter of variants by the interpretation status of the run sample
 in which these variants were discovered (completed or not completed interpretation).
-Displayed only in [the run Variant Viewer](/runs#run-variant-viewer).
+Displayed only in [the run SNV Viewer](/runs#run-variant-viewer).
 - **Origin** is a variant filter by mutation type: Somatic or Germline.
 Added [by default](/results/main/snvs-indels/basic-filtering#origin). Not displayed
-in [Variant Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
-and [the group analysis Variant Viewer](/group-analysis#group-analysis-variant-viewer).
+in [SNV Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
+and [the group analysis SNV Viewer](/group-analysis#group-analysis-variant-viewer).
 - **Gene panel** is a variant filter by [gene panel](/settings/gene-panels).
 Added [by default](/results/main/snvs-indels/basic-filtering#gene-panels).
 - **Gene** is a variant filter by gene transcripts in which variants are located.
@@ -217,7 +208,7 @@ In this section, you can configure which gene transcript model will be shown by 
 ### Advanced filtering conditions {#advanced-filtering-conditions}
 
 In [advanced filtering mode](/results/main/snvs-indels/advanced-filtering), the query conditions for
-the searched variants are displayed at the top of the Variant Viewer table. When there are a lot of
+the searched variants are displayed at the top of the SNV Viewer table. When there are a lot of
 conditions in a query, it is convenient to [collapse](/results/main/snvs-indels/advanced-filtering#apply-query)
 them so that they do not take up much space on the page.
 
@@ -228,11 +219,17 @@ collapsed immediately after applying the filtering query:
 <img src={require('/img/eng/query_conditions.png').default} width="250"/>
 </p>
 
+## SNV & CNV Viewer {#variant-viewers}
+
+SNV Viewer is an embedded service for viewing and analyzing variants.
+It is described in detail in [the corresponding section](/results/main/snvs-indels/variant-viewer).<br></br>
+CNV Viewer is an embedded service for viewing and analyzing copy number variations (CNVs).
+
 ### Variant details bottom panel {#variant-details-bottom-panel}
 
 [The variant detailed information panel](/results/main/snvs-indels/snv-details-panel) contains
 main information about the selected variant. By default, it is expanded at the bottom of the
-Variant Viewer table. If you don't usually use the panel, you can hide it from Variant Viewer
+SNV or CNV Viewer table. If you don't usually use the panel, you can hide it from SNV and CNV Viewers
 by selecting the "Collapse" option:
 
 <p align="center">
@@ -241,7 +238,7 @@ by selecting the "Collapse" option:
 
 ## Return to default settings {#default-settings}
 
-If you have made changes to the language selection, navigation bar, patient page, or Variant Viewer settings,
-you can return to the default settings by clicking on <img src={require('/img/eng/default.png').default} width="150"/>.
-Please note that the action will immediately reset all changes that you made on the page (except for changes
-to email, login and password).
+If you have made changes to the language selection, navigation bar, patient page, SNV Viewer, or
+CNV Viewer settings, you can return to the default settings by
+clicking on <img src={require('/img/eng/default.png').default} width="150"/>. Please note that the action
+will immediately reset all changes that you made on the page (except for changes to email, login and password).

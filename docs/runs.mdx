@@ -6,7 +6,7 @@ sidebar_label: Runs
 # Runs
 
 On "Runs" page, you can upload multiple samples without defining a patient for each sample.
-[Run Variant Viewer](/runs#run-variant-viewer) contains all the variants found in all run samples.
+[Run SNV Viewer](/runs#run-variant-viewer) contains all the variants found in all run samples.
 
 To open the page with runs, open "**Runs**" page from the page block of the same name via
 the navigation panel on the left:
@@ -211,39 +211,39 @@ click on <img src={require('/img/eng/delete_green_btn.png').default} width="135"
 To cancel deleting a sample, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
 or outside the confirmation window.
 
-### Run Variant Viewer {#run-variant-viewer}
+### Run SNV Viewer {#run-variant-viewer}
 
-Run Variant Viewer is an embedded service for viewing and analyzing the variants discovered in all run samples
-for which the germline or somatic SNVs/Indels annotation stage has been successfully completed. Run Variant Viewer
-is not much different from Sample Variant Viewer (a detailed description of Sample Variant Viewer can be
-found [here](/results/main/snvs-indels/variant-viewer)). Run Variant Viewer and Run Sample Variant Viewer
-are connected with each other: if you pin or interpret a variant, etc. in Run Variant Viewer, the variant
-state is immediately updated in Run Sample Variant Viewer, and vice versa.
+Run SNV Viewer is an embedded service for viewing and analyzing the variants discovered in all run samples
+for which the germline or somatic SNVs/Indels annotation stage has been successfully completed. Run SNV Viewer
+is not much different from Sample SNV Viewer (a detailed description of Sample SNV Viewer can be
+found [here](/results/main/snvs-indels/variant-viewer)). Run SNV Viewer and Run Sample SNV Viewer
+are connected with each other: if you pin or interpret a variant, etc. in Run SNV Viewer, the variant
+state is immediately updated in Run Sample SNV Viewer, and vice versa.
 
-To open Run Variant Viewer, click on <img src={require('/img/runs/vv_btn.png').default} width="120"/> on the run page.
+To open Run SNV Viewer, click on <img src={require('/img/runs/vv_btn.png').default} width="120"/> on the run page.
 
-**Features of Run Variant Viewer (as opposed to Sample Variant Viewer):**
+**Features of Run SNV Viewer (as opposed to Sample SNV Viewer):**
 
 #### 1. "Sample" Column {#sample-column}
 
-Run Variant Viewer has an additional "**Sample**" column that contains the name of the run sample in which
+Run SNV Viewer has an additional "**Sample**" column that contains the name of the run sample in which
 the variant was discovered. By "Sample" column, you can sort the table in ascending or descending order (to do this,
 you need to click on the column name once to sort in ascending order, and twice - in descending order).
-You can open Variant Viewer page of a particular sample by clicking on its name and selecting the corresponding option:
+You can open SNV Viewer page of a particular sample by clicking on its name and selecting the corresponding option:
 
 <p align="center">
 <img src={require('/img/runs/open_vv.png').default} width="290"/>
 </p>
 
 :::info
-The variants in Run Variant Viewer are the result of combining the variants discovered in all run samples but
+The variants in Run SNV Viewer are the result of combining the variants discovered in all run samples but
 not their intersection. Variants that are identical but discovered in different samples will always differ
 in the value of "Sample" column.
 :::
 
 #### 2. Basic Filtering Column "Samples" {#samples-filter}
 
-To filter variants by "Sample" column, there is a basic filtering column "**Samples**" in Run Variant Viewer
+To filter variants by "Sample" column, there is a basic filtering column "**Samples**" in Run SNV Viewer
 (added [by default](/settings/profile#basic-mode-filters)). To filter variants by the run samples
 in which they were discovered, click on the filter
 window <img src={require('/img/runs/sample_filtering.png').default} width="150"/> and check the boxes for
@@ -268,7 +268,7 @@ and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
 
 :::info
 The basic filtering column "Samples" is also available
-in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Run Variant Viewer:
+in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Run SNV Viewer:
 
 <p align="center">
 <img src={require('/img/runs/in_advanced_search.png').default} width="900"/>
@@ -278,7 +278,7 @@ in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Ru
 
 #### 3. Sample Interpretation {#sample-interpretation}
 
-There is an additional way to complete and resume sample interpretation in Run Variant Viewer
+There is an additional way to complete and resume sample interpretation in Run SNV Viewer
 apart from the way described [here](/results/main/snvs-indels/snv-details-page#sample-interpretation) (on the
 variant details page). To ***complete sample interpretation***, click on the sample name in variant row and select
 the corresponding option:
@@ -297,7 +297,7 @@ If no variants with a particular pathogenicity class have been included to repor
 will be "*No pathogenic variants found*".
 
 <p align="center">
-<img src={require('/img/vv/interpretation_window.png').default} height="500"/>
+<img src={require('/img/vv/interpretation_window.png').default} height="550"/>
 </p>
 
 In the same window, you can specify the patient's oncological disease, its stage and stage details,
@@ -322,7 +322,7 @@ the corresponding option:
 #### 4. Basic Filter "Sample status" {#sample-interpretation-status-filter}
 
 To filter variants by sample interpretation status (completed or uncompleted), there is a basic filter
-"**Sample status**" in Run Variant Viewer. The filter is not available by default; it can be added
+"**Sample status**" in Run SNV Viewer. The filter is not available by default; it can be added
 on ["Profile settings" page](/settings/profile#basic-mode-filters) ("Sample Interpretation Status" option).
 To filter variants by the interpretation status of run samples
 in which the variants were discovered, click on the filter
@@ -344,7 +344,7 @@ it is not necessary to add an additional basic filter "Sample status" in the set
 #### 5. Occurrence in Run {#occurrence-in-run}
 
 On ["Common" tab of the variant details panel](/results/main/snvs-indels/snv-details-panel#common-tab)
-in run Variant Viewer and run sample Variant Viewer, there is information on the number of run samples
+in run SNV Viewer and run sample SNV Viewer, there is information on the number of run samples
 in which the variant occurs. For example, in the following case, a variant was discovered in two of the
 three run samples:
 
@@ -369,7 +369,7 @@ You will see new samples uploading form above the already uploaded samples:
 Upload the samples as described [above](/runs#upload-samples) and
 click on <img src={require('/img/runs/analyze_samples_btn.png').default} width="200"/>.
 
-While new samples are being processed, Run Variant Viewer will be unavailable.
+While new samples are being processed, Run SNV Viewer will be unavailable.
 
 ### Archive, Restore and Delete Run {#delete-run}
 

@@ -14,7 +14,7 @@ You will see the Query Builder:
 </p>
 
 :::note
-If you are on the page of [Variant Viewer with somatic mutations](/results/main/snvs-indels/variant-viewer),
+If you are on the page of [SNV Viewer with somatic mutations](/results/main/snvs-indels/variant-viewer),
 then the somatic mutation filtering condition ("Origin in Somatic") will be added by default:
 <p align="center">
 <img src={require('/img/vv/somatic_origin.png').default} width="550"/>
@@ -25,7 +25,7 @@ add a new one, as described <a href="/results/main/snvs-indels/advanced-filterin
 
 :::info
 On ["Profile Settings" page](/settings/profile#filtering-mode), you can adjust which filtering mode you will
-see when you first open sample Variant Viewer page: [basic](/results/main/snvs-indels/basic-filtering) or advanced.
+see when you first open sample SNV Viewer page: [basic](/results/main/snvs-indels/basic-filtering) or advanced.
 :::
 
 ## Filtering Columns {#filtering-columns}
@@ -65,7 +65,7 @@ by search synonyms. For example, the following columns can be found by the word 
 1. **Sample Status** (basic filter ["Sample Status"](/runs#sample-interpretation-status-filter)) -
 filter variants by run sample interpretation status (completed or
 uncompleted). [Single value filter](/results/main/snvs-indels/advanced-filtering#single-value-filters).
-Only available in [run](/runs) Variant Viewer.
+Only available in [run](/runs) SNV Viewer.
 2. **Interpretation** - filter variants by interpretation (comment)
 added by the user on the variant details [page](/results/main/snvs-indels/snv-details-page#add-interpretation)
 or [panel](/results/main/snvs-indels/snv-details-panel#variant-interpretation).
@@ -120,15 +120,15 @@ filter is applied simultaneously with other filtering conditions. As a result, t
 in the compound heterozygote will be found, but the remaining variants from this compound heterozygote may
 be filtered out by other conditions.
 
-In [family analysis](/group-analysis) Variant Viewer and in Variant Viewer with one sequencing sample,
+In [family analysis](/group-analysis) SNV Viewer and in SNV Viewer with one sequencing sample,
 to filter variants by compound heterozygote, select the filter in the list of filtering columns:
 
 <p align="center">
 <img src={require('/img/vv/compound_filter_for_one.png').default} width="700"/>
 </p>
 
-In [germline cohort analysis](/group-analysis) Variant Viewer, in Variant Viewer with several sequencing samples
-and in [run](/runs) Variant Viewer (if there is data on sequencing samples), to filter variants by compound
+In [germline cohort analysis](/group-analysis) SNV Viewer, in SNV Viewer with several sequencing samples
+and in [run](/runs) SNV Viewer (if there is data on sequencing samples), to filter variants by compound
 heterozygote, select a sample in which all cases will be found where at least two heterozygotes (0/1, 1/0, 0|1, etc.)
 are located in the same gene:
 
@@ -190,7 +190,7 @@ amino acid position in protein + new amino acid resulting from the substitution.
 by variant quality (GATK filters).
 28. **Occurrence in Run** - filter variants by [occurrence](/runs#occurrence-in-run) in run samples.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (integer number).
-Only available in [run](/runs) Variant Viewer and run sample Variant Viewer.
+Only available in [run](/runs) SNV Viewer and run sample SNV Viewer.
 29. **RefSeq Transcript** - filter variants by transcript ID in [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/)
 database (e.g. NM_002354.3). [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 30. **OMIM ID** - filter variants by gene ID in [OMIM](https://www.omim.org/) database (e.g. 185535).
@@ -624,9 +624,9 @@ builder:
 <img src={require('/img/vv/compound.png').default} width="800"/>
 </p>
 
-**Filtering by compound heterozygote depends on Variant Viewer type:**
+**Filtering by compound heterozygote depends on SNV Viewer type:**
 
-**Variant Viewer of [family trio analysis](/group-analysis) (Proband, Father, Mother):** the proband has at
+**SNV Viewer of [family trio analysis](/group-analysis) (Proband, Father, Mother):** the proband has at
 least two heterozygotes in one gene (0/1, 1/0, 0|1, etc.) with the following inheritance options:
 - at least one of the heterozygotes is inherited from the father, and at least one is inherited from the mother:
 
@@ -647,7 +647,7 @@ cases where at least two heterozygotes are located in the same gene in the proba
 either heterozygous, or homozygous reference, or there is no information about the site (./.). To turn off the
 filter in the query builder, click the button <img src={require('/img/vv/compound_btn_on.png').default} width="230"/>.
 
-**Variant Viewer of [family duo analysis](/group-analysis) (Father and Mother):** cases when in one gene at
+**SNV Viewer of [family duo analysis](/group-analysis) (Father and Mother):** cases when in one gene at
 least one heterozygote (0/1, 1/0, 0|1, etc.) is in the mother and at least one is in the father:
 
 <p align="center">
@@ -658,7 +658,7 @@ To apply a filter by compound heterozygote, click the
 button <img src={require('/img/vv/compound_btn.png').default} width="230"/>, and to turn off the
 filter in the query builder, click the button <img src={require('/img/vv/compound_btn_on.png').default} width="230"/>.
 
-**Variant Viewer of [family duo analysis](/group-analysis) (Proband, Parent (Father or Mother)):** the proband
+**SNV Viewer of [family duo analysis](/group-analysis) (Proband, Parent (Father or Mother)):** the proband
 has at least two heterozygotes in one gene (0/1, 1/0, 0|1, etc.) with the following inheritance options:
 - at least one heterozygote is inherited, and the second is not inherited from the parent (i.e. the parent
 has homozygous reference 0/0):
@@ -677,13 +677,13 @@ To apply a filter by compound heterozygote, click the
 button <img src={require('/img/vv/compound_btn.png').default} width="230"/>, and to turn off the
 filter in the query builder, click the button <img src={require('/img/vv/compound_btn_on.png').default} width="230"/>.
 
-**Variant Viewer with one sequencing sample (e.g. for a single sample of tumor or healthy tissue):** there will
+**SNV Viewer with one sequencing sample (e.g. for a single sample of tumor or healthy tissue):** there will
 be found all cases where at least two heterozygotes (0/1, 1/0, 0|1, etc.) are located in the same gene.
 To apply a filter by compound heterozygote, click the
 button <img src={require('/img/vv/compound_btn.png').default} width="230"/>, and to turn off the
 filter in the query builder, click the button <img src={require('/img/vv/compound_btn_on.png').default} width="230"/>.
 
-**Variant Viewer of [germinal cohort analysis](/group-analysis) or Variant Viewer with several sequencing samples (e.g. for a tumor/control sample pair), or [run](/runs) Variant Viewer (if there is data on sequencing samples):** by
+**SNV Viewer of [germinal cohort analysis](/group-analysis) or SNV Viewer with several sequencing samples (e.g. for a tumor/control sample pair), or [run](/runs) SNV Viewer (if there is data on sequencing samples):** by
 clicking on the compound heterozygote filter button, you will see a drop-down sample list:
 
 <p align="center">
@@ -946,7 +946,7 @@ click on <img src={require('/img/vv/clear_all_filters_btn.png').default} width="
 To ***change or save your query*** or ***create a new one***, open the Query Builder by
 clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>.
 
-To return to the Variant Viewer main page,
+To return to the SNV Viewer main page,
 click on <img src={require('/img/vv/basic_filtering_btn.png').default} width="120"/>.
 
 Sometimes there are a lot of conditions for the searched variants and the query can be very long:

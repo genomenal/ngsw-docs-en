@@ -18,7 +18,7 @@ or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively
 
 :::info
 On ["Profile settings" page](/settings/profile#variant-details-bottom-panel), you can adjust whether
-the variant details panel is expanded or collapsed in Variant Viewer by default.
+the variant details panel is expanded or collapsed in SNV Viewer by default.
 :::
 
 ## Details Panel Tabs {#panel-tabs}
@@ -115,8 +115,8 @@ stage "Germline SNVs/Indels discovery" (or "Germline SNVs/Indels annotation" for
 By clicking on the link, you will see ["Occurrences" tab](/results/main/snvs-indels/snv-details-page#occurrences)
 of the variant details page.
 3. Information about **the variant occurrence in run samples**.
-Only presented on the variant panel in [run Variant Viewer](/runs#run-variant-viewer)
-and run sample Variant Viewer. For example, in the following case, a variant was discovered in two of the
+Only presented on the variant panel in [run SNV Viewer](/runs#run-variant-viewer)
+and run sample SNV Viewer. For example, in the following case, a variant was discovered in two of the
 three run samples:
 
 <p align="center">
@@ -148,7 +148,7 @@ interpreted the variant) will appear in parentheses next to the section name:
 #### Normalized Variant {#normalized-variant}
 
 Start position, reference allele, or alternative allele of some variants in the uploaded VCF file may
-not be left-normalized. In this case, the variant will be written in Variant Viewer table in the same form
+not be left-normalized. In this case, the variant will be written in SNV Viewer table in the same form
 as in the original VCF file, and the normalized data will be shown on the details panel:
 
 <p align="center">
@@ -214,13 +214,13 @@ on [gene-phenotype relations](/results/main/snvs-indels/snv-details-panel#omim-p
 ([Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index), [UniProt](https://www.uniprot.org/uniprot/),
 [GTEx](https://www.gtexportal.org/home/), [OMIM](https://www.omim.org/), [NCBI](https://www.ncbi.nlm.nih.gov/gene/)).
 - ***Search for all variants in gene***: search for all variants discovered in the sample and located in the same
-gene. To search, click on "*All variants in gene*" link and new tab with Variant Viewer filtered by this gene
+gene. To search, click on "*All variants in gene*" link and new tab with SNV Viewer filtered by this gene
 will open.
 
 :::note
-If you make any changes on the new tab, they will be saved in Variant Viewer. In this case, if variants
-were filtered and/or sorted on the original Variant Viewer page, these filtering and sorting may be reset
-or changed, and the state of Variant Viewer on the new tab will retain.
+If you make any changes on the new tab, they will be saved in SNV Viewer. In this case, if variants
+were filtered and/or sorted on the original SNV Viewer page, these filtering and sorting may be reset
+or changed, and the state of SNV Viewer on the new tab will retain.
 :::
 
 #### 2. Transcripts {#transcripts}
@@ -252,7 +252,7 @@ The main gene transcript, according to [MANE Select](https://www.ncbi.nlm.nih.go
 or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html), is marked
 with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen
 as the main one for this variant is framed. Impact, HGVSp, and HGVSc values for this transcript are shown
-for the variant in Variant Viewer table.
+for the variant in SNV Viewer table.
 
 import Highlight from '@site/src/components/Highlight';
 

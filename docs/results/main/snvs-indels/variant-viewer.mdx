@@ -1,38 +1,38 @@
 ---
 sidebar_position: 2
-sidebar_label: Variant Viewer
+sidebar_label: SNV Viewer
 ---
 
-# Variant Viewer
+# SNV Viewer
 
 ## Overview {#overview}
 
-Variant Viewer is an embedded service for viewing and analyzing variants.
+SNV Viewer is an embedded service for viewing and analyzing variants.
 Located on **[Main tab](/results/main/main)** of the sample.
 
-On the ***tumor*** sample page, you can find two Variant Viewers: one with ***somatic*** and
+On the ***tumor*** sample page, you can find two SNV Viewers: one with ***somatic*** and
 one with ***germline*** mutations discovered in this sample:
 
 <p align="center">
-<img src={require('/img/vv/germline_and_somatic_vv.png').default} width="600"/>
+<img src={require('/img/vv/germline_and_somatic_vv.png').default} width="700"/>
 </p>
 
-The ***normal*** sample page presents a Variant Viewer with ***germline*** mutations only:
+The ***normal*** sample page presents a SNV Viewer with ***germline*** mutations only:
 
 <p align="center">
-<img src={require('/img/vv/germline_only.png').default} width="600"/>
+<img src={require('/img/vv/germline_only.png').default} width="700"/>
 </p>
 
 ## Main Page {#main-page}
 
-After clicking on <img src={require('/img/results/vv_btn.png').default} width="130"/>, you
+After clicking on <img src={require('/img/results/vv_btn.png').default} width="110"/>, you
 will see the main page of the service:
 
 <p align="center">
 <img src={require('/img/vv/main_table.png').default} width="950"/>
 </p>
 
-The main object of Variant Viewer is a table with variants - each variant is on a new line:
+The main object of SNV Viewer is a table with variants - each variant is on a new line:
 
 <p align="center">
 <img src={require('/img/vv/snv_row.png').default} width="950"/>
@@ -107,16 +107,16 @@ You can also pin or unpin a variant using keyboard shortcuts. To do this, select
 is highlighted in blue) and press **P** on the keyboard.
 
 :::note
-Variant remains pinned when you exit the Variant Viewer page.
+Variant remains pinned when you exit the SNV Viewer page.
 :::
 
 ### Hide Variants {#hide-variants}
 
-Variants can be hidden from Variant Viewer table. To do this,
+Variants can be hidden from SNV Viewer table. To do this,
 click on <img src={require('/img/vv/hide_btn.png').default} width="25"/> in the variant row.
 Hidden variants will only be available when a specific filter condition is applied.
 
-**Variant Visibility Filter**: in the upper right corner of Variant Viewer page (regardless of variant filtering mode),
+**Variant Visibility Filter**: in the upper right corner of SNV Viewer page (regardless of variant filtering mode),
 there is a variant visibility filter button: <img src={require('/img/vv/without_hidden.png').default} width="150"/>
 (default state):
 
@@ -124,7 +124,7 @@ there is a variant visibility filter button: <img src={require('/img/vv/without_
 <img src={require('/img/vv/filter_hide_options.png').default} width="200"/>
 </p>
 
-- By default, only visible (not hidden) variants are shown in Variant Viewer table (filter
+- By default, only visible (not hidden) variants are shown in SNV Viewer table (filter
 option "***Without hidden***").
 - To see in the table all variants discovered and annotated in the sample, click on the filter button
 and select "***Show all***" option. Then the table will display all variants, including hidden ones.
@@ -143,7 +143,7 @@ You can also hide or show a variant using keyboard shortcuts. To do this, select
 is highlighted in blue) and press **H** on the keyboard.
 
 :::note
-When you pin a hidden variant, it not only becomes pinned in Variant Viewer table, but also becomes visible.
+When you pin a hidden variant, it not only becomes pinned in SNV Viewer table, but also becomes visible.
 :::
 
 ### Include Variants to Report {#include-to-report}
@@ -201,7 +201,7 @@ name once, and vice versa by clicking on the name twice. In addition, variants c
 
 ### Filter and Sort Variants {#sort-and-filter}
 
-***Filtering of variants*** in Variant Viewer is described in
+***Filtering of variants*** in SNV Viewer is described in
 [Basic Filtering](/results/main/snvs-indels/basic-filtering) and
 [Advanced Filtering](/results/main/snvs-indels/advanced-filtering) sections.
 
@@ -288,9 +288,9 @@ described [here](/results/main/snvs-indels/variant-viewer#added-columns)): sorti
 insignificant variants: Pathogenic, Likely pathogenic, Likely benign, Benign, Not provided.
 Composite values are sorted by the most significant value from the list.
 
-### Keyboard Shortcuts in Variant Viewer {#hotkeys}
+### Keyboard Shortcuts in SNV Viewer {#hotkeys}
 
-In Variant Viewer, you can interact with variants using keyboard shortcuts.
+In SNV Viewer, you can interact with variants using keyboard shortcuts.
 To use keyboard shortcuts, click on a variant row, or press one of keys: **S**, **W**, ⬇️, or ⬆️ to select
 the first variant in the table.
 
@@ -326,7 +326,7 @@ the first variant in the table.
 
 ### Export Variants {#export}
 
-Variant Viewer allows to export variants in CSV format:
+SNV Viewer allows to export variants in CSV format:
 
 - ***Export of all variants***: click on <img src={require('/img/vv/export_btn.png').default} width="120"/> and select
 "*All*" option:
@@ -353,7 +353,7 @@ the needed variants, then click on <img src={require('/img/vv/export_btn.png').d
 </p>
 
 :::note
-If no variant has been pinned in Variant Viewer, then "*Pinned only*" option will not be in the
+If no variant has been pinned in SNV Viewer, then "*Pinned only*" option will not be in the
 drop-down list of export options.
 :::
 
@@ -365,14 +365,14 @@ on <img src={require('/img/vv/export_btn.png').default} width="120"/> and select
 </p>
 
 **Modified variants** are variants for which any of the following has been done:
-- a variant is [pinned](/results/main/snvs-indels/variant-viewer#pin-variant) in Variant Viewer table;
+- a variant is [pinned](/results/main/snvs-indels/variant-viewer#pin-variant) in SNV Viewer table;
 - a variant is [included to report](/results/main/snvs-indels/variant-viewer#include-to-report);
 - [interpretation was added](/results/main/snvs-indels/snv-details-page#add-interpretation) for a variant;
 - [pathogenicity was determined](/results/main/snvs-indels/pathogenicity) for a variant;
 - a variant is [interpreted by significance](/results/main/snvs-indels/variant-viewer#label).
 
 :::note
-If Variant Viewer table is filtered by some condition, then the table of exported modified variants
+If SNV Viewer table is filtered by some condition, then the table of exported modified variants
 will include only those modified variants that match this condition. An exception is pinned variants,
 whose visibility in the table can only be affected by filtering by origin.
 :::
@@ -397,8 +397,8 @@ clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
 2. **Origin** is a mutation type (somatic or germline).
 
 :::info
-"Origin" column is hidden in [Variant Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
-and in Variant Viewer with somatic mutations if "Origin is Somatic" filter is on.
+"Origin" column is hidden in [SNV Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
+and in SNV Viewer with somatic mutations if "Origin is Somatic" filter is on.
 :::
 
 3. **Position** is a coordinate of the variant in the genome (chromosome + start position).
@@ -734,7 +734,7 @@ value will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/
 ### Description of Additional Table Columns {#added-columns}
 
 In addition to the columns described [above](/results/main/snvs-indels/variant-viewer#columns-description),
-other annotation columns can be added to Variant Viewer table as
+other annotation columns can be added to SNV Viewer table as
 described [here](/results/main/snvs-indels/edit-table-columns#add-columns).
 The columns with special features are described below:
 - "**Label**" column, in which the variant significance can be determined, is

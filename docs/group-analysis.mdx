@@ -11,11 +11,11 @@ Group analysis includes combining, filtration and annotation of germline variant
 Available types of group analysis:
 - **Germline cohort analysis** is used to combine and compare samples that are related in some way (e.g. by
 pathology type or data source), or samples of large families in which sibling sequencing was performed.
-The analysis can include a maximum of 25 samples. The analysis results are presented in Variant Viewer with
+The analysis can include a maximum of 25 samples. The analysis results are presented in SNV Viewer with
 all variants discovered in the samples included in the analysis.
 - **Family analysis** is used to combine and compare samples from the same family (proband + one or two parents
-or two parents without a proband). May include 2 or 3 samples. The analysis results are presented in Variant Viewer
-with all variants discovered in the samples included in the analysis. Variant Viewer has specialized filters based
+or two parents without a proband). May include 2 or 3 samples. The analysis results are presented in SNV Viewer
+with all variants discovered in the samples included in the analysis. SNV Viewer has specialized filters based
 on genotypes of family members.
 - **Population analysis** is aimed at studying the distribution of the allele frequencies in a certain population.
 It can include an unlimited number of samples. The analysis results are presented as VCF file with the allele
@@ -167,7 +167,7 @@ using [GATK VariantFiltration](https://gatk.broadinstitute.org/hc/en-us/articles
 based on certain filtering criteria that you can find and change on "Parameters" tab of the group analysis page;
 4. **Annotate Germline SNVs/Indels:** determination of the variant impact on DNA regions
 using [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html) tool and a set of tools developed by Genomenal;
-5. **Store annotated variants for [Variant Viewer](/group-analysis#group-analysis-variant-viewer):**
+5. **Store annotated variants for [SNV Viewer](/group-analysis#group-analysis-variant-viewer):**
 no such stage for population analysis.
 
 #### Restart Processing {#restart-processing}
@@ -183,22 +183,22 @@ Please note that this button is available only for analysis, all stages of which
 After all stages of analysis are completed successfully, the results will appear on the group analysis page:
 
 1. "***Germline SNVs/Indels***" section on "Main" tab including all the main results of group analysis.
-For germline cohort and family analyses, the results look like this (includes Variant Viewer):
+For germline cohort and family analyses, the results look like this (includes SNV Viewer):
 
 <p align="center">
 <img src={require('/img/results/germline_snvs.png').default} width="800"/>
 </p>
 
-And for the population analysis, the results look like this (no Variant Viewer included):
+And for the population analysis, the results look like this (no SNV Viewer included):
 
 <p align="center">
 <img src={require('/img/group_analysis/population_analysis_results.png').default} width="800"/>
 </p>
 
-- **Variant Viewer** is a embedded service for viewing and analyzing variants.
+- **SNV Viewer** is a embedded service for viewing and analyzing variants.
 You can read more about it [below](/group-analysis#group-analysis-variant-viewer).
-Variant Viewer is not provided for population analysis.
-Click on <img src={require('/img/results/vv_btn.png').default} width="125"/> to open Variant Viewer.
+SNV Viewer is not provided for population analysis.
+Click on <img src={require('/img/results/vv_btn.png').default} width="125"/> to open SNV Viewer.
 - Text file in **CSV** (Comma-Separated Values) format with annotated variants. To download the file,
 click on <img src={require('/img/results/table_btn.png').default} width="120"/>.
 - File in **[VCF 4.2 (Variant Call Format)](http://samtools.github.io/hts-specs/VCFv4.2.pdf)** format with
@@ -230,11 +230,11 @@ click on <img src={require('/img/results/export_pdf.png').default} width="150"/>
 
 3. Result files for each stage of the analysis on "Workflow details" tab.
 
-#### Group Analysis Variant Viewer {#group-analysis-variant-viewer}
+#### Group Analysis SNV Viewer {#group-analysis-variant-viewer}
 
-Variant Viewer is only provided for germline cohort and family analyses.
+SNV Viewer is only provided for germline cohort and family analyses.
 It is described in detail in [the corresponding section](/results/main/snvs-indels/variant-viewer) on
-Sample Variant Viewer, however, Group Analysis Variant Viewer has a number of special features:
+Sample SNV Viewer, however, Group Analysis SNV Viewer has a number of special features:
 1. **The columns "Depth (Alt/Ref)" and "GT" contain the data of all samples of the analysis**.
 For germline cohort analysis, these column names contains the name of the sample, in which the variant has
 the corresponding sequencing depth and genotype (when you hover over the column name, you can see the full
@@ -271,7 +271,7 @@ using ["Trio GT (Genotype)" filter](/results/main/snvs-indels/advanced-filtering
 3. There is no [column](/results/main/snvs-indels/variant-viewer#columns-description),
 [basic filter](/results/main/snvs-indels/basic-filtering#origin)
 and [advanced filter](/results/main/snvs-indels/advanced-filtering#common) "Origin", since all variants in group
-analysis Variant Viewer are germline.
+analysis SNV Viewer are germline.
 4. There is no button to [include variants to report](/results/main/snvs-indels/variant-viewer#include-to-report),
 because no reports are generated for group analysis.
 5. The variant pathogenicity can be determined

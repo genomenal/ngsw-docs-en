@@ -155,12 +155,12 @@ To cancel block type selection, click on <img src={require('/img/report_template
   <tr>
    <td><b>SNVs/Indels selected by user for reports</b></td>
    <td>Any, Tumor, Normal</td>
-   <td>A block with variants included in the report on the Variant Viewer page.</td>
+   <td>A block with variants included in the report on the SNV Viewer page.</td>
    <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
    (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
    block: somatic or germline.<br></br>
    ________________________________________________________________<br></br>
-   To include a variant in the report on the Variant Viewer page,
+   To include a variant in the report on the SNV Viewer page,
    click on <img src={require('/img/report_templates/add_to_report_btn.png').default} width="22"/> button in
    the variant row. Variants included in the report are marked with a
    checkmark: <img src={require('/img/report_templates/add_to_report.png').default} width="22"/>.</td>
@@ -168,12 +168,12 @@ To cancel block type selection, click on <img src={require('/img/report_template
   <tr>
    <td><b>Pinned SNVs/Indels</b></td>
    <td>Any, Tumor, Normal</td>
-   <td>A block with variants pinned on the Variant Viewer page.</td>
+   <td>A block with variants pinned on the SNV Viewer page.</td>
    <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
    (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
    block: somatic or germline.<br></br>
    ________________________________________________________________<br></br>
-   To pin a variant on the Variant Viewer page,
+   To pin a variant on the SNV Viewer page,
    click on <img src={require('/img/report_templates/pin_var_btn.png').default} width="22"/> button in
    the variant row. Pinned variants are marked like
    this: <img src={require('/img/report_templates/pinned_var.png').default} width="22"/>.</td>
@@ -214,25 +214,21 @@ To cancel block type selection, click on <img src={require('/img/report_template
    click outside the value container.</td>
    </tr>
    <tr>
-   <td><b>SNVs/Indels in ACMG 73 genes</b></td>
+   <td><b>SNVs/Indels in ACMG SF genes</b></td>
    <td>Any, Tumor, Normal</td>
-   <td>A block with variants discovered in the sample and located in the 73 genes
-   from <a href="https://www.nature.com/articles/s41436-021-01172-3/tables/1">the list of American College of Medical Genetics and Genomics (ACMG)</a>.</td>
+   <td>A block with variants discovered in the sample and located in the genes
+   from <a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">the Secondary Findings (SF) list</a> of
+   American College of Medical Genetics and Genomics (ACMG).</td>
    <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
    (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
    block: somatic or germline.<br></br>
    ________________________________________________________________<br></br>
-   For these 73 genes from the ACMG list, specific mutations are known to be causative of disorders with defined
+   For these genes from the ACMG SF list, specific mutations are known to be causative of disorders with defined
    phenotypes that are clinically actionable by an accepted intervention. The ACMG recommends that variants detected
    in any of these genes should be reported as they are of medical relevance and could be used in the future to inform
    clinical treatment.<br></br>
-   The report block includes the following variants located in the 73 genes from the ACMG list:<br></br>
-   1. Pathogenic (according to ClinVar);<br></br>
-   2. Likely pathogenic (according to ClinVar);<br></br>
-   3. Having high gene product impact;<br></br>
-   4. Having moderate gene product impact and frequency less than 10% in population;<br></br>
-   3. Rare (having frequency less than 2% in population).
-   </td>
+   You can find more information about how this block is filled in the report
+   in <a href="/results/acmg73-report">the corresponding section</a>.   </td>
    </tr>
    <tr>
    <td><b>Glioma: Tier I variants</b></td>
