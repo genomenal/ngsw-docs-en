@@ -12,12 +12,17 @@ Located on **[Main tab](/results/main/main)** of the sample.
 
 On the ***tumor*** sample page, you can find two SNV Viewers: one with ***somatic*** and
 one with ***germline*** mutations discovered in this sample:
+one with ***somatic SNVs/Indels*** discovered in this sample and one with ***germline SNVs/Indels***
+discovered in the control sample in the case of the tumor sample from a pair of tumor/normal samples
+or in the tumor sample itself, if it was analyzed without a control sample.
+In SNV Viewer with somatic mutations, you can also see SNVs/Indels from SNV Viewer with germline mutations
+if you change the value of the filter by origin from Somatic to Germline or clear filtering by it.
 
 <p align="center">
 <img src={require('/img/vv/germline_and_somatic_vv.png').default} width="700"/>
 </p>
 
-The ***normal*** sample page presents a SNV Viewer with ***germline*** mutations only:
+The ***non-tumor*** sample page presents SNV Viewer with ***germline SNVs/Indels*** only discovered in this sample:
 
 <p align="center">
 <img src={require('/img/vv/germline_only.png').default} width="700"/>

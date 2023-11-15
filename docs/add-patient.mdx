@@ -10,12 +10,15 @@ import PatientInfo from '/docs/imported_components/_patient_def.mdx';
 <PatientInfo />
 
 In case you want to upload samples for a patient who is not yet in
-the system, click on <img src={require('/img/eng/add_patient_btn.png').default} width="170"/> on "All Patients" page:
+the system, click on <img src={require('/img/eng/add_patient_btn.png').default} width="170"/> on
+the "All Patients" or "Samples" page. You will see the add patient window:
 
-import PatientPage from '/docs/imported_components/_patient_page.mdx';
+<p align="center">
+<img src={require('/img/eng/3-add-patient.png').default} height="400"/>
+</p>
 
-<PatientPage />
-
+Only the **Patient ID** field is required. You can fill out the details later on this patient's personal
+page.<br></br>Click on <img src={require('/img/eng/create_btn.png').default} width="130"/> to proceed.
 You will see the patient page.
 
 ## Patient Page {#patient-page}
@@ -143,38 +146,41 @@ files: <img src={require('/img/eng/normal_pair.png').default} height="40"/>.
 2. **Sample type** is the type that was selected when uploading the sample (TUMOR or NORMAL (non-tumor)).
 You can change the sample type in the editing window (see above).
 3. **Sample interpretation summary** is the information on the number of variants of a particular pathogenicity
-class discovered in the sample and included to report
-(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+class discovered in the sample
+and <a href="/results/main/snvs-indels/variant-viewer#include-to-report">included to report</a> (Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
 Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
 Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
 Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
 Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
-Interpretation summary is displayed only
-if [the sample interpretation has been completed](/results/main/snvs-indels/snv-details-page#sample-interpretation).
+Interpretation summary is displayed
+if [the sample interpretation has been completed](/results/main/snvs-indels/snv-details-page#sample-interpretation)
+or if a variant with a particular pathogenicity has been included to report.
 If the interpretation has not been completed, but variants with a particular pathogenicity class have been
 included to report, then the interpretation summary will be "*Interpretation not completed*". If the
 sample interpretation has been completed, but no variants with a particular pathogenicity class have been
 included to report, then the interpretation summary will be "*No pathogenic variants found*".
 4. **The last completed analysis stage status** or the status of the stage currently being
-in progress: <img src={require('/img/eng/in_process_status.png').default} width="20"/> - the stage is currently in
-progress; <img src={require('/img/eng/success.png').default} width="20"/> - the stage was completed
-successfully, <img src={require('/img/eng/problems_status.png').default} width="28"/> - the stage was completed
-successfully, but not all quality metrics meet the
-criteria, <img src={require('/img/eng/failed_status.png').default} width="25"/> - the stage was failed.
+in progress:<br></br><img src={require('/img/eng/in_process_status.png').default} width="22"/> - the stage is
+currently in progress;<br></br><img src={require('/img/eng/queed_status.png').default} width="14"/> - the stage is
+queued or waiting for the prerequisite stages of the control sample to be completed (in the case of a
+tumor sample from a pair of
+tumor/normal samples);<br></br><img src={require('/img/eng/success.png').default} width="21"/> - the stage was
+completed successfully,<br></br><img src={require('/img/eng/problems_status.png').default} width="25"/> - the stage
+was completed successfully, but not all quality metrics meet the
+criteria,<br></br><img src={require('/img/eng/failed_status.png').default} width="21"/> - the stage was failed.
 5. **Sample analysis progress tiles**. Each tile is an analysis stage.
-Blue tiles <img src={require('/img/eng/blue_in_progress.png').default} width="25"/> represent stages in progress;
+Blue tiles <img src={require('/img/eng/blue_in_progress.png').default} width="25"/> represent stages in progress or
+queued or waiting for the prerequisite stages of the control sample to be completed (in the case of a tumor sample
+from a pair of tumor/normal samples);
 green <img src={require('/img/eng/green.png').default} width="25"/> - successfully completed stages;
-orange <img src={require('/img/eng/orange.png').default} width="25"/> - successfully completed stages,
-not all quality metrics of which meet the criteria;
-red <img src={require('/img/eng/red.png').default} width="25"/> - failed stages;
+orange <img src={require('/img/eng/orange.png').default} width="25"/> - stages completed successfully with
+non-critical problems; red <img src={require('/img/eng/red.png').default} width="25"/> - failed stages;
 gray <img src={require('/img/eng/grey.png').default} width="25"/> - stages that have not been completed
 (either because these stages are turned off, or because the previous analysis stages, the results of which are
 necessary to complete the stage, have not yet been completed). The number of tiles may vary depending
 on the possible course of the analysis:
-- The analysis progress tiles of the tumor sample in FASTQ
+- The analysis progress tiles of the sample in FASTQ
 or BAM format: <img src={require('/img/eng/tumor_analysis.png').default} width="120"/>
-- The analysis progress tiles of the non-tumor sample in FASTQ
-or BAM format: <img src={require('/img/eng/normal_analysis.png').default} width="120"/>
 - The analysis progress tiles of the sample in VCF, TXT
 or TSV format: <img src={require('/img/eng/vcf_analysis.png').default} width="50"/>
 

@@ -45,7 +45,7 @@ defined, it can be changed by clicking on it and selecting a different type from
 - SEQUENCING TYPE: Panel (targeted sequencing), WES (whole-exome sequencing), WGS (whole-genome
 sequencing), Low-pass WGS (whole-genome sequencing with low coverage), UNKNOWN (the sequencing type may not be
 detected for some samples in VCF format). Detected automatically by Genomenal, may be based on Sequencing Type
-and Capture Kit selected while adding sample set. The type can be changed
+and Capture Kit selected while composing sample set. The type can be changed
 on ["Parameters" tab](/results/parameters)
 (["Sequencing Type" parameter](/settings/settings/alignment-settings#sequencing-type):
 "WGS" option corresponds to either type "WGS" or "Low-pass WGS", "Targeted selection" option corresponds to
@@ -76,11 +76,14 @@ The section is a table with analysis stages and their statuses.
 - If the stage is in progress, then
 its status has <img src={require('/img/results/in_process.png').default} width="22"/> icon and a percentage
 value of its progress.
+- If the stage is queued or waiting for the prerequisite stages of the control sample to be
+completed (in the case of the tumor sample from a pair of tumor/normal samples), then
+its status has <img src={require('/img/eng/queed_status.png').default} width="14"/> icon.
 - If the stage is completed successfully,
 then it has the status <img src={require('/img/results/complete.png').default} width="100"/>.
-- If the stage is completed successfully, but not all metrics meet the quality criteria,
+- If the stage is completed successfully with non-critical problems,
 then it has the status <img src={require('/img/results/complete_metrics.png').default} width="100"/> and indicates
-the number of metrics that do not meet the criteria.
+these problems.
 - If the stage is completed with an error,
 then its status has <img src={require('/img/results/failed.png').default} width="25"/> icon and the failed task
 is specified. In this case, you can report a problem to the administrator
