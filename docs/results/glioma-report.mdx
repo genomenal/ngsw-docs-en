@@ -49,7 +49,7 @@ the analysis results of other pathologies.
 - [Immunotherapy markers](/results/glioma-report#immunotherapy-markers);
 - [Clinical trials](/results/glioma-report#clinical-trials);
 - [Control sample info](/results/glioma-report#control-sample-info);
-- [ACMG73 secondary findings](/results/glioma-report#acmg73-secondary-findings);
+- [ACMG secondary findings](/results/glioma-report#acmg-secondary-findings);
 - [Technical limitations](/results/glioma-report#technical-limitations).
 
 ## Patient Info {#patient-info}
@@ -318,28 +318,24 @@ there are excerpts from scientific publications confirming its association with 
 <img src={require('/img/results/germline_pathogenic.png').default} width="900"/>
 </p>
 
-### ACMG73 secondary findings {#acmg73-secondary-findings}
+### ACMG secondary findings {#acmg-secondary-findings}
 
 - Corresponds
-to ["SNVs/Indels in ACMG 73 genes" template block](/settings/report-templates/report-templates#block-types).
+to ["SNVs/Indels in ACMG SF genes" template block](/settings/report-templates/report-templates#block-types).
 - Filled with data if the samples were uploaded in FASTQ or BAM formats or as VCF files (each with a single
-sample) and germline variants were discovered and successfully annotated in a non-tumor (control) sample
+sample) and if germline variants were discovered and successfully annotated in a non-tumor (control) sample
 or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
-- Includes the variants discovered in the sample, which are located in 73 genes
-on [the American College of Medical Genetics and Genomics (ACMG)](https://www.nature.com/articles/s41436-021-01172-3/tables/1)
-list, for which specific mutations are known to be causative of disorders with defined phenotypes that are
-clinically actionable by an accepted intervention. The ACMG recommends that variants detected in any of these
-genes should be reported as they are of medical relevance and could be used in the future to inform
-clinical treatment.
-- The variants in the report meet at least one of the following conditions:
-1. Pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
-2. Likely pathogenic (according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/));
-3. Having high gene product impact;
-4. Having moderate gene product impact and frequency less than 10% in population;
-5. Rare (having frequency less than 2% in population).
+- Includes the variants discovered in the sample, which are located in the genes
+from [the Secondary Findings (SF) list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) of
+American College of Medical Genetics and Genomics (ACMG). For these genes, specific mutations are known to
+be causative of disorders with defined phenotypes that are clinically actionable by an accepted intervention.
+The ACMG recommends that variants detected in any of these genes should be reported as they are of medical
+relevance and could be used in the future to inform clinical treatment.
+- The variants are divided into two lists according to the certain conditions,
+which are described in [the corresponding section](/results/acmg-sf-report#acmg-sf-content).
 
 :::caution
-Annotating variants with ClinVar to generate ACMG 73 secondary findings report has the limitations
+Annotating variants with ClinVar to generate ACMG secondary findings report has the limitations
 described [here](/results/acmg-sf-report#acmg-sf-limitations).
 :::
 
