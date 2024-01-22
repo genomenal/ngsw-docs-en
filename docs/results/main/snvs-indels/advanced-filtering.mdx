@@ -81,38 +81,53 @@ You can add a gene panel on <a href="/settings/gene-panels">on "Gene Panels" pag
 the Library of the most common clinical panels (such option is available
 for [basic filter "Gene panel"](/results/main/snvs-indels/basic-filtering#gene-panel) in
 basic filtering mode. If you don't have any gene panels added, the list of filter values will be empty.
-5. **Gene** (column ["Locus"](/results/main/snvs-indels/variant-viewer#columns-description),
+5. **Region** (basic filter ["Region"](/settings/profile#basic-mode-filters)) - filter variants
+by position on the genome (chromosome, start and end positions). To filter by region, click on the input
+window <img src={require('/img/vv/region_filter.png').default} width="230"/> and enter the position of the
+needed genomic interval, i.e. chromosome, start and end positions. Possible options of writing the interval
+position:
+- `chr1:161,190,824-161,193,921`
+- `chr1:161190824-161193921`
+- `chr1:161190824_161193921`
+- `1:161190824-161193921`
+
+You can also filter by more than one interval at once. For example,
+by `chr1:161190824-161193921, chrX:151110769-151113866`.<br></br>
+To complete adding the condition, press Enter or click outside edit value container.<br></br>
+The filtering result will be variants whose positions intersect with the entered interval.
+
+6. **Gene** (column ["Locus"](/results/main/snvs-indels/variant-viewer#columns-description),
 basic filter ["Gene"](/results/main/snvs-indels/basic-filtering#gene)) - filter variants by localization in
 gene transcript. The transcript is given in brackets next to the official gene name.
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-6. **Impact** - filter by the predicted effect of the variant on the protein: High, Moderate, Low, Modifier.
+7. **Impact** - filter by the predicted effect of the variant on the protein: High, Moderate, Low, Modifier.
 Column values are described [here](/results/main/snvs-indels/variant-viewer#variant-impacts).
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-7. **Genome position** - filter by variant position in the genome: in exon (Exonic), in intron
+8. **Genome position** - filter by variant position in the genome: in exon (Exonic), in intron
 (Intronic), in the intergenic region (Intergenic).
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-8. **Consequence** (basic filter ["Consequence"](/settings/profile#basic-mode-filters)) - filter by the
+9. **Consequence** (basic filter ["Consequence"](/settings/profile#basic-mode-filters)) - filter by the
 effect of the variant on genes. Column values are described
 [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-9. **Pathogenicity** (column ["Pathogenicity"](/results/main/snvs-indels/variant-viewer#columns-description),
+10. **Pathogenicity** (column ["Pathogenicity"](/results/main/snvs-indels/variant-viewer#columns-description),
 basic filter ["Pathogenicity"](/settings/profile#basic-mode-filters)) -
 [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter by variant pathogenicity,
 which have been determined either [manually](/results/main/snvs-indels/pathogenicity#manually-determined-pathogenicity),
 [by ACMG criteria](/results/main/snvs-indels/pathogenicity#define-pathogenicity-on-acmg-tab), or
 [according to the pathogenicity base](/results/main/snvs-indels/pathogenicity#define-pathogenicity-by-base).
-10. **Label** (column ["Label"](/results/main/snvs-indels/variant-viewer#label), basic
+11. **Label** (column ["Label"](/results/main/snvs-indels/variant-viewer#label), basic
 filter ["Label"](/settings/profile#basic-mode-filters)) -
 [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
 by [variant significance defined by the user](/results/main/snvs-indels/variant-viewer#label): High significance,
 Moderate significance, Low significance, Sequencing error, Undefined.
-11. **Phasing group** (column ["PG"](/results/main/snvs-indels/variant-viewer#added-columns)) -
+12. **Phasing group** (column ["PG"](/results/main/snvs-indels/variant-viewer#added-columns)) -
 [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
 by [phasing group](/results/main/snvs-indels/variant-viewer#added-columns) status:
 - Phasing group - merging of homozygous variants located within a specific genomic interval;
 - Part of group consequence equal - part of phasing group with concordant amino acid substitutions;
 - Part of group consequence unequal - part of phasing group with discordant amino acid substitutions.
-12. **Compound heterozygote (Genotype)** - filter variants by whether they are compound heterozygotes (i.e.
+13. **Compound heterozygote (Genotype)** - filter variants by whether they are compound heterozygotes (i.e.
 heterozygosity of two or more variants
 of the same gene; all cases are described in detail [here](/results/main/snvs-indels/advanced-filtering#compound)).
 Unlike [the compound heterozygote filtering mode](/results/main/snvs-indels/advanced-filtering#compound), this
@@ -136,81 +151,81 @@ are located in the same gene:
 <img src={require('/img/vv/sample_compound.png').default} width="700"/>
 </p>
 
-13. **Trio GT (Genotype)** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter by
+14. **Trio GT (Genotype)** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter by
 variant inheritance: *De novo* variants, Newly formed homozygotes (homozygotes in proband that are heterozygous in
 parents) or Single parent-inherited. Only available
 in [family group analysis](/group-analysis#group-analysis-variant-viewer) for Trio case
 (Proband, Father and Mother).
-14. **Chromosome** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description))- filter
+15. **Chromosome** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description))- filter
 variants by localization in chromosomes: chr1-chr22,
 chrX, chrY, chrM, chromosomes like chrN\_random (contigs located in the N chromosome but could not be reliably
 ordered within the sequence, or sequences for alternative haplotypes), chromosomes like chrUn_ (contigs that
 cannot be confidently placed on a specific chromosome), chrEBV.
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-15. **rsId** (column ["External links"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
+16. **rsId** (column ["External links"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 variants by ID from [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) database.
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters). You can use as a value either
 the full ID (e.g. rs1126497) or the ID digits only (e.g. 1126497).
-16. **ClinVar ID** (column ["External links"](/results/main/snvs-indels/variant-viewer#columns-description)) -
+17. **ClinVar ID** (column ["External links"](/results/main/snvs-indels/variant-viewer#columns-description)) -
 filter variants by Variation ID from [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database (e.g. 183700).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-17. **Origin** (basic filter ["Origin"](/results/main/snvs-indels/basic-filtering#origin)) - filter variants
+18. **Origin** (basic filter ["Origin"](/results/main/snvs-indels/basic-filtering#origin)) - filter variants
 by mutation type: Somatic, Germline.
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-18. **Start** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
+19. **Start** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 by the start position of the variant on the chromosome.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
-19. **End** - filter by the end position of the variant on the chromosome.
+20. **End** - filter by the end position of the variant on the chromosome.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
-20. **Reference allele** (column ["Alteration"](/results/main/snvs-indels/variant-viewer#columns-description)) -
+21. **Reference allele** (column ["Alteration"](/results/main/snvs-indels/variant-viewer#columns-description)) -
 filter by reference allele of the variant.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
-21. **Alternative allele** (column ["Alteration"](/results/main/snvs-indels/variant-viewer#columns-description)) -
+22. **Alternative allele** (column ["Alteration"](/results/main/snvs-indels/variant-viewer#columns-description)) -
 filter by alternative allele of the variant.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
-22. **HGVSc** - filter variants by nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/):
+23. **HGVSc** - filter variants by nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/):
 “c.” (coding; for a substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding
 sequence) prefix + genomic position of the substituted nucleotide + reference allele > alternative allele.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
-23. **HGVSp (short)** (column ["HGVSp"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
+24. **HGVSp (short)** (column ["HGVSp"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 variants by amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) in the single-letter
 amino acid code (“p.” prefix (protein) + reference amino acid + amino acid position in protein + new amino acid
 resulting from the substitution). [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 e.g.: p.P72R.
-24. **HGVSp (long)** (column ["HGVSp"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
+25. **HGVSp (long)** (column ["HGVSp"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 variants by amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) in the three-letter
 amino acid code. Written with transcript: Ensembl transcript ID + “p.” prefix (protein) + reference amino acid +
 amino acid position in protein + new amino acid resulting from the substitution.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters). e.g.: ENSP00000269305.4:p.Pro72Arg.
-25. **Exon** - filter by exon number in the transcript that the variant affected.
+26. **Exon** - filter by exon number in the transcript that the variant affected.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
-26. **Onco Relevance** - filter by the variant significance for any oncological disease: Relevant, Irrelevant.
+27. **Onco Relevance** - filter by the variant significance for any oncological disease: Relevant, Irrelevant.
 [Single value filter](/results/main/snvs-indels/advanced-filtering#single-value-filters).
-27. **Caller Filters** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
+28. **Caller Filters** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
 by variant quality (GATK filters).
-28. **Occurrence in Run** - filter variants by [occurrence](/runs#occurrence-in-run) in run samples.
+29. **Occurrence in Run** - filter variants by [occurrence](/runs#occurrence-in-run) in run samples.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (integer number).
 Only available in [run](/runs) SNV Viewer and run sample SNV Viewer.
-29. **RefSeq Transcript** - filter variants by transcript ID in [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/)
+30. **RefSeq Transcript** - filter variants by transcript ID in [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/)
 database (e.g. NM_002354.3). [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
-30. **OMIM ID** - filter variants by gene ID in [OMIM](https://www.omim.org/) database (e.g. 185535).
+31. **OMIM ID** - filter variants by gene ID in [OMIM](https://www.omim.org/) database (e.g. 185535).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-31. **NCBI ID** - filter variants by gene ID in [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) database
+32. **NCBI ID** - filter variants by gene ID in [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) database
 (e.g. 4072). Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-32. **Swiss-Prot ID** - filter variants by gene ID
+33. **Swiss-Prot ID** - filter variants by gene ID
 in [UniProtKB Swiss-Prot](https://www.uniprot.org/uniprotkb/?facets=reviewed%3Atrue&query=%2A) database (e.g. P16422).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-33. **TrEMBL ID** - filter variants by gene ID
+34. **TrEMBL ID** - filter variants by gene ID
 in [UniProtKB TrEMBL](https://www.uniprot.org/uniprotkb?query=reviewed:false) database (e.g. B5MCA4).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-34. **Ensembl ID** - filter variants by gene ID in [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
+35. **Ensembl ID** - filter variants by gene ID in [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
 database (e.g. ENSG00000119888). Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-35. **Cosmic ID** - filter by variant ID in [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database
+36. **Cosmic ID** - filter by variant ID in [COSMIC](https://cancer.sanger.ac.uk/cosmic/) database
 (e.g. COSV52665487). Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
 Only available if COSMIC
 database [has been uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type) before
 the sample variant annotation is complete.
-36. **RUSeq AF** - filter variants by alternative allele frequency from [RUSeq](http://ruseq.ru/#/) database.
+37. **RUSeq AF** - filter variants by alternative allele frequency from [RUSeq](http://ruseq.ru/#/) database.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (any number).
 Only available if RUSeq
 database [has been uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type) before
