@@ -11,10 +11,9 @@ SNV Viewer is an embedded service for viewing and analyzing single-nucleotide
 variants (SNVs) and short insertions/deletions (Indels) discovered in the sample.
 Located on **[Main tab](/results/main/main)** of the sample.
 
-On the ***tumor*** sample page, you can find two SNV Viewers: one with ***somatic*** and
-one with ***germline*** mutations discovered in this sample:
-one with ***somatic SNVs/Indels*** discovered in this sample and one with ***germline SNVs/Indels***
-discovered in the control sample in the case of the tumor sample from a pair of tumor/normal samples
+On the ***tumor*** sample page, you can find two SNV Viewers: one with ***somatic SNVs/Indels*** discovered
+in this sample and one with ***germline SNVs/Indels*** discovered in the control sample in the case of the
+tumor sample from a pair of tumor/normal samples
 or in the tumor sample itself, if it was analyzed without a control sample.
 In SNV Viewer with somatic mutations, you can also see SNVs/Indels from SNV Viewer with germline mutations
 if you change the value of the filter by origin from Somatic to Germline or clear filtering by it.
@@ -47,7 +46,7 @@ The main object of SNV Viewer is a table with variants - each variant is on a ne
 ### Variant Info {#variant-information}
 
 Besides of the information presented in the table (see
-[Description of table columns](/results/main/snvs-indels/variant-viewer#columns-description)),
+[Table Columns' Description](/results/main/snvs-indels/variant-viewer#columns-description)),
 for each variant there are several embedded modules with additional information:
 
 1. **Variant detailed information panel**. Click on the variant row to see a panel:
@@ -770,7 +769,7 @@ you can see these filters. The cell is colored <Highlight color="#F9DAE0">red</H
 in [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
 It is called "Clinical significance" ("ClinVar" section)
 in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns#add-columns).
-Column values are represented
+Column values are presented
 as icons:<br></br><img src={require('/img/vv/affects.png').default} width="45"/> -
 Affects;<br></br><img src={require('/img/vv/assoc_not_found.png').default} width="45"/> - Association
 not found;<br></br><img src={require('/img/vv/association.png').default} width="45"/> -
@@ -805,7 +804,7 @@ suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*) 
 by [ENIGMA](https://enigmaconsortium.org/) consortium.
 It is called "ENIGMA clinical significance" ("Other" section)
 in [Edit Table Columns window](/results/main/snvs-indels/edit-table-columns#add-columns).
-Column values are represented
+Column values are presented
 as icons:<br></br><img src={require('/img/vv/pathogenic.png').default} width="45"/> -
 Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="45"/> -
 Likely pathogenic;<br></br><img src={require('/img/vv/likely_benign.png').default} width="45"/> - Likely

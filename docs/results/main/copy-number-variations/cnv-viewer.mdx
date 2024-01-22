@@ -1,0 +1,365 @@
+---
+sidebar_position: 2
+sidebar_label: CNV Viewer
+---
+
+# CNV Viewer
+
+## Overview {#overview}
+
+CNV Viewer is an embedded service for viewing and analyzing copy number variations (CNVs) discovered in the sample.
+Available on the main page of the sample (**[Main tab](/results/main/main)**) if its “Copy number variations discovery”
+stage has been successfully completed.
+
+On the **non-tumor** sample page, you can find a CNV Viewer with ***germline copy number variations*** discovered
+in this sample:
+
+<p align="center">
+<img src={require('/img/vv/germline_cnvv.png').default} width="780"/>
+</p>
+
+On the ***tumor*** sample page from a pair of tumor/control samples,
+you can find two CNV Viewers: one with ***somatic copy number variations*** discovered in this sample
+and one with ***germline copy number variations*** discovered in the control sample:
+
+<p align="center">
+<img src={require('/img/vv/germline_and_somatic_cnvv.png').default} width="780"/>
+</p>
+
+On the ***tumor*** sample page analyzed ***without a control sample***, you can find a
+CNV Viewer with ***somatic and germline copy number variations*** discovered in this sample:
+
+<p align="center">
+<img src={require('/img/vv/germline_and_somatic_cnvv_tumor.png').default} width="780"/>
+</p>
+
+## Segments and Bins {#segments-and-bins}
+
+By clicking on the button <img src={require('/img/results/cnvv_btn.png').default} width="110"/>, you will
+see two options: “*Segments*” and “*Bins*”, which open CNV Viewer with copy number variations discovered
+in the segments or bins, respectively:
+
+<p align="center">
+<img src={require('/img/results/cnvv_options.png').default} width="140"/>
+</p>
+
+:::info
+Segments and bins are intervals in which the read counts are estimated.<br></br>
+**Bins** are small intervals, the size of which is controlled
+by [the corresponding setting](/settings/settings/variant-discovery-settings#minimal-bin-size) for WGS,
+and which are created by dividing the reference genome into equal-sized intervals. The bin size determines
+the resolution of copy number variations discovery.<br></br>
+**Segments** are large regions of the genome that are obtained by combining adjacent bins with similar
+copy number.<br></br>
+The bins provide a fine-grained genome-wide copy number signal without loss of information and some noise.
+Segmentation attempts to remove the noise and infer the location of discrete copy number variations, i.e.
+the individual regions that have been duplicated or deleted.
+Therefore, it is recommended to analyze segments first, and continue by analyzing bins to show the level of
+support for each segment, as well as to find potential artifacts, such as particularly noisy regions of the genome.
+However, it is worth considering that some outlier bins that are rejected by segmentation as noise may turn
+out to be real copy number variations, equal in size to these bins.
+:::
+
+## Main Page {#main-page}
+
+By selecting one of the button <img src={require('/img/results/cnvv_btn.png').default} width="110"/> options:
+“*Segments*” or “*Bins*”, you will see the main CNV Viewer page with copy number variations discovered in
+segments or bins, respectively. At the top right of the page, you can find out CNV Viewer with which
+variations is open:
+- CNV Viewer with copy number variations discovered in segments of a non-tumor tissue sample:
+
+<p align="center">
+<img src={require('/img/vv/normal_segments_vv.png').default} width="1000"/>
+</p>
+
+- CNV Viewer with copy number variations discovered in bins of a non-tumor tissue sample:
+
+<p align="center">
+<img src={require('/img/vv/normal_bins_cnvv.png').default} width="1000"/>
+</p>
+
+- CNV Viewer with copy number variations discovered in segments of a tumor tissue sample:
+
+<p align="center">
+<img src={require('/img/vv/tumor_segments_cnvv.png').default} width="1000"/>
+</p>
+
+- CNV Viewer with copy number variations discovered in bins of a tumor tissue sample:
+
+<p align="center">
+<img src={require('/img/vv/tumor_bins_cnvv.png').default} width="1000"/>
+</p>
+
+The main object of CNV Viewer is a table with copy number variations. Each variation is on a new row:
+
+<p align="center">
+<img src={require('/img/vv/cnv_row_full.png').default} width="1000"/>
+</p>
+
+### Full and Split Rows {#full-and-split}
+
+There are two modes of CNV annotation: annotation on the variation full length (“**full**”) and annotation on
+each gene overlapped by the variation (“**split**”). Each full record can correspond to several split records.
+Full records are displayed in CNV Viewer as parent rows, and split records are displayed as their child rows.
+The appearance of the rows depends
+on [the CNV Viewer table presentation mode](/results/main/copy-number-variations/cnv-viewer#cnvv-mode).
+
+### CNV Viewer Modes {#cnvv-mode}
+
+There are two modes for CNV Viewer table
+presentation: [tree mode](/results/main/copy-number-variations/cnv-viewer#tree-mode)
+and [flat list mode](/results/main/copy-number-variations/cnv-viewer#list-mode). Mode can be changed by
+toggle in the upper right corner of CNV Viewer: <img src={require('/img/vv/tweak_modes.png').default} width="110"/>.
+
+:::note
+The selected mode and the expansion of the full row in tree mode (see below) are saved when you exit
+the CNV Viewer page.
+:::
+
+#### Tree Mode {#tree-mode}
+
+By default, CNV Viewer opens in tree mode. The table loads faster with this mode, since split rows are not
+shown along with full rows in it:
+
+<p align="center">
+<img src={require('/img/vv/tree_mode.png').default} width="1000"/>
+</p>
+
+The full row can be expanded to see the corresponding split rows in that position by
+clicking on <img src={require('/img/vv/show_split.png').default} width="12"/> in the full
+variation row. If a row does not have any corresponding split records, it does not have such button.
+The expanded full row and its split rows looks like this:
+
+<p align="center">
+<img src={require('/img/vv/split_rows.png').default} width="1000"/>
+</p>
+
+Here the first row is full, and below there are the corresponding split rows. To return to the table with
+all full rows without split ones, click on <img src={require('/img/vv/return_to_full.png').default} width="20"/>
+in the full variation row.
+
+To switch to tree mode from [flat list mode](/results/main/copy-number-variations/cnv-viewer#list-mode),
+click on the toggle button <img src={require('/img/vv/to_tree_mode.png').default} width="110"/> at the top of the page.
+
+#### Flat List Mode {#list-mode}
+
+import Highlight from '@site/src/components/HighlightBlackText';
+
+To switch to flat list mode from [tree mode](/results/main/copy-number-variations/cnv-viewer#tree-mode),
+click on the toggle button <img src={require('/img/vv/to_list_mode.png').default} width="110"/> at the top
+of the page. CNV Viewer works slower in this mode, since it displays not only full rows, but also split rows.
+In this mode, full rows are colored <Highlight color="#F3F3F3">gray</Highlight>, and split rows are colored
+white and are written under the corresponding full row:
+
+<p align="center">
+<img src={require('/img/vv/list_mode.png').default} width="1000"/>
+</p>
+
+### Pin Variation {#pin-variation}
+
+You can pin the needed variations. Pinned variations are not affected
+by [filtering and sorting](/results/main/copy-number-variations/cnv-viewer#sort-and-filter) the variation
+table, they always remain at the top of the table. The pinned variations are sorted by position.
+
+To pin a variation, click on <img src={require('/img/vv/pin_variant.png').default} width="28"/> in the variation row.
+
+In ***tree mode***, the pinned full row will appear at the top of the table above the other unpinned full rows
+(the row is colored green):
+
+<p align="center">
+<img src={require('/img/vv/pinned_variation.png').default} width="950"/>
+</p>
+
+When a split row is pinned, the corresponding full row is also automatically pinned. At the same time, the full
+row remains at the top of the table (it remains white), and the pinned split row moves above the rest of the
+unpinned split rows. The pinned split rows are sorted by gene name.
+
+<p align="center">
+<img src={require('/img/vv/pinned_split.png').default} width="950"/>
+</p>
+
+In ***flat list mode***, a pinned full row also moves to the top of the table (the row is colored green).
+Moreover, if a full row has corresponding split records, then its row is duplicated in the table above
+the corresponding split rows (the duplicate row is colored gray like the other full rows, and the pin button
+looks like <img src={require('/img/vv/pin_full.png').default} width="28"/>).
+When you click either on pinned or duplicate row, both rows will be colored blue.
+
+<p align="center">
+<img src={require('/img/vv/double_pinned_full.png').default} width="950"/>
+</p>
+
+When a split row is pinned, the corresponding full row is also automatically pinned.
+Both rows are moved to the top of the table and colored green. If this full row still has unpinned corresponding
+split rows, then it is duplicated in the table, as described above. If all split rows of the full row are pinned,
+then a duplicate row is not created.
+
+<p align="center">
+<img src={require('/img/vv/pinned_full_and_split.png').default} width="950"/>
+</p>
+
+To unpin a variation, click on the button <img src={require('/img/vv/unpin.png').default} width="28"/> in
+the variation row (or on <img src={require('/img/vv/pin_full.png').default} width="28"/> in the duplicate full row).
+
+:::note
+The variation remains pinned when you exit the CNV Viewer page.
+:::
+
+## Variation Info {#variation-information}
+
+In addition to the information presented in the table
+(see [Table Columns' Description](/results/main/copy-number-variations/cnv-viewer#columns-description)),
+for each variation there are several embedded modules with additional information:
+
+1. **Variation detailed information panel**. To see the panel, click on the variation row:
+
+<p align="center">
+<img src={require('/img/vv/details_panel_cnvv.png').default} width="950"/>
+</p>
+
+:::info
+By default, the panel is expanded at the bottom of the CNV Viewer table. If you do not use the panel
+on a regular basis, you can hide it from CNV Viewer
+on [the "Profile settings" page](/settings/profile#variant-details-bottom-panel).
+:::
+
+You can read more about the panel and its tabs
+in [the corresponding section](/results/main/copy-number-variations/cnv-details-panel).
+
+2. **Integrative Genomics Viewer (IGV)** is a module for visualization of variation on the genome.
+Click on <img src={require('/img/vv/igv_var.png').default} width="30"/> in the variation row to open the module.
+From IGV opened from CNV Viewer, you can return back to CNV Viewer with a filter by the position that was opened
+in IGV by clicking on the button <img src={require('/img/vv/back_to_cnvv.png').default} width="130"/>.
+3. **Link to variation position in [Decipher](https://www.deciphergenomics.org/) genome browser**. To open
+the browser, click on <img src={require('/img/vv/decipher.png').default} width="25"/> in the variation row.
+
+## Table Columns' Description {#columns-description}
+
+The CNV Viewer table can include the following columns:
+1. **Position** is a coordinate of the variation in the genome (chromosome + start position + end position).
+You can copy the variation position to the clipboard by moving the cursor over the column value and
+clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
+2. **Length, kb** is a length of the copy number variation region in kilobases.
+3. **Genes**. For full rows, this is the number of genes located in the affected region of copy number variation.
+For split rows, this is the name of the gene located in the region.
+You can copy the gene name to the clipboard by moving the cursor over the column value and
+clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
+4. **Log2 FC** is the logarithmic ratio of the detected copy number to the normal copy number
+(equals to 2 for autosomes and the X chromosome in the case of genotype XX, or to 1 for sex
+chromosomes in the case of genotype XY).
+5. **Relative copy number** is the number of copies of a certain region per haploid genome.
+6. **Type** is a copy number variation
+type: <img src={require('/img/vv/deletion.png').default} width="50"/> -
+deletion, <img src={require('/img/vv/duplication.png').default} width="50"/> - duplication.
+7. **Cohort 180 AF** is the variation frequency in a cohort of 188 samples. AF values are only
+available for bins of size 3000 or 5000. The column is only displayed in the CNV Viewer with copy number
+variations discovered in the bins. The column cells are colored depending on the AF value:
+- <Highlight color="#DEF1DB">green</Highlight> if AF ≥ 0.015;
+- <Highlight color="#FFFAEB">yellow</Highlight> if 0.01 ≤ AF &lt; 0.015;
+- <Highlight color="#F9DAE0">red</Highlight> if AF &lt; 0.01.
+8. **OMIM ID** is an ID from [OMIM](https://www.omim.org/) database of the gene located in the affected region
+of variation. Available only for split rows.
+9. **Ranking score** is the classification of variation pathogenicity provided
+by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf) and based on ACMG and ClinGen
+recommendations[^1]. According to the ranking score, the ACMG class is assigned:
+- Variations with a ranking score ≥ 0.99 are assigned class 5 - pathogenic;
+- Variations with a ranking score from 0.90 to 0.98 are assigned class 4 - likely pathogenic;
+- Variations with a ranking score from 0.89 to −0.89 are assigned class 3 - uncertain significance;
+- Variations with a ranking score from −0.90 to −0.98 are assigned class 2 - likely benign;
+- Variations with a ranking score ≤ −0.99 are assigned class 1 - benign.
+10. **ACMG Class** is the variation pathogenicity assigned according to the ranking score defined
+by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf) (see conditions above).
+Column values are presented
+as icons:<br></br><img src={require('/img/vv/pathogenic.png').default} width="40"/> - Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="40"/> -
+Likely pathogenic;<br></br><img src={require('/img/vv/uncertain_significance.png').default} width="42"/> -
+Uncertain significance;<br></br><img src={require('/img/vv/likely_benign.png').default} width="40"/> - Likely
+benign;<br></br><img src={require('/img/vv/benign.png').default} width="40"/> -
+Benign.<br></br>
+You can see the full value by hovering over the icon.
+11. **Pathogenicity** is the variation pathogenicity determined by the user. To determine the pathogenicity
+of a variation, click on the pathogenicity button <img src={require('/img/vv/acmg_var_btn.png').default} width="42"/>
+in the variation row and select the needed option in the dialog that appears:
+
+<p align="center">
+<img src={require('/img/vv/pathogenicity_list_cnvv.png').default} width="300"/>
+</p>
+
+:::info
+Variations with determined pathogenicity are automatically added to the sample interpretation summary.
+:::
+
+Possible column values are presented
+as icons:<br></br><img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> - No interpretation
+(before determining the variation
+pathogenicity);<br></br><img src={require('/img/vv/pathogenic.png').default} width="40"/> - Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="40"/> -
+Likely pathogenic;<br></br><img src={require('/img/vv/uncertain_significance.png').default} width="42"/> -
+Uncertain significance;<br></br><img src={require('/img/vv/likely_benign.png').default} width="40"/> - Likely
+benign;<br></br><img src={require('/img/vv/benign.png').default} width="40"/> -
+Benign.<br></br>
+You can see the full value by hovering over the icon.<br></br>
+Pathogenicity can be overdetermined in the same dialog or cleared by clicking on the pathogenicity button in
+the variation row and selecting the "*Clear*" option in the dialog that appears:
+
+<p align="center">
+<img src={require('/img/vv/clear_on_dialog_cnvv.png').default} width="300"/>
+</p>
+
+When reprocessing the copy number variations discovery stage or previous stages of sample analysis,
+the determined pathogenicity class of the variation remains, but requires confirmation.
+The button of pathogenicity that needs to be confirmed is
+indicated by <img src={require('/img/vv/bell.png').default} width="18"/>. If you agree with the determination
+of the variation pathogenicity, click on the bell or pathogenicity button and select the
+“*Confirm Pathogenicity*” option in the dialog that appears:
+
+<p align="center">
+<img src={require('/img/vv/confirm_pathogenicity_cnvv.png').default} width="300"/>
+</p>
+
+12. <b>P<sub>s</sub></b> are pathogenic overlapping variants, i.e. known pathogenic genes or genomic regions
+completely overlapped with the variation. Column values are presented
+as icons:<br></br><img src={require('/img/vv/gain.png').default} width="25"/> -
+Gain;<br></br><img src={require('/img/vv/loss.png').default} width="25"/> -
+Loss;<br></br><img src={require('/img/vv/insertion.png').default} width="25"/> -
+Insertion or mixed value.<br></br>
+You can see the full value by hovering over the icon.
+13. <b>B<sub>s</sub></b> are benign overlapping variants, i.e. known benign genes or genomic regions
+completely overlapped with the variation. Column values are presented
+as icons:<br></br><img src={require('/img/vv/gain.png').default} width="25"/> -
+Gain;<br></br><img src={require('/img/vv/loss.png').default} width="25"/> -
+Loss;<br></br><img src={require('/img/vv/inversion.png').default} width="25"/> -
+Inversion;<br></br><img src={require('/img/vv/insertion.png').default} width="25"/> -
+Insertion or mixed value.<br></br>
+You can see the full value by hovering over the icon.
+
+## Filter and Sort Variations {#sort-and-filter}
+
+***Filtering of variations*** in CNV Viewer is described
+in [the corresponding section](/results/main/copy-number-variations/cnv-filtering).
+
+By default, the table is sorted by variation position. The table can be ***sorted*** by ascending or
+descending values of the following columns: “*Position*”, “*Length, kb*”, “*Genes*” (in tree mode,
+full rows are sorted by the number of genes and split rows are sorted by gene name, and in flat list mode,
+only full rows are sorted by the number of genes, and the sorting of split rows remains unchanged),
+"*Log2 FC*", "*Relative copy number*", "*Type*", "*Cohort 180 AF*", "*OMIM ID*" (only in tree mode for split rows),
+"*Ranking score*", "*ACMG Class*", "*Pathogenicity*".
+
+To sort a table by column values, click on the column name (click once to sort ascending, or twice to sort
+descending). After this, an up arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> (when sorting
+in ascending order) or down arrow <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when sorting
+in descending order) will appear next to the column name.
+
+You can sort a table by 1-3 columns at a time to group data with the same values in one column, and then sort
+those groups with the same values in another column. The sorting order will depend on the order in which you
+click on the names of the corresponding columns. The sorting arrow will be next to the column by which you sorted last.
+
+To reset sorting, use the clear all filters
+button: <img src={require('/img/vv/clear_filters.png').default} width="40"/>. Please note that this will
+also reset variation filtering.
+
+The main principle of sorting is sorting alphabetically for columns with text values (e.g. the "Type" column)
+or sorting from minimum to maximum and vice versa for columns with numeric values (e.g. the "Length, kb" column).
+However, for some columns the sorting is special:
+- The values of the "**Position**" column are sorted first by chromosome, then by position on it.
+- The values of the "**ACMG Class**" and "**Pathogenicity**" columns are sorted from pathogenic to benign
+variations: Pathogenic, Likely pathogenic, Uncertain significance, Likely benign, Benign.
+
+[^1]: [Riggs E.R., Andersen E.F., Cherry A.M. et al. Technical standards for the interpretation and reporting of constitutional copy number variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics (ACMG) and the Clinical Genome Resource (ClinGen). Genet Med 22, 245-257 (2020)](https://doi.org/10.1038/s41436-019-0686-8)

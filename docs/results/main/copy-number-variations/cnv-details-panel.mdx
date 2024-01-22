@@ -1,0 +1,203 @@
+---
+sidebar_position: 4
+sidebar_label: Variation Details Panel
+---
+
+# Variation Details Panel
+
+Click on a variation row to see a panel with detailed information about it below the table.
+The panel is different for full and split rows. Panel with detailed information about the variation full length:
+
+<p align="center">
+<img src={require('/img/vv/details_panel_cnvv.png').default} width="950"/>
+</p>
+
+Panel with detailed information about each gene overlapped by the variation:
+
+<p align="center">
+<img src={require('/img/vv/details_panel_split.png').default} width="950"/>
+</p>
+
+The panel can be resized by hovering over the top border of the panel and dragging down or up.
+You can also collapse or expand the panel by
+clicking on <img src={require('/img/vv/expand.png').default} width="30"/>
+or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively.
+
+:::info
+On ["Profile settings" page](/settings/profile#variant-details-bottom-panel), you can adjust whether
+the variation details panel is expanded or collapsed in CNV Viewer by default.
+:::
+
+The panel is divided into ["Common"](/results/main/copy-number-variations/cnv-details-panel#common-tab)
+and ["Overlapping variants"](/results/main/copy-number-variations/cnv-details-panel#overlapping-variants) tabs.
+
+On the panel, only those tabs are visually highlighted that include at least one non-empty variation annotation
+field. For example, the "Overlapping variants" tab filled with data looks
+like this: <img src={require('/img/vv/source_full.png').default} width="170"/>, and empty - like
+this: <img src={require('/img/vv/source_empty.png').default} width="170"/>.
+As you move between variations in the table, the selected panel tab is retained.
+
+## Common {#common-tab}
+
+The "Common" tab looks different for full and split rows.
+The tab with common information about the variation full length looks like this:
+
+<p align="center">
+<img src={require('/img/vv/common_tab_cnvv.png').default} width="950"/>
+</p>
+
+The tab with common information about each gene overlapped by the variation looks like this:
+
+<p align="center">
+<img src={require('/img/vv/common_tab_split.png').default} width="950"/>
+</p>
+
+The tab contains common information about the variation and may include the following sections:
+- [Clarified boundaries](/results/main/copy-number-variations/cnv-details-panel#clarified-boundaries);
+- [Variation interpretation](/results/main/copy-number-variations/cnv-details-panel#variation-interpretation);
+- [Additionally](/results/main/copy-number-variations/cnv-details-panel#details-additionally) (only for full rows);
+- [Gene](/results/main/copy-number-variations/cnv-details-panel#gene-info) (only for split rows);
+- [OMIM Gene-Phenotype Relationships](/results/main/copy-number-variations/cnv-details-panel#omim-phenotypes) (only
+for split rows if you are granted access to OMIM database).
+
+### Clarified boundaries {#clarified-boundaries}
+
+In the section, you can specify the start and end positions of the variation by entering them in the
+corresponding “*Start*” and “*End*” fields. You can only enter numbers without any additional characters.
+After clarifying the boundaries of variation, buttons to open this region in Integrative Genomics Viewer
+(IGV) <img src={require('/img/vv/igv_var.png').default} width="30"/> and <a href="https://www.deciphergenomics.org/">Decipher</a> genome
+browser <img src={require('/img/vv/decipher.png').default} width="25"/> will appear:
+
+<p align="center">
+<img src={require('/img/vv/clarified_boundaries.png').default} width="400"/>
+</p>
+
+### Variation interpretation / comment {#variation-interpretation}
+
+The variation interpretation is displayed here if it was added by the user. An interpretation can be added
+and edited by clicking on the text field, entering text and clicking outside the text field to save the interpretation:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_on_panel_cnvv.png').default} width="600"/>
+</p>
+
+### Additionally {#details-additionally}
+
+For full rows, the ranking criteria are provided, i.e. the decision criteria that explain the ranking score
+provided by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf). Detailed
+guidelines for evaluating the ranking criteria are available in the
+file [AnnotSV_Scoring_Criteria.xlsx](https://github.com/lgmgeo/AnnotSV/blob/master/Scoring_Criteria_AnnotSV_latest.xlsx)
+(see Table 1 for duplications and Table 2 for deletions). Ranking score is the classification of variation
+pathogenicity provided by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf) and based
+on ACMG and ClinGen recommendations[^1]. According to the ranking score, the ACMG class is assigned:
+- Variations with a ranking score ≥ 0.99 are assigned class 5 - pathogenic;
+- Variations with a ranking score from 0.90 to 0.98 are assigned class 4 - likely pathogenic;
+- Variations with a ranking score from 0.89 to −0.89 are assigned class 3 - uncertain significance;
+- Variations with a ranking score from −0.90 to −0.98 are assigned class 2 - likely benign;
+- Variations with a ranking score ≤ −0.99 are assigned class 1 - benign.
+
+### Gene {#gene-info}
+
+For split rows representing each gene overlapped by the variation, the information about this gene is provided:
+- ***Official full name***. When hovering over the gene name, you can see from which databases it was taken:
+
+<p align="center">
+<img src={require('/img/vv/gene_source_cnvv.png').default} width="300"/>
+</p>
+
+- ***Links*** to pages with information about the gene in various databases
+([Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index), [UniProt](https://www.uniprot.org/uniprot/),
+[GTEx](https://www.gtexportal.org/home/), [OMIM](https://www.omim.org/), [NCBI](https://www.ncbi.nlm.nih.gov/gene/),
+[Orphanet](https://www.orpha.net/consor/cgi-bin/index.php)).
+
+### OMIM Gene-Phenotype Relationships {#omim-phenotypes}
+
+Access to data from [OMIM](https://www.omim.org/) database inside Genomenal is provided if the user has a
+license to access the database. If you have been granted access to OMIM, for split rows, there will be information
+on the phenotypes associated with the gene overlapped by the variation on the right side of the "Common" tab:
+
+<p align="center">
+<img src={require('/img/vv/omim_phenotypes.png').default} width="500"/>
+</p>
+
+The information is presented in the form of a table with the following columns:
+1. ***Phenotype*** is the full name of the phenotype associated with the gene. For some phenotypes,
+there is a question mark before the name (e.g. "<b>?</b>Bleeding disorder, platelet-type, 22"), which
+indicates that the relationship between the phenotype and gene is provisional. Some phenotypes are enclosed
+in square brackets (e.g. "<b>[</b>Urate oxidase deficiency<b>]</b>"), which indicates mainly genetic variations
+that lead to apparently abnormal laboratory test values. Some phenotypes are enclosed in curly brackets
+(e.g. "<b>{</b>Prostate cancer/brain cancer susceptibility, somatic<b>}</b>"), which indicates mutations
+that contribute to susceptibility to multifactorial disorders or to susceptibility to infection.
+2. ***Phenotype MIM number*** is a phenotype ID in OMIM database.
+You can open the phenotype page by clicking on the link.
+3. ***Inheritance*** is a pattern of inheritance phenotype: <b>AD</b> - autosomal
+dominant; <b>AR</b> - autosomal recessive; <b>DD</b> - digenic dominant; <b>DR</b> - digenic
+recessive; <b>IC</b> - isolated cases; <b>Mi</b> - mitochondrial; <b>Mu</b> - multifactorial; <b>PADom</b> -
+pseudoautosomal dominant; <b>PARec</b> - pseudoautosomal recessive; <b>SomMos</b> - somatic
+mosaicism; <b>SMu</b> - somatic mutation; <b>XL</b> - X-linked; <b>XLD</b> - X-linked
+dominant; <b>XLR</b> - X-linked recessive; <b>YL</b> - Y-linked.
+4. ***Phenotype mapping key*** is an OMIM phenotype map key (the map displays relationships of the
+phenotype with associated phenotypes, phenotypic series and genes): <b>1</b> - the phenotype is placed on
+the map due to its association with a gene, but the underlying defect is not known; <b>2</b> - the phenotype
+has been placed on the map by statistical methods, no mutation has been found; <b>3</b> - the molecular basis of the
+disorder is known; <b>4</b> - a contiguous gene duplication or deletion syndrome in which multiple genes are involved.
+
+## Overlapping variants {#overlapping-variants}
+
+<p align="center">
+<img src={require('/img/vv/overlapping_variants.png').default} width="1000"/>
+</p>
+
+The tab contains information
+about [phenotypes](/results/main/copy-number-variations/cnv-details-panel#pathogenic-phenotypes) and
+[HPO terms](/results/main/copy-number-variations/cnv-details-panel#hpo-terms) associated with the
+pathogenic loss, gain, or insertion genomic regions completely overlapped with the variation, as well
+as information about [pathogenic](/results/main/copy-number-variations/cnv-details-panel#pathogenic-variants)
+and [benign](/results/main/copy-number-variations/cnv-details-panel#benign-variants) variants that overlap
+with the variation.
+
+### Pathogenic phenotypes {#pathogenic-phenotypes}
+
+The phenotypes are presented as a table with the following columns:
+1. ***Type*** is a copy number variation type: Loss (deletion), Gain (duplication), or Insertion.
+2. ***Phenotype*** is the name of the phenotype of the pathogenic loss, gain or insertion genomic regions
+completely overlapped with the variation. When you hover over a column value, you can see
+the full name of the phenotype.
+
+### Related HPO terms {#hpo-terms}
+
+The HPO terms are presented as a table with the following columns:
+1. ***Type*** is a copy number variation type: Loss (deletion), Gain (duplication), or Insertion.
+2. ***HPO term*** is a term from [Human Phenotype Ontology (HPO)](https://hpo.jax.org/app/) describing
+the pathogenic loss, gain or insertion genomic regions completely overlapped with the variation.
+
+### Pathogenic variants {#pathogenic-variants}
+
+Pathogenic overlapping variants are presented as a table with the following columns:
+1. ***Type*** is a copy number variation type: Loss (deletion), Gain (duplication), or Insertion.
+2. ***Source*** is an origin of the pathogenic loss, gain or insertion genomic regions completely
+overlapped with the variation. Possible sources: [dbVar](https://www.ncbi.nlm.nih.gov/dbvar/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/)
+(CLN), [ClinGen](https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/landing)
+(TS3 for gain or HI3 for loss), disease-associated gene name from [OMIM](https://www.omim.org/) (morbid).
+3. ***Locus*** is the coordinates of the pathogenic loss, gain or insertion genomic regions completely
+overlapped with the variation (chromosome:start-end).
+
+### Benign variants {#benign-variants}
+
+Benign overlapping variants are presented as a table with the following columns:
+1. ***Type*** is a copy number variation type: Loss (deletion), Gain (duplication), Insertion, or Inversion.
+2. ***Source*** is an origin of the benign loss, gain, insertion or inversion genomic regions completely
+overlapped with the variation. Possible sources: [gnomAD](https://gnomad.broadinstitute.org/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) (CLN),
+[ClinGen](https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/landing) (TS40 for gain
+or HI40 for loss), [DGV](http://dgv.tcag.ca/) (dgv, nsv or esv), [DDD](https://www.ddduk.org/),
+[1000 genomes](https://www.internationalgenome.org/) (1000g),
+[Ira M. Hall’s lab](https://www.nature.com/articles/s41586-020-2371-0) (IMH),
+[Children’s Mercy Research Institute](https://www.childrensmercy.org/childrens-mercy-research-institute/) (CMRI).
+3. ***Locus*** is the coordinates of the benign loss, gain, insertion or inversion genomic regions completely
+overlapped with the variation (chromosome:start-end).
+4. ***AF MAX*** is the maximum allele frequency (AF) of the reported benign loss, gain, insertion or inversion
+genomic regions completely overlapped with the variation.
+
+[^1]: [Riggs E.R., Andersen E.F., Cherry A.M. et al. Technical standards for the interpretation and reporting of constitutional copy number variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics (ACMG) and the Clinical Genome Resource (ClinGen). Genet Med 22, 245-257 (2020)](https://doi.org/10.1038/s41436-019-0686-8)
