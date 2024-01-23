@@ -46,7 +46,9 @@ to the following scheme:
 phenotype only of pathogenic or likely pathogenic clinical significance that is
 listed in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for
 the gene in which the variant is located;
-- The allele frequency in [GnomAD](/results/main/snvs-indels/advanced-filtering#gnomad) is below 0.25 or empty;
+- The allele frequency in [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) is empty or
+below the frequency threshold for too frequent pathogenic variants, specified in the report template block
+"SNVs/Indels in ACMG SF genes" (recommended default value = 0.03);
 - The variant site has at least one alternative allele (i.e. has the genotype 1/1, 1|1, 0/1, 1/0, 0|1, etc.)
 in the case of a VCF file with a single sample;
 - The variant meets all the conditions specified in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/)
@@ -67,7 +69,9 @@ for the gene in which the variant is located. These conditions may be associated
 - The variant is located in a gene from [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
 - The variant is associated with at least one phenotype of pathogenic and/or likely pathogenic clinical
 significance according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/);
-- The allele frequency in [GnomAD](/results/main/snvs-indels/advanced-filtering#gnomad) is below 0.25 or empty;
+- The allele frequency in [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) is empty or
+below the frequency threshold for too frequent pathogenic variants, specified in the report template block
+"SNVs/Indels in ACMG SF genes" (recommended default value = 0.03);
 - The variant site has at least one alternative allele (i.e. has the genotype 1/1, 1|1, 0/1, 1/0, 0|1, etc.)
 in the case of a VCF file with a single sample;
 - The variant does not meet at least one of the conditions in List 1:
