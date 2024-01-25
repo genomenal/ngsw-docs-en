@@ -606,6 +606,18 @@ on ***Protein function effect (additional)*** tab:
 <img src={require('/img/vv/protein_func_add.png').default} width="1000"/>
 </p>
 
+- **[BayesDel](http://bjfenglab.org/BayesDel)** is a variant deleteriousness meta-score. It works for coding and
+non-coding variants, single nucleotide variants and small indels. The higher the score, the more likely the variant
+is pathogenic. The result is:<br></br>1. **addAF prediction** is a prediction of deleteriousness meta-score
+with inclusion of MaxAF (the maximum allele frequency across populations): ***Tolerated***
+(colored <Highlight color="#219653">green</Highlight>) or ***Damaging***
+(colored <Highlight color="#E95726">red</Highlight>). For the prediction value, **addAF score** and **addAF rankscore**
+are given, on the basis of which the prediction was made. The score cutoff between damaging and tolerated prediction
+values is 0.0692655.<br></br>2. **noAF prediction** is a prediction of deleteriousness meta-score
+without inclusion of MaxAF: ***Tolerated*** (colored <Highlight color="#219653">green</Highlight>) or ***Damaging***
+(colored <Highlight color="#E95726">red</Highlight>). For the prediction value, **noAF score** and **noAF rankscore**
+are given, on the basis of which the prediction was made. The score cutoff between damaging and tolerated prediction
+values is -0,0570105.
 - **[PROVEAN](http://provean.jcvi.org/index.php)** (Protein Variation Effect Analyzer) predicts whether
 an amino acid substitution has an impact on the biological function of a protein. The result
 is **prediction**: ***Neutral*** (colored <Highlight color="#219653">green</Highlight>) or
