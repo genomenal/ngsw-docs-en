@@ -37,15 +37,16 @@ The columns are divided into groups:
 3. [Gene](/results/main/snvs-indels/advanced-filtering#per-sample) (if you have access
 to [OMIM](https://www.omim.org/) database data inside Genomenal, which is provided if the
 user has a license to access the database)
-4. [GnomAD](/results/main/snvs-indels/advanced-filtering#gnomad)
-5. [ClinVar](/results/main/snvs-indels/advanced-filtering#clinvar)
-6. [Conservation](/results/main/snvs-indels/advanced-filtering#conservation)
-7. [ExAC](/results/main/snvs-indels/advanced-filtering#exac)
-8. [Protein function effect](/results/main/snvs-indels/advanced-filtering#protein-function-effect)
-9. [Protein function effect (additional)](/results/main/snvs-indels/advanced-filtering#protein-function-effect-additional)
-10. [Other frequencies](/results/main/snvs-indels/advanced-filtering#other-frequencies)
-11. [Other](/results/main/snvs-indels/advanced-filtering#other)
-12. [Custom annotation sources](/results/main/snvs-indels/advanced-filtering#custom-annotations) (if at least
+4. [gnomAD 3](/results/main/snvs-indels/advanced-filtering#gnomad)
+5. [gnomAD 4](/results/main/snvs-indels/advanced-filtering#gnomad-4)
+6. [ClinVar](/results/main/snvs-indels/advanced-filtering#clinvar)
+7. [Conservation](/results/main/snvs-indels/advanced-filtering#conservation)
+8. [ExAC](/results/main/snvs-indels/advanced-filtering#exac)
+9. [Protein function effect](/results/main/snvs-indels/advanced-filtering#protein-function-effect)
+10. [Protein function effect (additional)](/results/main/snvs-indels/advanced-filtering#protein-function-effect-additional)
+11. [Other frequencies](/results/main/snvs-indels/advanced-filtering#other-frequencies)
+12. [Other](/results/main/snvs-indels/advanced-filtering#other)
+13. [Custom annotation sources](/results/main/snvs-indels/advanced-filtering#custom-annotations) (if at least
 one custom annotation [was added](/settings/custom-annotations#add-custom-annotation) to the system before
 the variants in the sample were annotated)
 
@@ -72,7 +73,7 @@ or [panel](/results/main/snvs-indels/snv-details-panel#variant-interpretation).
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 3. **HPO Phenotype** - filter variants by terms from [Human Phenotype Ontology (HPO)](https://hpo.jax.org/app/).
 To open the phenotype search window, click on the filter value
-field <img src={require('/img/vv/hpo_advanced.png').default} width="280"/>. How to find and select the
+field <img src={require('/img/vv/hpo_advanced.png').default} width="260"/>. How to find and select the
 phenotypes in this form is described [here](/results/main/snvs-indels/basic-filtering#hpo).
 4. **Gene panel** (basic filter ["Gene panel"](/results/main/snvs-indels/basic-filtering#gene-panel)) - filter
 variants by localization in certain genes from the panel.
@@ -83,7 +84,7 @@ for [basic filter "Gene panel"](/results/main/snvs-indels/basic-filtering#gene-p
 basic filtering mode. If you don't have any gene panels added, the list of filter values will be empty.
 5. **Region** (basic filter ["Region"](/settings/profile#basic-mode-filters)) - filter variants
 by position on the genome (chromosome, start and end positions). To filter by region, click on the input
-window <img src={require('/img/vv/region_filter.png').default} width="230"/> and enter the position of the
+window <img src={require('/img/vv/region_filter.png').default} width="260"/> and enter the position of the
 needed genomic interval, i.e. chromosome, start and end positions. Possible options of writing the interval
 position:
 - `chr1:161,190,824-161,193,921`
@@ -303,32 +304,123 @@ in which the variant is located. [Any value filter](/results/main/snvs-indels/ad
 Only available if you have access to [OMIM](https://www.omim.org/) database data inside Genomenal, which is provided
 if the user has a license to access the database.
 
-### GnomAD {#gnomad}
+### gnomAD 3 {#gnomad}
 
-Filter columns with the following data from [gnomAD](https://gnomad.broadinstitute.org/) database:
-1. **Allele frequency** (column ["gnomAD AF"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
-variants by the total allele frequency. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters)
-(positive rational number).
-2. **XY samples AF** - filter variants by allele frequency (AF) in the XY subpopulation.
+Filter columns with the following data
+from [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database:
+1. **AF** (column ["gnomAD 3 AF"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
+variants by the total allele frequency
+(AF). [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+2. **XY AF** - filter variants by allele frequency (AF) in the XY subpopulation.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
-3. **XX samples AF** - filter variants by allele frequency (AF) in the XX subpopulation.
+3. **XX AF** - filter variants by allele frequency (AF) in the XX subpopulation.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 4. **Number of Homozygotes** - filter variants by the number of homozygotes.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
 5. **[Population] AF** - filter variants by total allele frequency (AF) in different populations,
-where **[Population]** is Ashkenazi Jewish, Amish, African and African American, Finnish, South Asian,
-Latino, Non-Finnish european, East Asian, Middle Eastern, Other.
+where **[Population]** is Ashkenazi Jewish, Amish, African and Afr. Am., Finnish, South Asian, Latino,
+Non-finnish european, East Asian, Middle Eastern, Other.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 6. **[Population] XY/XX samples AF** - filter variants by allele frequencies (AF) in XY/XX subpopulations in different
 populations, where **[Population]** is Ashkenazi Jewish, Amish, African and African American, Finnish, South Asian,
-Latino, Non-Finnish european, East Asian, Middle Eastern, Other.
+Latino, Non-finnish european, East Asian, Middle Eastern, Other.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 7. **[Population] Number of Homozygotes** - filter variants by the number of homozygotes in different
 populations, where **[Population]** is Ashkenazi Jewish, Amish, African and African American, Finnish, South Asian,
-Latino, Non-Finnish european, East Asian, Middle Eastern, Other.
+Latino, Non-finnish european, East Asian, Middle Eastern, Other.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 8. **Coverage** - filter variants by average coverage depth by bases: &lt;10, 10-100, ⩾100.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
+
+### gnomAD 4 {#gnomad-4}
+
+Filter columns with the following data from [gnomAD v4](https://gnomad.broadinstitute.org/) database:
+1. **AF** - filter variants by the total alternative allele frequency (AF) in high quality genotypes in exomes
+and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+2. **AC** - filter variants by the total alternative allele count in exomes and genomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+3. **AN** - filter variants by the total number of called high quality genotypes in exomes and genomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+4. **Number of Homozygotes** - filter variants by the total number of individuals homozygous for alternative allele
+in exomes and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+5. **XY Number of Homozygotes** - filter variants by the total number of individuals homozygous for alternative allele
+in the XY subpopulation in exomes and
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+6. **XX Number of Homozygotes** - filter variants by the total number of individuals homozygous for alternative allele
+in the XX subpopulation in exomes and
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+7. **XY AF** - filter variants by the total alternative allele frequency in the XY subpopulation in exomes
+and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+8. **XY AC** - filter variants by the total alternative allele count in high quality genotypes in the XY
+subpopulation in exomes and
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+9. **XY AN** - filter variants by the total number of called high quality genotypes in the XY subpopulation
+in exomes and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+10. **XX AF** - filter variants by the total alternative allele frequency in the XX subpopulation in exomes
+and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+11. **XX AC** - filter variants by the total alternative allele count in high quality genotypes in the XX
+subpopulation in exomes and
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+12. **XX AN** - filter variants by the total number of called high quality genotypes in the XX subpopulation
+in exomes and genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+13. **Exomes AF** - filter variants by the total alternative allele frequency (AF) in high quality genotypes in exomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+14. **Exomes AC** - filter variants by the total alternative allele count in exomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+15. **Exomes AN** - filter variants by the total number of called high quality genotypes in exomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+16. **Exomes Number of Homozygotes** - filter variants by the total number of individuals homozygous for alternative
+allele in exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+17. **Exomes XY Number of Homozygotes** - filter variants by the total number of individuals homozygous for
+alternative allele in the XY subpopulation
+in exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+18. **Exomes XX Number of Homozygotes** - filter variants by the total number of individuals homozygous for
+alternative allele in the XX subpopulation in
+exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+19. **Exomes XY AF** - filter variants by the total alternative allele frequency in the XY subpopulation in
+exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+20. **Exomes XY AC** - filter variants by the total alternative allele count in high quality genotypes in the XY
+subpopulation in
+exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+21. **Exomes XY AN** - filter variants by the total number of called high quality genotypes in the XY subpopulation
+in exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+22. **Exomes XX AF** - filter variants by the total alternative allele frequency in the XX subpopulation in
+exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+23. **Exomes XX AC** - filter variants by the total alternative allele count in high quality genotypes in the XX
+subpopulation in
+exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+24. **Exomes XX AN** - filter variants by the total number of called high quality genotypes in the XX subpopulation
+in exomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+25. **Genomes AF** - filter variants by the total alternative allele frequency (AF) in high quality genotypes in
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
+26. **Genomes AC** - filter variants by the total alternative allele count in genomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+27. **Genomes AN** - filter variants by the total number of called high quality genotypes in genomes.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+28. **Genomes Number of Homozygotes** - filter variants by the total number of individuals homozygous for alternative
+allele in genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+29. **Genomes XY Number of Homozygotes** - filter variants by the total number of individuals homozygous for
+alternative allele in the XY subpopulation
+in genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+30. **Genomes XX Number of Homozygotes** - filter variants by the total number of individuals homozygous for
+alternative allele in the XX subpopulation
+in genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+31. **Genomes XY AF** - filter variants by the total alternative allele count in high quality genotypes in the XY
+subpopulation in
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+32. **Genomes XY AC** - filter variants by the total alternative allele count in high quality genotypes in the XY
+subpopulation in
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+33. **Genomes XY AN** - filter variants by the total number of called high quality genotypes in the XY subpopulation
+in genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+34. **Genomes XX AF** - filter variants by the total alternative allele count in high quality genotypes in the XX
+subpopulation in
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+35. **Genomes XX AC** - filter variants by the total alternative allele count in high quality genotypes in the XX
+subpopulation in
+genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
+36. **Genomes XX AN** - filter variants by the total number of called high quality genotypes in the XX subpopulation
+in genomes. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
 
 ### ClinVar {#clinvar}
 

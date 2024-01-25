@@ -23,19 +23,20 @@ the variant details panel is expanded or collapsed in SNV Viewer by default.
 
 ## Details Panel Tabs {#panel-tabs}
 
-The panel is divided into 11 tabs (or 10 if there are no [custom annotations](/settings/custom-annotations) in
+The panel is divided into 12 tabs (or 11 if there are no [custom annotations](/settings/custom-annotations) in
 the system):
 1. [Common](/results/main/snvs-indels/snv-details-panel#common-tab)
 2. [Gene](/results/main/snvs-indels/snv-details-panel#gene)
 3. [ClinVar](/results/main/snvs-indels/snv-details-panel#clinvar-tab)
-4. [GnomAD](/results/main/snvs-indels/snv-details-panel#gnomad-tab)
-5. [ExAC](/results/main/snvs-indels/snv-details-panel#exac-tab)
-6. [Other frequencies](/results/main/snvs-indels/snv-details-panel#other-frequencies-tab)
-7. [Conservation](/results/main/snvs-indels/snv-details-panel#conservation-tab)
-8. [Protein function effect](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
-9. [Protein function effect (additional)](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
-10. [Other](/results/main/snvs-indels/snv-details-panel#other-tab)
-11. [Custom annotation sources](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab) (if
+4. [gnomAD 3](/results/main/snvs-indels/snv-details-panel#gnomad-3-tab)
+5. [gnomAD 4](/results/main/snvs-indels/snv-details-panel#gnomad-4-tab)
+6. [ExAC](/results/main/snvs-indels/snv-details-panel#exac-tab)
+7. [Other frequencies](/results/main/snvs-indels/snv-details-panel#other-frequencies-tab)
+8. [Conservation](/results/main/snvs-indels/snv-details-panel#conservation-tab)
+9. [Protein function effect](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+10. [Protein function effect (additional)](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+11. [Other](/results/main/snvs-indels/snv-details-panel#other-tab)
+12. [Custom annotation sources](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab) (if
 at least one custom annotation was [added](/settings/custom-annotations#add-custom-annotation) to the system
 before the variants in the sample were annotated)
 
@@ -87,8 +88,8 @@ Links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/
 [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if the database
 was [uploaded as a custom annotation](/settings/custom-annotations)),
 [Franklin](https://franklin.genoox.com/clinical-db/home), [UCSC](https://genome-euro.ucsc.edu/),
-[gnomAD](https://gnomad.broadinstitute.org/), [RUSeq](http://ruseq.ru/#/) (if the database
-was [uploaded as a custom annotation](/settings/custom-annotations)).
+[gnomAD 3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/), [RUSeq](http://ruseq.ru/#/) (if the
+database was [uploaded as a custom annotation](/settings/custom-annotations)).
 
 #### Samples Info {#sample-info}
 
@@ -363,14 +364,14 @@ statuses [here](https://preview.ncbi.nlm.nih.gov/clinvar/docs/variation_report/#
 - A table with phenotypes that have been observed in individuals with this variant and reported in
 ClinVar (see table column descriptions above).
 
-### GnomAD {#gnomad-tab}
+### gnomAD 3 {#gnomad-3-tab}
 
 <p align="center">
 <img src={require('/img/vv/gnomad_tab.png').default} width="1000"/>
 </p>
 
 The tab contains the information about allele frequencies of the variant
-from the [gnomAD](https://gnomad.broadinstitute.org/) database.
+from the [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database.
 On the left, there is a general information about the variant:
 - ***Allele frequency*** is a total alternative allele frequency of the variant in high quality genotypes;
 - ***Coverage*** is a median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100;
@@ -378,9 +379,9 @@ On the left, there is a general information about the variant:
 - ***XY samples AF*** is a total alternative allele frequency in XY subpopulation;
 - ***XX samples AF*** is a total alternative allele frequency in XX subpopulation.
 
-On the right, there are variant frequencies in different populations: Ashkenazi Jewish, Amish,
-African/African American, European (Finnish), South Asian, Latino/Admixed American, European (non-Finnish),
-East Asian, Middle Eastern and Other (includes the samples that were not uniquely assigned to other
+On the right, there are variant frequencies in different populations: *Ashkenazi Jewish*, *Amish*,
+*African and African American (Afr. Am.)*, *Finnish*, *South Asian*, *Latino*, *Non-finnish european*,
+*East Asian*, *Middle Eastern* and *Other* (includes the samples that were not uniquely assigned to other
 ancestries by the random forest model). For each population, there are total alternative allele frequency (AF)
 in high quality genotypes in the population, AFs in XY and XX subpopulations, and the number of homozygotes
 in the population:
@@ -388,6 +389,32 @@ in the population:
 <p align="center">
 <img src={require('/img/vv/af_example.png').default} width="260"/>
 </p>
+
+### gnomAD 4 {#gnomad-4-tab}
+
+<p align="center">
+<img src={require('/img/vv/gnomad_4_tab.png').default} width="1000"/>
+</p>
+
+The tab contains the information about allele frequencies of the variant
+from the [gnomAD v4](https://gnomad.broadinstitute.org/) database.
+The tab presents three columns with information about allele frequencies: on the left, there is ***total*** information
+(in exomes and genomes); in the middle, there is only data in ***exomes***; on the right, there is only data
+in ***genomes***. The fields in these columns are identical:
+- ***Allele frequency (AF)*** is the alternative allele frequency of the variant in high quality genotypes.
+For AF, there are ***AC***, that is the alternative allele count in high quality genotypes, and ***AN***, that is
+the total number of called high quality genotypes.
+- ***Number of Homozygotes*** is the number of individuals homozygous for alternative allele. For number
+of homozygotes, ***XY samples*** and ***XX samples*** are given, that are the numbers of individuals homozygous
+for alternative allele in the XY subpopulation and the XX subpopulation, respectively.
+- ***XY samples AF (XY AF)*** is the alternative allele frequency in the XY subpopulation. For AF, there
+are ***XY samples AC (XY AC)***, that is the alternative allele count in high quality genotypes in the XY
+subpopulation, and ***XY samples AN (XY AN)***, that is the total number of called high quality genotypes in
+the XY subpopulation.
+- ***XX samples AF (XX AF)*** is the alternative allele frequency in the XX subpopulation. For AF, there
+are ***XX samples AC (XX AC)***, that is the alternative allele count in high quality genotypes in the XX
+subpopulation, and ***XX samples AN (XX AN)***, that is the total number of called high quality genotypes in
+the XX subpopulation.
 
 ### ExAC {#exac-tab}
 
@@ -400,13 +427,13 @@ in [ExAC](http://exac.broadinstitute.org/) database:
 - ***Allele frequency*** is a total alternative allele frequency of the variant.
 - ***Adjusted AF*** is an alternative allele frequency of the variant in the population with
 genotype quality ≥20 and depth of coverage ≥10.
-- Alternative allele frequencies in African/African American, American, East Asian, Finnish, European
-(non-Finnish), South Asian populations.
-- Alternative allele frequencies in non-TCGA (cohort from which normal tissue samples from cancer patients
-were excluded) and non-Psych (cohort from which normal tissue samples from patients with mental disorders
+- Alternative allele frequencies in *African and African American*, *American*, *East Asian*, *Finnish*,
+*Non-Finnish European*, *South Asian* populations.
+- Alternative allele frequencies in *non-TCGA* (cohort from which normal tissue samples from cancer patients
+were excluded) and *non-Psych* (cohort from which normal tissue samples from patients with mental disorders
 were excluded) cohorts: a total alternative allele frequency (AF) in cohort, AF in cohort of the population with
 genotype quality ≥20 and depth of coverage ≥10 (adjusted AF), and AFs in cohort of different populations:
-African/African American, American, East Asian, Finnish, European (non-Finnish), South Asian.
+African and African American, American, East Asian, Finnish, Non-Finnish European, South Asian.
 
 For each frequency, there is an alternative allele count in high quality genotypes (***Allele count***):
 
@@ -424,17 +451,17 @@ The tab contains information about the allele frequencies of the variant
 from [1000 Genomes](https://www.internationalgenome.org/) (1000G), [UK10K](https://www.uk10k.org/)
 and [NHLBI GO Exome Sequencing Project](https://esp.gs.washington.edu/drupal/) (ESP) projects.
 
-From 1000 Genomes project, there are:
+From **1000 Genomes project**, there are:
 - ***Allele frequency*** is a total alternative allele frequency of the variant;
 - Alternative allele frequencies in East Asian, European, African, American, South Asian populations.
 
-From UK10K project, there are:
+From **UK10K project**, there are:
 - ***Allele frequency*** is a total alternative allele frequency of the variant in combined genotypes
 in UK10K cohort (TwinsUK + ALSPAC);
 - ***TWINSUK AF*** is an alternative allele frequency in TwinsUK, that is a cohort of adult twins living in the UK;
 - ***ALSPAC AF*** is an alternative allele frequency in ALSPAC, that is a cohort of fetuses.
 
-From ESP project, there are alternative allele frequencies in African American and European American populations.
+From **ESP project**, there are alternative allele frequencies in African American and European American populations.
 
 For frequencies from UK10K and ESP projects, there is an alternative allele count in high quality
 genotypes (***Allele count***):

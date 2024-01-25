@@ -213,7 +213,7 @@ name once, and vice versa by clicking on the name twice. In addition, variants c
 By default, the table is sorted by the variant start position ("Position" column).
 You can ***sort*** the table by the values of the following columns:
 - [default columns](/results/main/snvs-indels/variant-viewer#columns-description): "Locus", "Origin",
-"Position", "Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD AF", "Pathogenicity";
+"Position", "Exon", "Depth (Alt/Ref)", "Consequence", "gnomAD 3 AF", "Pathogenicity";
 - all columns [not added by default](/results/main/snvs-indels/edit-table-columns#add-columns).
 
 To sort a table by column values, click on the column name (click once to sort in ascending order,
@@ -230,7 +230,7 @@ button: <img src={require('/img/vv/clear_filters.png').default} width="35"/>.
 Please note that this will also reset the filtering of variants.
 
 The basic sorting orders are alphabetical for columns with text values (e.g. "Locus" column),
-or smallest to largest and vice versa for columns with numeric values (e.g. "gnomAD AF" column).
+or smallest to largest and vice versa for columns with numeric values (e.g. "gnomAD 3 AF" column).
 However, the sorting order is special for some columns:
 - "**[Consequence](/results/main/snvs-indels/variant-viewer#variant-consequences)**" column:
 sorting from most significant consequence to least significant: Transcript ablation, Splice acceptor, Splice donor,
@@ -713,7 +713,7 @@ The "Impact" column cells are colored:
 
 10. **External links** are links to pages with variant information
 in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>, <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if
-COSMIC database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>), <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>: <img src={require('/img/vv/franklin.png').default} width="35"/>, <a href="https://genome-euro.ucsc.edu/">UCSC</a>: <img src={require('/img/vv/ucsc.png').default} width="35"/>, <a href="https://gnomad.broadinstitute.org/">gnomAD</a>: <img src={require('/img/vv/gnomad.png').default} width="35"/>, <a href="http://ruseq.ru/#/">RUSeq</a>: <img src={require('/img/vv/ruseq.png').default} width="35"/> (if
+COSMIC database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>), <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>: <img src={require('/img/vv/franklin.png').default} width="35"/>, <a href="https://genome-euro.ucsc.edu/">UCSC</a>: <img src={require('/img/vv/ucsc.png').default} width="35"/>, <a href="https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/">gnomAD 3</a>: <img src={require('/img/vv/gnomad.png').default} width="35"/>, <a href="http://ruseq.ru/#/">RUSeq</a>: <img src={require('/img/vv/ruseq.png').default} width="35"/> (if
 RUSeq database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>).
 There may be up to three buttons maximum in a cell. If the variant is found in more than three databases,
 then there will be three dots <img src={require('/img/vv/three_points.png').default} width="15"/> in the cell.
@@ -723,7 +723,8 @@ By clicking on these dots, you can see all the other links:
 <img src={require('/img/vv/added_external_links.png').default} width="260"/>
 </p>
 
-11. **gnomAD AF** is the allele frequency according to the [gnomAD](https://gnomad.broadinstitute.org/) database.
+11. **gnomAD 3 AF** is the allele frequency according to
+the [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database.
 
 The column cells are colored depending on the allele frequency value:
 

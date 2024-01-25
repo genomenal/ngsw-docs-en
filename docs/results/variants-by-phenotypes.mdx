@@ -48,7 +48,8 @@ from [the template](/settings/report-templates/report-templates#block-types).
 and/or ClinVar name in the template). **Each variant meets the following conditions**:
 1. Pathogenic or likely pathogenic in ClinVar ("Clinical significance" field);
 2. Not homozygous for reference (has at least one alternative allele);
-3. The total allele frequency in gnomAD is above the frequency threshold for extremely rare pathogenic variants
+3. The total allele frequency in [gnomAD 3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) is
+above the frequency threshold for extremely rare pathogenic variants
 and below the frequency threshold for too frequent pathogenic variants
 (thresholds are set in [the template](/settings/report-templates/report-templates#block-types)).
 - **Recommendations** that can help reduce the risk of this condition
@@ -77,8 +78,8 @@ is detected *n* times among *m* representatives (samples) of the population;<br>
 *n* is the number of representatives of the population (samples) in which this variant was detected;<br></br>
 *m* is the total number of representatives (samples) in the population;<br></br>
 *p* is the probability of detecting the variant in the human population (total allele frequency
-in [gnomAD](https://gnomad.broadinstitute.org/) database). If there is no data on the frequency in the
-population, then the probability is taken as 0.001.<br></br>
+in [gnomAD 3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database). If there is no data on
+the frequency in the population, then the probability is taken as 0.001.<br></br>
 Thus, variants are excluded from the report if they were detected more than *n* times among *m* samples
 of the population, but at the same time have a low frequency in the human population, i.e. possible
 pathogenicity of these variants is inconsistent with such a high frequency among representatives (samples)
@@ -97,7 +98,8 @@ has not been uploaded into the system, variants will not be excluded by Criterio
 2. **Variant ID** is a variant ID in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) database (rsId).
 3. **Reference allele** of the variant.
 4. **Alternative allele** of the variant.
-5. **gnomAD AF** is the total allele frequency in [gnomAD](https://gnomad.broadinstitute.org/) database.
+5. **gnomAD 3 AF** is the total allele frequency
+in [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database.
 6. **Chromosome** is the chromosome in which the variant is located.
 7. **Start** is the start position of the variant on the chromosome.
 8. **End** is the end position of the variant on the chromosome.
