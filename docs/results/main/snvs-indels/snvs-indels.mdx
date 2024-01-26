@@ -45,3 +45,22 @@ click on <img src={require('/img/results/google_btn.png').default} width="45"/>.
 5. **[Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/)** is an embedded
 module for visualization of variants on the genome. To open the module,
 click on <img src={require('/img/results/igv_btn.png').default} width="45"/>.
+
+:::info
+If you would like to add the track of annotated variants discovered in the sample analyzed by Genomenal
+to [IGV desktop application](https://igv.org/doc/desktop/), you can load it via URL. To do this, do the following:
+1. Right-click on <img src={require('/img/results/vcf_btn.png').default} width="45"/> and select the
+"*Copy link address*" option.
+2. Load the track via URL to the IGV desktop application as
+described [here](https://igv.org/doc/desktop/#UserGuide/loading_data/).
+3. Open the "Workflow details" tab on the sample page and expand the details of the "*SNVs/Indels annotation*" stage,
+and then the details of the "*Annotate SNVs/Indels*" task. Right-click on the link to the annotation index file
+"*Download Filtered variants VCF_TBI*" for a sample uploaded in FASTQ format&ast;, or
+"*Download All variants VCF_TBI*" for a sample uploaded in VCF format, and select the "*Copy link address*" option.
+4. Add the index file URL in the corresponding field in IGV.
+5. Click "*OK*". Done! The track of annotated variants discovered in the sample has been added to IGV.
+
+&ast;If [the parameter allowing only variants passing all filters](/settings/settings/variant-discovery-settings#allow-filtered-variants)
+has been switched off for the sample, then copy the link to all variants' annotation index file
+"*Download All variants VCF_TBI*".
+:::
