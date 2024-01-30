@@ -364,13 +364,54 @@ To disable copy number variations discovery in sample, turn off the correspondin
 <img src={require('/img/eng/turn_off_cnv.png').default} width="400"/>
 </p>
 
-#### Choose the minimal bin size for WGS data {#minimal-bin-size}
+#### CNV call threshold {#cnv-call-threshold}
 
-Bin is a span within which the reads are counted. If you have low coverage data,
-choose high values for the minimal bin size (e.g. up to 500,000 for low-pass WGS data),
-and if you have high coverage data, choose low values (e.g. 1000 for 10X covered data).
-The default minimal bin size is 100,000. To change it, click on the current value and edit.
-To save changes, press Enter or click outside edit value container.
+Threshold value of log2FC below which single autosome is called instead of two in normal.
+log2FC is the logarithmic ratio of the detected copy number to the normal copy number
+(equals to 2 for autosomes and the X chromosome in the case of genotype XX, or to 1 for sex
+chromosomes in the case of genotype XY). Based on the selected threshold value, thresholds for
+calling CNVs are calculated. Using the example of the default threshold value (-0.7), let's take a look
+what the thresholds will be for calling deletions and duplications on autosomes and sex chromosomes:
+- Copy number variations on autosomes with Log2FC ≤ -0.7 are considered deletions. -0.7 is the default
+Log2FC threshold, below which only one autosome is called instead of the normal two.
+- Copy number variations on the X and Y chromosomes with Log2FC ≤ -2.11 are considered deletions.
+- Copy number variations on autosomes with Log2FC ≥ 0.46 are considered duplications.
+The threshold for duplication on an autosome is calculated using the following
+formula: *Log2FC = log<sub>2</sub>((2+D)/2)*, where *D* is the “number” of copy number that
+is “lost” at Log2FC = -0.7, and *2* is the number of sister chromatids in the autosome.
+- Copy number variations on the X and Y chromosomes with Log2FC ≥ 0.82 are considered duplications.
+- Variations that do not satisfy the thresholds, i.e. variations on autosomes with -0.7 < Log2FC < 0.46
+and variations on sex chromosomes with -2.11 < Log2FC < 0.82 do not pass filtering.
+
+<details>
+<summary>Click here to see how log2FC thresholds are calculated for deletions and duplications on
+autosomes and sex chromosomes</summary>
+The threshold of calling a single copy instead of two on autosomes is calculated as
+follows: <i>T<sub>21</sub> = log<sub>2</sub>(C/2)</i>, where <i>C</i> is the number of called
+copies.<br/>Delta of copy number: <i>D = 2 – C = 2 – 2 × 2<sup>T<sub>21</sub></sup></i>.<br/>
+Then the corresponding threshold of calling three copies instead of two on autosomes is calculated as
+follows: <i>T<sub>23</sub> = log<sub>2</sub>((2+D)/2) = log<sub>2</sub>(2-2<sup>T<sub>21</sub></sup>)</i>.<br/>
+<b>Threshold of calling deletions on autosomes:</b> <i>lo = T<sub>21</sub></i>.<br/>
+<b>Threshold of calling duplications on autosomes:</b> <i>hi = T<sub>23</sub></i>.<br/>
+To calculate the threshold of calling three copies instead of two on the X chromosome,
+we normalize to XY genotype by dividing it by copy number
+of 1: <i>T<sub>23X</sub>= log<sub>2</sub>((2+D)/1) = log<sub>2</sub>(2+2-2×2<sup>T<sub>21</sub></sup>) = 1 + log<sub>2</sub>(2-2<sup>T<sub>21</sub></sup>) = 1 + T<sub>23</sub></i>.<br/>
+<b>Calculating the threshold of calling duplications on the X chromosome:</b><br/>
+- if there is no Y chromosome: <i>X<sub>hi</sub> = 1 + T<sub>23</sub></i>;<br/>
+- if there is Y chromosome: <i>X<sub>hi</sub> = log<sub>2</sub>(3-2×2<sup>T<sub>21</sub></sup>)</i>.<br/>
+The threshold of calling one copy instead of two on the X
+chromosome: <i>T<sub>21X</sub> = log<sub>2</sub>((2-D)/1) = log<sub>2</sub>(2-2+2×2<sup>T<sub>21</sub></sup>) = 1 + T<sub>21</sub></i>.<br/>
+Threshold of calling no copies instead of one on the X
+chromosome: <i>T<sub>10X</sub> = log<sub>2</sub>((1-D)/1) = log<sub>2</sub>(1-2+2×2<sup>T<sub>21</sub></sup>) = log<sub>2</sub>(-1+2×2<sup>T<sub>21</sub></sup>)</i>.<br/>
+<b>Calculating the threshold of calling deletions on the X chromosome:</b><br/>
+- if there is no Y chromosome: <i>X<sub>lo</sub> = 1 + T<sub>21</sub></i>;<br/>
+- if there is Y chromosome: <i>X<sub>lo</sub> = log<sub>2</sub>(-1+2×2<sup>T<sub>21</sub></sup>)</i>.<br/>
+The threshold of calling one copy instead of none on the Y chromosome in the case of genotype
+XX: <i>T<sub>01</sub> = log<sub>2</sub>((0+D)/1) = log<sub>2</sub>(2-2×2<sup>T<sub>21</sub></sup>) = log<sub>2</sub>(2×(1-2<sup>T<sub>21</sub></sup>)) =  1 + log<sub>2</sub>(1-2<sup>T<sub>21</sub></sup>)</i>.<br/>
+<b>Calculating the threshold of calling duplication <i>Y<sub>hi</sub></i> and deletions <i>Y<sub>lo</sub></i> on the Y chromosome:</b><br/>
+- if there is no Y chromosome: <i>Y<sub>hi</sub> = 1 + log<sub>2</sub>(1-2<sup>T<sub>21</sub></sup>))</i>; <i>Y<sub>lo</sub> = -∞</i>;<br/>
+- if there is Y chromosome: <i>Y<sub>hi</sub> = X<sub>hi</sub></i>; <i>Y<sub>lo</sub> = X<sub>lo</sub></i>.
+</details>
 
 #### Call germline aneuploidies only {#germline-aneuploidies-only}
 
@@ -382,16 +423,60 @@ number of copies of chromosomes), turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_aneuploidies.png').default} width="400"/>
 </p>
 
-#### Select reference samples panel {#reference-panel}
+#### Select reference samples panel for WGS {#wgs-reference-panel}
 
 CNV analysis is more powerful when a batch of reference samples is used for normalization.
-By default, the panel is not selected (None), but you can select the ***WGA reference samples*** panel,
-which enables low-pass sequencing of whole genome amplification-derived library. To select a panel,
-click on the value of the "CNV analysis reference samples panel" field and select the WGA reference samples panel:
+By default, the panel is not selected (*None*, i.e. the normalization is disabled).
+The following panels are available for selection:
+- *BGI WGS* is a panel based on WGS samples that were sequenced at BGI. The panel is designed for bins of
+the following sizes: 3000, 5000, 100000.
+- *BGI WGS v2* is a panel based on WGS samples that were sequenced at BGI. The panel is designed for a bin size
+of 3000.
+- *WGA reference samples* is a panel that allows CNV analysis of low-coverage whole-genome sequencing results
+(low-pass WGS). The panel is designed for bins of the following
+sizes: 100000, 300000, 500000, 1000000, 2000000, 5000000.
+
+To select a panel, click on the "*CNV analysis reference samples panel for WGS*" field value and select
+the required panel:
 
 <p align="center">
 <img src={require('/img/eng/change_panel.png').default} width="450"/>
 </p>
+
+If the sample is automatically detected as Targeted Capture, CNV reference panel is ignored.
+
+#### Bin size for WGS data {#bin-size}
+
+Bin is an interval within which the reads are counted. If you have low coverage data,
+choose larger target bin sizes (e.g. up to 500,000 for low-pass WGS data),
+and if you have high coverage data, choose smaller target bin sizes (e.g. 1000 for 30X covered data).
+The default target bin size is 100,000. To change it, click on the current value and edit.
+Min value = 1000, max value = 5,000,000. To save changes, press Enter or click outside edit value container.
+If you [have selected a reference samples panel for WGS](/settings/settings/variant-discovery-settings#wgs-reference-panel),
+then select the bin size for which it was designed from the list.
+
+#### Select reference samples panel for targeted capture {#targeted-capture-reference-panel}
+
+CNV analysis is more powerful when a batch of reference samples is used for normalization.
+Selected CNV reference panel should match the capture kit used to prepare the analyzed sample.
+By default, the panel is not selected (*None*, i.e. the normalization is disabled).
+The following panels are available for selection:
+- *SureSelect Human All Exon V6 r2* is a panel for CNVs discovery in samples obtained as a result of targeted
+sequencing with the "SureSelect Human All Exon V6 r2" capture kit.
+- *TrusightOne v1.1* is a panel for CNVs discovery in samples obtained as a result of targeted
+sequencing with the "TruSight One v1.1" capture kit.
+
+All CNV reference panels for targeted capture are designed at only one resolution, so the analysis will
+not be affected by [the selected bin size](/settings/settings/variant-discovery-settings#bin-size).
+
+To select a panel, click on the "*CNV analysis reference samples panel for Targeted capture*" field value and select
+the required panel:
+
+<p align="center">
+<img src={require('/img/eng/change_panel_targeted_capture.png').default} width="450"/>
+</p>
+
+If the sample is automatically detected as WGS, CNV reference panel is ignored.
 
 ### Phenotype prediction {#phenotype-prediction}
 
