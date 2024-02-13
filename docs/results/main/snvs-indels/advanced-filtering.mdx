@@ -491,7 +491,7 @@ algorithm, where **[Distribution]** is a distribution of alleles A, G, C or T: p
 ### ExAC {#exac}
 
 Filter columns with the following data from [ExAC](http://exac.broadinstitute.org/) database:
-1. **Allele frequency** - filter variants by the total allele frequency.
+1. **AF** - filter variants by the total allele frequency (AF).
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 2. **Allele count** - filter variants by alternative allele count.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
@@ -896,6 +896,9 @@ box <img src={require('/img/vv/sample_data_value_text.png').default} width="200"
 <p align="center">
 <img src={require('/img/vv/rsid.png').default} width="650"/>
 </p>
+
+You can enter several IDs at once in a list separated by a comma (e.g. `rs1234, rs2799066, rs4648562`), a semicolon
+or a space (`rs1234 rs2799066 rs4648562`).
 
 4. To complete adding the condition, press Enter or click outside edit value container.
 

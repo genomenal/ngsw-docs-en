@@ -96,6 +96,28 @@ The main object of CNV Viewer is a table with copy number variations. Each varia
 <img src={require('/img/vv/cnv_row_full.png').default} width="1000"/>
 </p>
 
+Below the table, above the variation details panel, there are:
+- Information about the amount of variations in CNV Viewer: the order of variations displayed on the page (e.g.,
+if the maximum amount of variations shown on the page is 50, then the order will be: 1-50, 51-100, etc.) and
+the total amount of variations (pinned variations are not taken into account).
+The amount of variations changes when filtering variations and displays the amount of variations that
+match the specified conditions. In tree mode, the amount of full rows is displayed. If one of the full rows
+has been expanded in tree mode, the amount of split rows corresponding to this full row is shown. In flat list
+mode, the amount of both full and split rows is displayed.
+- A component to choose the amount of variations displayed on the page
+(excluding pinned variations): <img src={require('/img/vv/records_on_page.png').default} width="170"/>.
+By default, 50 variations are displayed per page. To change the amount of variations displayed on the page to
+20, 100 or 200, click on the corresponding option. Your choice will be remembered and will be valid for CNV Viewer
+and SNV Viewer of all samples. Please note that the more variations shown on a page, the longer it will take to
+load the page.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="370"/>, which allows you
+to navigate between pages with variations. The number of the current page is highlighted in a blue circle.
+If you click on this number, the page will reload. To move to a page with a specific number, either click on
+that number, or click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the
+number and press the enter key or click outside the value field. To move to the page with previous number,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
 ### Full and Split Rows {#full-and-split}
 
 There are two modes of CNV annotation: annotation on the variation full length (“**full**”) and annotation on

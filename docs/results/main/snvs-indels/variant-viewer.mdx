@@ -43,6 +43,26 @@ The main object of SNV Viewer is a table with variants - each variant is on a ne
 <img src={require('/img/vv/snv_row.png').default} width="950"/>
 </p>
 
+Below the table, above the variant details panel, there are:
+- Information about the amount of variants in SNV Viewer: the order of variants displayed on the page (e.g.,
+if the maximum amount of variants shown on the page is 50, then the order will be: 1-50, 51-100, etc.) and
+the total amount of variants (pinned variants are not taken into account).
+The amount of variants changes when filtering variants and displays the amount of variants that
+match the specified conditions.
+- A component to choose the amount of variants displayed on the page
+(excluding pinned variants): <img src={require('/img/vv/records_on_page.png').default} width="170"/>.
+By default, 50 variants are displayed per page. To change the amount of variants displayed on the page to
+20, 100 or 200, click on the corresponding option. Your choice will be remembered and will be valid for SNV Viewer
+and CNV Viewer of all samples. Please note that the more variants shown on a page, the longer it will take to
+load the page.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="370"/>, which allows you
+to navigate between pages with variants. The number of the current page is highlighted in a blue circle.
+If you click on this number, the page will reload. To move to a page with a specific number, either click on
+that number, or click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the
+number and press the enter key or click outside the value field. To move to the page with previous number,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
 ### Variant Info {#variant-information}
 
 Besides of the information presented in the table (see
@@ -411,12 +431,19 @@ You can copy the variant position to the clipboard by moving the cursor over the
 clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
 4. **HGVSp** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
 (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
+Amino acids are written in one letter code.
 When hovering over the value of the "HGVSp" column for a variant, you can see the transcript which the substitution
 was predicted for and HGVSp with amino acids in the three letter code:
 
 <p align="center">
 <img src={require('/img/vv/hgvsp_tooltip.png').default} width="350"/>
 </p>
+
+:::note
+If you prefer to use amino acid three letter coding, [add](/results/main/snvs-indels/edit-table-columns#add-columns)
+the "*HGVSp (long)*" column in [the Edit Table Columns window](/results/main/snvs-indels/edit-table-columns)
+and [hide](/results/main/snvs-indels/edit-table-columns#remove-columns) the "*HGVSp (short)*" column.
+:::
 
 4. **Alteration** is a nucleotide substitution (reference allele > alternative allele).
 5. **HGVSc** is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position of

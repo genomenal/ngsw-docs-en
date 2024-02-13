@@ -95,6 +95,23 @@ included to report, then the result will be "<i>No pathogenic variants found</i>
 - «CREATED» - contains the date of the beginning of uploading sample data into the system in M/d/yyyy format;
 - «MODIFIED» - contains the date of the last changes in the sample data in M/d/yyyy format.
 
+By default, the table is sorted from samples uploaded last to samples uploaded first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of all its columns.
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Samples", "Patient",
+and "Run" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa. The sort order for the "Results" column is as follows:
+1. Samples that have pathogenic or likely pathogenic variants or variations in the results;
+2. Samples that do not have pathogenic or likely pathogenic variants or variations in the results, but the variants
+or variations with a different pathogenicity class were added;
+3. Samples with the result "<i>No pathogenic variants found</i>";
+4. Samples with the result "<i>Interpretation not completed</i>";
+5. Samples for which the interpretation has not been completed and which do not have any variants with a
+determined pathogenicity that was not added to report or which do not have any variations with a
+determined pathogenicity.
+
 When you hover over a sample row, the following active elements appear:
 - <img src={require('/img/eng/sample_vv.png').default} width="17"/> - button to
 open <a href="/results/main/snvs-indels/variant-viewer">SNV Viewer</a> of the sample. For a tumor sample,
@@ -137,6 +154,17 @@ At the top of the page there are:
 the system <img src={require('/img/eng/add_patient_btn_from_samples.png').default} width="180"/>.
 - Button to <a href="/runs">add a run</a> to
 the system <img src={require('/img/eng/add_run_btn.png').default} width="170"/>.
+
+At the bottom of the page there are:
+- Sample count information: the order of samples displayed on the page (a maximum of 10 samples can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of samples.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between sample pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
 
 </details>
 
@@ -188,6 +216,16 @@ failed normal sample;
 - "CREATED" - contains the date of the patient creation in M/d/yyyy format;
 - "MODIFIED" - contains the date of the last change in the patient data in M/d/yyyy format.
 
+By default, the table is sorted from patients added last to patients added first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of the following
+columns: "Patient", "Cohort", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Patient" and
+"Cohort" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
 If you hover over a patient's row on the "<i>All Patients</i>", "<i>In Progress</i>" or "<i>Problems</i>" pages,
 you will see the following active
 elements: <img src={require('/img/eng/upload_in_patient.png').default} width="19"/> to upload patient
@@ -208,6 +246,17 @@ and <img src={require('/img/eng/add_patient_btn.png').default} width="150"/> to 
 
 At the top of the "<i>Archive</i>" page there is
 a button <img src={require('/img/eng/clear_archive_btn.png').default} width="150"/> to delete all archived patient data.
+
+At the bottom of the section pages there are:
+- Patient count information: the order of patients displayed on the page (a maximum of 10 patients can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of patients.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between patient pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
 
 </details>
 
@@ -246,6 +295,16 @@ problems;<br></br><img src={require('/img/eng/failed_status.png').default} width
 - "CREATED" - contains the date of the run creation in M/d/yyyy format;
 - "MODIFIED" - contains the date of the last change in the run data in M/d/yyyy format.
 
+By default, the table is sorted from runs added last to runs added first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of the following
+columns: "Run", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Run"
+column are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
 If you hover over a run's row on the "<i>Runs</i>" page,
 you will see an active element <img src={require('/img/eng/delete_btn.png').default} width="20"/> to archive run data.
 
@@ -262,6 +321,17 @@ a button <img src={require('/img/eng/add_run.png').default} width="150"/> to cre
 
 At the top of the "<i>Archive</i>" page there is
 a button <img src={require('/img/eng/clear_archive_btn.png').default} width="150"/> to delete all archived run data.
+
+At the bottom of the section pages there are:
+- Run count information: the order of runs displayed on the page (a maximum of 10 runs can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of runs.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between run pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
 
 </details>
 
@@ -292,6 +362,8 @@ success,<br></br><img src={require('/img/eng/failed_status.png').default} width=
 - «TYPE» - contains information about the group analysis type (germline cohort, family, or population);
 - «DESCRIPTION» - contains the group analysis description;
 - "MODIFIED" - contains the date of the last change of the group analysis in M/d/yyyy format.
+
+The table is sorted by group analysis names.
 
 If you hover over a group analysis's row on the "<i>All analyses</i>" page,
 you will see an active element <img src={require('/img/eng/delete_btn.png').default} width="20"/> to archive group
@@ -366,6 +438,16 @@ failed normal sample;
 - "CREATED" - contains the date of the patient creation in M/d/yyyy format;
 - "MODIFIED" - contains the date of the last change in the patient data in M/d/yyyy format.
 
+By default, the table is sorted from the patients added last to the system to the patients added first (i.e., in
+descending order of the "Created" column values). The table can be sorted by ascending or descending values of the
+following columns: "Patient", "Cohort", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Patient" and
+"Cohort" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
 If you hover over a patient's row, you will see the following active
 elements: <img src={require('/img/eng/upload_in_patient.png').default} width="19"/> to upload patient
 data and <img src={require('/img/eng/delete_btn.png').default} width="20"/> to archive it.
@@ -378,6 +460,18 @@ pages: <img src={require('/img/eng/upload_samples_btn.png').default} width="150"
 data for different patients, <img src={require('/img/eng/consolidate_cohort_btn.png').default} width="150"/> to
 create a group analysis of the samples of the patients included in the cohort
 and <img src={require('/img/eng/add_patient_btn.png').default} width="150"/> to <a href="/add-patient">add patient</a>.
+
+At the bottom of the section pages there are:
+- Information about the number of patients included in the cohort: the order of patients displayed on the page
+(a maximum of 10 patients can be shown on a page, so the order would be 1-10, 11-20, etc.) and the total number
+of patients.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between cohort patient pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
 
 </details>
 
@@ -411,6 +505,8 @@ The number and type of preset settings depends on the initial settings made by t
 checkmark <img src={require('/img/eng/default_setting.png').default} width="20"/> is selected by default for sample
 analysis;
 - "MODIFIED" - contains the date of the last change in the settings preset in M/d/yyyy format.
+
+The table is sorted by settings preset names.
 
 If you hover over a settings preset's row, you will see the following active
 elements: <img src={require('/img/eng/set_as_default.png').default} width="22"/> to set a default preset
@@ -448,6 +544,8 @@ checkmark <img src={require('/img/eng/default_setting.png').default} width="20"/
 used in the presentation of the results of the analysis of the samples of the corresponding type);
 - "MODIFIED" - contains the date of the last change in the report template in M/d/yyyy format.
 
+The table is sorted by report template names.
+
 If you hover over a report template's row, you will see an active
 element <img src={require('/img/eng/delete_btn.png').default} width="20"/> to delete template.
 
@@ -469,6 +567,8 @@ You can read more about gene panels [here](/settings/gene-panels).
 
 - «GENE PANEL» - contains the gene panel name;
 - «DESCRIPTION» - contains the gene panel description.
+
+The table is sorted by gene panel names.
 
 If you hover over a gene panel's row, you will see an active
 element <img src={require('/img/eng/delete_btn.png').default} width="20"/> to delete panel.
@@ -498,6 +598,9 @@ You can read more about capture kits [here](/settings/capture-kits).
 capture kit name, you can download the capture kit file in BED format;
 - «TYPE» - contains information about the type of capture kit: Built-in, or Custom (uploaded by user);
 - «LENGTH» - contains information about the total length of the capture kit across all genomic intervals.
+
+The table is sorted first by capture kit type (custom kits go first, then built-in kits), and then by
+capture kit names.
 
 If you hover over a capture kit's row, you will see the following active
 elements: <img src={require('/img/eng/download_kit.png').default} width="20"/> to download the uploaded capture kit
@@ -539,6 +642,9 @@ as frequency database (data on the variant occurrence in the population); if the
 annotation has <img src={require('/img/custom-annot/ruseq_button.png').default} width="140"/> type
 it is used as RUseq database;
 - "MODIFIED" - contains the date of the last change in the custom annotation in M/d/yyyy format.
+
+The table is sorted by the date custom annotations were added (most recently added annotations to earlier added
+annotations).
 
 If you hover over a custom annotation's row, you will see an active
 element <img src={require('/img/eng/delete_btn.png').default} width="20"/> to to delete annotation.
