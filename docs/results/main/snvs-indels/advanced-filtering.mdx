@@ -99,13 +99,20 @@ The filtering result will be variants whose positions intersect with the entered
 
 6. **Gene** (column ["Locus"](/results/main/snvs-indels/variant-viewer#columns-description),
 basic filter ["Gene"](/results/main/snvs-indels/basic-filtering#gene)) - filter variants by localization in
-gene transcript. The transcript is given in brackets next to the official gene name.
-[Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-7. **Impact** - filter by the predicted effect of the variant on the protein: High, Moderate, Low, Modifier.
+gene transcript. The filter values depend on the selected filter operator:
+- [any value](/results/main/snvs-indels/advanced-filtering#any-value-filters) if the operators "*starts with*",
+"*contains*", "*not contains*" are selected. For example, this is useful if you want to filter variants
+by genes, the name of which contains a certain letter sequence (e.g., "*HLA-*").
+- [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) if the operators “*in*” and
+“*not in*” are selected. Used to filter variants by localization in certain genes. In the value options,
+the gene transcript is given in brackets next to the official gene name.
+- no value if the operators "*not empty*", "*empty*" are selected.
+7. **Impact** - filter by the predicted effect of the variant on the
+protein: <i>High</i>, <i>Moderate</i>, <i>Low</i>, <i>Modifier</i>.
 Column values are described [here](/results/main/snvs-indels/variant-viewer#variant-impacts).
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
-8. **Genome position** - filter by variant position in the genome: in exon (Exonic), in intron
-(Intronic), in the intergenic region (Intergenic).
+8. **Genome position** - filter by variant position in the genome: in exon (<i>Exonic</i>), in intron
+(<i>Intronic</i>), in the intergenic region (<i>Intergenic</i>).
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
 9. **Consequence** (basic filter ["Consequence"](/settings/profile#basic-mode-filters)) - filter by the
 effect of the variant on genes. Column values are described
@@ -120,14 +127,13 @@ which have been determined either [manually](/results/main/snvs-indels/pathogeni
 11. **Label** (column ["Label"](/results/main/snvs-indels/variant-viewer#label), basic
 filter ["Label"](/settings/profile#basic-mode-filters)) -
 [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
-by [variant significance defined by the user](/results/main/snvs-indels/variant-viewer#label): High significance,
-Moderate significance, Low significance, Sequencing error, Undefined.
+by [variant significance defined by the user](/results/main/snvs-indels/variant-viewer#label): <i>High significance</i>, <i>Moderate significance</i>, <i>Low significance</i>, <i>Sequencing error</i>, <i>Undefined</i>.
 12. **Phasing group** (column ["PG"](/results/main/snvs-indels/variant-viewer#added-columns)) -
 [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
 by [phasing group](/results/main/snvs-indels/variant-viewer#added-columns) status:
-- Phasing group - merging of homozygous variants located within a specific genomic interval;
-- Part of group consequence equal - part of phasing group with concordant amino acid substitutions;
-- Part of group consequence unequal - part of phasing group with discordant amino acid substitutions.
+- <i>Phasing group</i> - merging of homozygous variants located within a specific genomic interval;
+- <i>Part of group consequence equal</i> - part of phasing group with concordant amino acid substitutions;
+- <i>Part of group consequence unequal</i> - part of phasing group with discordant amino acid substitutions.
 13. **Compound heterozygote (Genotype)** - filter variants by whether they are compound heterozygotes (i.e.
 heterozygosity of two or more variants
 of the same gene; all cases are described in detail [here](/results/main/snvs-indels/advanced-filtering#compound)).
@@ -153,8 +159,8 @@ are located in the same gene:
 </p>
 
 14. **Trio GT (Genotype)** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter by
-variant inheritance: *De novo* variants, Newly formed homozygotes (homozygotes in proband that are heterozygous in
-parents) or Single parent-inherited. Only available
+variant inheritance: <i>De novo variants</i>, <i>Newly formed homozygotes</i> (homozygotes in proband that are
+heterozygous in parents) or <i>Single parent-inherited</i>. Only available
 in [family group analysis](/group-analysis#group-analysis-variant-viewer) for Trio case
 (Proband, Father and Mother).
 15. **Chromosome** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description))- filter
@@ -171,7 +177,7 @@ the full ID (e.g. rs1126497) or the ID digits only (e.g. 1126497).
 filter variants by Variation ID from [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database (e.g. 183700).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
 18. **Origin** (basic filter ["Origin"](/results/main/snvs-indels/basic-filtering#origin)) - filter variants
-by mutation type: Somatic, Germline.
+by mutation type: <i>Somatic</i>, <i>Germline</i>.
 [Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
 19. **Start** (column ["Position"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 by the start position of the variant on the chromosome.
@@ -200,7 +206,8 @@ amino acid position in protein + new amino acid resulting from the substitution.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters). e.g.: ENSP00000269305.4:p.Pro72Arg.
 26. **Exon** - filter by exon number in the transcript that the variant affected.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
-27. **Onco Relevance** - filter by the variant significance for any oncological disease: Relevant, Irrelevant.
+27. **Onco Relevance** - filter by the variant significance for any oncological
+disease: <i>Relevant</i>, <i>Irrelevant</i>.
 [Single value filter](/results/main/snvs-indels/advanced-filtering#single-value-filters).
 28. **Caller Filters** - [multiselect](/results/main/snvs-indels/advanced-filtering#multiselect-filters) filter
 by variant quality (GATK filters).
@@ -240,8 +247,8 @@ the sample variant annotation is complete.
 by genotype, i.e. reference and alternative allele values for the sample. Genotypes are filtered ignoring phasing
 information. To add a condition for filtering variants by genotype, do the following:<br></br>1. Select a
 sample to filter:
-- "Some": any sample has the required genotype;
-- "Every": each sample has the required genotype;
+- "<i>Some</i>": any sample has the required genotype;
+- "<i>Every</i>": each sample has the required genotype;
 - Sample name.
 
 <p align="center">
@@ -255,14 +262,14 @@ sample to filter:
 </p>
 
 3. Select the required filter value by clicking on the value row:
-- "REF": only reference allele at the site, (e.g., `0/0`, `0|0`, `0/0/0`);
-- "ALT": there is at least one alternative allele at the site (e.g., `1/1`, `1|1`, `0/1`, `1/0`,
+- "<i>REF</i>": only reference allele at the site, (e.g., `0/0`, `0|0`, `0/0/0`);
+- "<i>ALT</i>": there is at least one alternative allele at the site (e.g., `1/1`, `1|1`, `0/1`, `1/0`,
 `0|1`, `1|0`, `1/.`, `1|.`, `./1`, `.|1`, `1`, `0/0/1`, `0/2`, `1/2`);
-- "HOM": homozygous site, can be as in reference or alternative (e.g., `1|1`, `1/1`, `1/1/1`, `0/0`, `0|0`);
-- "HET": heterozygous site, containing at least two different alleles (e.g., `0/1`, `1/0`, `0|1`,
+- "<i>HOM</i>": homozygous site, can be as in reference or alternative (e.g., `1|1`, `1/1`, `1/1/1`, `0/0`, `0|0`);
+- "<i>HET</i>": heterozygous site, containing at least two different alleles (e.g., `0/1`, `1/0`, `0|1`,
 `1|0`, `2/0`, `0/1/2`);
-- "HOM_ALT": homozygous site in alternative (e.g., `1/1`, `1|1|1`);
-- "MIS": information is missing for the site (e.g., `./.`).
+- "<i>HOM_ALT</i>": homozygous site in alternative (e.g., `1/1`, `1|1|1`);
+- "<i>MIS</i>": information is missing for the site (e.g., `./.`).
 
 1. **Read depth** (column ["Depth (Alt/Ref)"](/results/main/snvs-indels/variant-viewer#columns-description)) - filter
 variants by sequencing depth, i.e. the total number of reads of the sequence overlapping the variant position for
@@ -276,10 +283,10 @@ in the sequence for this sample.
 To add a condition for filtering variants by depth, ref, alt or AF, do the following:
 
 1. Select a filter function:
-- "Max": maximum value;
-- "Min": minimum value;
-- "Avg": mean;
-- "Sum": total value.
+- "<i>Max</i>": maximum value;
+- "<i>Min</i>": minimum value;
+- "<i>Avg</i>": mean;
+- "<i>Sum</i>": total value.
 
 <p align="center">
 <img src={require('/img/vv/function.png').default} width="650"/>
@@ -329,7 +336,7 @@ Latino, Non-finnish european, East Asian, Middle Eastern, Other.
 populations, where **[Population]** is Ashkenazi Jewish, Amish, African and African American, Finnish, South Asian,
 Latino, Non-finnish european, East Asian, Middle Eastern, Other.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
-8. **Coverage** - filter variants by average coverage depth by bases: &lt;10, 10-100, ⩾100.
+8. **Coverage** - filter variants by average coverage depth by bases: <i>&lt;10</i>, <i>10-100</i>, <i>⩾100</i>.
 [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 
 ### gnomAD 4 {#gnomad-4}
@@ -516,9 +523,8 @@ where **[Cohort]** is Non-TCGA, Non-Psych.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
 9. **[Cohort] adjusted AF** - filter variants by allele frequency (AF) in
 a population with genotype quality ≥20 and depth ≥10 in different cohorts in
-[ExAC](http://exac.broadinstitute.org/) database (positive rational number),
-where **[Cohort]** is Non-TCGA, Non-Psych.
-[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters)
+[ExAC](http://exac.broadinstitute.org/) database, where **[Cohort]** is Non-TCGA, Non-Psych.
+[Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
 10. **[Cohort] adjusted allele count** - filter variants by alternative allele count in
 a population with genotype quality ≥20 and depth ≥10 in different cohorts, where **[Cohort]** is Non-TCGA, Non-Psych.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (natural number).
@@ -689,8 +695,7 @@ populations from [NHLBI GO Exome Sequencing Project (ESP)](https://esp.gs.washin
 8. **ENIGMA clinical significance** - filter by clinical significance of the variant located
 in the known or suspected breast and/or ovarian predisposition genes (such as *BRCA1*, *BRCA2*)
 determined by [ENIGMA](https://enigmaconsortium.org/) consortium.
-[Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters): Pathogenic,
-Likely pathogenic, Benign, Likely benign, Not provided.
+[Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters): <i>Pathogenic</i>, <i>Likely pathogenic</i>, <i>Benign</i>, <i>Likely benign</i>, <i>Not provided</i>.
 9. **ENIGMA clinical significance comment** - filter by comment on clinical significance
 of the variant located in the known or suspected breast and/or ovarian predisposition genes (such
 as *BRCA1*, *BRCA2*) determined by [ENIGMA](https://enigmaconsortium.org/) consortium.
@@ -715,7 +720,7 @@ If the annotation column type is numeric, then the operators will be the followi
 <img src={require('/img/vv/custom_filter.png').default} width="750"/>
 </p>
 
-2. If operators other than "not empty" and "empty" have been selected, click on the input
+2. If operators other than "<i>not empty</i>" and "<i>empty</i>" have been selected, click on the input
 box <img src={require('/img/vv/sample_data_value.png').default} width="150"/> and enter the filter column value.
 To complete adding the condition, press Enter or click outside edit value container.
 
@@ -845,18 +850,18 @@ The way of adding a filter condition depends on **the filter type**:
 
 1. Select ***a filter column*** from the list of all columns;
 2. Select ***a filter operator***:
-    * "in";
-    * "not in";
-    * "not empty": the selected column has a non-empty value in the annotation for the searched variants (there
+    * "<i>in</i>";
+    * "<i>not in</i>";
+    * "<i>not empty</i>": the selected column has a non-empty value in the annotation for the searched variants (there
     is no such option for the "Chromosome" and "Origin" columns);
-    * "empty": the selected column has no value in the annotation for the searched variants (there
+    * "<i>empty</i>": the selected column has no value in the annotation for the searched variants (there
     is no such option for the "Chromosome" and "Origin" columns).
 
 <p align="center">
 <img src={require('/img/vv/operators.png').default} width="650"/>
 </p>
 
-3. If the "in" or "not in" operators have been selected, select the required ***filter column values***
+3. If the "<i>in</i>" or "<i>not in</i>" operators have been selected, select the required ***filter column values***
 by clicking on the value rows:
 
 <p align="center">
@@ -870,7 +875,7 @@ by clicking on the value rows:
 - Ability to select only one filter value.
 - The way of adding a filter condition:
 
-1. Select ***filter*** from the list of all filters. The filter operator "is" is automatically selected for
+1. Select ***filter*** from the list of all filters. The filter operator "<i>is</i>" is automatically selected for
 filters of this type;
 2. Select the required ***filter value*** by clicking on the value row:
 
@@ -890,7 +895,7 @@ filters of this type;
 <img src={require('/img/vv/operator_id.png').default} width="650"/>
 </p>
 
-3. If the operators "is" or "is not" were selected, click on the input
+3. If the operators "<i>is</i>" or "<i>is not</i>" were selected, click on the input
 box <img src={require('/img/vv/sample_data_value_text.png').default} width="200"/> and enter ***filter column value***:
 
 <p align="center">
@@ -909,15 +914,15 @@ or a space (`rs1234 rs2799066 rs4648562`).
 
 1. Select ***a filter column*** from the list of all columns;
 2. Select ***a filter operator***:
-    * ">";
-    * "<";
-    * "≥";
-    * "≤";
-    * "=";
-    * "≠";
-    * "not empty": the selected column has a non-empty value in the annotation for the searched variants
+    * "<i>></i>";
+    * "<i><</i>";
+    * "<i>≥</i>";
+    * "<i>≤</i>";
+    * "<i>=</i>";
+    * "<i>≠</i>";
+    * "<i>not empty</i>": the selected column has a non-empty value in the annotation for the searched variants
     (there is no such option for the "Start" and "End" columns);
-    * "empty": the selected column has no value in the annotation for the searched variants
+    * "<i>empty</i>": the selected column has no value in the annotation for the searched variants
     (there is no such option for the "Start" and "End" columns).
 
 <p align="center">
@@ -940,19 +945,19 @@ box <img src={require('/img/vv/sample_data_value.png').default} width="150"/> an
 
 1. Select ***a filter column*** from the list of all columns;
 2. Select ***a filter operator***:
-    * "starts with" (there is no such option for the "HGVSc" column);
-    * "contains";
-    * "not contains" (there is no such option for the "HGVSc" column);
-    * "not empty": the selected column has a non-empty value in the annotation for the searched variants
+    * "<i>starts with</i>" (there is no such option for the "HGVSc" column);
+    * "<i>contains</i>";
+    * "<i>not contains</i>" (there is no such option for the "HGVSc" column);
+    * "<i>not empty</i>": the selected column has a non-empty value in the annotation for the searched variants
     (there is no such option for the "Reference allele" column);
-    * "empty": the selected column has no value in the annotation for the searched variants
+    * "<i>empty</i>": the selected column has no value in the annotation for the searched variants
      (there is no such option for the "Reference allele" column).
 
 <p align="center">
 <img src={require('/img/vv/hgvsp_operator.png').default} width="650"/>
 </p>
 
-3. If the operators "starts with", "contains" or "not contains" were selected, click on the
+3. If the operators "<i>starts with</i>", "<i>contains</i>" or "<i>not contains</i>" were selected, click on the
 input<br></br>box <img src={require('/img/vv/sample_data_value_text.png').default} width="200"/> and
 enter ***filter column value***:
 
