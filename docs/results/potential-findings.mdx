@@ -1,0 +1,63 @@
+---
+sidebar_position: 3
+sidebar_label: Potential findings
+---
+
+# Potential findings
+
+Potential findings are SNVs/Indels or copy number variations (CNVs) discovered in a sample that meet some
+predefined criteria. These may be ACMG criteria, filters for gene panels with additional conditions for rare
+monogenic diseases, etc.
+
+Potential findings can include SNVs/Indels or CNVs from report blocks of the type “*SNVs/Indels in ACMG SF genes*”
+([“ACMG Secondary Findings Report”](/results/acmg-sf-report)), “*SNVs/Indels suitable for the specified conditions*”
+or “*CNVs suitable for the specified conditions*".
+To have the listed blocks use the found mutations as potential findings,
+[turn on the corresponding toggle in these blocks](/settings/report-templates/report-templates#block-types).
+
+Potential findings are indicated by
+the icon <img src={require('/img/results/potential_finding.png').default} width="25"/> in the report:
+
+<p align="center">
+<img src={require('/img/results/acmg_potential_findings.png').default} width="900"/>
+</p>
+
+### Change the status of a potential finding {#change-potential-finding-status}
+
+To change the status of a potential finding, click
+on <img src={require('/img/results/potential_finding.png').default} width="25"/> in the finding's row.
+The following window will open:
+
+<p align="center">
+<img src={require('/img/results/change_of_status.png').default} width="400"/>
+</p>
+
+#### Include a potential finding to interpretation results {#include-to-interpretation-results}
+
+To include a finding to [the interpretation results](/results/main/main#interpretation-results), select the
+status "*Included to interpretation results*" and then determine the pathogenicity of the finding. If the
+pathogenicity class of a finding [requires confirmation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity),
+confirm the pathogenicity by clicking on the corresponding option “*Confirm Pathogenicity*”.
+Then click on the button <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+The icon of a potential finding included to the interpretation results will change to an icon of the finding's
+pathogenicity:
+- Pathogenic finding: <img src={require('/img/vv/pathogenic.png').default} width="40"/>
+- Likely pathogenic finding: <img src={require('/img/vv/probably_pathogenic.png').default} width="40"/>
+- Finding of uncertain significance or finding with conflicting interpretations of
+pathogenicity: <img src={require('/img/vv/uncertain_significance.png').default} width="44"/>
+- Likely benign finding: <img src={require('/img/vv/likely_benign.png').default} width="40"/>
+- Benign finding: <img src={require('/img/vv/benign.png').default} width="40"/>
+
+#### Exclude from the list of potential findings {#exclude-from-potential-findings}
+
+To exclude a finding from the list of potential findings, select the status "*Excluded from potential findings*" and
+click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+The icon of a finding that has been excluded from the list of potential findings will
+change to <img src={require('/img/results/excluded_from_pf.png').default} width="25"/>.
+
+:::note
+If the same finding was discovered in several reports at once, then when its status changes, it will change
+in all these reports.
+:::

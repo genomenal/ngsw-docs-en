@@ -7,7 +7,57 @@ sidebar_label: Main
 
 The "Main" tab on the sample page contains the following information:
 
-### 1. The analysis results {#analysis-results}
+### 1. Interpretation Results {#interpretation}
+
+The section may include [potential findings](/results/main/main#potential-findings) if at least one report, that uses
+potential findings, was generated for the sample,
+and [interpretation results](/results/main/main#interpretation-results) if sample interpretation was completed.
+
+<p align="center">
+<img src={require('/img/results/interpretation_section.png').default} width="900"/>
+</p>
+
+#### Potential Findings {#potential-findings}
+
+Potential findings are SNVs/Indels or copy number variations (CNVs) discovered in a sample that meet some
+predefined criteria. These may be ACMG criteria, filters for gene panels with additional conditions for rare
+monogenic diseases, etc.
+
+Potential findings can include SNVs/Indels or CNVs from report blocks of the type “*SNVs/Indels in ACMG SF genes*”
+([“ACMG Secondary Findings Report”](/results/acmg-sf-report)), “*SNVs/Indels suitable for the specified conditions*”
+or “*CNVs suitable for the specified conditions*".
+To have the listed blocks use the found mutations as potential findings,
+[turn on the corresponding toggle in these blocks](/settings/report-templates/report-templates#block-types).
+The potential findings section will not appear on the sample page if no report, that uses potential findings, has been
+generated for the sample.
+
+The potential findings section provides information on each generated report that uses potential findings.
+For each report, the number of findings discovered in it (SNVs/Indels or CNVs) is indicated. By clicking on
+a line with information for a specific report, you can open [its page](/results/potential-findings). In the report,
+you can change the status
+of a potential finding, i.e. include it to the interpretation results or exclude it from the list of potential
+findings. In both cases, it will no longer count towards the total number of potential findings in this report
+on the sample page. Once the status of all potential findings in a report has been determined, the message for
+that report will change to "*No potential findings were found*".
+
+#### Interpretation Results {#interpretation-results}
+
+Interpretation results are information about the number of mutations with a certain pathogenicity class discovered
+in the sample and included to the interpretation results. The section may include information about SNVs/Indels,
+designated "*SNV*", and information about copy number variations, designated "*CNV*". The information is presented
+in the form of pathogenicity icons indicating the number of mutations with this pathogenicity:
+- pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+- likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+- mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+- likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+- benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+
+If sample interpretation has not been [completed](/results/main/snvs-indels/snv-details-page#sample-interpretation),
+there will be no interpretation results section on the sample page. If sample interpretation has been completed,
+but mutations with a certain pathogenicity class have not been included to the interpretation results, then the
+result will be “*No pathogenic variants found*”.
+
+### 2. The analysis results {#analysis-results}
 
 The section contains the main results of the analysis: a separate section with the results corresponds to a
 separate stage of the analysis. The availability of the results of a particular stage depends on whether it
@@ -23,7 +73,7 @@ You can read more about each section in the corresponding section of the documen
 3. [Somatic and Germline Copy Number Variations](/results/main/copy-number-variations/cnvs)
 4. [Alignments](/results/main/alignments)
 
-### 2. Sample Info {#sample-info}
+### 3. Sample Info {#sample-info}
 
 <p align="center">
 <img src={require('/img/results/sample_info.png').default} height="900"/>
@@ -65,7 +115,7 @@ which were defined for the patient at the time the sample was taken for sequenci
 - THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
 for sequencing.
 
-### 3. Workflow {#workflow}
+### 4. Workflow {#workflow}
 
 The section is a table with analysis stages and their statuses.
 

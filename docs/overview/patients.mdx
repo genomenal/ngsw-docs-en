@@ -1,0 +1,129 @@
+---
+sidebar_position: 3
+sidebar_label: Patients
+---
+
+# Patients
+
+The "Patients" section includes the following pages:
+- "***All Patients***" - contains all patients added to the system and their data.
+
+If you don't have any patients added yet, the "All Patients" page looks like this:
+
+<p align="center">
+<img src={require('/img/eng/no_patients_page.png').default} width="1000"/>
+</p>
+
+The page with added patients looks like this:
+
+<p align="center">
+<img src={require('/img/eng/1-all-patients-page.png').default} width="1000"/>
+</p>
+
+- “***In Progress***” - contains those patients whose data is being currently processed:
+
+<p align="center">
+<img src={require('/img/eng/in_process.png').default} width="1000"/>
+</p>
+
+- “***Problems***” - contains those patients with data processing problems or with peculiar data:
+
+<p align="center">
+<img src={require('/img/eng/problems.png').default} width="1000"/>
+</p>
+
+There are following buttons at the top of the "<i>All Patients</i>", "<i>In Progress</i>" and "<i>Problems</i>"
+pages: <img src={require('/img/eng/upload_samples_btn.png').default} width="150"/>
+to <a href="/uploading-samples/upload-samples-page">upload multiple samples</a>,
+and <img src={require('/img/eng/add_patient_btn.png').default} width="150"/> to <a href="/add-patient">add patient</a>.
+In addition, if you hover over a patient's row, you will see the following active
+elements: <img src={require('/img/eng/upload_in_patient.png').default} width="19"/> to upload patient
+data and <img src={require('/img/eng/delete_btn.png').default} width="20"/> to archive it.
+
+- “***Archive***” - contains those patients whose data has been archived. You can transfer irrelevant data or
+data for later deletion here. Archived patients are not displayed on the "All Patients" page.
+
+<p align="center">
+<img src={require('/img/eng/archive.png').default} width="1000"/>
+</p>
+
+You can search for patients by ID or name using a search box at the top of the section pages:
+
+<p align="center">
+<img src={require('/img/eng/search_patient.png').default} width="450"/>
+</p>
+
+At the bottom of the section pages there are:
+- Patient count information: the order of patients displayed on the page (a maximum of 10 patients can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of patients.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between patient pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
+### Columns {#patients-columns}
+
+The "Patients" section pages present the table with the following columns:
+1. **PATIENT** - contains information about created patients (ID, first name, last name);
+2. **STATUS** - contains information about the statuses of uploaded samples of each
+patient:<br></br><img src={require('/img/eng/in_process_status.png').default} width="22"/> - in
+progress;<br></br><img src={require('/img/eng/queed_status.png').default} width="14"/> -
+queued;<br></br><img src={require('/img/eng/success_status.png').default} width="22"/> -
+success,<br></br><img src={require('/img/eng/problems_status.png').default} width="24"/> -
+problems,<br></br><img src={require('/img/eng/failed_status.png').default} width="20"/> - failed;
+3. **SAMPLES** - contains information about the uploaded samples of each
+patient:<br></br><img src={require('/img/eng/in_process_sample.png').default} width="18"/> - tumor sample in
+progress, queued or waiting for the prerequisite stages of the control sample to be
+completed;<br></br><img src={require('/img/eng/tumor_success.png').default} width="18"/> - successfully processed
+tumor sample;<br></br><img src={require('/img/eng/tumor_problems.png').default} width="18"/> - tumor
+sample with problems;<br></br><img src={require('/img/eng/tumor_failed.png').default} width="18"/> - failed
+tumor sample;<br></br><img src={require('/img/eng/normal_in_process.png').default} width="18"/> - normal
+sample in progress or queued;<br></br><img src={require('/img/eng/normal_success.png').default} width="18"/> -
+successfully processed normal sample;<br></br><img src={require('/img/eng/normal_problems.png').default} width="18"/> -
+normal sample with problems;<br></br><img src={require('/img/eng/normal_failed.png').default} width="18"/> -
+failed normal sample;
+4. **COHORT** - contains the cohort name of the patient;
+5. **CREATED** - contains the date of the patient creation in M/d/yyyy format;
+6. **MODIFIED** - contains the date of the last change in the patient data in M/d/yyyy format.
+
+By clicking on a patient's row, you will open [the patient's page](/add-patient#patient-page).
+
+### Sorting {#patients-sorting}
+
+By default, the table is sorted from patients added last to patients added first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of the following
+columns: "Patient", "Cohort", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Patient" and
+"Cohort" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
+### Archive, Restore and Delete Patient Data {#delete-patient}
+
+To archive patient data and samples, hover over the patient's row on the "*All Patients*" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>. The patient will be moved
+to the "*Archive*" page. On the "*Archive*" page, you can:
+
+1. ***Restore patient data*** by hovering over the patient's row and
+clicking on <img src={require('/img/eng/restore_btn.png').default} width="22"/>.
+Then, patient will be moved back to the "*All Patients*" page.
+
+2. ***Delete patient data*** and samples from the system by hovering over the patient's row and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+You will see a confirmation window for deleting the patient:
+
+<p align="center">
+<img src={require('/img/eng/delete_patient.png').default} width="380"/>
+</p>
+
+To confirm deleting the patient, click on <img src={require('/img/runs/confirm.png').default} width="150"/>.
+To cancel deleting a patient, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+Additionally, you can delete all archived patient data by
+clicking on <img src={require('/img/eng/clear_archive_btn.png').default} width="170"/>  on the "*Archive*" page.

@@ -1,0 +1,98 @@
+---
+sidebar_position: 6
+sidebar_label: Cohorts
+---
+
+# Cohorts
+
+The "***Cohorts***" section contains links to the pages of added cohorts and a
+button <img src={require('/img/eng/add_cohort.png').default} width="20"/> for adding a cohort.
+Patients can be grouped into a cohort by some common feature (for example, by pathology type or data source).
+You can read more about cohorts [here](/cohorts).
+If there are no cohorts added, then the section contains a window for grouping patients into cohorts:
+
+<p align="center">
+<img src={require('/img/eng/cohorts_empty.png').default} width="170"/>
+</p>
+
+After adding cohorts, links to their pages appear in the section.
+A cohort page contains only data of patients included in this cohort:
+
+<p align="center">
+<img src={require('/img/eng/cohorts_added.png').default} width="170"/>
+</p>
+
+If you hover over a cohort's row on the navigation sidebar, you will see an
+element <img src={require('/img/eng/cohort_options.png').default} width="16"/>. If you click on it, you will see
+the options "***Edit***" (opens the cohort editing window) and "***Delete***" (deletes the cohort).
+Please note that deleting a cohort does not delete the data of patients included in it.
+
+<p align="center">
+<img src={require('/img/eng/cohort_options_list.png').default} width="170"/>
+</p>
+
+## Cohort Page {#cohort-page}
+
+At the top of the cohort page, there are:
+- Search box allowing you to search for patients included in the cohort by ID or name:
+<p align="center"><img src={require('/img/eng/search_patient.png').default} width="450"/></p>
+- Button <img src={require('/img/eng/upload_samples_btn.png').default} width="150"/> to
+[upload multiple data for different patients](/uploading-samples/upload-samples-page).
+- Button <img src={require('/img/eng/consolidate_cohort_btn.png').default} width="150"/> to
+[create a group analysis](/cohorts#cohort-analysis) of the samples of the patients included in the cohort.
+- Button <img src={require('/img/eng/add_patient_btn.png').default} width="150"/>
+to <a href="/add-patient">add patient</a>.
+
+At the bottom of the cohort page, there are:
+- Information about the number of patients included in the cohort: the order of patients displayed on the page
+(a maximum of 10 patients can be shown on a page, so the order would be 1-10, 11-20, etc.) and the total number
+of patients.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between cohort patient pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
+### Columns {#cohort-columns}
+
+On the cohort page, information is presented in the form of a table with the following columns:
+1. **PATIENT** - contains information about created patients (ID, first name, last name);
+2. **STATUS** - contains information about the statuses of uploaded samples of each
+patient: <br></br><img src={require('/img/eng/in_process_status.png').default} width="22"/> - in
+progress;<br></br><img src={require('/img/eng/queed_status.png').default} width="14"/> -
+queued;<br></br><img src={require('/img/eng/success_status.png').default} width="22"/> -
+success,<br></br><img src={require('/img/eng/problems_status.png').default} width="24"/> -
+problems,<br></br><img src={require('/img/eng/failed_status.png').default} width="20"/> - failed;
+3. **SAMPLES** - contains information about the uploaded samples of each
+patient: <br></br><img src={require('/img/eng/in_process_sample.png').default} width="18"/> - tumor sample in
+progress, queued or waiting for the prerequisite stages of the control sample to be
+completed;<br></br><img src={require('/img/eng/tumor_success.png').default} width="18"/> - successfully processed
+tumor sample;<br></br><img src={require('/img/eng/tumor_problems.png').default} width="18"/> - tumor
+sample with problems;<br></br><img src={require('/img/eng/tumor_failed.png').default} width="18"/> - failed
+tumor sample;<br></br><img src={require('/img/eng/normal_in_process.png').default} width="18"/> - normal
+sample in progress or queued;<br></br><img src={require('/img/eng/normal_success.png').default} width="18"/> -
+successfully processed normal sample;<br></br><img src={require('/img/eng/normal_problems.png').default} width="18"/> -
+normal sample with problems;<br></br><img src={require('/img/eng/normal_failed.png').default} width="18"/> -
+failed normal sample;
+4. **COHORT** - contains the cohort name of the patient;
+5. **CREATED** - contains the date of the patient creation in M/d/yyyy format;
+6. **MODIFIED** - contains the date of the last change in the patient data in M/d/yyyy format.
+
+If you hover over a patient's row, you will see the following active
+elements: <img src={require('/img/eng/upload_in_patient.png').default} width="19"/> to upload patient
+data and <img src={require('/img/eng/delete_btn.png').default} width="20"/> to archive it (when archiving, a patient
+from the cohort is moved to the "*Archive*" page from the "*Patients*" block and is not displayed on the cohort page).
+
+### Sorting {#cohort-sorting}
+
+By default, the table is sorted from the patients added last to the system to the patients added first (i.e., in
+descending order of the "Created" column values). The table can be sorted by ascending or descending values of the
+following columns: "Patient", "Cohort", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Patient" and
+"Cohort" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.

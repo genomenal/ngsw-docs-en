@@ -42,6 +42,11 @@ blocks of ["SNVs/Indels selected by user for reports" type](/settings/report-tem
 To remove a variant from the report, turn the switch back off. Variants included to report can also
 be removed from report on the page of the report itself.
 
+If [a pathogenicity class](/results/main/snvs-indels/pathogenicity) has been determined for a variant,
+it is automatically included to the sample [interpretation results](/results/main/main#interpretation-results).
+If you want to ***exclude a variant from the interpretation results*** from the variant details page, turn off the
+corresponding toggle <img src={require('/img/vv/include_to_int_results.png').default} width="300"/>.
+
 To ***pin a variant*** in SNV Viewer table (read more about pinned
 variants [here](/results/main/snvs-indels/variant-viewer#pin-variant)) from the details page,
 click on <img src={require('/img/vv/pin_on_details_page.png').default} width="40"/>. To unpin, click again
@@ -116,7 +121,7 @@ tabs [here](/results/main/snvs-indels/snv-details-panel#panel-tabs).
 
 ## "Sample" tab {#sample-tab}
 
-There are two sections on "Sample" tab:
+The "Sample" tab may contain two sections:
 1. **Sample Info** corresponds to the sample info
 from ["Main" tab of the sample page](/results/main/main#sample-info). Most of the fields (except for
 Sequencing Type and Capture Kit) can be edited both on the sample page and here, on "Sample" tab.<br></br>The
@@ -140,21 +145,24 @@ clicking on the value field.
 which were defined for the patient at the time the sample was taken for sequencing.
 - THERAPY LINE is the therapy line that was being used to treat the patient's disease at the time the sample was taken
 for sequencing.
-- INTERPRETATION SUMMARY is the information on the number of variants of a particular pathogenicity
-class discovered in the sample and included to report
-(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
-Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
-Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
-Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
-Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
-After including variants with a particular pathogenicity class to report, the interpretation summary
-will be "*Interpretation not completed*". If the sample interpretation has been completed, but no variants
-with a particular pathogenicity class have been included to report, then the interpretation summary will be
+- INTERPRETATION RESULTS are information about the number of mutations with a certain pathogenicity class discovered
+in the sample and included to the interpretation results. The section may include information about SNVs/Indels,
+designated "*SNV*", and information about copy number variations, designated "*CNV*". The information is presented
+in the form of pathogenicity icons indicating the number of mutations with this pathogenicity
+(pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
+likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
+uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
+likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+benign: <img src={require('/img/results/benign.png').default} width="48"/>).
+After including mutations with a particular pathogenicity class to the interpretation results, the result
+will be "*Interpretation not completed*". If the sample interpretation has been completed, but no mutations
+with a particular pathogenicity class have been included to the interpretation results, then the result will be
 "*No pathogenic variants found*". Read more about sample
 interpretation [below](/results/main/snvs-indels/snv-details-page#sample-interpretation).
 2. **Patient Info** corresponds to the patient info from [the patient page](/add-patient#patient-info).
-The field can be edited both on the patient page and here, on the "Sample" tab.<br></br>The section
-contains the following patient information:
+This section is presented on the page if the sample in which the variant was discovered belongs to a
+patient (and not just a run). The field can be edited both on the patient page and here, on the "Sample"
+tab.<br></br>The section contains the following patient information:
 - PATIENT ID is a code entered when creating a patient (you can edit it by clicking on the code).
 Can include any characters.
 - LAST NAME and FIRST NAME of the patient. Can be specified by clicking on the value fields.
@@ -166,40 +174,53 @@ Can be specified by clicking on the value field.
 
 ### Sample Interpretation: complete and resume {#sample-interpretation}
 
-The sample interpretation is an interpretation of the pathogenicity of sample variants.
-To add the variant discovered in the sample to the interpretation summary, you need to:
+The sample interpretation is interpretation of the pathogenicity of mutations discovered in the sample.
+To add the variant to the sample interpretation results, you need to:
 - determine the variant pathogenicity class (see [here](/results/main/snvs-indels/pathogenicity));
-- include the variant to report ([from SNV Viewer page](/results/main/snvs-indels/variant-viewer#include-to-report)
-or from the variant details page (see above)).
+- include the variant to interpretation results. This occurs automatically when the pathogenicity class of the
+variant is determined. In addition, potential findings can be included to interpretation results, as
+described [here](/results/potential-findings#include-to-interpretation-results).
+
 
 :::note
-Variants can be added to the sample interpretation even after its completion.
+If necessary, variants can be added to the sample interpretation results after the interpretation is complete.
 :::
 
 To ***complete interpretation***,
-click on <img src={require('/img/vv/finish_interpretation.png').default} width="210"/> on "Sample" tab of
-the variant details page. In the window that appears, you will see the number of variants of a particular
-pathogenicity class discovered in the
-sample and <a href="/results/main/snvs-indels/variant-viewer#include-to-report">included to report</a> (Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
-Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
-Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
-Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
-Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
-If no variants with a particular pathogenicity class have been included to report, then the interpretation
-summary will be "*No pathogenic variants found*".
+click on <img src={require('/img/vv/finish_interpretation.png').default} width="210"/> on the "*Sample*" tab of
+the variant details page. You will see a confirmation window. For non-tumor samples, it looks like this:
 
 <p align="center">
-<img src={require('/img/vv/interpretation_window.png').default} height="500"/>
+<img src={require('/img/vv/interpretation_window_normal.png').default} width="400"/>
 </p>
 
-In the same window, you can specify the patient's oncological disease, its stage and stage details,
-which were defined for the patient, as well as the therapy line
-used to treat the patient's disease, at the time the sample was taken for sequencing.
+And for tumor samples, it also includes fields about the oncological disease:
 
-To complete interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} width="400"/>
+</p>
 
-To ***resume interpretation***, click on <img src={require('/img/vv/restart_interpretation.png').default} width="210"/>
-on "Sample" tab of the variant details page.
+The "*Interpretation results*" field provides information about the number of mutations with a certain pathogenicity
+class discovered in the sample and included to the interpretation results. The field may include information about
+SNVs/Indels, designated "*SNV*", and information about copy number variations, designated "*CNV*". The information
+is presented in the form of pathogenicity icons indicating the number of mutations with this pathogenicity:
+- pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+- likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+- mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+- likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+- benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+
+If no mutations with a particular pathogenicity class have been included to the interpretation results, then the
+field value will be "*No pathogenic variants found*".
+
+For variants discovered in tumor samples, you can also specify the oncological disease, its stage, and stage details
+which were defined for the patient, as well as the therapy line used to treat the patient's disease, at the time
+the sample was taken for sequencing.
+
+To confirm completing interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+To ***resume completed interpretation***,
+click on <img src={require('/img/vv/restart_interpretation.png').default} width="210"/>.
 
 ## "Occurrences" tab {#occurrences}
 

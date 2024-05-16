@@ -44,7 +44,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       footer: {
         style: 'dark',
         links: [],
-		copyright: `© 2019-2023 Novel Software Systems. All rights reserved.`,
+		copyright: `© 2019-2024 Novel Software Systems. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,

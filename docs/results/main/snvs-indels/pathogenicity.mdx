@@ -20,6 +20,11 @@ button <img src={require('/img/vv/acmg_var_btn.png').default} width="42"/> in th
 <img src={require('/img/vv/pathogenicity_list.png').default} width="300"/>
 </p>
 
+All variants with a certain pathogenicity class are automatically added to the
+sample [interpretation results](/results/main/main#interpretation-results). If you want to determine the
+pathogenicity class of a variant but not include it to the interpretation results, disable the
+"*Include to interpretation results*" option in the same dialog.
+
 :::info
 If a variant has been determined as Pathogenic or Likely pathogenic, it is
 automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
@@ -648,8 +653,6 @@ using [GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html).
 click on <img src={require('/img/vv/erase.png').default} width="38"/>.
 - To ***reset to automatic variant interpretation***,
 click on <img src={require('/img/vv/reset.png').default} width="38"/>.
-After automatic interpretation is restored,
-[a warning to confirm the interpretation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity) will appear.
 
 As a result of combining the criteria, the variant is ***classified by pathogenicity*** (Benign, Likely benign,
 Uncertain significance, Conflicting interpretations of pathogenicity, Likely pathogenic, Pathogenic)
@@ -658,6 +661,9 @@ and the interpretation result is set on the pathogenicity scale:
 <p align="center">
 <img src={require('/img/vv/acmg_scale.png').default} width="500"/>
 </p>
+
+If the pathogenicity class of a variant has been determined by automatic interpretation,
+[a warning to confirm the interpretation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity) will appear.
 
 - To ***manually classify a variant by pathogenicity***, click on the name or point with the value
 on the pathogenicity scale:
@@ -677,6 +683,13 @@ If a variant has been determined as Pathogenic or Likely pathogenic, it is
 automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
 (if pathogenicity has been [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity)).
 :::
+
+#### Include to interpretation results {#include-to-interpretation-results}
+
+All variants with a certain pathogenicity class are automatically added to the
+sample [interpretation results](/results/main/main#interpretation-results).
+If you want to exclude a variant with a determined pathogenicity class from the interpretation results,
+disable the "*Include to interpretation results*" option in the upper right corner of the page.
 
 ## Determination of pathogenicity by pathogenicity base {#define-pathogenicity-by-base}
 
@@ -700,12 +713,19 @@ pathogenicity: <img src={require('/img/vv/conflicting_pathogenicity.png').defaul
 - Benign variant: <img src={require('/img/vv/benign.png').default} width="40"/>
 
 :::info
+All variants with a certain pathogenicity class are automatically added to the
+sample [interpretation results](/results/main/main#interpretation-results).
+If you want to exclude a variant with a determined pathogenicity class from the interpretation results,
+disable the "*Include to interpretation results*" option in the pathogenicity dialog or on the variant details page.
+:::
+
+:::info
 If a variant has been determined as Pathogenic or Likely pathogenic, it is
 automatically [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
 (if pathogenicity has been [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity)).
 :::
 
-The way of determining the variant pathogenicity ("by ACMG" or "manually determined") can be found in the
+The way of determining the variant pathogenicity ("*by ACMG*" or "*manually determined*") can be found in the
 tooltip by hovering over the pathogenicity button.
 
 Variants can be ***sorted*** from pathogenic to benign by clicking on "Pathogenicity" column name once,
@@ -717,7 +737,7 @@ Variants can be ***filtered*** by pathogenicity:
 (can be added on ["Profile" page](/settings/profile#basic-mode-filters)).
 
 The result of the classification of a variant by pathogenicity can be ***cleared*** by clicking on the
-pathogenicity button in the variant row and selecting "Clear" option in the dialog:
+pathogenicity button in the variant row and selecting "*Clear*" option in the dialog:
 
 <p align="center">
 <img src={require('/img/vv/clear_on_dialog.png').default} width="300"/>
@@ -737,7 +757,7 @@ from [the pathogenicity base](/settings/custom-annotations#define-annotation-typ
 On SNV Viewer page, variants that require pathogenicity confirmation are
 indicated by <img src={require('/img/vv/bell.png').default} width="18"/> next to the pathogenicity button.
 If you agree with the variant pathogenicity, click on the bell or the pathogenicity button and
-select "Confirm Pathogenicity" option in the dialog:
+select "*Confirm Pathogenicity*" option in the dialog:
 
 <p align="center">
 <img src={require('/img/vv/confirm_pathogenicity.png').default} width="300"/>
@@ -751,3 +771,10 @@ On "ACMG Classification" tab, the confirmation warning looks like this:
 
 If you agree with the variant pathogenicity,
 click on <img src={require('/img/vv/validate_pathogenicity.png').default} width="150"/>.
+
+:::info
+Once pathogenicity is confirmed, the variant is automatically added to the
+sample [interpretation results](/results/main/main#interpretation-results). If you want to exclude a variant
+from interpretation results, disable the "*Include to interpretation results* option in the pathogenicity dialog
+or on the variant details page.
+:::

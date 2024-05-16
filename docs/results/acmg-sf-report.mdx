@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 sidebar_label: ACMG Secondary Findings Report
 ---
 
@@ -40,7 +40,7 @@ to the following scheme:
 <img src={require('/img/eng/acmg_sf_scheme.png').default} width="560"/>
 </p>
 
-**LIST 1**: The most important variants for interpretation for which the following conditions are met:
+**TIER I**: The most important variants for interpretation for which the following conditions are met:
 - The variant is located in a gene from [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
 - The variant is associated according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) with a
 phenotype only of pathogenic or likely pathogenic clinical significance that is
@@ -65,7 +65,7 @@ for the gene in which the variant is located. These conditions may be associated
    - the genotype (for example, some variants are reported only if they are homozygous in alternative allele);
    - specific nucleotide and amino acid substitution of the variant.
 
-**LIST 2**: Variants that require further analysis for which the following conditions are met:
+**TIER II**: Variants that require further analysis for which the following conditions are met:
 - The variant is located in a gene from [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/);
 - The variant is associated with at least one phenotype of pathogenic and/or likely pathogenic clinical
 significance according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/);
@@ -74,7 +74,7 @@ below the frequency threshold for too frequent pathogenic variants, specified in
 "SNVs/Indels in ACMG SF genes" (recommended default value = 0.03);
 - The variant site has at least one alternative allele (i.e. has the genotype 1/1, 1|1, 0/1, 1/0, 0|1, etc.)
 in the case of a VCF file with a single sample;
-- The variant does not meet at least one of the conditions in List 1:
+- The variant does not meet at least one of the conditions in Tier I:
    - the variant is not associated according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) with a
    phenotype that is listed in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene
    in which the variant is located;
@@ -126,6 +126,17 @@ a variant details page in SNV Viewer
 (["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
 
 At the end of the report, there is the version of the ACMG SF list used to generate the report.
+
+### Potential findings {#potential-findings}
+
+Variants included in the ACMG SF report can be used as [potential findings](/results/potential-findings).
+To do this, you need
+to [turn on the corresponding toggle in the report template](/settings/report-templates/report-templates#block-types).
+Potential findings can include Tier I variants
+(“*Use variants in ACMG SF genes list associated with the phenotype results as potential findings*”
+option) and/or Tier II variants
+(“*Use variants in ACMG SF genes list without established phenotype association or genes conditions as potential findings*"
+option).
 
 ### Report limitations in ClinVar as a database source {#acmg-sf-limitations}
 

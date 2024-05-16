@@ -1,0 +1,62 @@
+---
+sidebar_position: 5
+sidebar_label: Group analysis
+---
+
+# Group analysis
+
+The "Group analysis" section includes the following pages:
+- "***All analyses***" - contains all group analyses created in the system.
+You can read more about group analysis [here](/group-analysis). The page with added group analyzes looks like this:
+
+<p align="center">
+<img src={require('/img/eng/analyses_page.png').default} width="1000"/>
+</p>
+
+At the top of the "<i>All analyses</i>" page there is
+a button <img src={require('/img/eng/add_group_analysis_btn.png').default} width="150"/> to create group analysis.
+
+- “***Archive***” - contains those group analyses which have been archived. You can transfer irrelevant analyses or
+analyses for later deletion here. Archived analyses are not displayed on the "All analyses" page.
+
+<p align="center">
+<img src={require('/img/eng/archive_ga.png').default} width="1000"/>
+</p>
+
+### Table {#group-analyses-columns}
+
+The "Group analysis" section pages present the table with the following columns:
+1. **NAME** - contains the group analysis name;
+2. **STATUS** - contains information about the group
+analysis status:<br></br><img src={require('/img/eng/in_process_status.png').default} width="22"/> - in
+progress;<br></br><img src={require('/img/eng/queed_status.png').default} width="14"/> -
+queued;<br></br><img src={require('/img/eng/success_status.png').default} width="22"/> -
+success,<br></br><img src={require('/img/eng/failed_status.png').default} width="20"/> - failed;
+3. **TYPE** - contains information about the group analysis type (germline cohort, family, or population);
+4. **DESCRIPTION** - contains the group analysis description;
+5. **MODIFIED** - contains the date of the last change of the group analysis in M/d/yyyy format.
+
+The table is sorted by group analysis names.
+
+### Archive, Restore and Delete Group Analysis {#delete-analysis}
+
+To ***archive group analysis***, hover over the group analysis row on "*All analyses*" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>. The analysis will be moved to
+"*Archive*" page. If you open this page, you can:
+1. ***Restore group analysis*** by hovering over the group analysis row and
+clicking on <img src={require('/img/eng/restore_btn.png').default} width="22"/>. The analysis will then be moved
+back to "*All analyses*" page.
+2. ***Delete group analysis*** by hovering over the group analysis row and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+Then you will see a confirmation window for deleting the analysis:
+
+<p align="center">
+<img src={require('/img/group_analysis/confirmation_delete.png').default} width="350"/>
+</p>
+
+To confirm the analysis deletion, click on <img src={require('/img/runs/confirm.png').default} width="150"/>.
+To cancel deleting an analysis, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+In addition, you can delete all archived group analyses by
+clicking on <img src={require('/img/runs/clear_archive_btn.png').default} width="170"/> on the "*Archive*" page.

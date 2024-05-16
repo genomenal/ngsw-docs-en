@@ -1,0 +1,184 @@
+---
+sidebar_position: 2
+sidebar_label: Samples
+---
+
+# Samples
+
+The home page "Samples" contains all samples that are uploaded into patients or runs that are not in the archive.
+If a sample has both a patient and a run defined, it will appear on the "Samples" page unless at least one of
+these entities is archived.
+
+If you haven't used Genomenal before and don't have any samples uploaded, the page will look like this:
+
+<p align="center">
+<img src={require('/img/eng/empty_sample_page.png').default} width="1000"/>
+</p>
+
+Subsequently, you will see here all the samples uploaded in this account and added to patients and/or runs
+not in the archive:
+
+<p align="center">
+<img src={require('/img/eng/samples_page.png').default} width="1000"/>
+</p>
+
+At the top of the page there are:
+- Search window allowing to search for samples by file name and by the patient ID or run name to which they belong:
+<p align="center"><img src={require('/img/eng/search_sample.png').default} width="500"/></p>
+- Button to <a href="/add-patient">add a patient</a> to
+the system <img src={require('/img/eng/add_patient_btn_from_samples.png').default} width="180"/>.
+- Button to <a href="/runs">add a run</a> to
+the system <img src={require('/img/eng/add_run_btn.png').default} width="170"/>.
+
+At the bottom of the page there are:
+- Sample count information: the order of samples displayed on the page (a maximum of 10 samples can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of samples.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between sample pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
+### Columns {#sample-columns}
+
+On the "Samples" page, information is presented as a table with the following columns:
+1. **SAMPLES** - contains information about samples uploaded into the system that are added to patients or runs
+that are not in the archive:
+- **Sample processing status**:<br></br><img src={require('/img/eng/in_process_sample.png').default} width="18"/> - tumor
+sample in progress, queued, or waiting for the prerequisite stages of the control sample to be
+completed;<br></br><img src={require('/img/eng/tumor_success.png').default} width="18"/> - successfully processed
+tumor sample;<br></br><img src={require('/img/eng/tumor_problems.png').default} width="18"/> - tumor
+sample with problems;<br></br><img src={require('/img/eng/tumor_failed.png').default} width="18"/> - failed
+tumor sample;<br></br><img src={require('/img/eng/normal_in_process.png').default} width="18"/> - normal
+sample in progress or queued;<br></br><img src={require('/img/eng/normal_success.png').default} width="18"/> - successfully
+processed normal sample;<br></br><img src={require('/img/eng/normal_problems.png').default} width="18"/> -
+normal sample with problems;<br></br><img src={require('/img/eng/normal_failed.png').default} width="18"/> -
+failed normal sample.
+- **Name of the sample file** without extension and postfixes (if files are named according
+to <a href="https://support.illumina.com/help/BaseSpace_Sequence_Hub_OLH_009008_2/Source/Informatics/BS/NamingConvention_FASTQ-files-swBS.htm">the Illumina convention</a>).
+In the case of paired-end sequencing, only the name of the primary file is given.
+You can open <a href="/results/results">the sample page</a> by clicking on the file name.
+- **File format**: <i>FASTQ</i> or <i>VCF</i>. For samples uploaded in BAM format, or genotyping data uploaded in
+TXT, TSV format, the format into which the original data was converted for further analysis will be shown,
+i.e. FASTQ and BAM, respectively.
+- **Sequencing type**: <i>Panel</i> (targeted sequencing), <i>WES</i> (whole-exome
+sequencing), <i>WGS</i> (whole-genome sequencing), <i>Low-pass WGS</i> (whole-genome sequencing with low
+coverage), <i>Unknown</i> (the sequencing type may not be detected for some samples in VCF format).
+Detected automatically by Genomenal, may be based on Sequencing Type and Capture Kit selected while
+composing sample set. Displayed only after determintation, i.e. after successful completion of the "Determine Kit"
+stage for FASTQ files and the "Identify" or "SNVs/Indels annotation" stages for VCF files.
+- **Sample size**. In the case of paired-end sequencing, the total size of the sample files will be displayed.
+2. **PATIENT / RUN** - contains patient ID (indicated
+by <img src={require('/img/eng/patient_icon.png').default} width="20"/>)
+and/or run name (indicated by <img src={require('/img/eng/run_icon.png').default} width="20"/>)
+to which the sample belongs. By clicking on the patient ID or the run name, you can
+open <a href="/add-patient#patient-page">the patient page</a> or <a href="/runs#run-page">the run page</a>,
+respectively.
+3. **POTENTIAL FINDINGS** are SNVs/Indels or copy number variations (CNVs) discovered in a sample that meet
+some criteria specified in the report template. Potential findings are described in detail
+in [the corresponding section](/results/potential-findings). Information about the number of potential findings
+among SNVs/Indels is represented by the icon <img src={require('/img/results/snv_pf.png').default} width="60"/>,
+and information about the number of potential findings among CNVs is represented by the
+icon <img src={require('/img/results/cnv_pf.png').default} width="60"/>. By clicking on the icon you will
+open [the sample page](/results/results). If reports were generated for a sample with potential findings used,
+but either no findings were found in any report, or all detected findings were included to interpretation
+results or excluded from the list of potential findings, then the result will be “*Not Found*”.
+4. **RESULTS** are sample interpretation results, i.e. information on the number of mutations with a particular
+[pathogenicity class](/results/main/snvs-indels/pathogenicity) discovered in the sample and included to the
+interpretation results. May include information
+about SNVs/Indels, denoted "*SNV*", and information about copy number variations, denoted "*CNV*".
+The information is presented in the form of pathogenicity icons indicating the number of mutations with this
+pathogenicity class: pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>, likely
+pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>, uncertain
+significance: <img src={require('/img/results/uncertain.png').default} width="48"/>, likely
+benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
+benign: <img src={require('/img/results/benign.png').default} width="48"/>. Results are displayed if sample
+interpretation has been completed (as described [below](/overview/samples#sample-interpretation)) or if a
+variant with a particular pathogenicity has been included to the interpretation results. If the interpretation
+has not been completed, but variants with a particular pathogenicity class have been included to the interpretation
+results, then the result will be “*Interpretation not completed*”. If the sample interpretation has been completed,
+but no variants with a particular pathogenicity class have been included to the interpretation results, then the
+result will be “*No pathogenic variants found*”.
+5. **CREATED** - contains the date of the beginning of uploading sample data into the system in M/d/yyyy format;
+6. **MODIFIED** - contains the date of the last changes in the sample data in M/d/yyyy format.
+
+### Sorting {#samples-sorting}
+
+By default, the table is sorted from samples uploaded last to samples uploaded first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of all its columns.
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Samples", "Patient",
+and "Run" columns are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
+The sort order for the "Potential findings" column is as follows:
+1. Samples with potential findings detected (sorted by amount of findings);
+2. Samples with the result "*Not found*";
+3. Samples for which no reports with potential findings used were generated.
+
+The sort order for the "Results" column is as follows:
+1. Samples that have pathogenic or likely pathogenic variants or variations in the results;
+2. Samples that do not have pathogenic or likely pathogenic variants or variations in the results, but the variants
+or variations with a different pathogenicity class were added;
+3. Samples with the result "<i>No pathogenic variants found</i>";
+4. Samples with the result "<i>Interpretation not completed</i>";
+5. Samples for which the interpretation has not been completed and which do not have any variants with a
+determined pathogenicity that was not added to report or which do not have any variations with a
+determined pathogenicity.
+
+### Go to SNV Viewer {#sample-snv-viewer}
+
+If the "*SNVs/Indels annotation*" stage has been successfully completed for the sample, you can open
+sample's [SNV Viewer](/results/main/snvs-indels/variant-viewer) by hovering over a sample row and
+clicking on <img src={require('/img/eng/sample_vv.png').default} width="17"/>.
+For a tumor sample, you can open SNV Viewer with somatic SNVs/Indels, in which you can also see
+germline SNVs/Indels discovered in this sample or in the control sample if you change the value of
+the filter by origin from Somatic to Germline or reset the filtering by it.
+For a non-tumor sample, you can open SNV Viewer with germline SNVs/Indels discovered in that sample.
+
+### Go to CNV Viewer {#sample-cnv-viewer}
+
+If the "*Copy number variations discovery*" stage has been successfully completed for the sample, you can open
+sample’s [CNV Viewer](/results/main/copy-number-variations/cnv-viewer) by hovering over a sample row and
+clicking on <img src={require('/img/eng/sample_cnvv_segments.png').default} width="22"/> to open CNV Viewer
+with <b>segments</b> discovered in the sample,
+or on <img src={require('/img/eng/sample_cnvv_bins.png').default} width="22"/> to open CNV Viewer with <b>bins</b>
+discovered in the sample.
+
+### Sample Interpretation: complete and resume {#sample-interpretation}
+
+To complete sample's interpretation, hover over the sample row and
+click on <img src={require('/img/eng/sample_complete_interpretation.png').default} width="22"/>. You will see
+a confirmation window. For non-tumor samples, it looks like this:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window_normal.png').default} width="400"/>
+</p>
+
+And for tumor samples, it also includes fields about the oncological disease:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} width="400"/>
+</p>
+
+After you click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>, the interpretation
+results will be displayed in the “*Results*” column.
+
+To resume sample's interpretation, hover over the sample row
+and click on <img src={require('/img/eng/sample_restore_interpretation.png').default} width="22"/>.
+
+### Delete sample {#delete-sample}
+
+To remove a sample from the system, hover over the sample row and
+click on <img src={require('/img/eng/delete_btn.png').default} width="20"/>. You will see a confirmation window:
+
+<p align="center">
+<img src={require('/img/eng/delete_sample.png').default} width="450"/>
+</p>
+
+To confirm deleting the sample, click on  <img src={require('/img/eng/delete.png').default} width="150"/>. After
+that, the sample will be removed from both the "Samples" page and the patient and/or run page to which it belonged.

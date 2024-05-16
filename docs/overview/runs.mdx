@@ -1,0 +1,97 @@
+---
+sidebar_position: 4
+sidebar_label: Runs
+---
+
+# Runs
+
+The "Runs" section includes the following pages:
+- "***Runs***" - contains all runs added to the system and their data.
+You can read more about the runs [here](/runs).
+
+If you don't have any runs added yet, the "Runs" page looks like this:
+
+<p align="center">
+<img src={require('/img/eng/no_runs_page.png').default} width="1000"/>
+</p>
+
+The page with added runs looks like this:
+
+<p align="center">
+<img src={require('/img/eng/runs_page.png').default} width="1000"/>
+</p>
+
+At the top of the page, there is
+a button <img src={require('/img/eng/add_run.png').default} width="150"/> to [create run](/runs).
+
+- “***Archive***” - contains those runs whose data has been archived. You can transfer irrelevant data or
+data for later deletion here. Archived runs are not displayed on the "Runs" page.
+
+<p align="center">
+<img src={require('/img/eng/run_archive.png').default} width="1000"/>
+</p>
+
+You can search for run by name or description using a search box at the top of the section pages:
+
+<p align="center">
+<img src={require('/img/eng/search_run.png').default} width="450"/>
+</p>
+
+At the bottom of the section pages there are:
+- Run count information: the order of runs displayed on the page (a maximum of 10 runs can be shown on a
+page, so the order would be 1-10, 11-20, etc.) and the total number of runs.
+- Pagination component: <img src={require('/img/eng/pagination.png').default} width="400"/>, which allows to
+navigate between run pages. The number of the opened page is highlighted in a blue circle. If you click on
+this number, the page will reload. To move to a page with a specific number, either click on that number, or
+click on <img src={require('/img/eng/three_points.png').default} width="30"/>, enter the required number and press
+the enter key or click outside the value field. To move to the previous page,
+click on <img src={require('/img/eng/back.png').default} width="30"/>, and to open the next page,
+click on <img src={require('/img/eng/next.png').default} width="30"/>.
+
+### Columns {#runs-columns}
+
+The "Runs" section pages present the table with the following columns:
+1. **RUN** - contains the names of the created runs;
+2. **SAMPLE STATUS** - contains information about the number of uploaded samples that are in a certain status for
+each run:<br></br><img src={require('/img/eng/in_process_status.png').default} width="22"/> - in
+progress;<br></br><img src={require('/img/eng/queed_status.png').default} width="14"/> -
+queued;<br></br><img src={require('/img/eng/success_status.png').default} width="22"/> -
+success;<br></br><img src={require('/img/eng/problems_status.png').default} width="24"/> -
+problems;<br></br><img src={require('/img/eng/failed_status.png').default} width="20"/> - failed;
+3. **CREATED** - contains the date of the run creation in M/d/yyyy format;
+4. **MODIFIED** - contains the date of the last change in the run data in M/d/yyyy format.
+
+### Sorting {#runs-sorting}
+
+By default, the table is sorted from runs added last to runs added first (i.e., in descending order
+of the "Created" column values). The table can be sorted by ascending or descending values of the following
+columns: "Run", "Created", "Modified".
+To sort a table by column values, click on its name (click once to sort ascending, or twice to sort descending).
+After this, an arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> will appear next to the column
+name (when sorting in ascending order) or <img src={require('/img/vv/sort_desc.png').default} width="17"/> (when
+sorting in descending order). To reset the sorting, refresh your browser page. The values of the "Run"
+column are sorted alphabetically, and the values of "Created" and "Modified" columns are sorted from
+earliest to latest date and vice versa.
+
+### Archive, Restore and Delete Run {#delete-run}
+
+To ***archive run*** and its samples, hover over the run row on "*Runs*" page and
+click on <img src={require('/img/eng/delete_btn.png').default} width="18"/>. The run will be moved to
+"*Archive*" page. If you open this page, you can:
+1. ***Restore run*** by hovering over the run row and
+clicking on <img src={require('/img/eng/restore_btn.png').default} width="22"/>. The run will then be moved
+back to "*Runs*" page.
+2. ***Delete run*** and its samples by hovering over the run row and
+clicking on <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+Then you will see a confirmation window for deleting the run:
+
+<p align="center">
+<img src={require('/img/runs/confirmation_run.png').default} width="350"/>
+</p>
+
+To confirm the run deletion, click on <img src={require('/img/runs/confirm.png').default} width="150"/>.
+To cancel deleting a run, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>
+or outside the confirmation window.
+
+In addition, you can delete all archived runs by
+clicking on <img src={require('/img/runs/clear_archive_btn.png').default} width="170"/> on the "*Archive*" page.
