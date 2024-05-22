@@ -1,0 +1,140 @@
+---
+sidebar_position: 7
+sidebar_label: Mutations Suitable For The Specified Conditions
+---
+
+# Mutations Suitable For The Specified Conditions
+
+The report includes SNVs/Indels or copy number variations (CNVs) discovered in the sample and suitable for
+the conditions specified in the report template. Once you've selected the conditions you're interested in,
+you can customize the report to include mutations that are most relevant to your study. For example, you can
+fill the report with clinically significant mutations; mutations associated with a specific phenotype; mutations
+localized in certain genes, etc.
+
+### SNVs/Indels suitable for the specified conditions {#snvs}
+
+The report includes SNVs/Indels discovered in the sample and suitable for the conditions specified in the
+["SNVs/Indels suitable for the specified conditions"](/settings/report-templates/report-templates#block-types) report
+template. Drawing up conditions for variants is
+described [here](/results/main/snvs-indels/advanced-filtering#filtering-columns).
+
+SNVs/Indels included in the report are presented in the form of a table with the following columns:
+
+<p align="center">
+<img src={require('/img/results/snv_by_condition.png').default} width="900"/>
+</p>
+
+1. **Potential finding** icon <img src={require('/img/results/potential_finding.png').default} width="25"/>.
+Displayed if the option "*Use SNVs/Indels suitable for the conditions specified in the block as potential findings*"
+was enabled in the report template. Working with potential findings is described
+in [the corresponding section](/results/potential-findings).
+2. **Gene** is the common name of the gene in which the variant is located.
+If you click on a gene, you will see a window with all the gene transcripts:
+
+<p align="center">
+<img src={require('/img/vv/transcripts.png').default} width="600"/>
+</p>
+
+You can find the description of the transcripts' table columns
+in [the description of "Transcripts" section on the variant details panel](/results/main/snvs-indels/snv-details-panel#transcripts).
+
+3. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+4. **Genetic variant** is the nucleotide and amino acid substitutions
+using [the HGVS notation](https://varnomen.hgvs.org/). Nucleotide substitution: “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+Amino acid substitution: “p.” prefix (protein) + reference amino acid + amino acid position in protein + new
+amino acid resulting from the substitution.
+5. **Transcript** is the main transcript ID from the [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x). If you click on a transcript, you will see the same window with all the gene transcripts, as when
+you click on the "Gene" field.
+6. **Consequence** is the effect of the variant on genes. A detailed description of the possible values
+can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
+7. **Allele frequency** is an alternative allele frequency for the sample (in percentages).
+8. **Coverage depth** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+position for the sample.
+9. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+10. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="30"/> is
+a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
+a variant details page in SNV Viewer
+(["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
+
+### CNVs suitable for the specified conditions {#cnvs}
+
+The report includes copy number variations (CNVs) discovered in the sample and suitable for the conditions
+specified in
+the ["CNVs suitable for the specified conditions"](/settings/report-templates/report-templates#block-types) report
+template. The filtering parameters available for drawing up conditions for variations are
+described [here](/results/main/copy-number-variations/cnv-filtering).
+
+You also have to select [CNV region type](/results/main/copy-number-variations/cnv-viewer#segments-and-bins) in
+the report template: segments (large regions of the genome that are
+obtained by combining adjacent bins with similar copy number) or bins (small intervals which are created by
+dividing the reference genome into equal-sized intervals).
+
+Example of a segment in a report:
+
+<p align="center">
+<img src={require('/img/results/segment_by_condition.png').default} width="900"/>
+</p>
+
+Example of bins in a report:
+
+<p align="center">
+<img src={require('/img/results/bins_by_conditions.png').default} width="900"/>
+</p>
+
+The table with variations in the report has the following columns:
+1. **Potential finding** icon <img src={require('/img/results/potential_finding.png').default} width="25"/>.
+Displayed if the option "*Use CNVs suitable for the conditions specified in the block as potential findings*"
+was enabled in the report template. Working with potential findings is described
+in [the corresponding section](/results/potential-findings).
+2. **Position** is a coordinate of the variation in the genome (chromosome + start position + end position).
+You can copy the variation position to the clipboard by moving the cursor over the column value and
+clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
+3. **Affected genes** are names of genes located in the area affected by the variation. Clicking on a gene badge
+opens its page in [OMIM](https://www.omim.org/) (if available) or [Ensembl](https://www.ensembl.org/).
+4. **Cytoband** is a shorthand notation for the CNV position on a chromosome. This position is indicated
+relative to bands (regions of chromosomes that are clearly different from neighboring ones) that are formed
+on chromosomes by differential staining methods. A region is a section of a chromosome arm between the two
+closest marker bands (the most noticeable and clear light or dark bands). Sub-bands are sections of chromosomes
+resulting from the division of bands when analyzing chromosomes with high resolution. Sub-bands can also be
+divided into parts. The nomenclature of the CNV locus is as follows: chromosome arm (p-arm, i.e. shorter arm,
+or q-arm, i.e. longer arm), region, band, sub-band (can also be divided into parts). For example, the “*p.36.33*”
+locus means that the variation is located in the 3rd part of the 3rd sub-band of the 6th band of the 3rd region
+of the p-arm of the chromosome.
+5. **Length, kb** is a length of the copy number variation region in kilobases.
+6. **Log2 FC** is the logarithmic ratio of the detected copy number to the normal copy number
+(equals to 2 for autosomes and the X chromosome in the case of genotype XX, or to 1 for sex
+chromosomes in the case of genotype XY).
+7. **Type** is a copy number variation
+type: <img src={require('/img/vv/deletion.png').default} width="60"/> -
+deletion, <img src={require('/img/vv/duplication.png').default} width="60"/> - duplication.
+8. **ACMG Class** is the variation pathogenicity assigned according to the ranking score defined
+by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf). Column values are presented
+as icons:<br></br><img src={require('/img/vv/pathogenic.png').default} width="40"/> - Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="40"/> -
+Likely pathogenic;<br></br><img src={require('/img/vv/uncertain_significance.png').default} width="42"/> -
+Uncertain significance;<br></br><img src={require('/img/vv/likely_benign.png').default} width="40"/> - Likely
+benign;<br></br><img src={require('/img/vv/benign.png').default} width="40"/> -
+Benign.<br></br>
+You can see the full value by hovering over the icon.
+9. **Integrative Genomics Viewer (IGV)**, i.e. a module for visualization of variation on the
+genome: <img src={require('/img/vv/igv.png').default} width="30"/>.<br></br>
+To see simultaneously two border regions of the quite large variation in IGV,
+click on <img src={require('/img/vv/split_to_borders.png').default} width="109"/>, and to return to the
+visualization of the entire variation, click on <img src={require('/img/vv/merge_borders.png').default} width="110"/>.
+If you would like to go to the position opened in IGV
+in <a href="https://www.deciphergenomics.org/">Decipher</a> genome
+browser, click on <img src={require('/img/vv/decipher_igv.png').default} width="75"/>.
+If you want to open <a href="/results/main/copy-number-variations/cnv-viewer">CNV Viewer</a> with a filter by
+the position opened in IGV, click on <img src={require('/img/vv/back_to_cnvv.png').default} width="135"/>.
+10. Link to variation position
+in **[Decipher](https://www.deciphergenomics.org/) genome browser**: <img src={require('/img/vv/decipher.png').default} width="25"/>.
+11. The CNV position (displayed in [a tree mode](/results/main/copy-number-variations/cnv-viewer#tree-mode)
+with [split records](/results/main/copy-number-variations/cnv-viewer#full-and-split))
+in **[CNV Viewer](/results/main/copy-number-variations/cnv-viewer)**, i.e. embedded service
+for viewing and analyzing copy number variations. The button to open CNV Viewer looks like
+this for segments: <img src={require('/img/results/segment_btn.png').default} width="25"/>, and like
+this for bins: <img src={require('/img/results/bin_btn.png').default} width="25"/>.

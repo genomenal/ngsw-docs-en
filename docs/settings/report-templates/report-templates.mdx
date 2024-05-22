@@ -103,7 +103,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    1. <b>Patient ID</b>;<br></br>2. <b>First name</b>;<br></br>3. <b>Last name</b>;<br></br>4. <b>Middle name
    </b>;<br></br>5. <b>Date of birth</b>;<br></br>6. <b>Age</b>;<br></br>7. <b>Sex</b>;<br></br>8. <b>Diagnosis
    </b>;<br></br>9. <b>Date of diagnosis</b>;<br></br>10. <b>Comments</b>.<br></br>
-   After you have selected all the required fields, click outside the value container.</td>
+   After you have selected all the required fields, click outside the value container.<br></br>
+   An example of a block in the report can be found <a href="/results/glioma-report#patient-info">here</a>.</td>
   </tr>
   <tr>
    <td><b>Sample info</b></td>
@@ -121,7 +122,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    metastases);<br></br>11. <b>Therapy line</b> is the therapy line used to treat the patient's oncological disease
    at the time the sequencing sample material was collected (1-4 line, adjuvant or neoadjuvant therapy, perioperative,
    preoperative or induction chemotherapy);<br></br>12. <b>Comments</b>.<br></br>After
-   you have selected all the required fields, click outside the value container.</td>
+   you have selected all the required fields, click outside the value container.<br></br>
+   An example of a block in the report can be found <a href="/results/glioma-report#tumor-sample-info">here</a>.</td>
   </tr>
   <tr>
    <td><b>Control (normal) sample info</b></td>
@@ -136,7 +138,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    After you have selected all the required fields, click outside the value container.<br></br>
    ________________________________________________________________<br></br>
    The block is generated only for a tumor sample from the tumor-normal set (tumor + corresponding non-tumor
-   sample).</td>
+   sample).<br></br>
+   An example of a block in the report can be found <a href="/results/glioma-report#control-sample-info">here</a>.</td>
   </tr>
   <tr>
    <td><b>Disclaimer</b></td>
@@ -192,7 +195,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    conditions <a href="/results/main/snvs-indels/advanced-filtering">here</a>.<br></br>
    5. <b>Use SNVs/Indels as potential findings</b>: to include SNVs/Indels discovered in the sample and suitable
    for the specified conditions as <a href="/results/potential-findings">potential findings</a>, turn on the
-   corresponding toggle.</td>
+   corresponding toggle.<br></br>The description of the block in the generated report can be
+   found <a href="/results/mutations-suitable-for-the-specified-conditions#snvs">here</a>.</td>
   </tr>
   <tr>
    <td><b>CNVs suitable for the specified conditions</b></td>
@@ -210,7 +214,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    <p align="center"><img src={require('/img/report_templates/cnvs_conditions_form.png').default} height="640"/></p>
    5. <b>Use CNVs as potential findings</b>: to include copy number variations discovered in the sample and suitable
    for the specified conditions as <a href="/results/potential-findings">potential findings</a>, turn on the
-   corresponding toggle.</td>
+   corresponding toggle.<br></br>The description of the block in the generated report can be
+   found <a href="/results/mutations-suitable-for-the-specified-conditions#cnvs">here</a>.</td>
   </tr>
   <tr>
    <td><b>Immunotherapy markers</b></td>
@@ -220,7 +225,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    (will be displayed under the section heading).<br></br>
    ________________________________________________________________<br></br>
    High tumor mutation burden (TMB), more than 19 mutations per 1 Mb, may predict response to immunotherapy.
-   Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immunotherapy.</td>
+   Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immunotherapy.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#immunotherapy-markers">here</a>.</td>
   </tr>
   <tr>
    <td><b>Clinical trials</b></td>
@@ -232,7 +239,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    (will be displayed under the section heading).<br></br>3. <b>Phenotypes</b> is a list of phenotypes for which
    you want to see clinical trials in the report. Phenotype names must be semicolon delimited (e.g.
    "Glioma;Astrocytoma").<br></br>4. <b>Phases</b>: 1, 2, 3, 4. After you have selected all the required phases,
-   click outside the value container.</td>
+   click outside the value container.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#clinical-trials">here</a>.</td>
    </tr>
    <tr>
    <td><b>SNVs/Indels in ACMG SF genes</b></td>
@@ -257,9 +266,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    For these genes from the ACMG SF list, specific mutations are known to be causative of disorders with defined
    phenotypes that are clinically actionable by an accepted intervention. The ACMG recommends that variants detected
    in any of these genes should be reported as they are of medical relevance and could be used in the future to inform
-   clinical treatment.<br></br>
-   You can find more information about how this block is filled in the report
-   in <a href="/results/acmg-sf-report">the corresponding section</a>.</td>
+   clinical treatment.<br></br>The description of the block in the generated report can be
+   found <a href="/results/acmg-sf-report">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Tier I variants</b></td>
@@ -271,7 +279,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    The block includes somatic single nucleotide variants, copy number variations and structural variations that are
    discovered in the sample and are in the Tier I of the classification of somatic variations.
    Tier I includes variations that have strong clinical significance with high level of evidence and are important
-   for diagnostics and treatment of cancer.</td>
+   for diagnostics and treatment of cancer.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#tier-i">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Tier II variants</b></td>
@@ -307,7 +317,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    Suggested diagnosis and predicted survival times base on Tier I and Tier II mutations automated interpretation
    based on published research. Suggestions were made under the assumption that the tumor DNA has been extracted
    from glioma, therefore, use this block in the report only if you have glioma sequencing samples. In case of
-   uncertainty up to three most probable diagnosis suggestions are proposed.</td>
+   uncertainty up to three most probable diagnosis suggestions are proposed.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#suggested-diagnosis">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Suggested drugs</b></td>
@@ -315,7 +327,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    <td>A block with potentially effective and ineffective tumor-targeting drugs and corresponding biomarkers
    discovered in the sample.</td>
    <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).</td>
+   (will be displayed under the section heading).<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#suggested-drugs">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Mutations details</b></td>
@@ -323,7 +337,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    <td>A block with a description of mutations listed in "Glioma: Tier I variants" and "Glioma: Tier II variants"
    blocks.</td>
    <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).</td>
+   (will be displayed under the section heading).<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#mutations-details">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Glioma genes panel details</b></td>
@@ -334,7 +350,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    ________________________________________________________________<br></br>
    The block includes the value of the fraction of the exonic part of the longest transcript covered by at least
    50 sequenced reads (50X) for the genes associated with glioma. The higher the percent of coverage, the more
-   completely a transcript is sequenced.</td>
+   completely a transcript is sequenced.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#glioma-genes-panel-details">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Germline pathogenic for gliomas</b></td>
@@ -349,7 +367,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    2. Likely pathogenic (according to ClinVar);<br></br>
    3. Having high gene product impact;<br></br>
    4. Having moderate gene product impact and frequency less than 10% in population;<br></br>
-   3. Rare (having frequency less than 5% in population).</td>
+   3. Rare (having frequency less than 5% in population).<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Germline pathogenic for any other diseases</b></td>
@@ -367,7 +387,9 @@ To cancel block type selection, click on <img src={require('/img/report_template
    (will be displayed under the section heading).<br></br>
    ________________________________________________________________<br></br>
    The block includes germline single nucleotide variants associated with gliomas according published research but
-   not included in the "Glioma: Germline pathogenic for gliomas" block.</td>
+   not included in the "Glioma: Germline pathogenic for gliomas" block.<br></br>
+   An example of a block in the generated report can be
+   found <a href="/results/glioma-report#glioma-associated">here</a>.</td>
    </tr>
    <tr>
    <td><b>Glioma: Literature</b></td>
@@ -385,7 +407,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    toggle: <img src={require('/img/eng/toggle_on.png').default} width="35"/>.<br></br>
    ________________________________________________________________<br></br>
    The block includes a report about the presence or absence of a deviation from the normal copy number in any
-   chromosome or its arm in the sample.</td>
+   chromosome or its arm in the sample.<br></br>The description of the block in the generated report can be
+   found <a href="/results/cnv-report/sample-cnv-report">here</a>.</td>
    </tr>
    <tr>
    <td><b>Germline CNV: interpretation</b></td>
@@ -398,7 +421,8 @@ To cancel block type selection, click on <img src={require('/img/report_template
    1. a table with chromosomes or their arms in which structural variation (reduced or increased number of copies)
    was found;<br></br>
    2. karyogram-like graph with denoted chromosome-level CNVs;<br></br>
-   3. information on estimated sequencing depth.</td>
+   3. information on estimated sequencing depth.<br></br>The description of the block in the generated report can be
+   found <a href="/results/cnv-report/sample-cnv-report">here</a>.</td>
    </tr>
 </table>
 
