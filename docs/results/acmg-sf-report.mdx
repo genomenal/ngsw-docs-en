@@ -116,14 +116,20 @@ can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequence
 position for the sample.
 8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
 [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
-it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)),
-as well as links to phenotypes in [OMIM](https://www.omim.org/) and [MedGen](https://www.ncbi.nlm.nih.gov/medgen/)
-associated with the gene in which the variant is located
-in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/).
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
 9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="30"/> is
 a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
 a variant details page in SNV Viewer
 (["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
+
+Below the variant row, there can be phenotypes with pathogenic or likely pathogenic clinical significance that the
+variant is associated with according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and that are listed
+in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene in which the variant is located.
+Links to [OMIM](https://www.omim.org/) and/or [MedGen](https://www.ncbi.nlm.nih.gov/medgen/) are provided for each
+phenotype.
+
+Next, there can be the variant interpretation text, if it was added as
+described [here](/results/main/snvs-indels/snv-details-panel#variant-interpretation).
 
 At the end of the report, there is the version of the ACMG SF list used to generate the report.
 
