@@ -1,0 +1,145 @@
+---
+sidebar_position: 4
+sidebar_label: Sample Interpretation
+---
+
+# Sample Interpretation
+
+The sample interpretation is interpretation of the pathogenicity of mutations discovered in the sample.
+It is presented as interpretation results, i.e. information on the number of SNVs/Indels and/or copy number
+variations with a particular pathogenicity class discovered in the sample and included to the interpretation results.
+
+:::caution Attention!
+Do not confuse the sample interpretation described in this article
+with [the variant interpretation](/results/main/snvs-indels/variant-interpretation)
+or [the variation interpretation](/results/main/copy-number-variations/cnv-details-panel#variation-interpretation).
+A variant or variation interpretation is a comment with important information about the mutation added by the user.
+:::
+
+### Where can I find the interpretation results? {#where}
+
+The sample interpretation results are displayed:
+- on [the "Samples" page](/overview/samples) (the "Results" column);
+- on [the sample page](/results/main/main#interpretation-results) (the "Interpretation Results" section) - appear
+only after the interpretation is [completed](/results/sample-interpretation#complete);
+- on [the "Sample" tab](/results/main/snvs-indels/snv-details-page#sample-tab) of the variant details page
+(the "Sample Info" section, the "Interpretation results" field);
+- on [the run page](/runs#run-sample) in the "Interpretation" column (for samples in [a run](/runs)).
+
+### What do the interpretation results look like? {#what}
+
+The sample interpretation results may include information about SNVs/Indels,
+designated "*SNV*", and information about copy number variations, designated "*CNV*".
+The information is presented as follows:
+- pathogenicity icons indicating the number of mutations with this pathogenicity:
+   - pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+   - likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+   - mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+   - likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+   - benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+- message "*Interpretation not completed*" if mutations with a particular pathogenicity class
+were [included](/results/sample-interpretation#add-to-interpretation-result) to
+the interpretation results, but the sample interpretation was not [completed](/results/sample-interpretation#complete).
+- message "*No pathogenic variants found*" if the sample interpretation has
+been [completed](/results/sample-interpretation#complete), but no mutations
+with a particular pathogenicity class have been [included](/results/sample-interpretation#add-to-interpretation-result)
+to the interpretation results.
+
+### How to complete and resume sample interpretation? {#complete}
+
+You can complete and resume sample interpretation:
+- on [the "Samples" page](/results/sample-interpretation#samples-page);
+- on [the "Sample" tab](/results/sample-interpretation#sample-tab) of the variant details page;
+- in [the run SNV Viewer](/results/sample-interpretation#run-snv-viewer) (for samples in a run).
+
+#### Confirmation window {#confirmation-window}
+
+During the sample interpretation completion by using any of the methods described below, you will see a
+confirmation window. For non-tumor samples, it looks like this:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window_normal.png').default} width="400"/>
+</p>
+
+And for tumor samples, it also includes fields about the oncological disease:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} width="400"/>
+</p>
+
+The information in the "*Interpretation results*" field will appear
+in [the results](/results/sample-interpretation#what) once the interpretation is complete.
+
+For tumor samples, you can specify in the confirmation window the oncological disease, its stage, and stage details
+which were defined for the patient, as well as the therapy line used to treat the patient's disease, at the time
+the sample was taken for sequencing.
+
+#### I. Complete and resume interpretation on the "Samples" page {#samples-page}
+
+This is the easiest way. First you need to open [the "Samples" page](/overview/samples) (Genomenal home page).
+
+**Completion**: Hover over the row of the sample whose interpretation you want to complete and click
+on <img src={require('/img/eng/sample_complete_interpretation.png').default} width="22"/>. Then
+click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/> in <a href="/results/sample-interpretation#confirmation-window">the confirmation window</a>.
+
+**Resuming**: Hover over the sample row and
+click on <img src={require('/img/eng/sample_restore_interpretation.png').default} width="22"/>.
+
+#### II. Complete and resume interpretation on the "Sample" tab {#sample-tab}
+
+To use this method, first you need to open the variant details page. If your goal is only to complete the sample
+interpretation, a page of any variant discovered in that sample will do. This page can be opened from the sample
+[SNV Viewer](/results/main/snvs-indels/variant-viewer) page (to do this, click on the
+button <img src={require('/img/vv/details_info_btn.png').default} width="25"/> in any variant's row in the SNV
+Viewer table), or from the report page with SNVs/Indels (to do this, click on the
+button <img src={require('/img/vv/open_vv.png').default} width="20"/> in any variant's row in the report table).
+On the page that opens, go to the "Sample" tab. There, in the “Sample Info” section, you will find the button that
+you need to complete or resume the sample interpretation.
+
+**Completion**: click on <img src={require('/img/vv/finish_interpretation.png').default} width="210"/>. Then
+click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/> in <a href="/results/sample-interpretation#confirmation-window">the confirmation window</a>.
+
+**Resuming**: click on <img src={require('/img/vv/restart_interpretation.png').default} width="210"/>.
+
+#### III. Complete and resume interpretation in the run SNV Viewer {#run-snv-viewer}
+
+This method is only available for samples included in [the run](/runs).
+Open [the run SNV Viewer](/runs#run-variant-viewer) and look for any variant discovered in the sample whose
+interpretation you want to complete (the sample name is listed in [the "Sample" column](/runs#sample-column)).
+
+**Completion**: click on the sample name in any variant's row and select the corresponding option:
+
+<p align="center">
+<img src={require('/img/runs/finish_interpretation.png').default} width="300"/>
+</p>
+
+Then
+click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/> in <a href="/results/sample-interpretation#confirmation-window">the confirmation window</a>.
+
+Run's samples with completed interpretation are
+marked with <img src={require('/img/runs/done.png').default} width="25"/>:
+
+<p align="center">
+<img src={require('/img/runs/done_sample.png').default} height="110"/>
+</p>
+
+**Resuming**: click on the sample name in any variant's row and select the corresponding option:
+
+<p align="center">
+<img src={require('/img/runs/restore_interpretation.png').default} width="300"/>
+</p>
+
+### How to include a mutation to the interpretation results? {#add-to-interpretation-result}
+
+To include SNV/Indel or copy number variation to the sample interpretation results, you need to:
+- determine the mutation pathogenicity class (how to do this is
+described [here](/results/main/snvs-indels/pathogenicity) for variants,
+and [there](/results/main/copy-number-variations/cnv-viewer#columns-description) for variations);
+- include the mutation to interpretation results. This occurs automatically when the pathogenicity class of the
+mutation is determined. In addition, potential findings can be included to interpretation results, as
+described [here](/results/potential-findings#include-to-interpretation-results).
+
+:::note
+If necessary, mutations can be added to the sample interpretation results after the interpretation
+is [complete](/results/sample-interpretation#complete).
+:::

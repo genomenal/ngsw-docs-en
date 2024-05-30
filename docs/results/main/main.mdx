@@ -43,7 +43,8 @@ that report will change to "*No potential findings were found*".
 #### Interpretation Results {#interpretation-results}
 
 Interpretation results are information about the number of mutations with a certain pathogenicity class discovered
-in the sample and included to the interpretation results. The section may include information about SNVs/Indels,
+in the sample and [included to the interpretation results](/results/sample-interpretation#add-to-interpretation-result).
+The section may include information about SNVs/Indels,
 designated "*SNV*", and information about copy number variations, designated "*CNV*". The information is presented
 in the form of pathogenicity icons indicating the number of mutations with this pathogenicity:
 - pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
@@ -52,7 +53,7 @@ in the form of pathogenicity icons indicating the number of mutations with this 
 - likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
 - benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
 
-If sample interpretation has not been [completed](/results/main/snvs-indels/snv-details-page#sample-interpretation),
+If sample interpretation has not been [completed](/results/sample-interpretation#complete),
 there will be no interpretation results section on the sample page. If sample interpretation has been completed,
 but mutations with a certain pathogenicity class have not been included to the interpretation results, then the
 result will be “*No pathogenic variants found*”.

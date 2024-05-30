@@ -1,0 +1,95 @@
+---
+sidebar_position: 8
+sidebar_label: Variant Interpretation
+---
+
+# Variant Interpretation
+
+A variant interpretation is a comment with important information about the variant added by the user.
+
+:::caution Attention!
+Do not confuse the variant interpretation described in this article
+with [the sample interpretation](/results/sample-interpretation). Sample interpretation is interpretation of
+the pathogenicity of mutations discovered in the sample.
+:::
+
+### Where is the variant interpretation displayed? {#where}
+
+The variant interpretation is displayed:
+- on [SNV Viewer page](/results/main/snvs-indels/variant-viewer) when
+hovering over the icon <img src={require('/img/vv/interpreted_btn.png').default} width="28"/> in the variant row:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_text.png').default} width="400"/>
+</p>
+
+- on [the "Common" tab](/results/main/snvs-indels/snv-details-panel#variant-interpretation) of the variant details
+panel:
+
+<p align="center">
+<img src={require('/img/vv/interpret_panel.png').default} width="500"/>
+</p>
+
+- at the top of [the variant details page](/results/main/snvs-indels/snv-details-page#add-interpretation):
+
+<p align="center">
+<img src={require('/img/vv/interpret_panel.png').default} width="600"/>
+</p>
+
+- under the variant row in the report table, if the variant is included in such report blocks
+as ["SNVs/Indels selected by user for reports"](/results/report-with-variants-added-by-user#added-to-report),
+["Pinned SNVs/Indels"](/results/report-with-variants-added-by-user#pinned),
+["SNVs/Indels suitable for the specified conditions"](/results/mutations-suitable-for-the-specified-conditions#snvs),
+["SNVs/Indels in ACMG SF genes"](/results/acmg-sf-report),
+["Glioma: Germline pathogenic for gliomas"](/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma),
+["Glioma: Germline pathogenic for any other diseases"](/results/glioma-report#pathogenic-or-likely-pathogenic-for-others),
+["Glioma: Germline glioma associated"](/results/glioma-report#glioma-associated),
+["Onco: Onco relevant SNVs/Indels selected by user for reports"](/results/onco-genetic-testing-report#onco-relevant-variants):
+
+<p align="center">
+<img src={require('/img/vv/interpretation_on_report.png').default} width="900"/>
+</p>
+
+### How to add and edit a variant interpretation? {#add-and-edit}
+
+Variant interpretation can be added and edited:
+- On [the variant details panel](/results/main/snvs-indels/snv-details-panel#variant-interpretation) (the "Common"
+tab, the "Variant interpretation / comment" section). To add or edit a variant interpretation, click on the input box,
+enter the text and click outside the input box to save the interpretation:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_on_panel.png').default} width="600"/>
+</p>
+
+- On [the variant details page](/results/main/snvs-indels/snv-details-page#add-interpretation) (at the top of
+the page, the "Variant interpretation / comment" field). To add or edit a variant interpretation, do the following:
+1. Click on the input box:
+
+<p align="center">
+<img src={require('/img/vv/var_interpretation.png').default} width="900"/>
+</p>
+
+2. Enter text or quote any text from the variant details page in one of the following ways:
+- Click on <img src={require('/img/vv/citate_btn.png').default} width="25"/> and then click on the desired
+text. The text will appear in the interpretation input box. This way is useful if you want to cite the entire
+text of the element (e.g. full gene name).
+- Highlight the desired text and then
+click on <img src={require('/img/vv/citate_second_btn.png').default} width="25"/>. The selected text will
+appear in the interpretation input box. This way is useful if you want to cite only a part of the element's
+text (e.g. one sentence from the article abstract).
+
+No matter where an interpretation has been added or edited, the text is automatically updated everywhere.
+
+Next to the added interpretation, its author is displayed, i.e. the name of the user who interpreted the variant.
+On the variant details page, the author is noted under the input box:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_author_on_page.png').default} width="900"/>
+</p>
+
+And on the variant details panel, the author is noted in brackets next to the title of the section
+“Variant interpretation / comment”:
+
+<p align="center">
+<img src={require('/img/vv/interpretation_author_on_panel.png').default} width="600"/>
+</p>

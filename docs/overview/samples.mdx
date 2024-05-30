@@ -85,22 +85,29 @@ icon <img src={require('/img/results/cnv_pf.png').default} width="60"/>. By clic
 open [the sample page](/results/results). If reports were generated for a sample with potential findings used,
 but either no findings were found in any report, or all detected findings were included to interpretation
 results or excluded from the list of potential findings, then the result will be “*Not Found*”.
-4. **RESULTS** are sample interpretation results, i.e. information on the number of mutations with a particular
-[pathogenicity class](/results/main/snvs-indels/pathogenicity) discovered in the sample and included to the
-interpretation results. May include information
-about SNVs/Indels, denoted "*SNV*", and information about copy number variations, denoted "*CNV*".
-The information is presented in the form of pathogenicity icons indicating the number of mutations with this
-pathogenicity class: pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>, likely
-pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>, uncertain
-significance: <img src={require('/img/results/uncertain.png').default} width="48"/>, likely
-benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
-benign: <img src={require('/img/results/benign.png').default} width="48"/>. Results are displayed if sample
-interpretation has been completed (as described [below](/overview/samples#sample-interpretation)) or if a
-variant with a particular pathogenicity has been included to the interpretation results. If the interpretation
-has not been completed, but variants with a particular pathogenicity class have been included to the interpretation
-results, then the result will be “*Interpretation not completed*”. If the sample interpretation has been completed,
-but no variants with a particular pathogenicity class have been included to the interpretation results, then the
-result will be “*No pathogenic variants found*”.
+4. **RESULTS** are the sample interpretation results, i.e. information on the number of mutations with a
+particular pathogenicity class discovered in the sample
+and [included to the interpretation results](/results/sample-interpretation#add-to-interpretation-result).
+It may include information about SNVs/Indels,
+designated "*SNV*", and information about copy number variations, designated "*CNV*".
+The information is presented as follows:
+- pathogenicity icons indicating the number of mutations with this pathogenicity:
+   - pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+   - likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+   - mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+   - likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+   - benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+- message "*Interpretation not completed*" if mutations with a particular pathogenicity class
+were [included](/results/sample-interpretation#add-to-interpretation-result) to
+the interpretation results, but the sample interpretation was not [completed](/results/sample-interpretation#complete).
+- message "*No pathogenic variants found*" if the sample interpretation has
+been [completed](/results/sample-interpretation#complete), but no mutations
+with a particular pathogenicity class have been [included](/results/sample-interpretation#add-to-interpretation-result)
+to the interpretation results.
+- empty value if sample interpretation was not [completed](/results/sample-interpretation#complete) and no mutations
+with a particular pathogenicity class were [included](/results/sample-interpretation#add-to-interpretation-result) to
+the interpretation results.
+
 5. **CREATED** - contains the date of the beginning of uploading sample data into the system in M/d/yyyy format;
 6. **MODIFIED** - contains the date of the last changes in the sample data in M/d/yyyy format.
 
@@ -149,7 +156,7 @@ with <b>segments</b> discovered in the sample,
 or on <img src={require('/img/eng/sample_cnvv_bins.png').default} width="22"/> to open CNV Viewer with <b>bins</b>
 discovered in the sample.
 
-### Sample Interpretation: complete and resume {#sample-interpretation}
+### Sample Interpretation {#sample-interpretation}
 
 To complete sample's interpretation, hover over the sample row and
 click on <img src={require('/img/eng/sample_complete_interpretation.png').default} width="22"/>. You will see

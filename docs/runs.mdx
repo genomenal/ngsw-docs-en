@@ -141,20 +141,28 @@ or BAM format: <img src={require('/img/eng/tumor_analysis.png').default} width="
 or BAM format: <img src={require('/img/eng/normal_analysis.png').default} width="120"/>
 - The analysis progress tiles of the sample in VCF, TXT
 or TSV format: <img src={require('/img/eng/vcf_analysis.png').default} width="50"/>
-4. **Interpretation** is the information on the number of variants of a
-particular [pathogenicity class](/results/main/snvs-indels/pathogenicity)
-discovered in the sample and [included to report](/results/main/snvs-indels/variant-viewer#include-to-report)
-(Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
-Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
-Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
-Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
-Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
-Interpretation is displayed only
-if [the sample interpretation has been completed](/runs#sample-interpretation).
-If the interpretation has not been completed, but variants with a particular pathogenicity class have been
-included to report, then the interpretation will be "*Interpretation not completed*". If the
-sample interpretation has been completed, but no variants with a particular pathogenicity class have been
-included to report, then the interpretation will be "*No pathogenic variants found*".
+4. **Interpretation** is the sample interpretation results, i.e. information on the number of mutations with a
+particular pathogenicity class discovered in the sample
+and [included to the interpretation results](/results/sample-interpretation#add-to-interpretation-result).
+It may include information about SNVs/Indels,
+designated "*SNV*", and information about copy number variations, designated "*CNV*".
+The information is presented as follows:
+- pathogenicity icons indicating the number of mutations with this pathogenicity:
+   - pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+   - likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+   - mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+   - likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+   - benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+- message "*Interpretation not completed*" if mutations with a particular pathogenicity class
+were [included](/results/sample-interpretation#add-to-interpretation-result) to
+the interpretation results, but the sample interpretation was not [completed](/results/sample-interpretation#complete).
+- message "*No pathogenic variants found*" if the sample interpretation has
+been [completed](/results/sample-interpretation#complete), but no mutations
+with a particular pathogenicity class have been [included](/results/sample-interpretation#add-to-interpretation-result)
+to the interpretation results.
+- empty value if sample interpretation was not [completed](/results/sample-interpretation#complete) and no mutations
+with a particular pathogenicity class were [included](/results/sample-interpretation#add-to-interpretation-result) to
+the interpretation results.
 5. **Sample type** is the type that was selected while creating the run or uploading samples: TUMOR or
 NORMAL (non-tumor). You can change the sample type by clicking on the current value in the sample row and
 selecting another type:
@@ -281,41 +289,53 @@ in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Ru
 
 #### 3. Sample Interpretation {#sample-interpretation}
 
-There is an additional way to complete and resume sample interpretation in Run SNV Viewer
-apart from the way described [here](/results/main/snvs-indels/snv-details-page#sample-interpretation) (on the
-variant details page). To ***complete sample interpretation***, click on the sample name in variant row and select
+There is an additional way to complete and resume interpretation for run samples
+in the run SNV Viewer. Other ways are described [here](/results/sample-interpretation#complete).
+To ***complete the sample interpretation***, click on the sample name in a variant row and select
 the corresponding option:
 
 <p align="center">
 <img src={require('/img/runs/finish_interpretation.png').default} width="290"/>
 </p>
 
-In the window that appears, you will see the number of variants of a particular pathogenicity class discovered in the
-sample and <a href="/results/main/snvs-indels/variant-viewer#include-to-report">included to report</a> (Pathogenic: <img src={require('/img/results/pathogenic.png').default} width="48"/>,
-Likely pathogenic: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>,
-Uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>,
-Likely benign: <img src={require('/img/results/likely_benign.png').default} width="48"/>,
-Benign: <img src={require('/img/results/benign.png').default} width="48"/>).
-If no variants with a particular pathogenicity class have been included to report, then the interpretation
-will be "*No pathogenic variants found*".
+You will see a confirmation window. For non-tumor samples, it looks like this:
 
 <p align="center">
-<img src={require('/img/vv/interpretation_window.png').default} height="550"/>
+<img src={require('/img/vv/interpretation_window_normal.png').default} width="400"/>
 </p>
 
-In the same window, you can specify the patient's oncological disease, its stage and stage details,
-which were defined for the patient, as well as the therapy line
-used to treat the patient's disease, at the time the sample was taken for sequencing.
+And for tumor samples, it also includes fields about the oncological disease:
 
-To complete interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+<p align="center">
+<img src={require('/img/vv/interpretation_window.png').default} width="400"/>
+</p>
 
-Interpreted run samples will be marked with <img src={require('/img/runs/done.png').default} width="25"/>:
+The "*Interpretation results*" field provides information about the number of mutations with a certain pathogenicity
+class discovered in the sample and included to the interpretation results. The field may include information about
+SNVs/Indels, designated "*SNV*", and information about copy number variations, designated "*CNV*". The information
+is presented in the form of pathogenicity icons indicating the number of mutations with this pathogenicity:
+- pathogenic mutations: <img src={require('/img/results/pathogenic.png').default} width="48"/>;
+- likely pathogenic mutations: <img src={require('/img/results/likely_pathogenic.png').default} width="48"/>;
+- mutations of uncertain significance: <img src={require('/img/results/uncertain.png').default} width="48"/>;
+- likely benign mutations: <img src={require('/img/results/likely_benign.png').default} width="48"/>;
+- benign mutations: <img src={require('/img/results/benign.png').default} width="48"/>.
+
+If no mutations with a particular pathogenicity class have been included to the interpretation results, then the
+field value will be "*No pathogenic variants found*".
+
+For tumor samples, you can also specify in the confirmation window the oncological disease, its stage, and stage
+details which were defined for the patient, as well as the therapy line used to treat the patient's disease, at the
+time the sample was taken for sequencing.
+
+To confirm completing interpretation, click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+Run samples with completed interpretation are marked with <img src={require('/img/runs/done.png').default} width="25"/>:
 
 <p align="center">
 <img src={require('/img/runs/done_sample.png').default} height="110"/>
 </p>
 
-To ***resume sample interpretation***, click on the sample name in variant row and select
+To ***resume sample interpretation***, click on the sample name in a variant row and select
 the corresponding option:
 
 <p align="center">

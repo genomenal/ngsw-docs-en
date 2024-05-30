@@ -1,0 +1,97 @@
+---
+sidebar_position: 9
+sidebar_label: Report with variants added by the user
+---
+
+# Report with variants added by the user
+
+The report can only include SNVs/Indels that have been added by the user. The method for adding variants to
+the report depends on the selected template
+type: ["SNVs/Indels selected by user for reports"](/results/report-with-variants-added-by-user#added-to-report)
+or ["Pinned SNVs/Indels"](/results/report-with-variants-added-by-user#pinned).
+
+## SNVs/Indels selected by user for reports {#added-to-report}
+
+The report is based on the report template
+block ["SNVs/Indels selected by user for reports"](/settings/report-templates/report-templates#block-types).
+In the block, you select the origin (germline or somatic) of variants that can be added to the report. If
+variants with the corresponding origin were discovered in the sample, the report will contain the message
+“*You can mark variants to add them to this section in SNV Viewer*”. How to include the required variants
+to the report is described [here](/results/main/snvs-indels/variant-viewer#include-to-report). How the
+included variants are presented in the report is
+described [below](/results/report-with-variants-added-by-user#variants). If the sample interpretation has
+been [completed](/results/sample-interpretation#complete), but no variants have been included to the report,
+then the report will contain the message "*Interpretation completed, no variants were added to the report*".
+However, variants can be included to the report after the interpretation has been completed.
+
+#### Remove variants from the report {#delete-variant}
+
+A variant can be removed from the report by hovering over its row and clicking
+on <img src={require('/img/results/delete_variant_from_report.png').default} width="23"/>. Then you need to
+confirm removing in the opened window:
+
+<p align="center">
+<img src={require('/img/results/delete_variant_confirmation.png').default} width="400"/>
+</p>
+
+This variant will no longer be included to the report (activated
+button <img src={require('/img/vv/remove_from_report.png').default} width="25"/>) on SNV Viewer page, too.
+
+## Pinned SNVs/Indels {#pinned}
+
+The report is based on the report template
+block ["Pinned SNVs/Indels"](/settings/report-templates/report-templates#block-types).
+In the block, you select the origin (germline or somatic) of variants that can be added to the report. If
+variants with the corresponding origin were discovered in the sample, the report will contain the message
+“*You can pin variants in SNV Viewer to add them to this section*”. To add a variant to the report, you need
+to [pin it in the SNV Viewer table](/results/main/snvs-indels/variant-viewer#pin-variant). To exclude a variant
+from the report, you need to unpin it on the SNV Viewer page. How the
+added variants are presented in the report is
+described [below](/results/report-with-variants-added-by-user#variants). If the sample interpretation has
+been [completed](/results/sample-interpretation#complete), but no variants have been added to the report,
+then the report will contain the message "*Interpretation completed, no variants were added to the report*".
+However, variants can be added to the report after the interpretation has been completed.
+
+## How are the variants presented in the report? {#variants}
+
+SNVs/Indels added to the report are presented in a table with the following columns:
+
+<p align="center">
+<img src={require('/img/results/variant_in_report.png').default} width="900"/>
+</p>
+
+1. **Gene** is the common name of the gene in which the variant is located.
+If you click on a gene, you will see a window with all the gene transcripts:
+
+<p align="center">
+<img src={require('/img/vv/transcripts.png').default} width="600"/>
+</p>
+
+You can find the description of the transcripts' table columns
+in [the description of "Transcripts" section on the variant details panel](/results/main/snvs-indels/snv-details-panel#transcripts).
+
+2. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+3. **Genetic variant** is the nucleotide and amino acid substitutions
+using [the HGVS notation](https://varnomen.hgvs.org/). Nucleotide substitution: “c.” (coding; for a
+substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
+genomic position of the substituted nucleotide + reference allele > alternative allele.
+Amino acid substitution: “p.” prefix (protein) + reference amino acid + amino acid position in protein + new
+amino acid resulting from the substitution.
+4. **Transcript** is the main transcript ID from the [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
+(NM_xxxxxx.x). If you click on a transcript, you will see the same window with all the gene transcripts, as when
+you click on the "Gene" field.
+5. **Consequence** is the effect of the variant on genes. A detailed description of the possible values
+can be found [here](/results/main/snvs-indels/variant-viewer#variant-consequences).
+6. **Allele frequency** is an alternative allele frequency for the sample (in percentages).
+7. **Coverage depth** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+position for the sample.
+8. **External links** are links to pages with variant information in [dbSNP](https://www.ncbi.nlm.nih.gov/snp/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and [COSMIC](https://cancer.sanger.ac.uk/cosmic/) (if
+it was [uploaded as a custom annotation](/settings/custom-annotations#define-annotation-type)).
+9. Links to the variant in embedded services: <img src={require('/img/vv/igv.png').default} width="30"/> is
+a module for visualization of variant on the genome, <img src={require('/img/vv/open_vv.png').default} width="20"/> is
+a variant details page in SNV Viewer
+(["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
+
+The variant interpretation text may be given below the variant row if it was added as
+described [here](/results/main/snvs-indels/variant-interpretation#add-and-edit).
