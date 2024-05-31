@@ -33,9 +33,14 @@ The following window will open:
 <img src={require('/img/results/change_of_status.png').default} width="400"/>
 </p>
 
+:::note
+If the status of a potential finding that appears in multiple reports for a sample changes, its status will
+automatically update in all reports for that sample.
+:::
+
 #### Include a potential finding to interpretation results {#include-to-interpretation-results}
 
-To include a finding to [the interpretation results](/results/main/main#interpretation-results), select the
+To include a finding to [the sample interpretation results](/results/sample-interpretation), select the
 status "*Included to interpretation results*" and then determine the pathogenicity of the finding. If the
 pathogenicity class of a finding [requires confirmation](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity),
 confirm the pathogenicity by clicking on the corresponding option “*Confirm Pathogenicity*”.
@@ -50,6 +55,12 @@ pathogenicity: <img src={require('/img/vv/uncertain_significance.png').default} 
 - Likely benign finding: <img src={require('/img/vv/likely_benign.png').default} width="40"/>
 - Benign finding: <img src={require('/img/vv/benign.png').default} width="40"/>
 
+:::info
+If a mutation that is a potential finding
+was [included to the interpretation results](/results/sample-interpretation#add-to-interpretation-result) on
+the SNV Viewer page, its status will automatically change in the potential findings report.
+:::
+
 #### Exclude from the list of potential findings {#exclude-from-potential-findings}
 
 To exclude a finding from the list of potential findings, select the status "*Excluded from potential findings*" and
@@ -57,8 +68,3 @@ click on <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/
 
 The icon of a finding that has been excluded from the list of potential findings will
 change to <img src={require('/img/results/excluded_from_pf.png').default} width="25"/>.
-
-:::note
-If the same finding was discovered in several reports at once, then when its status changes, it will change
-in all these reports.
-:::

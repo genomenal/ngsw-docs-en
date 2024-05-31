@@ -23,14 +23,19 @@ or [on the variant details page](/results/main/snvs-indels/snv-details-page).
 
 ### Report Section with Onco-Relevant Variants {#onco-relevant-variants}
 
-- Corresponds to ["Onco: Onco relevant SNVs/Indels selected by user for reports" template block](/settings/report-templates/report-templates#block-types).
-- Contains a table with onco-relevant variants included to report:
+- Corresponds
+to ["Onco: Onco relevant SNVs/Indels selected by user for reports" template block](/settings/report-templates/report-templates#block-types).
+- If no onco-relevant variants were included to the report, then the report will contain the message
+“*You can mark onco-relevant variants in SNV Viewer to add them to this section*”. If the sample interpretation has
+been [completed](/results/sample-interpretation#complete), then the report will contain the message
+"*Interpretation completed, no onco-relevant variants added to the report*".
+However, onco-relevant variants can be included to the report after the interpretation has been completed.
+- Onco-relevant variants added to the report are presented in a table with the following columns:
 
 <p align="center">
 <img src={require('/img/vv/onco_relevant_variant.png').default} width="1000"/>
 </p>
 
-The table columns:
 1. **Gene** is the common name of the gene in which the variant is located.
 If you click on a gene, you will see a window with all the gene transcripts:
 
@@ -124,6 +129,19 @@ a variant details page in SNV Viewer
 
 The variant interpretation text may be given below the variant row if it was added as
 described [here](/results/main/snvs-indels/variant-interpretation#add-and-edit).
+
+#### Remove variants from the report {#remove-variant}
+
+A variant can be removed from the report by hovering over its row and clicking
+on <img src={require('/img/results/delete_variant_from_report.png').default} width="23"/>. Then you need to
+confirm removing in the opened window:
+
+<p align="center">
+<img src={require('/img/results/delete_variant_confirmation.png').default} width="400"/>
+</p>
+
+This variant will no longer be included to the report (activated
+button <img src={require('/img/vv/remove_from_report.png').default} width="25"/>) on SNV Viewer page, too.
 
 ### Report Section with Clinical Guidelines {#clinical-guidelines}
 

@@ -225,9 +225,30 @@ or click on the field and edit your selection in the phenotype search form.
 
 ### 6. Type {#cnv-type}
 
-Filter variations by the copy number variation type: Del - deletion, Dup - duplication.
+Filter variations by the copy number variation type: LOSS - deletion, GAIN - duplication.
 
-### 7. Cohort 180 AF {#cohort-af}
+### 7. CDS Overlap {#cds-overlap}
+
+Filter variations by overlapping with CoDing Sequence (CDS):
+- Overlapped CDS - the variation affects the CDS (percentage of overlapped CDS is greater than 0);
+- Not overlapped CDS - the variation does not affect the CDS (percentage of overlapped CDS equals 0).
+
+### 8. ACMG Class {#acmg-class}
+
+Filter variations by pathogenicity assigned according to the ranking score defined
+by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf):
+* Pathogenic;
+* Likely pathogenic;
+* Uncertain significance conflict - conflicting interpretations of pathogenicity;
+* Uncertain significance;
+* Likely benign;
+* Benign;
+* Undefined.
+
+You can filter variations by several pathogenicity values at once.
+To do this, tick the required values and click outside the value area.
+
+### 9. Cohort 180 AF {#cohort-af}
 
 Filter variations by frequency in a cohort of 188 samples. Frequency values are only available for bins of
 size 3000 or 5000. The filter is only displayed in the CNV Viewer with copy number variations discovered in the bins.

@@ -271,22 +271,33 @@ clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
 For split rows, this is the name of the gene located in the region.
 You can copy the gene name to the clipboard by moving the cursor over the column value and
 clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
-4. **Log2 FC** is the logarithmic ratio of the detected copy number to the normal copy number
+4. **CytoBand** is a shorthand notation for the CNV position on a chromosome. This position is indicated
+relative to bands (regions of chromosomes that are clearly different from neighboring ones) that are formed
+on chromosomes by differential staining methods. A region is a section of a chromosome arm between the two
+closest marker bands (the most noticeable and clear light or dark bands). Sub-bands are sections of chromosomes
+resulting from the division of bands when analyzing chromosomes with high resolution. Sub-bands can also be
+divided into parts. The nomenclature of the CNV locus is as follows: chromosome arm (p-arm, i.e. shorter arm,
+or q-arm, i.e. longer arm), region, band, sub-band (can also be divided into parts). For example, the “*p.36.33*”
+locus means that the variation is located in the 3rd part of the 3rd sub-band of the 6th band of the 3rd region
+of the p-arm of the chromosome.
+5. **Log2 FC** is the logarithmic ratio of the detected copy number to the normal copy number
 (equals to 2 for autosomes and the X chromosome in the case of genotype XX, or to 1 for sex
 chromosomes in the case of genotype XY).
-5. **Relative copy number** is the number of copies of a certain region per haploid genome.
-6. **Type** is a copy number variation
+6. **Relative copy number** is the number of copies of a certain region per haploid genome.
+7. **Type** is a copy number variation
 type: <img src={require('/img/vv/deletion.png').default} width="60"/> -
 deletion, <img src={require('/img/vv/duplication.png').default} width="60"/> - duplication.
-7. **Cohort 180 AF** is the variation frequency in a cohort of 188 samples. AF values are only
+8. **Overlapped CDS, %** is a share of the length of the CoDing Sequence (CDS) overlapped with the variation
+(in percent). Provided for split rows only.
+9. **Cohort 180 AF** is the variation frequency in a cohort of 188 samples. AF values are only
 available for bins of size 3000 or 5000. The column is only displayed in the CNV Viewer with copy number
 variations discovered in the bins. The column cells are colored depending on the AF value:
 - <Highlight color="#DEF1DB">green</Highlight> if AF ≥ 0.015;
 - <Highlight color="#FFFAEB">yellow</Highlight> if 0.01 ≤ AF &lt; 0.015;
 - <Highlight color="#F9DAE0">red</Highlight> if AF &lt; 0.01.
-8. **OMIM ID** is an ID from [OMIM](https://www.omim.org/) database of the gene located in the affected region
+10. **OMIM ID** is an ID from [OMIM](https://www.omim.org/) database of the gene located in the affected region
 of variation. Available only for split rows.
-9. **Ranking score** is the classification of variation pathogenicity provided
+11. **Ranking score** is the classification of variation pathogenicity provided
 by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf) and based on ACMG and ClinGen
 recommendations[^1]. According to the ranking score, the ACMG class is assigned:
 - Variations with a ranking score ≥ 0.99 are assigned class 5 - pathogenic;
@@ -294,7 +305,7 @@ recommendations[^1]. According to the ranking score, the ACMG class is assigned:
 - Variations with a ranking score from 0.89 to −0.89 are assigned class 3 - uncertain significance;
 - Variations with a ranking score from −0.90 to −0.98 are assigned class 2 - likely benign;
 - Variations with a ranking score ≤ −0.99 are assigned class 1 - benign.
-10. **ACMG Class** is the variation pathogenicity assigned according to the ranking score defined
+12. **ACMG Class** is the variation pathogenicity assigned according to the ranking score defined
 by [AnnotSV](https://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf) (see conditions above).
 Column values are presented
 as icons:<br></br><img src={require('/img/vv/pathogenic.png').default} width="40"/> - Pathogenic;<br></br><img src={require('/img/vv/probably_pathogenic.png').default} width="40"/> -
@@ -303,7 +314,7 @@ Uncertain significance;<br></br><img src={require('/img/vv/likely_benign.png').d
 benign;<br></br><img src={require('/img/vv/benign.png').default} width="40"/> -
 Benign.<br></br>
 You can see the full value by hovering over the icon.
-11. **Pathogenicity** is the variation pathogenicity determined by the user. To determine the pathogenicity
+13. **Pathogenicity** is the variation pathogenicity determined by the user. To determine the pathogenicity
 of a variation, click on the pathogenicity button <img src={require('/img/vv/acmg_var_btn.png').default} width="42"/>
 in the variation row and select the required option in the dialog that appears:
 
@@ -345,14 +356,14 @@ of the variation pathogenicity, click on the bell or pathogenicity button and se
 <img src={require('/img/vv/confirm_pathogenicity_cnvv.png').default} width="300"/>
 </p>
 
-12. <b>P<sub>s</sub></b> are pathogenic overlapping variants, i.e. known pathogenic genes or genomic regions
+14. <b>P<sub>s</sub></b> are pathogenic overlapping variants, i.e. known pathogenic genes or genomic regions
 completely overlapped with the variation. Column values are presented
 as icons:<br></br><img src={require('/img/vv/gain.png').default} width="25"/> -
 Gain;<br></br><img src={require('/img/vv/loss.png').default} width="25"/> -
 Loss;<br></br><img src={require('/img/vv/insertion.png').default} width="25"/> -
 Insertion or mixed value.<br></br>
 You can see the full value by hovering over the icon.
-13. <b>B<sub>s</sub></b> are benign overlapping variants, i.e. known benign genes or genomic regions
+15. <b>B<sub>s</sub></b> are benign overlapping variants, i.e. known benign genes or genomic regions
 completely overlapped with the variation. Column values are presented
 as icons:<br></br><img src={require('/img/vv/gain.png').default} width="25"/> -
 Gain;<br></br><img src={require('/img/vv/loss.png').default} width="25"/> -
@@ -369,9 +380,9 @@ in [the corresponding section](/results/main/copy-number-variations/cnv-filterin
 By default, the table is sorted by variation position. The table can be ***sorted*** by ascending or
 descending values of the following columns: “*Position*”, “*Length, kb*”, “*Genes*” (in tree mode,
 full rows are sorted by the number of genes and split rows are sorted by gene name, and in flat list mode,
-only full rows are sorted by the number of genes, and the sorting of split rows remains unchanged),
-"*Log2 FC*", "*Relative copy number*", "*Type*", "*Cohort 180 AF*", "*OMIM ID*" (only in tree mode for split rows),
-"*Ranking score*", "*ACMG Class*", "*Pathogenicity*".
+only full rows are sorted by the number of genes, and the sorting of split rows remains unchanged), "*CytoBand*",
+"*Log2 FC*", "*Relative copy number*", "*Type*", "*Overlapped CDS, %*", "*Cohort 180 AF*", "*OMIM ID*" (only in tree
+mode for split rows), "*Ranking score*", "*ACMG Class*", "*Pathogenicity*".
 
 To sort a table by column values, click on the column name (click once to sort ascending, or twice to sort
 descending). After this, an up arrow <img src={require('/img/vv/sort_asc.png').default} width="17"/> (when sorting

@@ -42,7 +42,7 @@ determined for the same variant in samples annotated later
 with [a warning to confirm the pathogenicity](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity).
 :::
 
-## Variant ACMG Classification {#acmg-classification}
+## ACMG Classification {#acmg-classification}
 
 "ACMG Classification" is a tab on [the variant details page](/results/main/snvs-indels/snv-details-page)
 that provides the variant interpretation criteria developed
@@ -101,7 +101,7 @@ added on ["Literature" tab](/results/main/snvs-indels/snv-details-page#associate
 ### 1. Population data {#population-data}
 
 At the top of the section, there are:
-- GnomAD AF is the total allele frequency
+- gnomAD 3 AF is the total allele frequency
 in [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database;
 - ExAC AF is the total allele frequency in [ExAC](http://exac.broadinstitute.org/) database;
 - 1000G AF is the total allele frequency in [the 1000 Genomes Project](https://www.internationalgenome.org/);
@@ -298,7 +298,6 @@ to determine the strength of *de novo* evidence (PS2 and PM6 criteria) based upo
 - phenotypic consistency;
 - number of *de novo* observations.
 
-
 #### *De novo* Variants criteria {#de-novo-variants-criteria}
 
 <table>
@@ -322,7 +321,6 @@ to determine the strength of *de novo* evidence (PS2 and PM6 criteria) based upo
    <td><b>Assumed <i>de novo</i></b>, but without confirmation of paternity and maternity.</td>
   </tr>
 </table>
-
 
 For *De novo* Variants criteria, you can add ***additional unrelated patients (probands) with the same phenotype***:
 1. Expand the criterion description by clicking on <img src={require('/img/vv/show_info.png').default} width="15"/>;
@@ -645,12 +643,19 @@ using [GERP++](http://mendel.stanford.edu/sidowlab/downloads/gerp/index.html).
   </tr>
 </table>
 
-## Determination of pathogenicity on "ACMG Classification" tab {#define-pathogenicity-on-acmg-tab}
+## Determine pathogenicity on the "ACMG Classification" tab {#define-pathogenicity-on-acmg-tab}
 
 - The first time you open "ACMG Classification" tab, the variant criteria status will be determined automatically.
 - You can change the state and significance level of the criteria and add comments to them.
 - To ***erase all results of variant interpretation***,
 click on <img src={require('/img/vv/erase.png').default} width="38"/>.
+
+:::note
+If pathogenicity was determined as a result of combining the ACMG criteria, then once the results of variant
+interpretation are erased, the variant is automatically excluded from the
+sample [interpretation results](/results/main/main#interpretation-results).
+:::
+
 - To ***reset to automatic variant interpretation***,
 click on <img src={require('/img/vv/reset.png').default} width="38"/>.
 
@@ -691,7 +696,7 @@ sample [interpretation results](/results/main/main#interpretation-results).
 If you want to exclude a variant with a determined pathogenicity class from the interpretation results,
 disable the "*Include to interpretation results*" option in the upper right corner of the page.
 
-## Determination of pathogenicity by pathogenicity base {#define-pathogenicity-by-base}
+## Determine pathogenicity by database {#define-pathogenicity-by-base}
 
 If you have uploaded a pathogenicity database into the system as
 described [here](/settings/custom-annotations#define-annotation-type), the base will annotate sample variants.
@@ -699,7 +704,7 @@ Thus, if variants are presented in the base, their pathogenicity will correspond
 the base (and marked as "manually determined"), but such a pathogenicity needs to
 be [confirmed](/results/main/snvs-indels/pathogenicity#confirm-pathogenicity).
 
-## Determined variant pathogenicity in SNV Viewer {#defined-pathogenicity-in-vv}
+## Variant with determined pathogenicity {#defined-pathogenicity-in-vv}
 
 After completing the classification of the variant by pathogenicity (according to ACMG or manually)
 or after annotating the variants by pathogenicity base, the pathogenicity button will change accordingly:
@@ -736,14 +741,21 @@ Variants can be ***filtered*** by pathogenicity:
 - an additional filter "Pathogenicity" in basic filtering mode
 (can be added on ["Profile" page](/settings/profile#basic-mode-filters)).
 
-The result of the classification of a variant by pathogenicity can be ***cleared*** by clicking on the
+## Clear pathogenicity {#clear-pathogenicity}
+
+You can remove the result of the classification of a variant by pathogenicity by clicking on the
 pathogenicity button in the variant row and selecting "*Clear*" option in the dialog:
 
 <p align="center">
 <img src={require('/img/vv/clear_on_dialog.png').default} width="300"/>
 </p>
 
-## Confirmation of the variant pathogenicity {#confirm-pathogenicity}
+:::info
+Once pathogenicity has been cleared, the variant is automatically excluded
+from [the sample interpretation results](/results/main/main#interpretation-results).
+:::
+
+## Confirm pathogenicity {#confirm-pathogenicity}
 
 Confirmation of the pathogenicity class of a variant may be required in the following cases:
 1. The automatic variant pathogenicity classification by ACMG was restored after any manipulations with
@@ -777,4 +789,10 @@ Once pathogenicity is confirmed, the variant is automatically added to the
 sample [interpretation results](/results/main/main#interpretation-results). If you want to exclude a variant
 from interpretation results, disable the "*Include to interpretation results* option in the pathogenicity dialog
 or on the variant details page.
+:::
+
+:::info
+A variant can be added to the sample [interpretation results](/results/main/main#interpretation-results) without
+confirming the variant pathogenicity. To do this, enable the “*Include to interpretation results” option on
+the variant details page.
 :::
