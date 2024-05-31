@@ -61,7 +61,7 @@ for the gene in which the variant is located. These conditions may be associated
    - the number of variants discovered in the sample and suitable for the conditions
    that are located in one gene from the ACMG SF list (for example, for some variants with an autosomal
    recessive inheritance to be included in the report, at least two such variants must be discovered in the sample);
-   - the variant origin;
+   - the variant origin (Tier 1 includes only those variants for which there is no “somatic” among the allele origins);
    - the genotype (for example, some variants are reported only if they are homozygous in alternative allele);
    - specific nucleotide and amino acid substitution of the variant.
 
@@ -83,6 +83,13 @@ in the case of a VCF file with a single sample;
    in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene in which the variant is located;
    - the variant does not meet at least one of the conditions specified
    in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene in which the variant is located.
+
+:::note
+There is an additional condition for inclusion of variants in the *TTN* gene to the ACMF SF report: only variants
+with a high impact of consequences on genes are included to the report: splice acceptor (variant hitting a splice
+acceptor site), splice donor (variant hitting a splice donor site), stop gained (variant causing a STOP codon) or
+frameshift (insertion or deletion causing a frame shift).
+:::
 
 <p align="center">
 <img src={require('/img/eng/acmg73.png').default} width="1000"/>
@@ -122,8 +129,9 @@ a module for visualization of variant on the genome, <img src={require('/img/vv/
 a variant details page in SNV Viewer
 (["Annotation" tab](/results/main/snvs-indels/snv-details-page/#annotation-tab)).
 
-Below the variant row, there can be phenotypes with pathogenic or likely pathogenic clinical significance that the
-variant is associated with according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) and that are listed
+Below the variant row, there can be **phenotypes** that the
+variant is associated with according to [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) (with pathogenic or
+likely pathogenic clinical significance) and that are listed
 in [the ACMG SF list](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) for the gene in which the variant is located.
 Links to [OMIM](https://www.omim.org/) and/or [MedGen](https://www.ncbi.nlm.nih.gov/medgen/) are provided for each
 phenotype.
@@ -212,3 +220,9 @@ pathogenicity is yet unknown and not detected by anyone.
 By using ACMG Secondary Findings report, you agree that you understand above mentioned limitations,
 and if clarification is needed, you are willing to discuss the result with medical specialist.
 :::
+
+## Report export {#export}
+
+ACMG Secondary Findings report can be downloaded in PDF format. To do this, click on
+the button <img src={require('/img/results/export_pdf.png').default} width="150"/> in the upper right corner of the
+report page.

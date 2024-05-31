@@ -41,7 +41,7 @@ From the "Main" tab, you can go to the other tabs on the sample page:
 1. **Tabs with generated reports** - the presence of tabs depends on the presence of active report templates
 (managed on [the "Report Templates" page](/settings/report-templates/report-templates) in the "Settings" page block),
 their applicability to a given sample, and the availability of the results necessary to build a report. By default,
-[the following reports may be active](/settings/report-templates/main-templates) for you (the addition of these
+[the following reports](/settings/report-templates/main-templates) may be active for you (the addition of these
 reports can be requested from your administrator):
 
 - **[CNV report](/results/cnv-report/cnv-report)** is a report on the results of the analysis of the patient sample
@@ -49,8 +49,33 @@ or samples in order to detect changes in the number of copies of chromosomes.
 - **Glioma report** is a clinical report on the characteristics of gliomas, based on tumor markers identified in
 the sample, and a knowledge base created on the basis of expert knowledge and published research on this topic.
 
+Examples of other reports that can be added to the system:
+- **[ACMG Secondary Findings report](/results/acmg-sf-report)** is a report with the variants located
+in the genes from [the Secondary Findings list of ACMG](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/).
+- **[ClinVar phenotypes report](/results/variants-by-phenotypes)** is a report that includes:
+(a) [ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/) phenotypes that have the risk of developing in the patient
+due to pathogenic or likely pathogenic variants discovered in patient sample and associated with these
+phenotypes; (b) recommendations that can prevent these phenotypes.
+- **[Onco-genetic testing report](/results/onco-genetic-testing-report)** is a report that contains:
+(a) [onco-relevant variants](/results/main/snvs-indels/onco-relevance) included to the report by the user;
+(b) clinical guidelines corresponding to these variants.
+- **[Report with variants suitable for the specified conditions](/results/mutations-suitable-for-the-specified-conditions#snvs)** is
+a report with SNVs/Indels corresponding to certain conditions that the user can set in the report template.
+- **[Report with variations suitable for the specified conditions](/results/mutations-suitable-for-the-specified-conditions#cnvs)** is
+a report with copy number variations corresponding to certain conditions that the user can set in the report template.
+- **[Report with variants added by the user](/results/report-with-variants-added-by-user#added-to-report)** is a
+report that contains variants included to it by the user.
+- **[Report with variants pinned in SNV Viewer](/results/report-with-variants-added-by-user#pinned)** is a
+report that includes variants pinned in the [SNV Viewer](/results/main/snvs-indels/variant-viewer) table by the user.
+
 2. **[Bioinformatic report](/results/bioinformatic-report)** includes the file statistics and the reports on the
 completed stages of sample analysis (Quality Report, Alignment Report, Coverage Report, and SNVs/Indels Report).
+
+:::info
+All generated reports (including “Bioinformatic report”) can be downloaded in PDF format by clicking on
+the button <img src={require('/img/results/export_pdf.png').default} width="150"/> at the top of the desired
+report page.
+:::
 
 3. **[Coverage Analysis](/results/coverage-analysis)** (the tab is visible only for samples uploaded in FASTQ or
 BAM formats, and only after successful completion of all stages of analysis) contains information on depth of coverage
