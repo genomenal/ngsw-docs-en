@@ -6,7 +6,125 @@ sidebar_label: Workflow Details
 # Workflow Details
 
 You can get detailed information about the processing of your samples, the status of the stages, as well as
-download intermediate data in the "**Workflow details**" section.
-To open a section, click on the corresponding tab on the sample page:
+download files with stage results on the "**Workflow details**" tab on the sample page:
 
-![Workflow details](/img/eng/18-workflow-details.png)
+<p align="center">
+<img src={require('/img/eng/18-workflow-details.png').default} width="1000"/>
+</p>
+
+You can also view the details of each analysis stage individually by clicking on
+the button <img src={require('/img/results/show_details.png').default} width="25"/> in the row of that stage
+in <a href="/results/main/main#workflow">the "Workflow" section</a> of the "Main" tab on the sample page.
+To go from the details of a specific stage to the details of the entire sample analysis process,
+click on <img src={require('/img/eng/show_all_tasks.png').default} width="150"/>.
+
+### Sample file(s) {#sample-files}
+
+You can download the sample file or files (for paired-end sequencing) at the top of the "Workflow Details" tab:
+- For a sample uploaded in FASTQ or BAM format, you can download the file or files (for paired-end sequencing)
+in FASTQ format, compressed into a GZIP archive. In the case of an interleaved paired-end sample, you can download
+the primary and mate files after splitting.
+- For a sample uploaded in VCF or GT format, you can download a file in VCF format, not compressed into an archive,
+with the original assembly of the reference genome (hg38 or hg19) and original chromosome names.
+
+Tumor sample file(s) are designated by <img src={require('/img/eng/tumor_file.png').default} width="20"/>,
+and non-tumor sample file(s) are designated by <img src={require('/img/eng/normal_file.png').default} width="20"/>.
+The file size is indicated to the right of the file name.
+
+### Sample compression {#compress-sample}
+
+In the upper right corner of the "Workflow details" tab, there is a
+button <img src={require('/img/eng/compress_sample.png').default} width="150"/>. By clicking on it, you will
+open a form for compressing samples:
+
+<p align="center">
+<img src={require('/img/eng/compress_form.png').default} width="400"/>
+</p>
+
+- To delete sample file(s), leave the "*Delete FASTQ files*" option checked. This option is only available
+for samples uploaded in FASTQ or BAM format. After deleting files, it is not possible to restart the sample
+processing from scratch, as well as to restart the processing of initial stages, such as "Upload, identify and verify",
+"Check quality and cleanup" and "Alignment". In addition, it will not be possible to change the parameters
+of the ["Quality control"](/settings/settings/quality-control-settings)
+and ["Alignment"](/settings/settings/alignment-settings) sections. Sample files will not be available for
+downloading on the "Workflow details" tab. If you want to restore deleted FASTQ files,
+please contact support [info@genomenal.com](mailto:info@genomenal.com).
+- To delete sample alignment files, leave the "*Delete BAM files*" option checked. This option is only available
+for samples uploaded in FASTQ or BAM format, for which the "Alignment" stage has been successfully completed.
+After deleting files, it is not possible to restart the processing of stages that use the alignment files,
+such as "Variant discovery preprocessing", "Calculate coverage", "Somatic SNVs/Indels discovery",
+"Germline SNVs/Indels discovery", "Structural variations discovery", "Copy number variations discovery" and
+"Phenotype prediction". It will also be impossible to change the parameters of
+the ["Variant discovery"](/settings/settings/variant-discovery-settings) section (except for parameters
+for [discarding variants that did not pass the filtering](/settings/settings/variant-discovery-settings#allow-filtered-variants)
+and [merging phase groups](/settings/settings/variant-discovery-settings#pg-merge-distance)). In addition,
+there will be no alignment results on the "Main" tab (the ["Alignments"](/results/main/alignments) section),
+no BAM and BAI files in the "Result files" section in the "Alignment" and "Base Recalibrate" task details,
+and no alignment tracks in the IGV browser. To restore the alignment files, reprocess the sample from
+the "Alignment" stage.
+- To remove annotated variants from [SNV Viewer](/results/main/snvs-indels/variant-viewer), leave the
+"*Delete SNV Viewer data*" option checked. This option is only available for samples for which the
+"SNVs/Indels annotation" stage has been successfully completed. After removing data, it is not possible to reprocess
+the "Generate reports" stage, and there will be no SNV Viewer button
+in [the SNVs/Indels sections](/results/main/snvs-indels/snvs-indels) of the "Main" tab, in the sample row
+on the "Samples" page, nor for variants in reports. To restore the SNV Viewer data, reprocess the sample from
+the "SNVs/Indels annotation" stage.
+- To remove annotated variations from [CNV Viewer](/results/main/copy-number-variations/cnv-viewer), leave the
+"*Delete CNV Viewer data*" option checked. This option is only available for samples for which the
+"Copy number variations discovery" stage has been successfully completed. After removing data, there will be no
+CNV Viewer button in [the copy number variation sections](/results/main/cnvs) of the "Main" tab, nor in
+the sample row on the "Samples" page. To restore the CNV Viewer data, reprocess the sample from
+the "Copy number variations discovery" stage.
+
+Leave the checkboxes of the options you want to compress checked and
+click on <img src={require('/img/eng/delete.png').default} width="150"/>.
+You can only compress samples that are not currently being processed.
+
+### Workflow details {#workflow-details}
+
+The "Workflow details" tab contains the stages that are included in the sample analysis and whose
+processing has been completed or is in progress:
+
+<p align="center">
+<img src={require('/img/eng/workflow_stages.png').default} width="900"/>
+</p>
+
+The stage processing status is displayed on the right for each stage:
+- If a stage processing is in progress, its status includes
+an icon <img src={require('/img/results/in_process.png').default} width="22"/> and a percentage value of its progress.
+- If a stage processing is completed successfully,
+its status is <img src={require('/img/eng/complete.png').default} width="100"/>.
+- If a stage processing is completed successfully, but not all metrics meet the criteria, it has
+a status <img src={require('/img/eng/complete_metrics.png').default} width="100"/>, which indicates
+the number of metrics that do not meet the criteria.
+- If a stage processing is completed with an error, its status includes
+an icon <img src={require('/img/results/failed.png').default} width="25"/> and the specific task at which
+the processing failed.
+
+You can expand any stage to see its details by clicking on it:
+
+<p align="center">
+<img src={require('/img/eng/stage_details.png').default} width="900"/>
+</p>
+
+In each stage details, there is a table with the following columns:
+- «TASK» is the name of the analysis task;
+- «START» is the start time of the task;
+- «END» is the end time of the task;
+- «STATUS»: if the task processing is in the progress, then its status contains
+an icon <img src={require('/img/results/in_process.png').default} width="22"/> and a percentage value of its
+progress; if the task is completed successfully, then it has
+the status <img src={require('/img/results/complete.png').default} width="100"/>;
+if the task is completed successfully, but not all metrics meet the criteria, then it has
+a status <img src={require('/img/results/complete_metrics.png').default} width="100"/> indicating the number
+of metrics that do not meet the criteria; if the task is completed with an error, then its status contains
+an icon <img src={require('/img/results/failed.png').default} width="25"/> and the task name.
+
+You can expand any task to see its details by clicking on it. The following information may be provided for a task:
+- Console output about the task processing;
+- Verification problems (for the "Verify" task);
+- Task result files: all files are available for downloading, and some can also be opened in the IGV browser
+or in Google Sheets;
+- Metrics (for the "Check quality and cleanup" and "Alignment" tasks);
+- Technical details of the task processing (tool, parameters);
+- Error while processing, if the task completed with an error.
