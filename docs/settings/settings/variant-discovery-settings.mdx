@@ -495,6 +495,32 @@ To enable phenotype prediction in sample, turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_phenotypes.png').default} width="400"/>
 </p>
 
+#### Enable polygenic risk scores calculation {#polygenic-risk-scores-calculation}
+
+The polygenic risk score (PRS) represents the total number of single nucleotide polymorphisms (SNPs) that an
+individual has to assess their heritable risk of developing a particular phenotype. It reflects an individual's
+estimated genetic predisposition to the given trait and can be used as a predictor of that trait in a predictive
+model. In other words, the PRS estimates how likely an individual is to have the given trait based only on genetic
+data and without taking into account environmental factors.
+
+The polygenic risk scores are calculated for the following traits:
+   - Height
+   - Weight
+   - Body Mass Index (BMI)
+   - Predisposition to being overweight
+   - Predisposition to Prostate Cancer
+   - Predisposition to Breast Cancer
+   - Predisposition to Coronary Artery Disease
+   - Predisposition to Inflammatory Bowel Disease
+   - Predisposition to Type 2 diabetes
+   - Predisposition to Colorectal Cancer
+
+To enable polygenic risk scores calculation in sample, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/prs_enable.png').default} width="400"/>
+</p>
+
 #### Disable quality control and imputation {#disable-qc-and-imputation}
 
 The phenotype prediction pipeline includes three preprocessing steps before the prediction itself:

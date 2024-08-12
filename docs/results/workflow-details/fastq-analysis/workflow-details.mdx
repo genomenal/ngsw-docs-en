@@ -1,0 +1,72 @@
+---
+sidebar_position: 1
+sidebar_label: Analysis of FASTQ or BAM samples
+---
+
+# Analysis of FASTQ or BAM samples
+
+Files in FASTQ or BAM format can be uploaded
+as [tumor samples](/uploading-samples/tumor-only/upload-for-new-patient),
+[normal samples](/uploading-samples/normal-sample/upload-for-new-patient),
+or [a set](/uploading-samples/tumor-normal/upload-for-new-patient) consisting of
+tumor sample(s) and a control sample.
+
+The analysis of a sample set depends on its settings. They can be either set during composing the sample set
+as [workflow settings](/settings/settings/settings), or changed on [the "Parameters" tab](/results/parameters)
+after starting the analysis.
+
+Analysis of a sample uploaded in FASTQ or BAM format may include the following stages:
+1. [Upload, identify and verify](/results/workflow-details/fastq-analysis/upload-identify-verify);
+2. [Check quality and cleanup](/results/workflow-details/fastq-analysis/check-quality-and-cleanup);
+3. [Alignment](/results/workflow-details/fastq-analysis/alignment) if alignment
+is [included](/settings/settings/alignment-settings) in the workflow;
+4. [Variant discovery preprocessing](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
+if at least one of the following downstream stages is included in the workflow:
+SNVs/Indels discovery, structural variations discovery, copy number variations discovery, phenotype prediction
+or polygenic risk scores calculation;
+5. [Calculate coverage](/results/workflow-details/fastq-analysis/calculate-coverage)
+if at least one of the following downstream stages is included in the workflow:
+SNVs/Indels discovery, structural variations discovery, copy number variations discovery or phenotype prediction
+or polygenic risk scores calculation;
+6. [Somatic SNVs/Indels discovery](/results/workflow-details/fastq-analysis/somatic-snvs-indels#somatic-variants-discovery)
+if somatic SNVs/Indels discovery is [included](/settings/settings/variant-discovery-settings#somatic-snvs-discovery)
+in the workflow and if sequencing sample is uploaded as tumor;
+7. [Somatic SNVs/Indels annotation](/results/workflow-details/fastq-analysis/somatic-snvs-indels#annotate-variants)
+if somatic SNVs/Indels discovery is [included](/settings/settings/variant-discovery-settings#somatic-snvs-discovery)
+in the workflow and if sequencing sample is uploaded as tumor;
+8. [Germline SNVs/Indels discovery](/results/workflow-details/fastq-analysis/germline-snvs-indels#germline-variants-discovery)
+if germline SNVs/Indels discovery is [included](/settings/settings/variant-discovery-settings#germline-snvs-discovery)
+in the workflow and if sequencing sample is uploaded as normal or single tumor;
+7. [Germline SNVs/Indels annotation](/results/workflow-details/fastq-analysis/germline-snvs-indels#annotate-variants)
+if germline SNVs/Indels discovery is [included](/settings/settings/variant-discovery-settings#germline-snvs-discovery)
+in the workflow and if sequencing sample is uploaded as normal or single tumor;
+8. [Structural variations discovery](/results/workflow-details/fastq-analysis/structural-variations)
+if structural variations discovery is [included](/settings/settings/variant-discovery-settings#sv-discovery) in
+the workflow;
+9. [Copy number variations discovery](/results/workflow-details/fastq-analysis/cnv-discovery)
+if copy number variations discovery is [included](/settings/settings/variant-discovery-settings#cnv-discovery) in
+the workflow and if a sequencing type and capture kit (if the sequencing type is defined as "WES" or "Panel")
+are detected for the sample;
+10. [Phenotype prediction](/results/workflow-details/fastq-analysis/phenotypes)
+if [phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) and/or
+[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation)
+are included in the workflow;
+11. [Generate reports](/results/workflow-details/fastq-analysis/report-generation) if:
+- At least one active [report template](/settings/report-templates/report-templates), applicable to the sample type,
+with at least one [added block](/settings/report-templates/report-templates#add-block) was added to the system.
+The template can be applicable to tumor, non-tumor, or any sample type. A report template that meets all of the
+above conditions must be added to the system before the sample was processed. If you added or updated a report
+template later and want to generate or update the corresponding report for the sample, reprocess the sample analysis
+from the "*Generate reports*" stage.
+- The sample workflow includes alignment and one of the following
+stages: ["Somatic SNVs/Indels discovery"](/results/workflow-details/fastq-analysis/somatic-snvs-indels) for a
+tumor sample, ["Germline SNVs/Indels discovery"](/results/workflow-details/fastq-analysis/germline-snvs-indels) for
+a non-tumor or single tumor sample,
+or ["Copy number variations discovery"](/results/workflow-details/fastq-analysis/cnv-discovery).
+If other stages are included in the workflow, it may only affect the generation of specific reports or their content.
+- The sample analysis has been successfully completed (i.e. all stages included in the workflow have the status
+"*Complete*").
+
+<p align="center">
+<img src={require('/img/eng/fq_pipeline.png').default} width="1000"/>
+</p>

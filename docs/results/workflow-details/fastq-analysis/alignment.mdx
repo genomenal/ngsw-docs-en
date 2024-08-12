@@ -1,0 +1,177 @@
+---
+sidebar_position: 4
+sidebar_label: Alignment
+---
+
+# Alignment
+
+After the ["Check quality and cleanup"](/results/workflow-details/fastq-analysis/check-quality-and-cleanup) stage
+has been successfully completed, further sample analysis (SNVs/Indels, structural variations, or copy number
+variations discovery, as well as phenotype prediction) requires alignment (mapping) of reads to the reference
+genome. [GRCh38.p14](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/), the most recent version
+of the human genome is used for alignment. If alignment
+is [excluded](/settings/settings/alignment-settings#disable-alignment) from the workflow, the analysis is
+completed after the "Upload, identify and verify" and "Check quality and cleanup" stages have been successfully
+completed. If any of the tasks listed below fails, the sample analysis is stopped.
+
+<p align="center">
+<img src={require('/img/eng/alignment.png').default} width="650"/>
+</p>
+
+The "Alignment" stage of sample analysis may include the following tasks:
+1. **Re-pair** is launched if the following conditions are met:
+   - A paired-end sequencing sample is being analyzed (i.e. sequencing in which both ends of a DNA fragment are
+   sequenced);
+   - ["Ensure 1st and 2nd read file consistency" parameter](/settings/settings/alignment-settings#disable-repair) is
+   enabled and/or the number of reads in the paired files of the sample does not match.
+
+[BBMap Repair](https://github.com/BioInfoTools/BBMap/blob/master/sh/repair.sh) is used to re-pair reads.
+It includes the following:
+   - Sorting lines in files.
+   - Restoring the order in paired files: the first read in the first file must match the first read in the
+   second file, etc. The order is restored by analyzing the read names, which must either be in Illumina format
+   (an identical prefix followed by "1:" and "2:" or "/1" and "/2") or completely identical for both reads in a pair.
+   - Restoring paired reads, which is necessary for alignment, so that each read from one file contains a pair
+   in the other. Paired reads can be broken during cleanup, which leads to the forming of singletons (a singleton
+   is a read with a sequence that is present exactly once, i.e. is unique among the reads) that have lost their
+   pair in the paired file. By default, singletons are removed from the analysis, but they can be used for genome
+   alignment if [the corresponding parameter](/settings/settings/alignment-settings#use-singleton-reads) is enabled.
+
+2. **Alignment** is the process of matching sequence reads to a reference sequence (the version hg38 of the reference
+genome is used). By default, the alignment is performed using the community-recommended
+tool [BWA2 Burrows-Wheeler Aligner](https://github.com/bwa-mem2/bwa-mem2) (BWA-MEM2), which is the latest and
+faster version of the BWA-MEM algorithm, which is based on backward search with Burrows–Wheeler Transform (BWT)
+to efficiently align short sequencing reads against a human genome, allowing mismatches and gaps[^1].
+The aligner can be [changed](/settings/settings/alignment-settings#change-alignment-tool) in the parameters
+to *BWA Burrows-Wheeler Aligner* (i.e. an earlier version of the BWA-MEM2 algorithm[^2]), *Bowtie2*[^3], *HISAT2*[^4]
+or *STAR*[^5]. The alignment is written to a file in SAM format (i.e. a text-based format for storing biological
+sequences aligned to a reference sequence).
+
+After alignment, the mapped reads are sorted by leftmost coordinates
+using [samtools sort](http://www.htslib.org/doc/samtools-sort.html) and written to a file in BAM format
+(i.e. a binary form of the SAM format, which uses less disk space and is faster to process than SAM).
+You can download the resulting file in the "*Result files*" section in the "*Alignment*" task
+details ("*Download BAM*"). You can also open this file in the IGV browser by clicking on the
+"*Open in IGV Browser*" link. The BAM file is indexed
+using [samtools index](http://www.htslib.org/doc/samtools-index.html). The resulting index file can be
+downloaded in the same section ("*Download BAI*").
+
+:::info
+If you want to add the alignment track obtained from your sample analysis in Genomenal to
+your [desktop IGV](https://igv.org/doc/desktop/), you can do so via a link. To do this, follow these steps:
+1. Right-click the alignment file link "*Download BAM*" and select the "*Copy link address*" option.
+2. Upload the track via URL to your desktop IGV, as
+described [here](https://igv.org/doc/desktop/#UserGuide/loading_data/).
+3. Right-click the alignment index file link "*Download BAI*" and select the "*Copy link address*" option.
+4. Add the index via URL to the corresponding field in IGV.
+5. Click "*OK*". Done! The sample alignment track is added to IGV.
+:::
+
+The "*Metrics*" section in the "*Alignment*" task details provides metrics for assessing the quality of alignment:
+
+<p align="center">
+<img src={require('/img/eng/alignment_metrics.png').default} width="900"/>
+</p>
+
+For each metric, the following are provided:
+- metric name;
+- description of the result of checking the compliance of a certain sample alignment indicator and the threshold
+of this metric: the indicator value for the sample (e.g. Mapped reads, i.e. the percent of mapped reads in the
+alignment file) and the used metric threshold, at which the alignment file is considered high-quality
+(can be changed in the [parameters](/settings/settings/alignment-settings#change-metric-thresholds)), are provided;
+- result of assessing the quality of alignment by
+metric: <img src={require('/img/eng/passed_metric.png').default} width="90"/> if
+the sample alignment satisfies the metric threshold,
+or <img src={require('/img/eng/failed_metric.png').default} width="80"/> if it does not.
+
+#### The alignment quality metrics {#alignment-metrics}
+
+<table>
+  <tr>
+   <td>Metric</td>
+   <td>The metric threshold value at which the alignment file is considered high-quality (this is the default value,
+   can be changed in <a href="/settings/settings/alignment-settings#change-metric-thresholds">parameters</a>)</td>
+  </tr>
+  <tr>
+   <td><b>Mapped reads</b></td>
+   <td>The alignment file contains at least 85% mapped reads.</td>
+  </tr>
+  <tr>
+   <td><b>Multiple alignments</b></td>
+   <td>The alignment file contains no more than 15% multiple alignments of the same read per genome.</td>
+  </tr>
+  <tr>
+   <td><b>Forward/reverse balance</b></td>
+   <td>The difference between forward and reverse strand reads is no more than 10% in the alignment file.</td>
+  </tr>
+  <tr>
+   <td><b>Paired mapped reads</b></td>
+   <td>The alignment file contains at least 80% paired mapped reads.</td>
+  </tr>
+  <tr>
+   <td><b>Paired properly mapped reads</b></td>
+   <td>The alignment file contains at least 75% paired properly mapped reads.</td>
+  </tr>
+  <tr>
+   <td><b>Coverage per nucleotide</b></td>
+   <td>The minimum acceptable coverage per nucleotide is 0.1.</td>
+  </tr>
+</table>
+
+If the metric value does not meet the threshold in the sample alignment file, the file is marked as not meeting
+the metric criteria, i.e. the alignment is completed successfully, but the stage status indicates the number of
+metrics that do not meet the criteria. If no sample reads are aligned to the genome, the "Alignment" stage completes
+with an error and the analysis is stopped.
+
+If at least one of the following stages is included in the sample
+analysis: [somatic SNVs/Indels discovery](/settings/settings/variant-discovery-settings#somatic-snvs-discovery),
+[germline SNVs/Indels discovery](/settings/settings/variant-discovery-settings#germline-snvs-discovery),
+[structural variations discovery](/settings/settings/variant-discovery-settings#sv-discovery),
+[copy number variations discovery](/settings/settings/variant-discovery-settings#cnv-discovery),
+[phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) or
+[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation),
+then after the "Alignment" task is successfully completed,
+[the "Variant discovery preprocessing" stage](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
+will start.
+
+3. **Determine Kit**
+
+If the user has defined the sample sequencing type as WGS (whole-genome sequencing), then the capture kit
+determination is not performed, and the sequencing type can remain WGS or be redefined as Low-pass WGS (whole genome
+sequencing with low coverage). WGS and Low-pass WGS are differentiated by the average sample coverage: the
+sequencing type of samples with an average coverage less than 4x is defined as Low-pass WGS, and above or
+equal to 4x as WGS.
+
+If the user has defined the sample sequencing type as Targeted selection, the sequencing type can be defined as
+Panel (sequencing using a targeted panel) or WES (whole-exome sequencing). Next, the most suitable capture kit
+(i.e. the targeted panel used in targeted selection) for the sample is determined or the coverage statistics
+of the sample by the capture kit selected by the user are calculated:
+- [bedtools genomecov](https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html)
+computes coverage summaries of aligned sequences for a reference genome and reports depth
+in [bedGraph format](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) (File A).
+- [bedtools intersect](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html)
+screens for overlaps between File A and either the capture kit selected for the sample by the user,
+or each [capture kit that is built into or uploaded into the system](/settings/capture-kits) if the user has
+not selected a capture kit. For a capture kit, the coverage depth, kit length, intersection length, complement
+coverage depth, and complement intersection length of aligned sample sequences with capture kit intervals
+are calculated.
+- For a capture kit selected by the user, or for the best matched capture
+kit, [bedtools complement](https://bedtools.readthedocs.io/en/latest/content/tools/complement.html) returns a file
+with all intervals in a genome that are not covered by at least one interval in the capture kit file (File B).
+- [bedtools intersect](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html)
+screens for overlaps between File A and File B by computing the coverage index, depth, and intersection length
+of these files.
+
+As a result, if the user has not selected a capture kit and if the best matched capture kit for the sample was
+found, the sample is further analyzed with this kit. If a suitable capture kit could not be found, SNVs/Indels
+filtration (variants discovery in the same genomic intervals in which targeted sequencing was performed)
+and copy number variation discovery will not be performed for the sample. The file with the statistics of the
+capture kit selected by the user or determined by the system can be downloaded in the "*Result files*" section
+in the "*Determine Kit*" task details ("*Download Capture kit stats JSON*").
+
+[^1]: [Vasimuddin M., Sanchit M., Heng L., Srinivas A. Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems. IEEE Parallel and Distributed Processing Symposium (IPDPS) (2019)](https://doi.org/10.1109/IPDPS.2019.00041)
+[^2]: [Li H. Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. arXiv:1303.3997v2 (2013)](https://doi.org/10.48550/arXiv.1303.3997)
+[^3]: [Langmead B., Salzberg S. Fast gapped-read alignment with Bowtie 2. Nature Methods 9, 357:359 (2012)](https://doi.org/10.1038/nmeth.1923)
+[^4]: [Kim D., Paggi J.M., Park C. et al. Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. Nat Biotechnol 37, 907:915 (2019)](https://doi.org/10.1038/s41587-019-0201-4)
+[^5]: [Dobin A., Davis C.A., Schlesinger F. et al. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 29(1), 15:21 (2013)](https://doi.org/10.1093/bioinformatics/bts635)
+

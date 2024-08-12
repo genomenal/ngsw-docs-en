@@ -13,7 +13,7 @@ The needed copy number variations can be found by filtering. Filtering options a
 
 ### 1. Log2FC thresholds {#log2fc-threshold}
 
-Filter variations by the Log2FC value, i.e. the logarithmic ratio of the detected copy number to the normal
+Filter variations by the log2FC value, i.e. the logarithmic ratio of the detected copy number to the normal
 copy number. Possible filtering values:
 - Del: ≤-1, Dup: ≥0.58 (chrX: ≥1, chrY: ≥1)
 - Del: ≤-0.9 (chrX: ≤-3.8, chrY: ≤-3.8), Dup: ≥0.55 (chrX: ≥0.94, chrY: ≥0.94)
@@ -39,19 +39,19 @@ Default value: *- Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (c
 It will be applied when all filters are reset. It can only be changed or cleared in the filter options
 (see [below](/results/main/copy-number-variations/cnv-filtering#reset-filtering)).
 Using the default value as an example, let’s look at what these filtering conditions mean:
-- Copy number variations on autosomes with Log2FC ≤ -0.7 are considered deletions. -0.7 is the default
-Log2FC threshold, below which only one autosome is called instead of the normal two.
-- Copy number variations on the X and Y chromosomes with Log2FC ≤ -2.11 are considered deletions.
-- Copy number variations on autosomes with Log2FC ≥ 0.46 are considered duplications.
+- Copy number variations on autosomes with log2FC ≤ -0.7 are considered deletions. -0.7 is the default
+log2FC threshold, below which only one autosome is called instead of the normal two.
+- Copy number variations on the X and Y chromosomes with log2FC ≤ -2.11 are considered deletions.
+- Copy number variations on autosomes with log2FC ≥ 0.46 are considered duplications.
 The threshold for duplication on an autosome is calculated using the following
-formula: *Log2FC = log<sub>2</sub>((2+D)/2)*, where *D* is the “number” of copy number that
-is “lost” at Log2FC = -0.7, and *2* is the number of sister chromatids in the autosome.
-- Copy number variations on the X and Y chromosomes with Log2FC ≥ 0.82 are considered duplications.
-- Variations that do not satisfy the thresholds, i.e. variations on autosomes with -0.7 < Log2FC < 0.46
-and variations on sex chromosomes with -2.11 < Log2FC < 0.82 do not pass filtering, i.e. are excluded
+formula: *log2FC = log<sub>2</sub>((2+D)/2)*, where *D* is the “number” of copy number that
+is “lost” at log2FC = -0.7, and *2* is the number of sister chromatids in the autosome.
+- Copy number variations on the X and Y chromosomes with log2FC ≥ 0.82 are considered duplications.
+- Variations that do not satisfy the thresholds, i.e. variations on autosomes with -0.7 < log2FC < 0.46
+and variations on sex chromosomes with -2.11 < log2FC < 0.82 do not pass filtering, i.e. are excluded
 from the CNV Viewer table.
 
-#### Calculation of Log2FC thresholds for deletions and duplications on autosomes and sex chromosomes
+#### Calculation of log2FC thresholds for deletions and duplications on autosomes and sex chromosomes
 
 The threshold of calling a single copy instead of two on autosomes is calculated as
 follows: <i>T<sub>21</sub> = log<sub>2</sub>(C/2)</i>, where <i>C</i> is the number of called
@@ -263,7 +263,7 @@ Possible values:
 ## Reset Filters {#reset-filtering}
 
 To reset ***all*** applied filters, click on <img src={require('/img/vv/clear_filters.png').default} width="43"/>.
-Only filtering by default Log2FC threshold
+Only filtering by default log2FC threshold
 value *- Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82)* will be preserved.
 
 To clear ***a separate filter***:

@@ -1,0 +1,454 @@
+---
+sidebar_position: 11
+sidebar_label: Phenotype prediction
+---
+
+# Phenotype prediction
+
+After [the "Variant discovery preprocessing" stage](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
+has been successfully completed, the phenotype prediction pipeline can be launched for non-tumor samples if at least
+one of the following tasks was included in the analysis
+workflow: ["*Phenotypes prediction*"](/settings/settings/variant-discovery-settings#enable-phenotype-prediction)
+or ["*Polygenic risk scores calculation*"](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation).
+
+If any of the following tasks fail, the sample analysis stops. However, if quality control and imputation
+are [included](/settings/settings/variant-discovery-settings#disable-qc-and-imputation) in the analysis workflow,
+and if the sample does not meet the quality control criteria, the "Phenotype prediction" stage interrupts, but
+the sample analysis can proceed
+with [report generation](/results/workflow-details/fastq-analysis/report-generation).
+
+<p align="center">
+<img src={require('/img/eng/phenotypes_fq.png').default} width="1000"/>
+</p>
+
+## Convert BAM to VCF {#convert-to-vcf}
+
+To move on to phenotypes prediction or polygenic risk scores calculation, it is necessary to generate a VCF
+file with germline variants that satisfy certain conditions from a sample alignment file in BAM format.
+The way of preprocessing differs for samples with different sequencing types.
+
+### Preprocessing of whole genome sequencing sample {#wgs}
+
+If the sample sequencing type is defined as "WGS" (whole-genome sequencing), the alignment file is converted to
+a VCF file during the **"Calculation of genotypes"** task.
+
+#### Calculation of genotypes {#genotypes}
+
+[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
+produces calls at germline variant sites and confident reference sites, that are needed to calculate the polygenic
+risk scores of phenotypes, in an alignment file. The calling is accomplished via local *de novo* assembly of
+haplotypes in an active region. In other words, whenever the program encounters a region showing signs of
+variation, it discards the existing mapping information and completely reassembles the reads in that region.
+This allows to be more accurate when calling regions that are traditionally difficult to call, for example
+when they contain different types of variants close to each other. For each potentially variant site, the
+program applies Bayes' rule, using the likelihoods of alleles given the read data to calculate the likelihoods
+of each genotype per sample given the read data observed for the sample. The most likely genotype is then
+assigned to the sample.
+
+The variants are then annotated with rsIds from [the dbSNP database](https://www.ncbi.nlm.nih.gov/snp/)
+using [bcftools annotate](https://samtools.github.io/bcftools/bcftools.html#annotate). The resulting file
+is compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). It can be downloaded
+in the "*Result files*" section in the "*Calculation of genotypes*" task details ("*Download VCF_GZ*").
+In addition, the file is indexed using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index
+file can be downloaded in the same section ("*Download VCF_TBI*").
+
+### Preprocessing of low-pass whole genome sequencing sample {#low-pass-wgs}
+
+If the sample sequencing type is defined as "Low-pass WGS" (whole genome sequencing with low coverage), the
+alignment file is converted to a VCF file during the **"Imputation low pass WGS"** task, followed by the
+mandatory **"Quality Filter"** task (described [below](/results/workflow-details/fastq-analysis/phenotypes#qc-control)).
+
+#### Imputation low pass WGS {#impute-low-pass-wgs}
+
+Imputation is a statistical method for reconstructing missing genetic data based on haplotype analysis in
+a reference set. First, variants are divided by chromosomes for parallel imputation
+using [bcftools call](https://samtools.github.io/bcftools/bcftools.html#call).
+Then, [GLIMPSE chunk](https://odelaneau.github.io/GLIMPSE/docs/documentation/chunk/)
+creates imputation chunks from chromosomes and phases common sites.
+[GLIMPSE phase](https://odelaneau.github.io/GLIMPSE/docs/documentation/phase/)
+imputes and phases low-coverage sequencing
+data. [GLIMPSE ligate](https://odelaneau.github.io/GLIMPSE/docs/documentation/ligate/)
+phases rare variants onto a scaffold of common variants, and ligates multiple phased files into a single whole
+chromosome file. Finally, the imputed variants, divided by chromosomes, are concatenated into a single VCF
+file using [bcftools concat](https://samtools.github.io/bcftools/bcftools.html#concat). This file is then
+sorted by chromosome and compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html).
+The resulting file with imputed variants in VCF format can be downloaded in the "*Result files*" section in
+the "*Imputation low pass WGS*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
+using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
+same section ("*Download VCF_TBI*").
+
+### Preprocessing of whole exome or targeted sequencing sample {#wes}
+
+If the sample sequencing type is defined as "Panel" (sequencing using a targeted panel) or "WES" (whole-exome
+sequencing), the alignment file is converted to a VCF file during the **"Calculation of genotypes"** task
+(described [above](/results/workflow-details/fastq-analysis/phenotypes#genotypes)), followed by quality control
+tasks if the "*Enable QC and imputation*" parameter
+is [enabled](/settings/settings/variant-discovery-settings#disable-qc-and-imputation). Quality control includes
+the **"Normalize VCF"**, **"Quality Filter"** and **"Imputation"** tasks and is completed by repeated
+quality filtering.
+
+:::info
+If a sample fails a quality control check, the "Phenotype prediction" stage is interrupted and no phenotypes
+prediction and/or polygenic risk scores calculation occurs. Sample analysis can proceed
+with [report generation](/results/workflow-details/fastq-analysis/report-generation).
+You can [disable](/settings/settings/variant-discovery-settings#disable-qc-and-imputation) quality control
+and imputation, but the results may be insufficient in this case.
+:::
+
+#### Normalize VCF {#normalize-vcf}
+
+At this step, [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) checks if reference alleles
+in the file match the reference; splits multiallelic sites into biallelic records; outputs only the first instance
+if a record is present multiple times. The resulting file is compressed into a GZIP archive
+using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
+the "*Normalize VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
+using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
+same section ("*Download VCF_TBI*").
+
+#### Quality Filter {#qc-control}
+
+- [bcftools filter](https://samtools.github.io/bcftools/bcftools.html#filter)
+excludes sites for which genotype information is missing for the site (e.g., ./.).
+- [PLINK](https://www.cog-genomics.org/plink/2.0/) converts a VCF file into a PLINK 2 binary fileset
+(i.e. a way to represent genotype calls), and removes all but one instance of each duplicate-ID variant
+(ignoring the missing ID). A file with a detailed description of this task log can be downloaded in the
+"*Result files*" section in the "*Quality Filter*" task details ("*Download convert log TXT*").
+- **Quality control**. The checks are performed throughout samples and single nucleotide polymorphisms (SNPs),
+those not meeting the criteria are removed. All of the quality control procedures are conducted
+through [PLINK](https://www.cog-genomics.org/plink/2.0/). QC process includes pre-stage (sample and SNP call rate,
+and sex check) and iterative stages that are repeated iteratively until errors are no longer detected.
+
+<p align="center">
+<img src={require('/img/eng/qc_pipeline.png').default} width="700"/>
+</p>
+
+1. Checking the data for samples with extremely low call rate. Samples with high missing call rate are implications
+of poor DNA quality. They are removed from analysis. The sample call rate threshold is > 0.5.
+2. Checking the data for SNPs with extremely low call rate. The missing call rate of SNP is the proportion of
+samples whose genotypes are not called for a given SNP. SNPs with a high missing genotype rate (generally, >5%)
+imply some problems with the genotyping process, so these SNPs are eliminated from analysis.
+The SNP call rate threshold is > 0.5.
+3. Sex check and removing samples with wrong sex assigned. Sex check is based on estimation of X-linked SNPs
+heterozygosity. By default, X-chromosome inbreeding coefficient F estimates smaller than 0.2 yield female samples,
+and values larger than 0.8 yield male samples.
+4. Minor allele frequency (MAF) check. SNPs with MAF less than 1% are excluded from subsequent analysis as
+current SNP-chips genotyping rare variants (i.e. a locus with MAF< 1%) is difficult and error-prone. Thus,
+very low-frequency alleles are likely to represent genotyping error and may result in spurious associations.
+5. SNP filtration by call rate with a threshold > 0.98.
+6. Hardy-Weinberg equilibrium (HWE) check. Under Hardy-Weinberg’s assumptions, allele and genotype frequencies can
+be estimated from one generation to the next. It is noted that departure from Hardy-Weinberg equilibrium
+can occur due to selection, population admixture, cryptic relatedness, genotyping error, and genuine genetic
+association. So it is beneficial to check whether the SNPs deviate from HWE for quality control.
+7. Sample filtration by call rate with a threshold > 0.98.
+8. Sample heterozygosity. The proportion of heterozygous genotypes across an sample's genome can detect several
+issues with genotyping, like sample contamination, inbreeding. Samples that deviate ± 3 SD (standard deviation)
+from the sample's mean heterozygosity are removed from the analysis.
+9. Identity by state check. A high degree of relatedness between samples can also generate inflation of the
+association. To investigate the cryptic relatedness we calculate kinship matrix and filter samples with close
+relationships. Kinship coefficient is > 0.0925.<br></br>
+A file with a detailed description of the quality control task log can be downloaded in the
+"*Result files*" section in the "*Quality Filter*" task details ("*Download QC log TXT*").
+- Second check and filtering of variants and generation of a new PLINK 2 binary fileset set with filtered
+samples and SNPs using [PLINK](https://www.cog-genomics.org/plink/2.0/).<br></br>A file with a detailed description
+of this task log can be downloaded in the "*Result files*" section in the "*Quality Filter*" task details
+("*Download merge log TXT*").<br></br>A file with SNPs removed from the analysis can be downloaded in
+the same section ("*Download Skipped variants TXT*"). For each SNP, the reason for removing and the QC iteration
+run number at which the removing occurred are indicated.<br></br>
+The full data quality control report can be opened in the same section ("*Open QC report HTML*").<br></br>A file
+with samples removed from the analysis can be downloaded in the same section ("*Download Removed samples TXT*").
+For each sample, the reason for removing and the QC iteration run number at which the removing occurred are indicated.
+- Excluding SNPs that did not pass filtering from analysis using [vcftools](https://vcftools.github.io/index.html).
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+can be downloaded in the "*Result files*" section in the "*Quality Filter*" task details ("*Download Filtered VCF_GZ*").
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download Filtered VCF_TBI*").
+
+#### Imputation {#imputation}
+
+Imputation is a statistical method for reconstructing missing genetic data based on haplotype analysis in
+a reference set.
+- [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a VCF file.
+- Dividing variants by chromosomes for parallel imputation
+using [bcftools view](https://samtools.github.io/bcftools/bcftools.html#view).
+- [Beagle](http://faculty.washington.edu/browning/beagle/beagle.html) phases genotypes and imputes
+ungenotyped markers.<br></br>
+- Concatenating the imputed variants, divided by chromosomes, into a single VCF
+file using [bcftools concat](https://samtools.github.io/bcftools/bcftools.html#concat).
+- [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a VCF file.
+- Comparison of the original file and the file obtained after imputation, and generating a file with unimputed
+variants using [vcftools](https://vcftools.github.io/index.html).
+- Compressing a file with unimputed variants into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html).
+- [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a file with
+unimputed variants.
+- [bcftools filter](https://samtools.github.io/bcftools/bcftools.html#filter)
+includes only imputed sites for which DR2 (dosage R-squared) > 0.3.
+- [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a file with
+imputed and filtered variants.
+- Concatenating the unimputed variants and filtered imputed variants into a single VCF
+file using [bcftools concat](https://samtools.github.io/bcftools/bcftools.html#concat).
+- [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a merged file.<br></br>
+A file with a detailed description of the imputation task log can be downloaded in the "*Result files*" section
+in the "*Imputation*" task details ("*Download Impute log TXT*").<br></br>
+A file with unimputed and filtered imputed variants in VCF format can be downloaded in the same
+section ("*Download Imputed VCF_GZ*").<br></br>
+An index file for VCF file can be downloaded in the same section ("*Download Imputed VCF_TBI*").
+
+## Determining sex {#determine-sex}
+
+Regardless of the sequencing type, sex information is imputed from the X-chromosome homozygosity level data
+for all samples. The X-chromosome inbreeding coefficient F is calculated using the following formula:
+
+<p align="center">
+<img src={require('/img/eng/x_coeff.png').default} width="500"/>
+</p>
+
+If F < 0.2, then the sex is determined as female. If F > 0.8, then the sex is determined as male.
+If 0.2 < F < 0.8, then the sex cannot be determined unambiguously.
+
+The sex value determined by genetic data is used when
+generating [a report on polygenic traits](/results/polygenic-report).
+
+## Polygenic risk scores calculation {#calculate-prs}
+
+Polygenic risk scores calculation is launched after sample preprocessing steps has been successfully completed
+if [the corresponding parameter](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation) is
+enabled.
+
+#### 1. Normalize multiallelic VCF {#multiallelic-normalization}
+
+Normalization of multiallelic VCF is a necessary step before calculating polygenic risk scores.
+[bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) left-aligns and normalizes indels; checks
+if reference alleles in the file match the reference; joins biallelic sites into multiallelic records.
+The resulting file with normalized variants is compressed into a GZIP archive
+using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
+the "*Normalize multiallelic VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
+using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
+same section ("*Download VCF_TBI*").
+
+#### 2. Polygenic risk scores calculation {#prs-calculation}
+
+Polygenic risk scores calculation consists of applying a linear scoring to each sample
+using [PLINK](https://www.cog-genomics.org/plink/2.0/). Variants for which genotype information is missing for
+the site (genotype ./. etc.), variants without ID, or with mismatched allele codes are not taken into account
+in the analysis. The patient's genetic data must include the variants represented in the polygenic risk model,
+with the exception of a small proportion set by the threshold value. Polygenic risk scores calculation is considered
+possible if the user's genetic data contains at least 95% of all variants represented in the model.
+
+The polygenic risk score (PRS) represents the total number of genetic variants (SNPs) that an individual has to
+assess their heritable risk of developing a particular phenotype. For each trait, the polygenic risk score is
+calculated using the following formula:
+
+<p align="center">
+<img src={require('/img/eng/prs_formule.png').default} width="500"/>
+</p>
+
+Genotypes are coded as follows: considering allele A as the effect allele and allele G as the ineffect allele,
+the numerical code for genotype AA is 2, genotype AG is 1, and genotype GG is 0.<br></br>
+The estimated effect sizes of SNPs are calculated based on genome-wide association study (GWAS) data, which
+match phenotypic traits with genomic variants in human populations.<br></br>
+The polygenic risk score reflects an individual's estimated genetic predisposition to the given trait and can
+be used as a predictor of that trait in a predictive model. In other words, the PRS estimates how likely an
+individual is to have the given trait based only on genetic data and without taking into account environmental factors.
+
+The polygenic risk scores are calculated for the following traits:
+   - Height
+   - Weight
+   - Body Mass Index (BMI)
+   - Predisposition to being overweight
+   - Predisposition to Prostate Cancer
+   - Predisposition to Breast Cancer
+   - Predisposition to Coronary Artery Disease
+   - Predisposition to Inflammatory Bowel Disease
+   - Predisposition to Type 2 diabetes
+   - Predisposition to Colorectal Cancer
+
+For each trait, three files are generated as a result, which can be downloaded in the "*Result files*" section
+in the "*Polygenic risk scores calculation*" task details:
+- A file with a detailed description of PRS calculation log ("*Download [the trait name] Prs log TXT*").
+- A file with the summary risk score for this sample ("*Download [the trait name] Score TSV*").
+You can also open it in Google Sheets.
+- A file with a list of variant IDs used to calculate PRS ("*Download [the trait name] Used Variants TSV*").
+You can also open it in Google Sheets.
+
+## Phenotypes prediction {#predict-phenotypes}
+
+Phenotypes prediction (oligogenic risk calculation) is launched after sample preprocessing steps has been successfully
+completed if [the corresponding parameter](/settings/settings/variant-discovery-settings#enable-phenotype-prediction)
+is enabled.
+
+#### 1. Normalize VCF {#normalization}
+
+First, VCF file is normalized using [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) that
+left-aligns and normalizes indels; checks if reference alleles in the file match the reference; splits multiallelic
+sites into biallelic records; outputs only the first instance if a record is present multiple times.
+The resulting file is compressed into a GZIP archive
+using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
+the "*Normalize VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
+using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
+same section ("*Download VCF_TBI*").
+
+#### 2. Phenotypes prediction {#phenotypes-prediction}
+
+During the task execution, the following oligogenic risks are calculated:
+
+- [Hair color](https://www.genokarta.ru/disease/Cvet_volos): The probability is predicted by a model that uses
+Multinomial Logistic Regression. Hair color is determined by 22 polymorphisms, the model[^1] predicts probabilities
+for 4 categories: black, brown, red, blond hair color. Hair shade is determined by 20 polymorphisms (intersecting
+with hair color), the model predicts probabilities for dark and light hair shade. The phenotype is predicted by
+combining the probabilities from both models.
+- [Eyes color](https://www.genokarta.ru/disease/Cvet_glaz): The probability is predicted by a model that uses
+Multinomial Logistic Regression. Eyes color is determined by 6 polymorphisms, the model[^2] predicts probabilities
+for three phenotypic traits: blue, green, brown eyes color.
+- [Skin color](https://www.genokarta.ru/disease/Cvet_kozhi): The probability is predicted by a model that uses
+Multinomial Logistic Regression. Skin color is determined by 36 polymorphisms. The skin phenotype is determined
+by the Fitzpatrick scale[^3]. The model[^4] predicts probabilities for 5 phenotypic traits: very dark, dark,
+medium, fair, and very fair skin color.
+- [Freckling](https://www.genokarta.ru/disease/Vesnushki): The probability is predicted by a model that uses
+Multinomial Logistic Regression. The model[^5] predicts the presence of freckles based on 14 predictors (one of
+which is sex). It predicts 3 types of freckling: severe, medium, and absence.
+- [Lactose intolerance](https://www.genokarta.ru/disease/Neperenosimost_laktozy): The model is based on one
+polymorphism that completely associates with biochemically verified lactase non-persistence[^6]. Secondly and
+thirdly, some polymorphisms are considered that may be responsible for the variability of this trait for some
+populations (Finnish[^6], East African[^7]).
+- [Bitter taste](https://www.genokarta.ru/disease/Chuvstvitelnost_k_gorkomu_vkusu): The model is based on
+three polymorphisms giving rise to five haplotypes in the gene that encodes a member of the TAS2R bitter taste
+receptor family. These haplotypes completely explain the bimodal distribution of phenylthiocarbamide taste
+sensitivity[^8].
+- [Blood type](https://www.genokarta.ru/disease/Gruppy_krovi_po_sisteme_ABO): The model is based on a
+haplotype consisting of 2 polymorphisms[^9].
+- [Alcohol metabolism](https://www.genokarta.ru/disease/Metabolizm_alkogolya): The model is based on a single
+polymorphism, a substitution in which has been shown to result in the formation of a nearly inactive ALDH2
+enzyme that no longer oxidizes acetaldehyde to acetate[^10]. Having even one allele is fully protective
+against alcoholism. In fact, the protective effect of this polymorphism is the most widely replicated
+association of a specific gene with alcoholism[^11]. Another polymorphism that is frequently present in
+studies[^11] is considered secondarily.
+- [Earwax](https://www.genokarta.ru/disease/Ushnaya_sera): The model is based on a single polymorphism in
+the *ABCC11* gene[^12] that contains instructions for a protein that specializes in moving fat into and out of
+the cells. People who have 1 or 2 copies of the C variant in the *ABCC11* gene have more fat in their earwax,
+making it dark-colored and sticky. People who have two copies of the T variant have less fat in their earwax,
+making it dry, light-colored, and flaky.
+- [Body odour](https://www.genokarta.ru/disease/Podmyshechnyj_osmidroz): The model is based on a single
+polymorphism that is strongly associated with axillary osmidrosis[^13].
+- Pharmacokinetic: Prediction of risks of using certain drugs based
+on [recommendations for the use of pharmacogenetic testing in clinical practice](https://www.clinvest.ru/jour/article/view/135?locale=ru_RU)[^14].
+
+<table>
+  <tr>
+   <td>Drug name</td>
+   <td>Marker</td>
+   <td>Risk score</td>
+   <td>Risk description and recommendations</td>
+  </tr>
+  <tr>
+   <td rowspan="3">Statins<br></br>(Atorvastatin, Simvastatin, Fluvastatin, Rosuvastatin, Pravastatin)</td>
+   <td rowspan="3">1 SNP</td>
+   <td>0</td>
+   <td>"Wild type" genotype does not require statin dose adjustment.</td>
+  </tr>
+	<tr>
+   <td>1</td>
+   <td>Associated with a high risk of myopathy, including rhabdomyolysis, when using simvastatin, atorvastatin,
+   pravastatin or rosuvastatin. The maximum dose of statins allowed is 40 mg/day.</td>
+   </tr>
+	<tr>
+   <td>2</td>
+   <td>Associated with a high risk of myopathy, including rhabdomyolysis, when using simvastatin, atorvastatin,
+   pravastatin or rosuvastatin. The maximum dose of statins allowed is 20 mg/day.</td>
+  </tr>
+  <tr>
+   <td rowspan="3">Tacrolimus</td>
+   <td rowspan="3">1 SNP</td>
+   <td>0</td>
+   <td>Tacrolimus is well tolerated. There are no alleles that increase nephrotoxicity.</td>
+  </tr>
+	<tr>
+   <td>1</td>
+   <td>Associated with the development of nephrotoxicity when tacrolimus is administered using the standard
+   dosing. People with heterozygous genotype are more sensitive to tacrolimus than people with "wild type" homozygous
+   genotype.</td>
+   </tr>
+	<tr>
+   <td>2</td>
+   <td>Associated with the development of nephrotoxicity when tacrolimus is administered using the standard dosing.
+   People with homozygous genotype are most sensitive to tacrolimus.</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Azathioprine and 6-mercaptopurine</td>
+   <td rowspan="2">9 SNPs</td>
+   <td>1</td>
+   <td>Associated with a high risk of developing hematological toxicity in the first week of treatment with
+   azathioprine or 6-mercaptopurine at standard doses. It is recommended to initiate treatment with azathioprine
+   or 6-mercaptopurine at 50% of the standard dose.</td>
+  </tr>
+	<tr>
+   <td>2</td>
+   <td>Associated with a high risk of developing hematological toxicity in the first week of treatment with
+   azathioprine or 6-mercaptopurine at standard doses. It is recommended to initiate treatment with azathioprine
+   or 6-mercaptopurine at 10% of the standard dose.</td>
+  </tr>
+  <tr>
+   <td>Abacavir</td>
+   <td>1 SNP</td>
+   <td>1</td>
+   <td>Associated with the development of hypersensitivity syndrome with the use of
+   abacavir<sup><a href="/results/workflow-details/vcf-analysis/phenotypes#fn-14">14</a></sup>.
+   It is recommended to discontinue the use of abacavir.</td>
+  </tr>
+  <tr>
+   <td>Clopidogrel</td>
+   <td>2 SNPs</td>
+   <td>1</td>
+   <td>A weak antiplatelet effect of clopidogrel is noted due to the disruption of the formation of its
+   active metabolite in the liver, which is the basis for genetically determined resistance to this drug.
+   Patients with these allelic variants receiving clopidogrel have a higher risk of cardiovascular events
+   compared to patients who do not carry these allelic variants.</td>
+  </tr>
+  <tr>
+   <td>Tamoxifen</td>
+   <td>7 SNPs and a deletion of the <i>CYP2D6</i> gene</td>
+   <td>1</td>
+   <td>Associated with a slowdown in the formation of the active metabolite of tamoxifen in the liver and
+   predicts low efficacy of tamoxifen in patients with postmenopausal estrogen-positive breast cancer.</td>
+  </tr>
+  <tr>
+   <td>Irinotecan</td>
+   <td>1 SNP</td>
+   <td>1</td>
+   <td>Associated with impaired biotransformation of the active metabolite of irinotecan SN-38, its accumulation
+   in the body and a high risk of developing neutropenia and severe diarrhea.</td>
+  </tr>
+</table>
+
+- [Misophonia](https://www.genokarta.ru/disease/Mizofoniya): The model is based on a single polymorphism
+that is significantly associated with the sensitivity to chewing sounds[^15].
+- [Sleep movement](https://www.genokarta.ru/disease/Dvizhenie_vo_vremya_sna): The model is based on a
+single polymorphism that is associated with restless legs syndrome and susceptibility to periodic limb
+movements in sleep[^16].
+- [Photic sneeze reflex](https://www.genokarta.ru/disease/Svetovoj_refleks_chihaniya): The model is based
+on two polymorphisms that are associated with photic sneeze reflex[^17].
+- Sex: the result of the "Determining sex" task
+described [above](/results/workflow-details/fastq-analysis/phenotypes#determine-sex).
+
+The resulting file with predicted phenotypes can be downloaded in the "*Result files*" section in
+the "*Phenotypes prediction*" task details ("*Classifier results JSON*").
+
+After the "Phenotype prediction" stage, the analysis can proceed
+with [report generation](/results/workflow-details/fastq-analysis/report-generation).
+
+[^1]: [Model for hair colour and shade prediction](https://www.fsigenetics.com/article/S1872-4973(12)00181-0/fulltext)
+[^2]: [Model for eyes color prediction](https://www.fsigenetics.com/article/S1872-4973(11)00144-X/fulltext)
+[^3]: [Fitzpatrick scale](https://jamanetwork.com/journals/jamadermatology/article-abstract/549509)
+[^4]: [Model for skin colour prediction](https://link.springer.com/article/10.1007/s00439-017-1808-5)
+[^5]: [Predictive model for the presence of freckles](https://www.fsigenetics.com/article/S1872-4973(19)30037-7/fulltext)
+[^6]: [Enattah N., Sahi T., Savilahti E. et al. Identification of a variant associated with adult-type hypolactasia. Nat Genet 30, 233–237 (2002)](https://www.nature.com/articles/ng826z)
+[^7]: [Tishkoff S., Reed F., Ranciaro A. et al. Convergent adaptation of human lactase persistence in Africa and Europe. Nat Genet 39, 31–40 (2007)](https://www.nature.com/articles/ng1946)
+[^8]: [Un-kyung Kim et al. Positional Cloning of the Human Quantitative Trait Locus Underlying Taste Sensitivity to Phenylthiocarbamide. Science 299, 1221-1225 (2003)](https://www.science.org/doi/10.1126/science.1080190)
+[^9]: [Melzer D. et al. A genome-wide association study identifies protein quantitative trait loci (pQTLs). PLoS Genet 4, e1000072 (2008)](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000072)
+[^10]: [Crabb D.W., Edenberg H.J., Bosron W.F., Li T.K. Genotypes for aldehyde dehydrogenase deficiency and alcohol sensitivity. The inactive ALDH2(2) allele is dominant. J Clin Invest 83, 314-316 (1989)](https://www.jci.org/articles/view/113875)
+[^11]: [Chen C.C. et al. Interaction between the functional polymorphisms of the alcohol-metabolism genes in protection against alcoholism. Am J Hum Genet 65, 795-807 (1999)](https://www.cell.com/ajhg/fulltext/S0002-9297(07)62333-7)
+[^12]: [Yoshiura Ki. et al. A SNP in the ABCC11 gene is the determinant of human earwax type. Nat Genet 38, 324–330 (2006)](https://www.nature.com/articles/ng1733)
+[^13]: [Inoue Y. et al. Correlation of axillary osmidrosis to a SNP in the ABCC11 gene determined by the Smart Amplification Process (SmartAmp) method. J Plast Reconstr Aesthet Surg 63, 1369-1374 (2010)](https://www.jprasurg.com/article/S1748-6815(09)00487-2/fulltext)
+[^14]: [Chavan Y. et al. Rapid detection of HLA-B*5701 allele by in-house developed tetra-primer amplification refractory mutation system PCR. Meta Gene 12, 150-153 (2017)](https://www.sciencedirect.com/science/article/pii/S221454001730021X?via%3Dihub)
+[^15]: [Fayzullina S. et al. White Paper 23‐08 Genetic Associations	with Traits	in 23andMe Customers. 23andMe (2015)](https://permalinks.23andme.com/pdf/23-08_genetic_associations_with_traits.pdf)
+[^16]: [Stefansson H. et al. A genetic risk factor for periodic limb movements in sleep. N Engl J Med 357, 639-47 (2007)](https://www.nejm.org/doi/full/10.1056/NEJMoa072743)
+[^17]: [Eriksson N. et al. Web-based, participant-driven studies yield novel genetic associations for common traits. PLoS Genet 6, e1000993 (2010)](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000993)
