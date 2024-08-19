@@ -58,17 +58,26 @@ If the sample sequencing type is defined as "Low-pass WGS" (whole genome sequenc
 alignment file is converted to a VCF file during the **"Imputation low pass WGS"** task, followed by the
 mandatory **"Quality Filter"** task (described [below](/results/workflow-details/fastq-analysis/phenotypes#qc-control)).
 
+:::caution
+The pipeline for phenotypes prediction and polygenic risk scores calculation in low-pass WGS data is experimental.
+:::
+
 #### Imputation low pass WGS {#impute-low-pass-wgs}
 
 Imputation is a statistical method for reconstructing missing genetic data based on haplotype analysis in
-a reference set. First, variants are divided by chromosomes for parallel imputation
-using [bcftools call](https://samtools.github.io/bcftools/bcftools.html#call).
-Then, [GLIMPSE chunk](https://odelaneau.github.io/GLIMPSE/docs/documentation/chunk/)
-creates imputation chunks from chromosomes and phases common sites.
+a reference set. First, genotype calling for low-coverage data is performed using
+[bcftools mpileup](https://samtools.github.io/bcftools/bcftools.html#mpileup) and
+[bcftools call](https://samtools.github.io/bcftools/bcftools.html#call).
+As a result, VCF file containing genotype likelihoods (GLs) for each site from the reference panel is generated.
+This file is then taken as input by the GLIMPSE tool. In addition, variants are divided by chromosomes for parallel
+imputation. Then, [GLIMPSE chunk](https://odelaneau.github.io/GLIMPSE/docs/documentation/chunk/)
+creates imputation chunks from data to make the calculation more optimized and phases common sites.
 [GLIMPSE phase](https://odelaneau.github.io/GLIMPSE/docs/documentation/phase/)
-imputes and phases low-coverage sequencing
-data. [GLIMPSE ligate](https://odelaneau.github.io/GLIMPSE/docs/documentation/ligate/)
-phases rare variants onto a scaffold of common variants, and ligates multiple phased files into a single whole
+imputes and phases low-coverage sequencing data. As a
+reference, [the panel](https://www.internationalgenome.org/data-portal/data-collection/30x-grch38) based on the
+1000 Genomes Project sample collection to 30x coverage is used.
+[GLIMPSE ligate](https://odelaneau.github.io/GLIMPSE/docs/documentation/ligate/)
+phases rare variants onto a scaffold of common variants, and ligates all phased chunks into a single whole
 chromosome file. Finally, the imputed variants, divided by chromosomes, are concatenated into a single VCF
 file using [bcftools concat](https://samtools.github.io/bcftools/bcftools.html#concat). This file is then
 sorted by chromosome and compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html).
