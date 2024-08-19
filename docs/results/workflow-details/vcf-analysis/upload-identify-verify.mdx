@@ -1,0 +1,37 @@
+---
+sidebar_position: 2
+sidebar_label: Upload, identify and verify
+---
+
+# Upload, identify and verify
+
+After the analysis starts, the sample in VCF or GT format is uploaded, its format is identified and the sample
+is verified. If any of the following tasks fail, the sample analysis is stopped.
+
+<p align="center">
+<img src={require('/img/eng/upload_workflow_vcf.png').default} width="1000"/>
+</p>
+
+The "Upload, identify and verify" stage of sample analysis may include the following tasks:
+1. **Upload**. If you are uploading a sample file from your computer and not via a link, the uploading
+process may be interrupted. To restore it, use [the resume upload form](/uploading-samples/restore_upload).
+2. **Extract** using [7-Zip](https://www.7-zip.org/) if the sample is uploaded as an archive
+(GZIP, ZIP, BZIP2, 7-ZIP, XZ, WIM, RAR).
+3. **Identify**: defining data format.
+4. **Convert to VCF** if the sample was uploaded in GT format (TSV, TXT). The original file in GT format can
+be downloaded in the "*Result files*" section in the "*Convert to VCF*" task details ("*Download Original GT_FORMAT*").
+5. **Verify** VCF file.
+6. **Convert chromosome names** if the VCF file contains chromosomes that are not named according to the UCSC
+convention, which prefixes chromosome names with "chr" (e.g. chr1, chrX). After conversion, the VCF file is verified
+again.
+7. **Lift over hg19 to hg38** if the reference genome version of the uploaded annotation is not hg38, but hg19.
+The resulting file can be downloaded in the "*Result files*" section in the "*Lift over hg19 to hg38*" task details
+("*Download HG38 VCF*"). There you can also download a file with variants that could not be converted into hg38
+("*Download LIFT_OVER_FAILED TSV*"). Such variants are not included in further analysis. You can also open
+this file in Google Sheets. After lifting over to hg38, the VCF file is verified.
+
+The uploaded unpacked sample file in VCF format with the original chromosome names and reference genome version can be
+downloaded [at the top of the "Workflow details" tab](/results/workflow-details/workflow-details#sample-files).
+
+After the "Upload, identify and verify" stage has successfully completed, the analysis continues
+with [annotation](/results/workflow-details/vcf-analysis/annotation).

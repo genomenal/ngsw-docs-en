@@ -1,0 +1,113 @@
+---
+sidebar_position: 3
+sidebar_label: Annotation
+---
+
+# Annotation
+
+After successful upload, identification and verification, the sample analysis continues with the main stage of the
+analysis, such as annotation. If the uploaded annotation contains SNVs/Indels, the "Germline SNVs/Indels annotation"
+stage (if the sample was uploaded as a non-tumor sample) or "Somatic SNVs/Indels annotation" stage (if the sample
+was uploaded as a tumor sample) is launched. If SNVs/Indels are not found in the uploaded annotation, but there are
+structural variations, the "Germline SV annotation" stage (if the sample was uploaded as a non-tumor sample) or
+"Somatic SV annotation" stage (if the sample was uploaded as a tumor sample) is launched. If any of the tasks
+listed below fail, the sample analysis is stopped.
+
+<p align="center">
+<img src={require('/img/eng/vcf_annotation.png').default} width="1000"/>
+</p>
+
+**Tasks of the "SNVs/Indels annotation" stage:**
+1. **Unify SNVs/Indels**:
+- Sorting a VCF file using [GNU sort](https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html)
+by chromosome names.
+- [bcftools reheader](https://samtools.github.io/bcftools/bcftools.html#reheader) modifies header of VCF file and
+changes sample names.
+- [GATK FixVCFHeader](https://gatk.broadinstitute.org/hc/en-us/articles/360037428851-FixVcfHeader-Picard-)
+replaces or fixes a VCF header.
+- [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) checks if reference alleles
+in the file match the reference; splits multiallelic sites into biallelic records; outputs only the first instance
+if a record is present multiple times.
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+can be downloaded in the "*Result files*" section in the "*Unify SNVs/Indels*" task details ("*Download VCF_GZ*").
+You can also open this file in the IGV browser by clicking on the "*Open in IGV Browser*" link.
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download VCF_TBI*").
+
+If the sample analysis workflow includes polygenic risk scores calculation and/or phenotypes prediction,
+then [the "Phenotype prediction" stage](/results/workflow-details/vcf-analysis/phenotypes) will be launched in
+parallel with annotation after the "Unify SNVs/Indels" task.
+
+2. **Annotate SNVs/Indels**:
+- Annotation of SNVs/Indels in the file with data from the [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/),
+[1000 Genomes](https://www.internationalgenome.org/), [dbNSFP](https://sites.google.com/site/jpopgen/dbNSFP),
+[dbSNP](https://www.ncbi.nlm.nih.gov/snp/), [gnomAD 3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/),
+[gnomAD 4](https://gnomad.broadinstitute.org/),
+[ClinVar](https://preview.ncbi.nlm.nih.gov/clinvar/), [CADD](https://cadd.gs.washington.edu/),
+[SpliceAI](https://spliceailookup.broadinstitute.org/), [ENIGMA](https://enigmaconsortium.org/) databases.
+- Determination of the effect of SNVs/Indels on genes, transcripts, and protein sequence, as well as regulatory
+regions, using [Ensembl Variant Effect Predictor (VEP)](https://www.ensembl.org/info/docs/tools/vep/index.html):
+   - [PolyPhen](http://genetics.bwh.harvard.edu/pph2/) predicts possible impact of an amino acid substitution on
+   the structure and function of a protein using straightforward physical and comparative considerations.
+   - A flag indicating if the transcript is the canonical transcript for the gene is added.
+   - Allele number from VCF input is identified.
+   - Affected exon and intron numbering is added.
+   - [HGVS nomenclature](https://varnomen.hgvs.org/) based on [Ensembl](https://www.ensembl.org/index.html) stable
+   identifiers is added.
+   - Upstream variant consequences are determined if the upstream (5') distance between a variant and a transcript
+   is more than 2000 bp. Downstream variant consequences are determined if the downstream (3') distance between
+   a variant and a transcript is more than 1000 bp.
+
+   The resulting file with raw annotated SNVs/Indels in TSV format can be downloaded in the "*Result files*" section
+in the "*Annotate SNVs/Indels*" task details ("*Download Raw annotated TSV*").
+You can also open it in Google Sheets.<br></br>
+The resulting file with annotated SNVs/Indels without duplicates in TSV format can be downloaded in the same section
+("*Download All variants TSV*"). You can also open it in Google Sheets.
+The same file in CSV format can be downloaded from the same place ("*Download All variants CSV*").
+- Converting TSV results to VCF.
+- [GATK FixVCFHeader](https://gatk.broadinstitute.org/hc/en-us/articles/360037428851-FixVcfHeader-Picard-)
+replaces or fixes a VCF header.
+- The file is compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html).
+The resulting file can be downloaded in the "*Result files*" section
+in the "*Annotate SNVs/Indels*" task details ("*Download All variants VCF_GZ*").
+You can also open this file in the IGV browser by clicking on the "*Open in IGV Browser*" link.
+- The file is indexed using [tabix](http://www.htslib.org/doc/tabix.html).
+The resulting index file can be downloaded in the same section ("*Download All variants VCF_TBI*").
+- Calculating variants' statistic.
+3. **Store annotated variants for SNV Viewer**:
+saving results for display in [SNV Viewer](/results/main/snvs-indels/variant-viewer), i.e. an embedded service
+for viewing and analyzing variants, and adding information
+about [the variant occurrence](/results/main/snvs-indels/snv-details-page#occurrences) in other samples of the user.
+
+After the "Annotate SNVs/Indels" stage, the analysis can proceed
+with [report generation](/results/workflow-details/vcf-analysis/report-generation).
+
+**The "SV annotation" stage** includes one task **"Annotate SV VCF"**:
+- Annotation and ranking of structural variations using [AnnotSV](https://lbgi.fr/AnnotSV/).<br></br>
+The resulting file with structural variations in TSV format can be downloaded in the "*Result files*" section
+in the "*Annotate SV VCF*" task details ("*Download Filtered variants TSV*").
+You can also open it in Google Sheets. The same file in CSV format can be downloaded from the same place
+("*Download Filtered variants CSV*").
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+can be downloaded in the same section ("*Download Filtered variants VCF_GZ*").
+You can also open this file in the IGV browser by clicking on the "*Open in IGV Browser*" link.
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download Filtered variants VCF_TBI*").
+
+The "SV annotation" stage completes the sample analysis.
+
+:::info
+If you want to add a track with SNVs/Indels or structural variations discovered by the analysis of the sample you
+uploaded to Genomenal to your [desktop IGV](https://igv.org/doc/desktop/), you can do so via a link.
+Open the details of the necessary task ("*Unify SNVs/Indels*", "*Annotate SNVs/Indels*", "*Annotate SV VCF*")
+and do the following:
+1. Right-click the variant file link (depending on the selected task, this may be the link "*Download VCF_GZ*",
+"*Download All variants VCF_GZ*" or "*Download Filtered variants VCF_GZ*") and select the "*Copy link address*" option.
+2. Upload the track via URL to your desktop IGV, as
+described [here](https://igv.org/doc/desktop/#UserGuide/loading_data/).
+3. Right-click on the download link for the index file corresponding to the annotation file ("*Download VCF_TBI*",
+"*Download All variants VCF_TBI*" or "*Download Filtered variants VCF_TBI*")
+and select the "*Copy link address*" option.
+4. Add the index via URL to the corresponding field in IGV.
+5. Click "*OK*". Done! The track with SNVs/Indels or structural variations discovered in the sample is added to IGV.
+:::

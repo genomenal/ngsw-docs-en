@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+sidebar_label: Analysis of VCF or GT samples
+---
+
+# Analysis of VCF or GT samples
+
+Files in VCF or GT (TSV, TXT) format can be uploaded
+as [tumor samples](/uploading-samples/tumor-only/upload-for-new-patient),
+[normal samples](/uploading-samples/normal-sample/upload-for-new-patient),
+or [a set](/uploading-samples/tumor-normal/upload-for-new-patient) consisting of
+tumor sample(s) and a control sample. Unlike for samples in FASTQ or BAM format, the sample type will not affect
+the analysis workflow in any way. The only difference between a tumor/control sample set and a single sample
+is that there will be displayed the analysis results of the control sample from the set on the tumor sample page
+from the set in addition to the analysis results of the tumor sample itself.
+
+The analysis of a sample uploaded in VCF or GT format depends on the analysis settings selected when composing
+the sample set. The analysis workflow of such a sample can only be affected
+by [a setting for allowing only variants passing all filters](/settings/settings/variant-discovery-settings#allow-filtered-variants),
+[a phasing group merging setting](/settings/settings/variant-discovery-settings#pg-merge-distance) and the settings
+from [the "Phenotype prediction" section](/settings/settings/variant-discovery-settings#phenotype-prediction).
+Please note that it will be impossible to change anything during the analysis of a sample uploaded in VCF or GT
+format after the analysis has started.
+
+Analysis of a sample uploaded in VCF or GT format may include the following stages:
+1. [Upload, identify and verify](/results/workflow-details/vcf-analysis/upload-identify-verify);
+2. [SNVs/Indels or SV annotation](/results/workflow-details/vcf-analysis/annotation);
+3. [Phenotype prediction](/results/workflow-details/vcf-analysis/phenotypes)
+if [phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) and/or
+[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation)
+are included in the workflow;
+4. [Generate reports](/results/workflow-details/vcf-analysis/report-generation) if:
+- The sample analysis has been successfully completed (i.e. all stages included in the workflow have the status
+"*Complete*").
+- At least one active [report template](/settings/report-templates/report-templates), applicable to the sample type,
+with at least one [added block](/settings/report-templates/report-templates#add-block) was added to the system.
+The template can be applicable to tumor, non-tumor, or any sample type. A report template that meets all of the
+above conditions must be added to the system before the sample was processed. If you added or updated a report
+template later and want to generate or update the corresponding report for the sample, reprocess the sample analysis
+from the "*Generate reports*" stage.
+- The uploaded annotation contains SNVs/Indels.
+
+<p align="center">
+<img src={require('/img/eng/vcf_pipeline.png').default} width="800"/>
+</p>

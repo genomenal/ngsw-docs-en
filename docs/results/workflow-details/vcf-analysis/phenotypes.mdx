@@ -1,112 +1,54 @@
 ---
-sidebar_position: 11
+sidebar_position: 4
 sidebar_label: Phenotype prediction
 ---
 
 # Phenotype prediction
 
-After [the "Variant discovery preprocessing" stage](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
-has been successfully completed, the phenotype prediction pipeline can be launched for non-tumor samples if at least
-one of the following tasks was included in the analysis
+After the "Unify SNVs/Indels" task has been successfully completed, the phenotype prediction pipeline can be launched
+for non-tumor samples if at least one of the following tasks was included in the analysis
 workflow: ["*Phenotypes prediction*"](/settings/settings/variant-discovery-settings#enable-phenotype-prediction)
 or ["*Polygenic risk scores calculation*"](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation).
+Please note that to include phenotype prediction in the workflow of a sample uploaded in VCF or GT format, you
+need to select the setting preset that includes one of the above parameters during the sample set composing.
 
 If any of the following tasks fail, the sample analysis stops. However, if quality control and imputation
 are [included](/settings/settings/variant-discovery-settings#disable-qc-and-imputation) in the analysis workflow,
 and if the sample does not meet the quality control criteria, the "Phenotype prediction" stage interrupts, but
-the sample analysis can proceed
-with [report generation](/results/workflow-details/fastq-analysis/report-generation).
+the sample analysis can proceed with [report generation](/results/workflow-details/vcf-analysis/report-generation).
 
 <p align="center">
-<img src={require('/img/eng/phenotypes_fq.png').default} width="1000"/>
+<img src={require('/img/eng/phenotypes_vcf.png').default} width="850"/>
 </p>
 
-## Convert BAM to VCF {#convert-to-vcf}
+The "Phenotype prediction" stage may include the following tasks:
+1. **Determining sex**: imputation from the X-chromosome homozygosity level data.
+The X-chromosome inbreeding coefficient F is calculated using the following formula:
 
-To move on to phenotypes prediction or polygenic risk scores calculation, it is necessary to generate a VCF
-file with germline variants that satisfy certain conditions from a sample alignment file in BAM format.
-The way of preprocessing differs for samples with different sequencing types.
+<p align="center">
+<img src={require('/img/eng/x_coeff.png').default} width="500"/>
+</p>
 
-### Preprocessing of whole genome sequencing sample {#wgs}
+If F < 0.2, then the sex is determined as female. If F > 0.8, then the sex is determined as male.
+If 0.2 < F < 0.8, then the sex cannot be determined unambiguously.
 
-If the sample sequencing type is defined as "WGS" (whole-genome sequencing), the alignment file is converted to
-a VCF file during the **"Calculation of genotypes"** task.
+The sex value determined by genetic data is used when
+generating [a report on polygenic traits](/results/polygenic-report).
 
-#### Calculation of genotypes {#genotypes}
+2. **Quality control and imputation**: if
+the ["*Enable QC and imputation*"](/settings/settings/variant-discovery-settings#disable-qc-and-imputation) parameter
+is turned on.
 
-[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
-produces calls at germline variant sites and confident reference sites, that are needed to calculate the polygenic
-risk scores of phenotypes, in an alignment file. The calling is accomplished via local *de novo* assembly of
-haplotypes in an active region. In other words, whenever the program encounters a region showing signs of
-variation, it discards the existing mapping information and completely reassembles the reads in that region.
-This allows to be more accurate when calling regions that are traditionally difficult to call, for example
-when they contain different types of variants close to each other. For each potentially variant site, the
-program applies Bayes' rule, using the likelihoods of alleles given the read data to calculate the likelihoods
-of each genotype per sample given the read data observed for the sample. The most likely genotype is then
-assigned to the sample.
-
-The variants are then annotated with rsIds from [the dbSNP database](https://www.ncbi.nlm.nih.gov/snp/)
-using [bcftools annotate](https://samtools.github.io/bcftools/bcftools.html#annotate). The resulting file
-is compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). It can be downloaded
-in the "*Result files*" section in the "*Calculation of genotypes*" task details ("*Download VCF_GZ*").
-In addition, the file is indexed using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index
-file can be downloaded in the same section ("*Download VCF_TBI*").
-
-### Preprocessing of low-pass whole genome sequencing sample {#low-pass-wgs}
-
-If the sample sequencing type is defined as "Low-pass WGS" (whole genome sequencing with low coverage), the
-alignment file is converted to a VCF file during the **"Imputation low pass WGS"** task, followed by the
-mandatory **"Quality Filter"** task (described [below](/results/workflow-details/fastq-analysis/phenotypes#qc-control)).
-
-#### Imputation low pass WGS {#impute-low-pass-wgs}
-
-Imputation is a statistical method for reconstructing missing genetic data based on haplotype analysis in
-a reference set. First, variants are divided by chromosomes for parallel imputation
-using [bcftools call](https://samtools.github.io/bcftools/bcftools.html#call).
-Then, [GLIMPSE chunk](https://odelaneau.github.io/GLIMPSE/docs/documentation/chunk/)
-creates imputation chunks from chromosomes and phases common sites.
-[GLIMPSE phase](https://odelaneau.github.io/GLIMPSE/docs/documentation/phase/)
-imputes and phases low-coverage sequencing
-data. [GLIMPSE ligate](https://odelaneau.github.io/GLIMPSE/docs/documentation/ligate/)
-phases rare variants onto a scaffold of common variants, and ligates multiple phased files into a single whole
-chromosome file. Finally, the imputed variants, divided by chromosomes, are concatenated into a single VCF
-file using [bcftools concat](https://samtools.github.io/bcftools/bcftools.html#concat). This file is then
-sorted by chromosome and compressed into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html).
-The resulting file with imputed variants in VCF format can be downloaded in the "*Result files*" section in
-the "*Imputation low pass WGS*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
-using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
-same section ("*Download VCF_TBI*").
-
-### Preprocessing of whole exome or targeted sequencing sample {#wes}
-
-If the sample sequencing type is defined as "Panel" (sequencing using a targeted panel) or "WES" (whole-exome
-sequencing), the alignment file is converted to a VCF file during the **"Calculation of genotypes"** task
-(described [above](/results/workflow-details/fastq-analysis/phenotypes#genotypes)), followed by quality control
-tasks if the "*Enable QC and imputation*" parameter
-is [enabled](/settings/settings/variant-discovery-settings#disable-qc-and-imputation). Quality control includes
-the **"Normalize VCF"**, **"Quality Filter"** and **"Imputation"** tasks and is completed by repeated
-quality filtering.
-
-:::info
-If a sample fails a quality control check, the "Phenotype prediction" stage is interrupted and no phenotypes
-prediction and/or polygenic risk scores calculation occurs. Sample analysis can proceed
-with [report generation](/results/workflow-details/fastq-analysis/report-generation).
-You can [disable](/settings/settings/variant-discovery-settings#disable-qc-and-imputation) quality control
-and imputation, but the results may be insufficient in this case.
-:::
-
-#### Normalize VCF {#normalize-vcf}
-
-At this step, [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) checks if reference alleles
+   2.1. **Normalize VCF**:
+- [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) checks if reference alleles
 in the file match the reference; splits multiallelic sites into biallelic records; outputs only the first instance
-if a record is present multiple times. The resulting file is compressed into a GZIP archive
-using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
-the "*Normalize VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
-using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
-same section ("*Download VCF_TBI*").
+if a record is present multiple times.
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+can be downloaded in the "*Result files*" section in the "*Normalize VCF*" task details ("*Download VCF_GZ*").
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download VCF_TBI*").
 
-#### Quality Filter {#qc-control}
-
+   2.2. **Quality Filter**:
 - [bcftools filter](https://samtools.github.io/bcftools/bcftools.html#filter)
 excludes sites for which genotype information is missing for the site (e.g., ./.).
 - [PLINK](https://www.cog-genomics.org/plink/2.0/) converts a VCF file into a PLINK 2 binary fileset
@@ -163,10 +105,8 @@ can be downloaded in the "*Result files*" section in the "*Quality Filter*" task
 - Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
 in the same section ("*Download Filtered VCF_TBI*").
 
-#### Imputation {#imputation}
-
-Imputation is a statistical method for reconstructing missing genetic data based on haplotype analysis in
-a reference set.
+   2.3. **Imputation** is a statistical method for reconstructing missing genetic data based on haplotype
+analysis in a reference set.
 - [bcftools index](https://samtools.github.io/bcftools/bcftools.html#index) creates an index for a VCF file.
 - Dividing variants by chromosomes for parallel imputation
 using [bcftools view](https://samtools.github.io/bcftools/bcftools.html#view).
@@ -193,41 +133,32 @@ A file with unimputed and filtered imputed variants in VCF format can be downloa
 section ("*Download Imputed VCF_GZ*").<br></br>
 An index file for VCF file can be downloaded in the same section ("*Download Imputed VCF_TBI*").
 
-## Determining sex {#determine-sex}
+   2.4. **Quality Filter**: the task described above is repeated.
 
-Regardless of the sequencing type, sex information is imputed from the X-chromosome homozygosity level data
-for all samples. The X-chromosome inbreeding coefficient F is calculated using the following formula:
+:::info
+If a sample fails a quality control check, the "Phenotype prediction" stage is interrupted and no phenotypes
+prediction and/or polygenic risk scores calculation occurs. Sample analysis can proceed
+with [report generation](/results/workflow-details/vcf-analysis/report-generation).
+You can upload the sample in VCF or GT format again with the setting preset
+with [QC and imputation disabled](/settings/settings/variant-discovery-settings#disable-qc-and-imputation),
+but the results may be insufficient in this case. Alternatively, you can upload the sample in FASTQ or BAM format.
+This may also solve the problem.
+:::
 
-<p align="center">
-<img src={require('/img/eng/x_coeff.png').default} width="500"/>
-</p>
+3. **Polygenic risk scores calculation**
+if [the "*Run polygenic risk scores calculation*" parameter](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation) is
+enabled:
 
-If F < 0.2, then the sex is determined as female. If F > 0.8, then the sex is determined as male.
-If 0.2 < F < 0.8, then the sex cannot be determined unambiguously.
-
-The sex value determined by genetic data is used when
-generating [a report on polygenic traits](/results/polygenic-report).
-
-## Polygenic risk scores calculation {#calculate-prs}
-
-Polygenic risk scores calculation is launched after sample preprocessing steps has been successfully completed
-if [the corresponding parameter](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation) is
-enabled.
-
-#### 1. Normalize multiallelic VCF {#multiallelic-normalization}
-
-Normalization of multiallelic VCF is a necessary step before calculating polygenic risk scores.
-[bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) left-aligns and normalizes indels; checks
+  3.1. **Normalize multiallelic VCF**:
+- [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) left-aligns and normalizes indels; checks
 if reference alleles in the file match the reference; joins biallelic sites into multiallelic records.
-The resulting file with normalized variants is compressed into a GZIP archive
-using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
-the "*Normalize multiallelic VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
-using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
-same section ("*Download VCF_TBI*").
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+with normalized variants can be downloaded in the "*Result files*" section in the "*Normalize multiallelic VCF*"
+task details ("*Download VCF_GZ*").
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download VCF_TBI*").
 
-#### 2. Polygenic risk scores calculation {#prs-calculation}
-
-Polygenic risk scores calculation consists of applying a linear scoring to each sample
+   3.2. **Polygenic risk scores calculation**: applying a linear scoring to each sample
 using [PLINK](https://www.cog-genomics.org/plink/2.0/). Variants for which genotype information is missing for
 the site (genotype ./. etc.), variants without ID, or with mismatched allele codes are not taken into account
 in the analysis. The patient's genetic data must include the variants represented in the polygenic risk model,
@@ -270,26 +201,21 @@ You can also open it in Google Sheets.
 - A file with a list of variant IDs used to calculate PRS ("*Download [the trait name] Used Variants TSV*").
 You can also open it in Google Sheets.
 
-## Phenotypes prediction {#predict-phenotypes}
+4. **Phenotypes prediction** (oligogenic risk calculation)
+if [the "*Run phenotypes prediction*" parameter](/settings/settings/variant-discovery-settings#enable-phenotype-prediction)
+is enabled:
 
-Phenotypes prediction (oligogenic risk calculation) is launched after sample preprocessing steps has been successfully
-completed if [the corresponding parameter](/settings/settings/variant-discovery-settings#enable-phenotype-prediction)
-is enabled.
-
-#### 1. Normalize VCF {#normalization}
-
-First, VCF file is normalized using [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) that
-left-aligns and normalizes indels; checks if reference alleles in the file match the reference; splits multiallelic
+   4.1. **Normalize VCF**:
+- [bcftools norm](https://samtools.github.io/bcftools/bcftools.html#norm) left-aligns and normalizes indels; checks
+if reference alleles in the file match the reference; splits multiallelic
 sites into biallelic records; outputs only the first instance if a record is present multiple times.
-The resulting file is compressed into a GZIP archive
-using [bgzip](http://www.htslib.org/doc/bgzip.html). You can download it in the "*Result files*" section in
-the "*Normalize VCF*" task details ("*Download VCF_GZ*"). In addition, the file is indexed
-using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
-same section ("*Download VCF_TBI*").
+- Compressing a file into a GZIP archive using [bgzip](http://www.htslib.org/doc/bgzip.html). The resulting file
+with normalized variants can be downloaded in the "*Result files*" section in the "*Normalize VCF*"
+task details ("*Download VCF_GZ*").
+- Indexing a file using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded
+in the same section ("*Download VCF_TBI*").
 
-#### 2. Phenotypes prediction {#phenotypes-prediction}
-
-During the task execution, the following oligogenic risks are calculated:
+   4.2. **Phenotypes prediction**:
 - [Hair color](https://www.genokarta.ru/disease/Cvet_volos): The probability is predicted by a model that uses
 Multinomial Logistic Regression. Hair color is determined by 22 polymorphisms, the model[^1] predicts probabilities
 for 4 categories: black, brown, red, blond hair color. Hair shade is determined by 20 polymorphisms (intersecting
@@ -425,14 +351,13 @@ single polymorphism that is associated with restless legs syndrome and susceptib
 movements in sleep[^16].
 - [Photic sneeze reflex](https://www.genokarta.ru/disease/Svetovoj_refleks_chihaniya): The model is based
 on two polymorphisms that are associated with photic sneeze reflex[^17].
-- Sex: the result of the "Determining sex" task
-described [above](/results/workflow-details/fastq-analysis/phenotypes#determine-sex).
+- Sex: the result of the "Determining sex" task described above.
 
 The resulting file with predicted phenotypes can be downloaded in the "*Result files*" section in
 the "*Phenotypes prediction*" task details ("*Download Classifier results JSON*").
 
 After the "Phenotype prediction" stage, the analysis can proceed
-with [report generation](/results/workflow-details/fastq-analysis/report-generation).
+with [report generation](/results/workflow-details/vcf-analysis/report-generation).
 
 [^1]: [Model for hair colour and shade prediction](https://www.fsigenetics.com/article/S1872-4973(12)00181-0/fulltext)
 [^2]: [Model for eyes color prediction](https://www.fsigenetics.com/article/S1872-4973(11)00144-X/fulltext)
