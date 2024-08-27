@@ -289,8 +289,10 @@ type: <img src={require('/img/vv/deletion.png').default} width="60"/> -
 deletion, <img src={require('/img/vv/duplication.png').default} width="60"/> - duplication.
 8. **Overlapped CDS, %** is a share of the length of the CoDing Sequence (CDS) overlapped with the variation
 (in percent). Provided for split rows only.
-9. **Cohort 180 AF** is the variation frequency in a cohort of 188 samples. AF values are only
-available for bins of size 3000 or 5000. The column is only displayed in the CNV Viewer with copy number
+9. **Cohort 180 AF** is the variation frequency in a cohort of 188 normal samples. AF values are only
+available for germline CNVs discovered in WGS or low-pass WGS samples normalized to the "*BGI WGS*" reference
+samples panel with bin size 3000 or 5000 or the "*BGI WGS v2*" reference samples panel with bin size 3000.
+The column is only displayed in the CNV Viewer with copy number
 variations discovered in the bins. The column cells are colored depending on the AF value:
 - <Highlight color="#DEF1DB">green</Highlight> if AF ≥ 0.015;
 - <Highlight color="#FFFAEB">yellow</Highlight> if 0.01 ≤ AF &lt; 0.015;
@@ -392,6 +394,10 @@ in descending order) will appear next to the column name.
 You can sort a table by 1-3 columns at a time to group data with the same values in one column, and then sort
 those groups with the same values in another column. The sorting order will depend on the order in which you
 click on the names of the corresponding columns. The sorting arrow will be next to the column by which you sorted last.
+
+:::note
+Table sorting and filtering are saved when you exit the CNV Viewer page.
+:::
 
 To reset sorting, use the clear all filters
 button: <img src={require('/img/vv/clear_filters.png').default} width="40"/>. Please note that this will

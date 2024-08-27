@@ -11,6 +11,10 @@ The needed copy number variations can be found by filtering. Filtering options a
 <img src={require('/img/vv/cnvv_filtering.png').default} width="900"/>
 </p>
 
+:::note
+Table filtering is saved when you exit the CNV Viewer page.
+:::
+
 ### 1. Log2FC thresholds {#log2fc-threshold}
 
 Filter variations by the log2FC value, i.e. the logarithmic ratio of the detected copy number to the normal
@@ -250,8 +254,10 @@ To do this, tick the required values and click outside the value area.
 
 ### 9. Cohort 180 AF {#cohort-af}
 
-Filter variations by frequency in a cohort of 188 samples. Frequency values are only available for bins of
-size 3000 or 5000. The filter is only displayed in the CNV Viewer with copy number variations discovered in the bins.
+Filter variations by frequency in a cohort of 188 normal samples. AF values are only
+available for germline CNVs discovered in WGS or low-pass WGS samples normalized to the "*BGI WGS*" reference
+samples panel with bin size 3000 or 5000 or the "*BGI WGS v2*" reference samples panel with bin size 3000.
+The filter is only displayed in the CNV Viewer with copy number variations discovered in the bins.
 
 Possible values:
 - <0.05 or empty;
