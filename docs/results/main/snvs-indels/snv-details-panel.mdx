@@ -369,10 +369,12 @@ ClinVar (see table column descriptions above).
 The tab contains the information about allele frequencies of the variant
 from the [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database.
 On the left, there is a general information about the variant:
-- ***Allele frequency*** is a total alternative allele frequency of the variant in high quality genotypes;
-- ***Coverage*** is a median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100;
-- ***Number of Homozygotes*** is a number of individuals homozygous for alternative allele;
-- ***XY samples AF*** is a total alternative allele frequency in XY subpopulation;
+- ***Allele frequency*** is a total alternative allele frequency of the variant in high quality genotypes.
+For AF, there are ***AC***, that is the alternative allele count in high quality genotypes, and ***AN***, that is
+the total number of called high quality genotypes.
+- ***Coverage*** is a median per-base depth of coverage binned to rages &lt;10, 10-100, ⩾100.
+- ***Number of Homozygotes*** is a number of individuals homozygous for alternative allele.
+- ***XY samples AF*** is a total alternative allele frequency in XY subpopulation.
 - ***XX samples AF*** is a total alternative allele frequency in XX subpopulation.
 
 On the right, there are variant frequencies in different populations: *Ashkenazi Jewish*, *Amish*,
