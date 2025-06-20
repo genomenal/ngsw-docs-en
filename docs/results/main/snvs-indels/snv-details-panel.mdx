@@ -220,6 +220,23 @@ were filtered and/or sorted on the original SNV Viewer page, these filtering and
 or changed, and the state of SNV Viewer on the new tab will retain.
 :::
 
+- ***Genetic Constraint Metrics*** — these are metrics that reflect the degree to which a gene is intolerant to
+functionally significant mutations and help assess the likelihood of pathogenicity:
+   - ***pLI*** (Probability of Loss-of-Function Intolerance) — the probability that a transcript is intolerant to
+   loss-of-function (LoF) variants. This metric indicates the probability that a transcript falls into distribution
+   of haploinsufficient genes, meaning that the loss of one copy leads to functional consequences. It is computed
+   from high-confidence pLoF (predicted LoF) gnomAD data. Range: 0 to 1. Genes with pLI ≥ 0.9 are considered
+   LoF-intolerant.
+   - ***LOEUF*** (Loss-of-function Observed/Expected Upper bound Fraction) — the upper bound of the 90% confidence
+   interval for the observed/expected ratio of high-confidence pLoF (predicted loss-of-function) variants.
+   Lower values (LOEUF < 0.35) indicate a gene is more constrained against LoF variants.
+   - ***Missense O/E ratio*** — the upper bound of the 90% confidence interval for the observed/expected ratio of
+   missense variants. Lower values suggest a gene is more constrained against missense variation.
+   - ***Missense Z-score*** — a Z-score representing the deviation of the observed number of missense variants in a
+   transcript from the expected number under a model of neutral mutation distribution.
+   Greater positive values (Z-score ≥ 3.09) indicate that the transcript is more intolerant of missense variation.
+   Lower or negative Z-scores indicate that the gene tolerates more missense mutations than expected.
+
 #### 2. Transcripts {#transcripts}
 
 The panel contains gene transcripts from two databases: [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
