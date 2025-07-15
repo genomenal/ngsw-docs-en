@@ -10,8 +10,8 @@ the risk of developing in the patient
 due to pathogenic or likely pathogenic variants discovered in patient sample and associated with this
 condition, and ***recommendations*** that can prevent this condition.
 
-To obtain such a report, create [a report template](/settings/report-templates/report-templates#add-template)
-that includes "SNVs/Indels by ClinVar phenotypes" block.
+To obtain such a report, create a report template that
+includes ["SNVs/Indels by ClinVar phenotypes" block](/settings/report-templates/report-templates#clinvar-phenotype).
 
 The report is divided into three main
 sections: [Report result and Recommendations](/results/variants-by-phenotypes#report-result-and-recommendations),
@@ -44,7 +44,7 @@ the following columns:
 
 A detailed report of the conditions listed in the first section. For each state, the following is indicated:
 - **Name**: corresponds to "Report name" field
-from [the template](/settings/report-templates/report-templates#block-types).
+from [the template](/settings/report-templates/report-templates#clinvar-phenotype).
 - **Variants** discovered in the sample that are associated with the condition (with MedGen ID
 and/or ClinVar name in the template). **Each variant meets the following conditions**:
 1. Pathogenic or likely pathogenic in ClinVar ("Clinical significance" field);
@@ -52,9 +52,9 @@ and/or ClinVar name in the template). **Each variant meets the following conditi
 3. The total allele frequency in [gnomAD 3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) is
 above the frequency threshold for extremely rare pathogenic variants
 and below the frequency threshold for too frequent pathogenic variants
-(thresholds are set in [the template](/settings/report-templates/report-templates#block-types)).
+(thresholds are set in [the template](/settings/report-templates/report-templates#clinvar-phenotype)).
 - **Recommendations** that can help reduce the risk of this condition
-(added in [the template](/settings/report-templates/report-templates#block-types)).
+(added in [the template](/settings/report-templates/report-templates#clinvar-phenotype)).
 
 <p align="center">
 <img src={require('/img/results/phenotype_info.png').default} width="900"/>
@@ -72,7 +72,7 @@ could be detected as a result of a genotyping error carried out using microarray
 3. **Criterion 3**: variants that have a high probability of detection, expected based on the binomial
 distribution and the probability of detecting a genetic variant among the identified populations.
 The probability of the variant detection is below the reliability threshold, which is set
-in [the template](/settings/report-templates/report-templates#block-types).<br></br>The probability
+in [the template](/settings/report-templates/report-templates#clinvar-phenotype).<br></br>The probability
 is calculated as *(1 - Bin(n; m; p; 1))*,<br></br>where
 *Bin(n; m; p; 1)* is the probability, expected based on the binomial distribution, that the variant
 is detected *n* times among *m* representatives (samples) of the population;<br></br>

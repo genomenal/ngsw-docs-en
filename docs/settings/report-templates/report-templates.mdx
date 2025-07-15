@@ -55,17 +55,9 @@ or otherwise, the template will not be saved. The saved template page looks like
 <img src={require('/img/report_templates/saved_template.png').default} width="900"/>
 </p>
 
-## Edit report template {#edit-template}
+## Add block to report template {#add-block}
 
-In addition to the fields described in the previous section ("Name", "Active", "Report title", "Report description"),
-you can edit template blocks on the saved template page.
-
-In order for a template to be active, at least one block must be added to it (in addition to the "Active" option
-enabled).
-
-### Add template block {#add-block}
-
-To add a template block, click on the search box and select the block type you need from the opened list
+To add a block to the report template, click on the search box and select the block type you need from the opened list
 (block types are detailed below):
 
 <p align="center">
@@ -76,359 +68,598 @@ After selecting the block type, fill in all the required fields
 and click on <img src={require('/img/report_templates/add_btn.png').default} width="160"/>.
 To cancel block type selection, click on <img src={require('/img/report_templates/cancel.png').default} width="150"/>.
 
-#### Types of report template blocks and their editing {#block-types}
+## Block types {#block-types}
 
-<table>
-  <tr>
-   <td>Block type name</td>
-   <td>The sample types to which the block type is applicable</td>
-   <td>Type description</td>
-   <td>Fields for editing / Additional information</td>
-  </tr>
-  <tr>
-   <td><b>Section</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with the heading and description of the report section.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in). If there are several sections in the report,
-   they will be automatically numbered.<br></br>2. <b>Description</b> of the section (will be displayed under
-   the section heading).</td>
-  </tr>
-  <tr>
-   <td><b>Patient info</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with information about the patient to which the sample was uploaded or which was defined for the
-   sample (for runs).</td>
-   <td>Display fields are the fields with information about the patient. You need to select (tick) the fields
-   that will be displayed in the report:<br></br>
-   1. <b>Patient ID</b>;<br></br>2. <b>First name</b>;<br></br>3. <b>Last name</b>;<br></br>4. <b>Middle name
-   </b>;<br></br>5. <b>Date of birth</b>;<br></br>6. <b>Age</b>;<br></br>7. <b>Sex</b>;<br></br>8. <b>Diagnosis
-   </b>;<br></br>9. <b>Date of diagnosis</b>;<br></br>10. <b>Comments</b>.<br></br>
-   After you have selected all the required fields, click outside the value container.<br></br>
-   An example of a block in the report can be found <a href="/results/glioma-report#patient-info">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>Sample info</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with information about the sample for which the report is generated.</td>
-   <td>Display fields are the fields with information about the sample. You need to select (tick) the fields
-   that will be displayed in the report:<br></br>
-   1. <b>Sample name</b> is a sample file name without extension;<br></br>2. <b>Sample type</b>;<br></br>3. <b>
-   Sequencing type</b>;<br></br>4. <b>Sample collection date</b>;<br></br>5. <b>Capture kit</b>;<br></br>6. <b>Sample
-   location (Organ)</b>;<br></br>7. <b>Methodology</b>;<br></br>8. <b>Oncological disease</b> is the disease,
-   which was determined for the patient at the time the sequencing sample material was collected
-   (non-small cell lung carcinoma; melanoma; neoplasm of the pancreas; breast carcinoma; ovarian neoplasm;
-   prostate cancer; anaplastic thyroid carcinoma; colorectal carcinoma);<br></br>9. <b>Onco
-   stage</b> (I-IV);<br></br>10. <b>Onco stage details</b> (relapse, progressing, inoperable, brain
-   metastases);<br></br>11. <b>Therapy line</b> is the therapy line used to treat the patient's oncological disease
-   at the time the sequencing sample material was collected (1-4 line, adjuvant or neoadjuvant therapy, perioperative,
-   preoperative or induction chemotherapy);<br></br>12. <b>Comments</b>.<br></br>After
-   you have selected all the required fields, click outside the value container.<br></br>
-   An example of a block in the report can be found <a href="/results/glioma-report#tumor-sample-info">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>Control (normal) sample info</b></td>
-   <td>Tumor</td>
-   <td>A block with information about the sample, which is the control for the one for which the report is
-   generated.</td>
-   <td>Display fields are the fields with information about the control (normal; non-tumor) sample. You need to
-   select (tick) the fields that will be displayed in the report:<br></br>
-   1. <b>Sample name</b> is a sample file name without extension;<br></br>2. <b>Sample type</b>;<br></br>3. <b>
-   Sequencing type</b>;<br></br>4. <b>Sample collection date</b>;<br></br>5. <b>Capture kit</b>;<br></br>6. <b>Sample
-   location (Organ)</b>;<br></br>7. <b>Methodology</b>;<br></br>8. <b>Comments</b>.<br></br>
-   After you have selected all the required fields, click outside the value container.<br></br>
-   ________________________________________________________________<br></br>
-   The block is generated only for a tumor sample from the tumor-normal set (tumor + corresponding non-tumor
-   sample).<br></br>
-   An example of a block in the report can be found <a href="/results/glioma-report#control-sample-info">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>Disclaimer</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with a message about restrictions on the use of the report.</td>
-   <td><b>Text</b> is a standard text of a clinical disclaimer. It can be edited.</td>
-  </tr>
-  <tr>
-   <td><b>Sign place</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with a place for the doctor's signature.</td>
-   <td>The sign place will look like this in the report:<br></br>
-   <br></br><p align="center">
-   <img src={require('/img/report_templates/signing_place.png').default} width="500"/></p></td>
-  </tr>
-  <tr>
-   <td><b>SNVs/Indels selected by user for reports</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with variants included in the report on the SNV Viewer page.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
-   block: somatic or germline.<br></br>
-   ________________________________________________________________<br></br>
-   To include a variant in the report on the SNV Viewer page,
-   click on <img src={require('/img/report_templates/add_to_report_btn.png').default} width="22"/> button in
-   the variant row. Variants included in the report are marked with a
-   checkmark: <img src={require('/img/report_templates/add_to_report.png').default} width="22"/>.</td>
-  </tr>
-  <tr>
-   <td><b>Pinned SNVs/Indels</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with variants pinned on the SNV Viewer page.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
-   block: somatic or germline.<br></br>
-   ________________________________________________________________<br></br>
-   To pin a variant on the SNV Viewer page,
-   click on <img src={require('/img/report_templates/pin_var_btn.png').default} width="22"/> button in
-   the variant row. Pinned variants are marked like
-   this: <img src={require('/img/report_templates/pinned_var.png').default} width="22"/>.</td>
-  </tr>
-  <tr>
-   <td><b>SNVs/Indels suitable for the specified conditions</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with variants that match the conditions specified in the block.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
-   block: somatic or germline.<br></br>4. <b>Conditions for including variants to the report</b>: if the variants
-   in the sample match the given conditions, they will be included in this report block.<br></br>
-   To add a condition, click on <img src={require('/img/report_templates/query_builder.png'). default} width="160"/>.
-   Then the Query Builder opens, which is exactly the same as the Advanced Filtering Query Builder on the Variant
-   Viewer page. You can read about how to set up
-   conditions <a href="/results/main/snvs-indels/advanced-filtering">here</a>.<br></br>
-   5. <b>Use SNVs/Indels as potential findings</b>: to include SNVs/Indels discovered in the sample and suitable
-   for the specified conditions as <a href="/results/potential-findings">potential findings</a>, turn on the
-   corresponding toggle.<br></br>The description of the block in the generated report can be
-   found <a href="/results/mutations-suitable-for-the-specified-conditions#snvs">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>CNVs suitable for the specified conditions</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with copy number variations (CNVs) that match the conditions specified in the block.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Type of CNV region</b>: segment or bin. You can
-   read more about segments and
-   bins <a href="/results/main/copy-number-variations/cnv-viewer#segments-and-bins">here</a>.
-   <br></br>4. <b>Conditions for including variations to the report</b>: if copy number variations
-   discovered in the sample match the given conditions, they will be included in this report block.<br></br>
-   To add a condition, click on <img src={require('/img/report_templates/edit_condition.png'). default} width="160"/>.
-   Then you will see parameters for filtering copy number variations, described
-   in <a href="/results/main/copy-number-variations/cnv-filtering">the corresponding section</a>:
-   <p align="center"><img src={require('/img/report_templates/cnvs_conditions_form.png').default} height="640"/></p>
-   5. <b>Use CNVs as potential findings</b>: to include copy number variations discovered in the sample and suitable
-   for the specified conditions as <a href="/results/potential-findings">potential findings</a>, turn on the
-   corresponding toggle.<br></br>The description of the block in the generated report can be
-   found <a href="/results/mutations-suitable-for-the-specified-conditions#cnvs">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>Immunotherapy markers</b></td>
-   <td>Tumor</td>
-   <td>A block containing the value of the tumor mutation burden.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   High tumor mutation burden (TMB), more than 19 mutations per 1 Mb, may predict response to immunotherapy.
-   Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immunotherapy.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#immunotherapy-markers">here</a>.</td>
-  </tr>
-  <tr>
-   <td><b>Clinical trials</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with a table of ongoing clinical trials of various drugs, technologies or diagnostic approaches
-   performed in people with a certain phenotype from
-   the <a href="https://clinicaltrials.gov">ClinicalTrials</a> database.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Phenotypes</b> is a list of phenotypes for which
-   you want to see clinical trials in the report. Phenotype names must be semicolon delimited (e.g.
-   "Glioma;Astrocytoma").<br></br>4. <b>Phases</b>: 1, 2, 3, 4. After you have selected all the required phases,
-   click outside the value container.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#clinical-trials">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>SNVs/Indels in ACMG SF genes</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with variants discovered in the sample and located in the genes
-   from <a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">the Secondary Findings (SF) list</a> of
-   American College of Medical Genetics and Genomics (ACMG).</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>3. <b>Origin</b> of the variant that will be included in the
-   block: somatic or germline.<br></br>4. <b>Frequency threshold for too frequent pathogenic variants</b>:
-   recommended default value = 0.03.<br></br>
-   5. <b>Use the most important variants for interpretation as potential findings</b>:
-   to include SNVs/Indels discovered in the sample, located in genes from the ACMG SF list and associated with
-   the phenotype indicated for the genes (<a href="/results/acmg-sf-report#acmg-sf-content">Tier I variants</a>)
-   in <a href="/results/potential-findings">potential findings</a>, turn on the corresponding toggle.<br></br>
-   6. <b>Use the variants that require further analysis as potential findings</b>:
-   to include SNVs/Indels discovered in the sample, located in genes from the ACMG SF list, for which the phenotype
-   association or conditions specified for the genes could not be met
-   (<a href="/results/acmg-sf-report#acmg-sf-content">Tier II variants</a>)
-   in <a href="/results/potential-findings">potential findings</a>, turn on the corresponding toggle.<br></br>
-   ________________________________________________________________<br></br>
-   For these genes from the ACMG SF list, specific mutations are known to be causative of disorders with defined
-   phenotypes that are clinically actionable by an accepted intervention. The ACMG recommends that variants detected
-   in any of these genes should be reported as they are of medical relevance and could be used in the future to inform
-   clinical treatment.<br></br>The description of the block in the generated report can be
-   found <a href="/results/acmg-sf-report">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Tier I variants</b></td>
-   <td>Tumor</td>
-   <td>A block with somatic variants and variations of strong clinical significance related to glioma (Tier I).</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
-   discovered in the sample and are in the Tier I of the classification of somatic variations.
-   Tier I includes variations that have strong clinical significance with high level of evidence and are important
-   for diagnostics and treatment of cancer.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#tier-i">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Tier II variants</b></td>
-   <td>Tumor</td>
-   <td>A block with somatic variants and variations of potential clinical significance related to glioma (Tier II).</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
-   discovered in the sample and are in the Tier II of the classification of somatic variations.
-   Tier II includes variations that clearly play a role in the development of cancer, but this role has not yet been
-   sufficiently proven.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Tier III variants</b></td>
-   <td>Tumor</td>
-   <td>A block with somatic variants and variations of unknown clinical significance related to glioma (Tier III).</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes somatic single nucleotide variants, copy number variations and structural variations that are
-   discovered in the sample and are in the Tier III of the classification of somatic variations.
-   Tier III includes variations that have high gene product impact and are detected in genes associated with cancers
-   other than glioma.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Suggested diagnosis</b></td>
-   <td>Tumor</td>
-   <td>A block with a predicted diagnosis (glioma type) defined for the sample.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   Suggested diagnosis and predicted survival times base on Tier I and Tier II mutations automated interpretation
-   based on published research. Suggestions were made under the assumption that the tumor DNA has been extracted
-   from glioma, therefore, use this block in the report only if you have glioma sequencing samples. In case of
-   uncertainty up to three most probable diagnosis suggestions are proposed.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#suggested-diagnosis">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Suggested drugs</b></td>
-   <td>Tumor</td>
-   <td>A block with potentially effective and ineffective tumor-targeting drugs and corresponding biomarkers
-   discovered in the sample.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#suggested-drugs">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Mutations details</b></td>
-   <td>Tumor</td>
-   <td>A block with a description of mutations listed in "Glioma: Tier I variants" and "Glioma: Tier II variants"
-   blocks.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#mutations-details">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Glioma genes panel details</b></td>
-   <td>Tumor</td>
-   <td>A block with information about the coverage of glioma-specific genes discovered in the sample.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes the value of the fraction of the exonic part of the longest transcript covered by at least
-   50 sequenced reads (50X) for the genes associated with glioma. The higher the percent of coverage, the more
-   completely a transcript is sequenced.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#glioma-genes-panel-details">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Germline pathogenic for gliomas</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with germline SNVs discovered in the sample and pathogenic or likely pathogenic for gliomas.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes the following germline single nucleotide variants associated with gliomas according to
-   published research:<br></br>
-   1. Pathogenic (according to ClinVar);<br></br>
-   2. Likely pathogenic (according to ClinVar);<br></br>
-   3. Having high gene product impact;<br></br>
-   4. Having moderate gene product impact and frequency less than 10% in population;<br></br>
-   3. Rare (having frequency less than 5% in population).<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Germline pathogenic for any other diseases</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with germline SNVs discovered in the sample, pathogenic or likely pathogenic, and associated with
-   diseases other than gliomas.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Germline glioma associated</b></td>
-   <td>Any, Tumor, Normal</td>
-   <td>A block with germline SNVs discovered in the sample and associated with gliomas.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Description</b> of the section
-   (will be displayed under the section heading).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes germline single nucleotide variants associated with gliomas according published research but
-   not included in the "Glioma: Germline pathogenic for gliomas" block.<br></br>
-   An example of a block in the generated report can be
-   found <a href="/results/glioma-report#glioma-associated">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Glioma: Literature</b></td>
-   <td>Tumor</td>
-   <td>Block with a reference list about glioma.</td>
-   <td>Contains over 60 links to articles, publications and books on glioma research.</td>
-   </tr>
-   <tr>
-   <td><b>Germline CNV: results</b></td>
-   <td>Normal</td>
-   <td>A block with the result of germline copy number variations (CNVs) discovery in the sample.</td>
-   <td>1. <b>Name</b> is a section heading (required to fill in).<br></br>2. <b>Show inferred sex</b>: based on the
-   results of CNV discovery of sex chromosomes (X, Y), an assumption about the patient sex can be made.
-   To include the result of this assumption in the report, turn on the
-   toggle: <img src={require('/img/eng/toggle_on.png').default} width="35"/>.<br></br>
-   ________________________________________________________________<br></br>
-   The block includes a report about the presence or absence of a deviation from the normal copy number in any
-   chromosome or its arm in the sample.<br></br>The description of the block in the generated report can be
-   found <a href="/results/cnv-report/sample-cnv-report">here</a>.</td>
-   </tr>
-   <tr>
-   <td><b>Germline CNV: interpretation</b></td>
-   <td>Normal</td>
-   <td>A block with interpretation of results of germline CNVs discovery in the sample and conclusions based on
-   the results.</td>
-   <td><b>Name</b> is a section heading (required to fill in).<br></br>
-   ________________________________________________________________<br></br>
-   The block includes:<br></br>
-   1. a table with chromosomes or their arms in which structural variation (reduced or increased number of copies)
-   was found;<br></br>
-   2. karyogram-like graph with denoted chromosome-level CNVs;<br></br>
-   3. information on estimated sequencing depth.<br></br>The description of the block in the generated report can be
-   found <a href="/results/cnv-report/sample-cnv-report">here</a>.</td>
-   </tr>
-</table>
+Each of the blocks described below can be added to the report template and includes a description of
+its specific features.
 
-### Added report template {#added-template}
+### 1. Section {#section}
 
-Added report template looks like this (example: the "Sample info" block):
+A block with a heading and description of the report section.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+If there are multiple sections in the report, they are numbered automatically.
+2. *Description* – the text displayed below the title.
+
+### 2. Patient info {#patient-info}
+
+A block containing information about the patient associated with the sample.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Display fields:** Check the boxes next to the fields you want to include in the report.
+After selecting all necessary fields, click outside the editing area to save your changes.
+- Patient ID;
+- First name;
+- Last name;
+- Middle name;
+- Date of birth;
+- Age;
+- Sex;
+- Diagnosis;
+- Date of diagnosis;
+- Comments.
+
+**Example block in the report:** [Patient Info](/results/glioma-report#patient-info).
+
+### 3. Sample info {#sample-info}
+
+A block containing information about the analyzed sample for which the report was generated.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Display fields:** Check the boxes next to the fields you want to include in the report.
+After selecting all necessary fields, click outside the editing area to save your changes.
+- Sample name - the sample file name without the extension;
+- Sample type;
+- Sequencing type;
+- Sample collection date;
+- Capture kit;
+- Sample location;
+- Methodology;
+- Oncological disease;
+- Onco stage;
+- Onco stage details;
+- Therapy line;
+- Comments.
+
+**Example block in the report:** [Tumor Sample Info](/results/glioma-report#tumor-sample-info).
+
+### 4. Control (normal) sample info {#control-sample-info}
+
+This block contains information about a non-tumor sample that corresponds to a tumor sample in a tumor/control pair.
+It is generated only for tumor samples.
+
+**Applicable to samples:** tumor.
+
+**Display fields:** the same fields as in the "Sample info" block.
+Check the boxes next to the fields you want to include in the report.
+After selecting all necessary fields, click outside the editing area to save your changes.
+
+**Example block in the report:** [Control Sample Info](/results/glioma-report#control-sample-info).
+
+### 5. Formatted text {#formatted-text}
+
+A block containing any text in [Markdown format](https://www.markdownguide.org/basic-syntax/).
+
+**Applicable to samples:** any, tumor, normal.
+
+You can insert specific auto-fields into the text; their descriptions are
+provided [below](/settings/report-templates/report-templates#autofields).
+
+### 6. Disclaimer {#disclaimer}
+
+A block containing a disclaimer about the report’s usage.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Text** is a standard clinical liability disclaimer that can be edited.
+You can insert specific auto-fields into the text; their descriptions are
+provided [below](/settings/report-templates/report-templates#autofields).
+
+#### Auto-Fields in "Formatted text" and "Disclaimer" blocks {#autofields}
+
+An auto-field is a specific marker in curly braces that, when inserted into a block’s text, is automatically
+replaced with a corresponding value in the report.
+For example, inserting '{url}' into a block will result in the current page URL (essentially a link to the
+sample’s page) appearing in the report.
+Auto-field values in a report will update automatically as patient or sample data changes — you don't need to
+regenerate the report.
+
+***List of available auto-fields and their values:***
+
+- `{url}` - current page URL;
+- `{ReportName}` - name of the report (defined on the report template page);
+- `{patient.code}` - patient ID (set when the patient is created or edited);
+- `{patient.firstName}` - patient’s first name (set when the patient is created or edited);
+- `{patient.middleName}` - patient’s middle name (set on the patient page);
+- `{patient.lastName}` - patient’s last name (set when the patient is created or edited);
+- `{patient.dateOfBirth}` - patient’s date of birth (set on the patient page);
+- `{patient.age}` - patient’s age (set on the patient page);
+- `{patient.sex}` - patient’s sex (set on the patient page);
+- `{patient.diagnosis}` - patient’s diagnosis (set on the patient page);
+- `{patient.dateOfDiagnosis}` - date of diagnosis (set on the patient page);
+- `{patient.comments}` - patient record comments (set on the patient page);
+- `{sample.sampleName}` - sample name (file name without extension; can be edited on the sample page);
+- `{sample.sampleType}` - sample type: NORMAL or TUMOR (selected when uploading the sample and can later
+be changed either in the sample set editing window or by choosing a different type in the sample row for runs);
+- `{sample.sequencingType}` - sequencing type (defined automatically; may depend on selected sequencing type
+and capture kit);
+- `{sample.sampleCollectionDate}` - sample collection date (set on the sample page);
+- `{sample.captureKit}` - capture kit reagents (defined automatically or selected when uploaded the sample and
+can be changed on the "Parameters" tab");
+- `{sample.methodology}` - sample preparation methodology (set on the sample page);
+- `{sample.oncologicalDisease}` - oncological disease diagnosed at time of sampling (set on the tumor sample page);
+- `{sample.oncoStage}` - oncological disease stage at time of sampling (set on the tumor sample page);
+- `{sample.oncoStageDetails}` - additional details on disease stage at time of sampling (set on the tumor sample page);
+- `{sample.therapyLine}` - therapy line at time of sampling (set on the tumor sample page);
+- `{sample.comments}` - comments related to the sample (added on the sample page).
+
+:::tip
+In Markdown, use two spaces at the end of a line to insert a line break.
+:::
+
+### 7. Sign place {#sign-place}
+
+A block with a designated space for the doctor's signature, which will appear as follows in the report:
+
+<p align="center">
+<img src={require('/img/report_templates/signing_place.png').default} width="500"/>
+</p>
+
+**Applicable to samples:** any, tumor, normal.
+
+### 8. SNVs/Indels selected by user for reports {#added-to-report}
+
+A block containing the variants included in the report from the SNV Viewer page.
+Including variants in the report is described
+in [the corresponding section](/results/main/snvs-indels/variant-viewer#include-to-report).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Origin*: somatic or germline.
+
+### 9. Pinned SNVs/Indels {#pinned-variants}
+
+A block containing the variants pinned in the SNV Viewer table.
+Pinning variants is described in [the corresponding section](/results/main/snvs-indels/variant-viewer#pin-variant).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Origin*: somatic or germline.
+
+### 10. SNVs/Indels suitable for the specified conditions {#suitable-variants}
+
+A block containing the variants matching conditions specified within it.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Origin*: somatic or germline.
+4. *Conditions for including variants to the report*: If the variants detected in the sample meet the specified
+conditions, they will be displayed in this report block. To create a condition,
+click the button <img src={require('/img/report_templates/query_builder.png').default} width="170"/>.
+This will open the query builder, which is identical to the advanced variant search form on the SNV Viewer page.
+Creating conditions in the query builder are described
+in [the corresponding section](/results/main/snvs-indels/advanced-filtering#add-condition).
+5. *Use SNVs/Indels as potential findings*: To include SNVs/Indels detected in the sample that meet the
+specified conditions as [potential findings](/results/potential-findings), activate the toggle switch.
+
+**Example block in the report:** [Mutations Suitable For The Specified Conditions](/results/mutations-suitable-for-the-specified-conditions#snvs).
+
+### 11. CNVs suitable for the specified conditions {#suitable-cnvs}
+
+A block containing the copy number variations (CNVs) matching conditions specified within it.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *CNV region type*: segment or bin. Read more about segments and
+bins [here](/results/main/copy-number-variations/cnv-viewer#segments-and-bins).
+4. *Conditions for including variations to the report*: If the copy number variations detected in the sample
+meet the specified conditions, they will be displayed in this report block. To define the condition,
+click the button <img src={require('/img/report_templates/edit_condition.png').default} width="170"/>.
+A window with CNV filtering parameters will open — these parameters are described
+in [the corresponding section](/results/main/copy-number-variations/cnv-filtering):
+
+<p align="center">
+<img src={require('/img/report_templates/cnvs_conditions_form.png').default} height="640"/>
+</p>
+
+5. *Use CNVs as potential findings*: To include copy number variations detected in the sample that meet the
+specified conditions as [potential findings](/results/potential-findings), activate the toggle switch.
+
+**Example block in the report:** [Mutations Suitable For The Specified Conditions](/results/mutations-suitable-for-the-specified-conditions#cnvs).
+
+### 12. Immunotherapy markers {#immunotherapy-markers}
+
+A block that reports the tumor mutation burden (TMB) value.<br></br>
+High TMB, more than 19 mutations per 1 Mb, may predict response to immunotherapy.
+Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immunotherapy.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Immunotherapy Markers](/results/glioma-report#immunotherapy-markers).
+
+### 13. Clinical trials {#clinical-trials}
+
+A block containing a table of ongoing clinical trials of various drugs, technologies or diagnostic approaches
+performed in people with a certain phenotype from [the ClinicalTrials database](https://clinicaltrials.gov).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Phenotypes* - a list of phenotypes for which clinical trials should be displayed.
+Phenotype names must be separated by semicolons (e.g., "Glioma;Astrocytoma").
+4. *Phases*: Phase 1, Phase 2, Phase 3, Phase 4.
+After selecting all relevant phases, click outside the editing area to save the changes.
+
+**Example block in the report:** [Clinical Trials](/results/glioma-report#clinical-trials).
+
+### 14. SNVs/Indels in ACMG SF genes {#acmg-sf}
+
+A block displaying variants detected in the sample that are located in genes
+from [the list of secondary findings (SF)](https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/) recommended by
+the American College of Medical Genetics and Genomics (ACMG). Specific mutations in these genes are known
+to cause disorders with defined phenotypes that are clinically actionable through established interventions.
+The ACMG recommends reporting variants detected in any of these genes, as they are medically significant
+and may help guide future clinical management.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Origin*: somatic or germline.
+4. *Frequency threshold for too frequent pathogenic variants*: recommended default value = 0.03.
+5. *Use the most important variants for interpretation as potential findings*:
+To include SNVs/Indels detected in the sample that are located in genes from the ACMG SF list and associated
+with the specified phenotype ([Tier I variants](/results/acmg-sf-report#acmg-sf-content))
+as [potential findings](/results/potential-findings), activate the toggle switch.
+6. *Use the variants that require further analysis as potential findings*:
+To include SNVs/Indels detected in the sample that are located in genes from the ACMG SF list
+but for which no match to the specified phenotypes or conditions could be determined
+([Tier II variants](/results/acmg-sf-report#acmg-sf-content)), activate the toggle switch.
+
+**Example block in the report:** [ACMG Secondary Findings Report](/results/acmg-sf-report).
+
+### 15. Glioma: Tier I variants {#glioma-tier1}
+
+A block displaying somatic single nucleotide variants (SNVs), copy number variations (CNVs), and structural
+variations (SVs) detected in the sample and classified as Tier I somatic mutations.
+Tier I includes mutations of strong clinical significance for glioma, supported by a high level of evidence
+and relevant for cancer diagnosis and treatment.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Variants of Strong Clinical Significance](/results/glioma-report#tier-i).
+
+### 16. Glioma: Tier II variants {#glioma-tier2}
+
+A block displaying somatic single nucleotide variants (SNVs), copy number variations (CNVs), and structural
+variations (SVs) detected in the sample and classified as Tier II somatic mutations. Tier II includes mutations
+with potential clinical significance for glioma — those that are clearly implicated in cancer development
+but whose roles are not yet fully validated.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+### 17. Glioma: Tier III variants {#glioma-tier3}
+
+A block displaying somatic single nucleotide variants (SNVs), copy number variations (CNVs), and structural
+variations (SVs) detected in the sample and classified as Tier III somatic mutations. Tier III includes mutations
+that have high gene product impact and are detected in genes associated with cancers other than glioma.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+### 18. Glioma: Suggested diagnosis {#glioma-diagnosis}
+
+A block displaying a predicted glioma type defined for the sample.
+Suggested diagnosis and predicted survival times base on Tier I and Tier II mutations automated interpretation
+based on published research. Suggestions were made under the assumption that the tumor DNA has been extracted
+from glioma, therefore, use this block in the report only if you have glioma sequencing samples. In case of
+uncertainty up to three most probable diagnosis suggestions are proposed.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Suggested Diagnosis](/results/glioma-report#suggested-diagnosis).
+
+### 19. Glioma: Suggested drugs {#suggested-drugs}
+
+A block displaying potentially effective and ineffective tumor-targeting drugs and corresponding biomarkers
+detected in the sample.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Suggested Drugs](/results/glioma-report#suggested-drugs).
+
+### 20. Glioma: Mutations details {#mutation-details}
+
+A block with a description of mutations listed
+in ["Glioma: Tier I variants"](/settings/report-templates/report-templates#glioma-tier1)
+and ["Glioma: Tier II variants"](/settings/report-templates/report-templates#glioma-tier2) blocks.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Mutations Details](/results/glioma-report#mutations-details).
+
+### 21. Glioma: Glioma genes panel details {#gene-panel-details}
+
+A block with information about the coverage of glioma-specific genes discovered in the sample.
+The block includes the value of the fraction of the exonic part of the longest transcript covered by at least
+50 sequenced reads (50X) for the genes associated with glioma. The higher the percent of coverage, the more
+completely a transcript is sequenced.
+
+**Applicable to samples:** tumor.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Glioma Genes Panel Details](/results/glioma-report#glioma-genes-panel-details).
+
+### 22. Glioma: Germline pathogenic for gliomas {#glioma-germline-pathogenic-variants}
+
+The block displays germline single nucleotide variants (SNVs) detected in the sample that are classified as
+pathogenic or likely pathogenic for gliomas. The following variants are included in the block:
+1. Pathogenic (according to ClinVar);
+2. Likely pathogenic (according to ClinVar);
+3. Having high gene product impact;
+4. Having moderate gene product impact and frequency less than 10% in population;
+5. Rare (having frequency less than 5% in population).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Pathogenic or Likely Pathogenic for Gliomas](/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma).
+
+### 23. Glioma: Germline pathogenic for any other diseases {#no-glioma-germline-pathogenic-variants}
+
+The block includes germline single nucleotide variants (SNVs) detected in the sample that are classified as
+pathogenic or likely pathogenic and are associated with diseases other than gliomas.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+### 24. Glioma: Germline glioma associated {#glioma-associated-germline-pathogenic-variants}
+
+The block displays germline single nucleotide variants (SNVs) detected in the sample that are associated
+with gliomas according to published studies but were not included
+in [the "Glioma: Germline pathogenic for gliomas" block](/settings/report-templates/report-templates#glioma-germline-pathogenic-variants).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Glioma Associated](/results/glioma-report#glioma-associated).
+
+### 25. Glioma: Literature {#references}
+
+Block displaying links to articles, publications and books on glioma research.
+
+**Applicable to samples:** tumor.
+
+### 26. Germline CNV: results {#cnv-results}
+
+The block presents the results of germline copy number variation (CNV) detection in the sample.
+It includes a statement on whether any deviation from the normal copy number of a chromosome or
+chromosome arm was observed in the analyzed sample.
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Show inferred sex*: Based on CNVs detected in the sex chromosomes (X, Y), it is possible to infer
+the patient's sex. To include the result of this inference in the report, enable the corresponding
+toggle: <img src={require('/img/eng/toggle_on.png').default} width="35"/>.
+
+**Example block in the report:** [CNV Report](/results/cnv-report/sample-cnv-report).
+
+### 27. Germline CNV: interpretation {#cnv-interpretation}
+
+The block presents an interpretation of the results of germline copy number variation (CNV) detection in
+the sample, along with conclusions based on the findings. It includes:
+1. A table listing chromosomes or chromosome arms where structural variations
+(copy number gains or losses) were detected;
+2. A karyogram-style plot indicating chromosome-level CNVs;
+3. Information on genome coverage depth.
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+
+**Example block in the report:** [CNV Report](/results/cnv-report/sample-cnv-report).
+
+### 28. Onco: Onco relevant SNVs/Indels selected by user for reports {#onco-variants}
+
+The block displays a table with information about clinically significant cancer-related variants included
+in the report from the SNV Viewer page. Including variants in the report is described
+in [the corresponding section](/results/main/snvs-indels/variant-viewer#include-to-report).<br></br>
+Onco-relevant variants are those for which clinical guidelines exist, based on data from various
+oncology-related medical communities (<a href="https://www.rosoncoweb.ru/">RUSSCO</a>, <a href="https://oncology-association.ru/">АОР</a>, <a href="https://cr.minzdrav.gov.ru/">Clinical Recommendations of the Ministry of Health of the Russian Federation (КР МЗ РФ)</a>, <a href="https://www.nccn.org/">NCCN</a>, <a href="https://www.esmo.org/">ESMO</a>).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Onco-Relevant Variants](/results/onco-genetic-testing-report#onco-relevant-variants).
+
+### 29. Onco: Clinical Guidelines for onco relevant SNVs/Indels selected by user for reports {#clinical-recommendations}
+
+The block displays clinical recommendations for onco-relevant variants included in the report from the SNV Viewer
+page. Including variants in the report is described
+in [the corresponding section](/results/main/snvs-indels/variant-viewer#include-to-report).<br></br>
+The block contains:
+1. Selection fields for: (a) the oncological disease; (b) its stage; (c) stage details;
+(d) the therapy line used to treat the disease at time of sampling;
+(e) the mutation class (4 classes based on the mechanism that disrupts protein function);
+2. Clinical guidelines compiled from data provided by various oncology-related medical communities
+(<a href="https://www.rosoncoweb.ru/">RUSSCO</a>, <a href="https://oncology-association.ru/">АОР</a>, <a href="https://cr.minzdrav.gov.ru/">Clinical Recommendations of the Ministry of Health of the Russian Federation (КР МЗ РФ)</a>, <a href="https://www.nccn.org/">NCCN</a>, <a href="https://www.esmo.org/">ESMO</a>),
+corresponding to: (a) the onco-relevant variant included in the report, and
+(b) the selected oncological disease, stage, stage details, and therapy line.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+**Example block in the report:** [Clinical Guidelines](/results/onco-genetic-testing-report#clinical-guidelines).
+
+### 30. Polygenic traits {#polygenic-traits}
+
+The block displays results of polygenic trait prediction. Polygenic traits are characteristics that result
+from the combined action of many different genes, each contributing a small effect to the overall trait score.
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Polygenic traits* - a selection of traits whose prediction results will be shown in the report:
+- Height;
+- Weight;
+- BMI (Body Mass Index);
+- Obesity;
+- Prostate cancer (will be displayed if the patient's sex is determined as male);
+- Breast cancer (will be displayed if the patient's sex is determined as female);
+- Coronary artery disease;
+- Inflammatory bowel disease;
+- Type 2 diabetes;
+- Colorectal cancer.
+
+**Example block in the report:** [Report on Polygenic Traits](/results/polygenic-report).
+
+### 31. SNVs/Indels by ClinVar phenotypes {#clinvar-phenotype}
+
+The block displays a phenotype from [the ClinVar database](https://www.ncbi.nlm.nih.gov/clinvar/) and
+associated recommendations.
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *ClinVar Phenotypes* - a table of phenotypes from the ClinVar database, for which the report will include
+information on pathogenic variants detected in the sample that are associated with increased risk of developing
+these conditions. To add a phenotype, click the
+button <img src={require('/img/report_templates/add_phenotype.png').default} width="190"/> and fill out the form:
+   * <i>MedGen ID</i> - the phenotype ID
+   from <a href="https://www.ncbi.nlm.nih.gov/medgen/">the MedGen database</a> (e.g., "C0745103").
+   * <i>ClinVar name</i> - phenotype name from <a href="https://www.ncbi.nlm.nih.gov/clinvar/">the ClinVar database</a>.
+   It must exactly match the ClinVar entry, for example: "Hypercholesterolemia, familial, 1". Use the ClinVar name
+   if the MedGen ID is unknown, but the ID is preferred if available.<br></br>
+   To add a phenotype, at least one of the fields “MedGen ID” or “ClinVar name” must be filled out.
+   * <i>Report name</i> - the name of the phenotype as it will appear in the report.
+   * <i>Recommendations</i> - guidance related to the phenotype that may help the patient reduce the risk of
+   developing the associated condition.
+   Supports <a href="https://www.markdownguide.org/basic-syntax/">Markdown formatting</a>.<br></br>
+   After filling in the required fields, click <img src={require('/img/eng/submit_btn.png').default} width="160"/>.
+   You can add as many phenotypes as needed in this way.
+2. *Origin*: somatic or germline.
+3. *Frequency threshold for extremely rare pathogenic variants*: recommended default value = 0,01.
+4. *Frequency threshold for too frequent pathogenic variants*: recommended default value = 0,15.
+5. *Reliability threshold*: recommended default value = 0,01.
+The confidence of variant detection is calculated as: <i>(1 - Bin(n; m; p; 1))</i>,<br></br>
+where <i>Bin(n; m; p; 1)</i> is the binomial probability of observing the variant exactly <i>n</i> times
+among <i>m</i> individuals (patient samples) in the population;<br></br>
+<i>n</i> – the number of individuals in the population (patient samples) in which the given variant was
+detected;<br></br>
+<i>m</i> – the total number of individuals (patient samples) in the population;<br></br>
+<i>p</i> – the probability of observing the variant in the human population (i.e., the total allele frequency
+from <a href="https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/">the gnomAD 3 database</a>).
+If no population frequency data is available, a default value of p = 0.001 is used.<br></br>
+The values for <i>n</i> and <i>m</i> are taken
+from <a href="/settings/custom-annotations#define-annotation-type">the user-provided frequency database</a>.
+If no such database is uploaded, the reliability threshold will not be applied.
+6. *The heading of the phenotypes list* - header for the list of conditions associated with detected pathogenic
+or likely pathogenic variants.
+7. *Heading if no pathogenic variants found* - text shown when no pathogenic variants increasing risk of
+investigated conditions are detected in the sample.
+8. *Description of the genetic variants found* - title for the table listing detected pathogenic or likely
+pathogenic genetic variants associated with increased risk of the investigated conditions.
+9. *The heading of the recommendations* - header shown in the detailed report section containing diagnostic
+or follow-up recommendations (if any are available for the condition in the report template).
+10. *Recommendations for the patient* - general recommendation text for the patient.
+11. *Information for the doctor* - explanation text on how the report was generated.
+
+**Example block in the report:** [ClinVar Phenotype Report](/results/variants-by-phenotypes).
+
+### 32. Pharmacogenetic {#pharmacogenetics}
+
+The block displays the results of pharmacogenetic analysis — an interpretation of the patient's genetic data
+aimed at predicting their individual response to medications.
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+
+## Edit report template {#edit-template}
+
+In the report template, you can edit its fields (“Name,” “Active,” “Report title,” “Report description”)
+as well as the blocks added to it.
+
+:::note
+All changes to the template will be applied to samples if they were uploaded after the changes were made,
+or if any analysis stage was reprocessed for them after the changes.
+:::
+
+### Template block {#template-block}
+
+Added template block looks like this (example: the "Sample info" block):
 
 <p align="center">
 <img src={require('/img/report_templates/block_example.png').default} width="900"/>

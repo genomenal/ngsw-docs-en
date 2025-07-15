@@ -54,7 +54,7 @@ the analysis results of other pathologies.
 
 ## Patient Info {#patient-info}
 
-- Corresponds to ["Patient info" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Patient info" template block](/settings/report-templates/report-templates#patient-info).
 - Contains basic data about the patient: Patient ID, Last name, First name, Date of birth, Sex, Diagnosis.
 You can also add fields with patient Middle name, Age, Date of diagnosis and Comments
 in [the report template](/settings/report-templates/report-templates#edit-block).
@@ -72,7 +72,7 @@ Information is updated in the report automatically, regardless of where the data
 
 ### Tumor Sample Info {#tumor-sample-info}
 
-- Corresponds to ["Sample info" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Sample info" template block](/settings/report-templates/report-templates#sample-info).
 - Contains basic data about the tumor sample: Sequencing type, Sample collection date, Capture Kit, Sample
 location (Organ), Methodology. You can also add fields with sample Short name, Sample type, Oncological
 disease, Onco stage, Onco stage details, Therapy line and Comments
@@ -88,7 +88,7 @@ Information is updated in the report automatically, regardless of where the data
 
 ### Tier I: Variants of Strong Clinical Significance {#tier-i}
 
-- Corresponds to ["Glioma: Tier I variants" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Glioma: Tier I variants" template block](/settings/report-templates/report-templates#glioma-tier1).
 - Filled with data if somatic variants were discovered and successfully annotated in the tumor sample
 ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
 - Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
@@ -148,7 +148,7 @@ chromosome + arm; chromosome + start and final positions on it).
 
 ### Tier II: Variants of Potential Clinical Significance {#tier-ii}
 
-- Corresponds to ["Glioma: Tier II variants" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Glioma: Tier II variants" template block](/settings/report-templates/report-templates#glioma-tier2).
 - Filled with data if somatic variants were discovered and successfully annotated in the tumor sample
 ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
 - Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
@@ -158,7 +158,8 @@ compared to [Tier I variations](/results/glioma-report#tier-i).
 
 ### Immunotherapy Markers {#immunotherapy-markers}
 
-- Corresponds to ["Immunotherapy markers" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds
+to ["Immunotherapy markers" template block](/settings/report-templates/report-templates#immunotherapy-markers).
 - Filled with data if tumor sample was uploaded in FASTQ or BAM format and the
 somatic variants were discovered and successfully annotated in this sample
 ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
@@ -172,7 +173,8 @@ immunotherapy, and low TMB (less than 6 mutations per 1 Mb) may predict no susce
 
 ### Suggested Diagnosis {#suggested-diagnosis}
 
-- Corresponds to ["Glioma: Suggested diagnosis" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds
+to ["Glioma: Suggested diagnosis" template block](/settings/report-templates/report-templates#glioma-diagnosis).
 - Filled with data if tumor sample was uploaded in FASTQ or BAM format and the somatic variants were
 discovered and successfully annotated ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation"
 stages) and the copy number variations were successfully discovered ("Copy number variations discovery" stage)
@@ -196,7 +198,8 @@ They are not intended to be a substitute for professional medical advice, diagno
 
 ### Suggested Drugs {#suggested-drugs}
 
-- Corresponds to ["Glioma: Suggested drugs" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds
+to ["Glioma: Suggested drugs" template block](/settings/report-templates/report-templates#suggested-drugs).
 - Filled with data if the somatic variants were discovered and successfully annotated in the tumor sample
 ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
 - Contains tumor-targeting drugs that are potentially effective and ineffective against glioma,
@@ -222,7 +225,8 @@ is discovered.<br></br>For some markers, an excerpt from a publication with proo
 
 ###  Mutations Details {#mutations-details}
 
-- Corresponds to ["Glioma: Mutations details" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds
+to ["Glioma: Mutations details" template block](/settings/report-templates/report-templates#mutation-details).
 - Includes [Tier I](/results/glioma-report#tier-i) and [Tier II](/results/glioma-report#tier-ii) mutations
 with excerpts from scientific publications confirming the association of the mutation with gliomas with links
 to the original publications.
@@ -233,7 +237,7 @@ to the original publications.
 
 ### Tier III: Mutations in Other Cancer-Panel Genes {#tier-iii}
 
-- Corresponds to ["Glioma: Tier III variants" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Glioma: Tier III variants" template block](/settings/report-templates/report-templates#glioma-tier3).
 - Filled with data if the somatic variants were discovered and successfully annotated in the tumor sample
 ("Somatic SNVs/Indels discovery" and "Somatic SNVs/Indels annotation" stages).
 - Contains onco-markers (somatic single nucleotide variants, indels, copy number variations and structural
@@ -241,7 +245,7 @@ variations) of high gene product impact detected in genes associated with cancer
 
 ### Clinical Trials {#clinical-trials}
 
-- Corresponds to ["Clinical trials" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Clinical trials" template block](/settings/report-templates/report-templates#clinical-trials).
 - Lists ongoing clinical trials of various interventions (drugs, devices, procedures, etc.) involving
 patients with a specific phenotype selected in the template block (in this case, glioma)
 from [ClinicalTrials](https://clinicaltrials.gov) database.
@@ -263,7 +267,7 @@ or modifying diet and exercise.
 ### Glioma Genes Panel Details {#glioma-genes-panel-details}
 
 - Corresponds
-to ["Glioma: Glioma genes panel details" template block](/settings/report-templates/report-templates#block-types).
+to ["Glioma: Glioma genes panel details" template block](/settings/report-templates/report-templates#gene-panel-details).
 - Filled with data if tumor sample was uploaded in FASTQ or BAM format.
 - Contains information on coverage (fraction of the exonic part of the longest transcript covered by at least
 50 sequenced reads (50X)) of glioma-specific genes with strong or potential clinical significance related to glioma,
@@ -282,7 +286,7 @@ It is support section containing germline variants that are pathogenic and/or as
 ### Control Sample Info {#control-sample-info}
 
 - Corresponds
-to ["Control (normal) sample info" template block](/settings/report-templates/report-templates#block-types).
+to ["Control (normal) sample info" template block](/settings/report-templates/report-templates#control-sample-info).
 - Filled with data if the analyzed sample set includes a non-tumor (control) sample in addition to the tumor sample.
 - Contains basic data about the control sample: Sequencing type, Sample collection date, Capture Kit, Sample
 location (Organ), Methodology. You can also add fields with sample Short name, Sample type, Oncological
@@ -300,7 +304,7 @@ Information is updated in the report automatically, regardless of where the data
 ### Pathogenic or Likely Pathogenic for Gliomas {#pathogenic-or-likely-pathogenic-for-glioma}
 
 - Corresponds
-to ["Glioma: Germline pathogenic for gliomas" template block](/settings/report-templates/report-templates#block-types).
+to ["Glioma: Germline pathogenic for gliomas" template block](/settings/report-templates/report-templates#glioma-germline-pathogenic-variants).
 - Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
 sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
 - Contains single nucleotide germline variants, discovered in the control sample and associated with gliomas
@@ -321,8 +325,7 @@ with links to the publications.
 
 ### ACMG secondary findings {#acmg-secondary-findings}
 
-- Corresponds
-to ["SNVs/Indels in ACMG SF genes" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["SNVs/Indels in ACMG SF genes" template block](/settings/report-templates/report-templates#acmg-sf).
 - Filled with data if the samples were uploaded in FASTQ or BAM formats or as VCF files (each with a single
 sample) and if germline variants were discovered and successfully annotated in a non-tumor (control) sample
 or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
@@ -342,7 +345,8 @@ described [here](/results/acmg-sf-report#acmg-sf-limitations).
 
 ### Pathogenic or Likely Pathogenic for Any Other Genes/Diseases {#pathogenic-or-likely-pathogenic-for-others}
 
-- Corresponds to ["Glioma: Germline pathogenic for any other diseases" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds
+to ["Glioma: Germline pathogenic for any other diseases" template block](/settings/report-templates/report-templates#no-glioma-germline-pathogenic-variants).
 - Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
 sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
 - Contains single nucleotide germline variants discovered in the sample, marked as pathogenic or likely
@@ -353,7 +357,7 @@ described [here](/results/main/snvs-indels/variant-interpretation#add-and-edit).
 ### Glioma Associated {#glioma-associated}
 
 - Corresponds
-to ["Glioma: Germline glioma associated" template block](/settings/report-templates/report-templates#block-types).
+to ["Glioma: Germline glioma associated" template block](/settings/report-templates/report-templates#glioma-associated-germline-pathogenic-variants).
 - Filled with data if the germline variants were discovered and successfully annotated in a non-tumor (control)
 sample or a single tumor sample ("Germline SNVs/Indels discovery" and "Germline SNVs/Indels annotation" stages).
 - Contains single nucleotide germline variants discovered in the sample, associated with gliomas according to
@@ -370,13 +374,13 @@ gliomas with links to the publications.
 
 ## 3. Reference List {#reference-list}
 
-- Corresponds to ["Glioma: Literature" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Glioma: Literature" template block](/settings/report-templates/report-templates#references).
 - Contains links to articles, publications, and books related to glioma research that were used in compiling
 the report.
 
 ## 4. Technical Limitations {#technical-limitations}
 
-- Corresponds to ["Disclaimer" template block](/settings/report-templates/report-templates#block-types).
+- Corresponds to ["Disclaimer" template block](/settings/report-templates/report-templates#disclaimer).
 - Contains a message about the limitations of the use of the report (the text can be edited
 in [the template](/settings/report-templates/report-templates#edit-block)).
 
