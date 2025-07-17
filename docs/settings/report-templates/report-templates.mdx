@@ -279,6 +279,44 @@ in [the corresponding section](/results/main/copy-number-variations/cnv-filterin
 <img src={require('/img/report_templates/cnvs_conditions_form.png').default} height="640"/>
 </p>
 
+:::note About Log2FC Thresholds
+The variation filter by log2FC thresholds (the logarithmic ratio of the observed copy number to the normal
+copy number), offers the following options:
+- Del: ≤-1, Dup: ≥0.58 (chrX: ≥1, chrY: ≥1) (XY) Del: ≤-1 (chrX: ≤0), Dup: ≥0.58 (chrX: ≥1.58, chrY: ≥0) (XX)
+- Del: ≤-0.9 (chrX: ≤-3.8, chrY: ≤-3.8), Dup: ≥0.55 (chrX: ≥0.94, chrY: ≥0.94) (XY) Del: ≤-0.9 (chrX: ≤0.1), Dup: ≥0.55 (chrX: ≥1.55, chrY: ≥-0.1) (XX)
+- Del: ≤-0.8 (chrX: ≤-2.74, chrY: ≤-2.74), Dup: ≥0.51 (chrX: ≥0.88, chrY: ≥0.88) (XY) Del: ≤-0.8 (chrX: ≤0.2), Dup: ≥0.51 (chrX: ≥1.51, chrY: ≥-0.23) (XX)
+- Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82) (XY) Del: ≤-0.7 (chrX: ≤0.3), Dup: ≥0.46 (chrX: ≥1.46, chrY: ≥-0.37) (XX)
+- Del: ≤-0.6 (chrX: ≤-1.64, chrY: ≤-1.64), Dup: ≥0.42 (chrX: ≥0.74, chrY: ≥0.74) (XY) Del: ≤-0.6 (chrX: ≤0.4), Dup: ≥0.42 (chrX: ≥1.42, chrY: ≥-0.55) (XX)
+- Del: ≤-0.5 (chrX: ≤-1.27, chrY: ≤-1.27), Dup: ≥0.37 (chrX: ≥0.66, chrY: ≥0.66) (XY) Del: ≤-0.5 (chrX: ≤0.5), Dup: ≥0.37 (chrX: ≥1.37, chrY: ≥-0.77) (XX)
+- Del: ≤-0.4 (chrX: ≤-0.95, chrY: ≤-0.95), Dup: ≥0.31 (chrX: ≥0.56, chrY: ≥0.56) (XY) Del: ≤-0.4 (chrX: ≤0.6), Dup: ≥0.31 (chrX: ≥1.31, chrY: ≥-1.04) (XX)
+- Del: ≤-0.3 (chrX: ≤-0.67, chrY: ≤-0.67), Dup: ≥0.24 (chrX: ≥0.45, chrY: ≥0.45) (XY) Del: ≤-0.3 (chrX: ≤0.7), Dup: ≥0.24 (chrX: ≥1.24, chrY: ≥-1.41) (XX)
+
+Let’s take threshold *Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82) (XY) Del: ≤-0.7 (chrX: ≤0.3), Dup: ≥0.46 (chrX: ≥1.46, chrY: ≥-0.37) (XX)*
+as an example to explain how these filtering conditions work:
+- If the sample's chromosomal sex is determined\* as male (XY), the variations meeting the following threshold
+will be included in the corresponding report
+blocks: *Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82)*.
+If the sample's chromosomal sex is determined\* as female (XX), the variations meeting the following threshold
+will be included in the corresponding report
+blocks: *Del: ≤-0.7 (chrX: ≤0.3), Dup: ≥0.46 (chrX: ≥1.46, chrY: ≥-0.37)*.
+- CNVs on autosomes with log2FC ≤ -0.7 are classified as deletions.
+A log2FC below –0.7 corresponds to detecting one autosomal copy instead of two in the normal genome.
+- CNVs on autosomes with log2FC ≥ 0.46 are classified as duplications.
+The threshold for duplications is calculated as follows: *log2FC = log<sub>2</sub>((2+D)/2)*, where *D* is the copy
+number "lost" at log2FC=-0.7, and *2* is the normal number of sister chromatids in autosomes.
+- CNVs on the X chromosome are classified as deletions if log2FC ≤ -2.11 for XY samples
+and log2FC ≤ 0.3 for XX samples; and as duplications if log2FC ≥ 0.82 for XY samples and log2FC ≥ 1.46 for XX samples.
+- CNVs on the Y chromosome are classified as deletions if log2FC ≤ -2.11 for XY samples;
+and as duplications if log2FC ≥ 0.82 for XY samples and log2FC ≥ -0.37 for XX samples.
+- Variations not meeting the thresholds - i.e., autosomal variations with -0.7 < log2FC < 0.46, X-chromosomal
+variations with -2.11 < log2FC < 0.82 for XY samples or 0.3 < log2FC < 1.46 for XX samples, and Y-chromosomal
+variations with –2.11 < log2FC < 0.82 for XY samples or log2FC < –0.37 for XX samples - do not pass the filter
+and are excluded from the report.
+
+*The sample's chromosomal sex is determined by CNVkit from the relative copy number of the autosomes and sex
+chromosomes.
+:::
+
 5. *Use CNVs as potential findings*: To include copy number variations detected in the sample that meet the
 specified conditions as [potential findings](/results/potential-findings), activate the toggle switch.
 

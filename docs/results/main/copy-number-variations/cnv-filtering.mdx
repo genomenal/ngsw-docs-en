@@ -17,16 +17,30 @@ Table filtering is saved when you exit the CNV Viewer page.
 
 ### 1. Log2FC thresholds {#log2fc-threshold}
 
-Filter variations by the log2FC value, i.e. the logarithmic ratio of the detected copy number to the normal
-copy number. Possible filtering values:
-- Del: ≤-1, Dup: ≥0.58 (chrX: ≥1, chrY: ≥1)
-- Del: ≤-0.9 (chrX: ≤-3.8, chrY: ≤-3.8), Dup: ≥0.55 (chrX: ≥0.94, chrY: ≥0.94)
-- Del: ≤-0.8 (chrX: ≤-2.74, chrY: ≤-2.74), Dup: ≥0.51 (chrX: ≥0.88, chrY: ≥0.88)
-- Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82)
-- Del: ≤-0.6 (chrX: ≤-1.64, chrY: ≤-1.64), Dup: ≥0.42 (chrX: ≥0.74, chrY: ≥0.74)
-- Del: ≤-0.5 (chrX: ≤-1.27, chrY: ≤-1.27), Dup: ≥0.37 (chrX: ≥0.66, chrY: ≥0.66)
-- Del: ≤-0.4 (chrX: ≤-0.95, chrY: ≤-0.95), Dup: ≥0.31 (chrX: ≥0.56, chrY: ≥0.56)
-- Del: ≤-0.3 (chrX: ≤-0.67, chrY: ≤-0.67), Dup: ≥0.24 (chrX: ≥0.45, chrY: ≥0.45)
+Variation filtering by log2FC thresholds - the logarithmic ratio of the detected copy number to the normal
+copy number. The available threshold values for this filter depend on the sample's chromosomal sex
+determined by CNVkit from the relative copy number of the autosomes and sex chromosomes.
+
+If the chromosomal sex is determined as **male (XY)** or if sex cannot be determined,
+the available threshold values will be:
+- Del: ≤-1, Dup: ≥0.58 (chrX: ≥1, chrY: ≥1) (XY)
+- Del: ≤-0.9 (chrX: ≤-3.8, chrY: ≤-3.8), Dup: ≥0.55 (chrX: ≥0.94, chrY: ≥0.94) (XY)
+- Del: ≤-0.8 (chrX: ≤-2.74, chrY: ≤-2.74), Dup: ≥0.51 (chrX: ≥0.88, chrY: ≥0.88) (XY)
+- **Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82) (XY)** - default value
+- Del: ≤-0.6 (chrX: ≤-1.64, chrY: ≤-1.64), Dup: ≥0.42 (chrX: ≥0.74, chrY: ≥0.74) (XY)
+- Del: ≤-0.5 (chrX: ≤-1.27, chrY: ≤-1.27), Dup: ≥0.37 (chrX: ≥0.66, chrY: ≥0.66) (XY)
+- Del: ≤-0.4 (chrX: ≤-0.95, chrY: ≤-0.95), Dup: ≥0.31 (chrX: ≥0.56, chrY: ≥0.56) (XY)
+- Del: ≤-0.3 (chrX: ≤-0.67, chrY: ≤-0.67), Dup: ≥0.24 (chrX: ≥0.45, chrY: ≥0.45) (XY)
+
+If the chromosomal sex is determined as **female (XX)**, the available threshold values will be:
+- Del: ≤-1 (chrX: ≤0), Dup: ≥0.58 (chrX: ≥1.58, chrY: ≥0) (XX)
+- Del: ≤-0.9 (chrX: ≤0.1), Dup: ≥0.55 (chrX: ≥1.55, chrY: ≥-0.1) (XX)
+- Del: ≤-0.8 (chrX: ≤0.2), Dup: ≥0.51 (chrX: ≥1.51, chrY: ≥-0.23) (XX)
+- **Del: ≤-0.7 (chrX: ≤0.3), Dup: ≥0.46 (chrX: ≥1.46, chrY: ≥-0.37) (XX)** - default value
+- Del: ≤-0.6 (chrX: ≤0.4), Dup: ≥0.42 (chrX: ≥1.42, chrY: ≥-0.55) (XX)
+- Del: ≤-0.5 (chrX: ≤0.5), Dup: ≥0.37 (chrX: ≥1.37, chrY: ≥-0.77) (XX)
+- Del: ≤-0.4 (chrX: ≤0.6), Dup: ≥0.31 (chrX: ≥1.31, chrY: ≥-1.04) (XX)
+- Del: ≤-0.3 (chrX: ≤0.7), Dup: ≥0.24 (chrX: ≥1.24, chrY: ≥-1.41) (XX)
 
 **Filtering algorithm:**:
 - Click on the filter window;
@@ -39,10 +53,12 @@ Done! Filter applied. The selected filter can be seen in the window:
 <img src={require('/img/vv/log2fc_value.png').default} width="200"/>
 </p>
 
-Default value: *- Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82)*.
-It will be applied when all filters are reset. It can only be changed or cleared in the filter options
-(see [below](/results/main/copy-number-variations/cnv-filtering#reset-filtering)).
-Using the default value as an example, let’s look at what these filtering conditions mean:
+When all filters are reset, the log2FC threshold filter reverts to its default value.
+This value can only be changed or cleared within the filter itself
+(see [below](/results/main/copy-number-variations/cnv-filtering#reset-filtering) for details).
+
+Let’s take default value for XY (*Del: ≤-0.7 (chrX: ≤-2.11, chrY: ≤-2.11), Dup: ≥0.46 (chrX: ≥0.82, chrY: ≥0.82)*)
+as an example to explain how these filtering conditions work:
 - Copy number variations on autosomes with log2FC ≤ -0.7 are considered deletions. -0.7 is the default
 log2FC threshold, below which only one autosome is called instead of the normal two.
 - Copy number variations on the X and Y chromosomes with log2FC ≤ -2.11 are considered deletions.

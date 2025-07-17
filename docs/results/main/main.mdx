@@ -87,9 +87,12 @@ You can change the type only by dragging the sample to the appropriate type in t
 or by selecting a different type in the sample row (for runs).
 - CREATED is the date of creation of a sample set (start of uploading sample files into the system)
 in the format M/d/yyyy.
-- READS TYPE is the sequence type (DNA, RNA or UNKNOWN) that was sequenced. Determined by a built-in classifier
-that predicts the reads type using the LSTM (long short-term memory) model. If the type is not defined correctly,
-you can change it by clicking on it and selecting another type from the drop-down list.
+- READS TYPE - the type of nucleic acid (DNA, RNA, or UNKNOWN) whose sequence was obtained during sample sequencing.
+The reads type can be assigned in two ways:
+(a) automatically - as a result of the built-in classifier ("Determine reads type" task);
+(b) manually - via the settings preset selected during sample upload.
+If the assigned reads type is incorrect, it can be manually changed by clicking on the current value and
+selecting the appropriate type from the dropdown list.
 - SEQUENCER is the type of sequencer on which the sequence was sequenced (ILLUMINA, ION TORRENT, BGI or UNKNOWN).
 The type is determined according to the ID of the reads from the file in FASTQ format. If a sequencer is not correctly
 defined, it can be changed by clicking on it and selecting a different type from the drop-down list.

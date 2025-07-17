@@ -36,10 +36,13 @@ tasks, such as **Backup cop** and **Deinterleave Source File**, which are necess
 reads from the file into primary and mate reads and write them to two separate files. All pre-split tasks except
 "Identify" will be recorded in the details of the "Upload, identify and verify primary" stage, and the
 "Upload, identify and verify mate" stage will include only the "Identify", "Determine reads type" and "Verify" tasks.
-6. **Determine reads type**: DNA, RNA or UNKNOWN. This is an experimental feature that does not affect further
-analysis. Reads type is determined by a built-in classifier that predicts the sequence type using the LSTM
-(long short-term memory) model. If the type is determined incorrectly, you can change it
-on [the sample page](/results/main/main#sample-info).
+6. **Determine reads type** is an experimental feature that does not affect the downstream analysis.
+This task uses a built-in classifier based on an LSTM (long short-term memory) model to predict the type of nucleic
+acid (DNA, RNA, or UNKNOWN) whose sequence was obtained during sample preparation. The predicted result is displayed
+on [the sample page](/results/main/main#sample-info), where it can be manually corrected if needed.<br></br>
+The "Determine reads type" task is not executed if a settings preset with a predefined reads type (DNA or RNA)
+was selected during sample upload. In this case, the task is included in the pipeline but not run, and the specified
+type is set without additional validation.
 7. **Verify** file integrity; check that there are four lines per read; check that the lengths of sequence and
 sequence qualities are the same.
 

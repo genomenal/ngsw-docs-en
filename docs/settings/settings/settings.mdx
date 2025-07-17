@@ -51,12 +51,12 @@ The default settings page looks like this:
 #### 1. General analysis settings {#general-analysis-settings}
 
 <p align="center">
-<img src={require('/img/eng/common_settings.png').default} width="600"/>
+<img src={require('/img/eng/common_settings.png').default} width="800"/>
 </p>
 
 Here you can change:
-1. The name given to the preset (to do this, click on it and make changes).
-2. Analysis mode:
+1. **Name** given to the preset (to do this, click on it and make changes).
+2. **Analysis mode**:
 - ***Somatic and germline variant analysis*** is a mode that allows you to look for somatic and germline
 mutations (SNVs/Indels), structural variations and copy number variations. Suitable for the analysis of tumor
 samples with or without control (a sample of non-tumor-bearing healthy tissue).
@@ -68,10 +68,17 @@ Suitable for the analysis of non-tumor samples.
 <img src={require('/img/eng/analysis_mode.png').default} width="350"/>
 </p>
 
-3. Reads type, a type of nucleic acid (DNA, RNA or UNKNOWN) sequenced to obtain your sample.
-4. Sequencer, a type of sequencer platform on which the sample sequence was obtained (ILLUMINA, ION TORRENT,
+3. **Reads type** - specifies the type of nucleic acid whose sequence was obtained during sample sequencing:
+- *Detect automatically* - runs the "Determine reads type" task, and its result is used to set the value;
+- *DNA* - the read type is set to DNA without running the determining task;
+- *RNA* - the read type is set to RNA without running the determining task.
+
+If DNA or RNA is selected, the "Determine reads type" task is included in the pipeline but is not executed.
+The specified type is applied without additional validation.
+
+4. **Sequencer**, a type of sequencer platform on which the sample sequence was obtained (ILLUMINA, ION TORRENT,
 BGI or UNKNOWN).
-5. Description - you can add a description of the preset.
+5. **Description** - you can add a description of the preset.
 
 #### 2. Settings of various analysis modules {#various-analysis-modules-settings}
 
