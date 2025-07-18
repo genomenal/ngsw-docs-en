@@ -75,6 +75,33 @@ import RecognizePair from '/docs/imported_components/_recognize_pair.mdx';
 
 <RecognizePair />
 
+#### Merging Sequencing Lanes {#merge-lanes}
+
+If your sequencing sample consists of multiple FASTQ files corresponding to different lanes on a flow cell, and
+those files share the same name except for the lane `_L[lane number]` (e.g., "_L01"), the lane files will be
+automatically merged into a single sample. During this process, file pairing is handled as described above: paired
+lane files will be merged into a paired sample, and unpaired files will be merged into an unpaired sample.<br></br>
+Example: merging four paired lanes into one sample:
+
+<p align="center">
+<img src={require('/img/eng/lanes_sample_in_run.png').default} width="450"/>
+</p>
+
+The first file shown in the merged sample card is the one with the lowest lane number, and the rest of the
+lanes are added to it. This is indicated by a plus sign (“+”) before the names of the additional lanes.
+- If the files were merged incorrectly, you can split them by
+clicking <img src={require('/img/eng/split_lanes.png').default} width="250"/> button at the bottom of the page,
+to the left of the "Submit Samples" button.
+- If the required files were not merged automatically, you can manually merge all added files by
+clicking <img src={require('/img/eng/merge_samples.png').default} width="250"/> button at the bottom of the page,
+to the left of the "Submit Samples" button.
+Note that the button is only available if all added samples have the same pairing type (i.e., all paired or all
+unpaired).
+
+After analysis is initiated, the lanes of the merged sample may initially appear as separate entries.
+However, once the upload and identify steps are successfully completed for all lanes, they are automatically
+combined into a single sample.
+
 #### Change Sample Type {#change-sample-type}
 
 The type of each sample is indicated to the right of the sample card and matches the type that was selected
