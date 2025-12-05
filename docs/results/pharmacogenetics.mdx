@@ -1,0 +1,292 @@
+---
+sidebar_position: 9
+sidebar_label: Pharmacogenetic Report
+---
+
+# Pharmacogenetic Report
+
+The report presents the results of pharmacogenetic testing, which makes it possible to account for the patient's
+hereditary characteristics when prescribing medications. Genetic variants can affect the effectiveness and safety
+of therapy by increasing, reducing, or completely eliminating the response to treatment, or by raising the risk
+of adverse drug reactions.
+
+Pharmacogenetic testing helps personalize the selection of medications and dosing regimens, minimize the risk
+of side effects, and improve the overall effectiveness of pharmacotherapy. This approach is especially important
+in the treatment of chronic and oncological diseases, where resistance to standard therapy is common.
+
+Pharmacogenetic testing involves analyzing genetic variants in pharmacogenes. Pharmacogenes are genes encoding
+proteins involved in the pharmacokinetics and pharmacodynamics of medications. They include genes encoding
+drug-metabolizing enzymes; transporter proteins responsible for drug absorption, distribution, and elimination;
+and genes encoding drug targets.
+
+Pharmacogene analysis was performed using the [PharmCAT](https://pharmcat.clinpgx.org/) (Pharmacogenomics Clinical
+Annotation) tool. PharmCAT annotates SNVs/indels based on [CPIC](https://cpicpgx.org/) (Clinical
+Pharmacogenetics Implementation Consortium), [PharmGKB](https://www.pharmgkb.org/) (Pharmacogenomics Knowledge Base),
+[DPWG](https://www.clinpgx.org/page/dpwg) (Dutch Pharmacogenetics Working Group),
+and the [FDA](https://www.fda.gov/) (Food and Drug Administration).
+
+:::caution
+The pharmacogenetic report reflects expert consensus based on clinical data and peer-reviewed literature available
+at the time of publication and is intended solely to assist clinicians in the decision-making process. However, it
+does not account for all individual patient characteristics and cannot serve as the sole basis for prescribing or
+modifying therapy. The report is not a substitute for professional medical consultation, diagnosis, or treatment.
+The accuracy of the report largely depends on the quality of the source data.
+:::
+
+The pharmacogenetic report consists of four sections:
+[Identified Alleles](/results/pharmacogenetics#identified-alleles),
+[Diplotypes](/results/pharmacogenetics#diplotypes), [Genotypes](/results/pharmacogenetics#genotypes), and
+[Disclaimer](/results/pharmacogenetics#disclaimer).
+
+## Identified Alleles {#identified-alleles}
+
+The first section provides a brief summary of the pharmacogenetic report. It contains a summary table with the
+results of allele-level interpretation for pharmacogenetically significant genes. For a given gene, multiple
+detected alleles or haplotypes may be listed if the input data allow their unambiguous determination. All
+variants are grouped according to their functional impact - specifically, their effect on the activity of the
+encoded enzyme or transport protein.
+
+<p align="center">
+<img src={require('/img/results/pharm_alleles.png').default} height="800"/>
+</p>
+
+Table columns:
+1. **Group** - a functional category reflecting the impact of the detected alleles on protein activity.
+Possible groups:
+- ***Decreased Function*** - includes the following phenotypes:
+   - *0.0 (Poor Metabolizer)*, or *Poor Metabolizer*: little to no enzyme activity.
+   Corresponds to combination of no function alleles and/or decreased function alleles in
+   genes, encoding drug-metabolizing enzymes:
+   *CYP2B6*, *CYP2C19*, *CYP2C9*, *CYP3A4*, *CYP3A5*, *DPYD*, *NUDT15*, *TPMT*, *UGT1A1*.
+   - *Likely Poor Metabolizer*. It can be determined for the *CYP2C19* gene, encoding
+   a member of the cytochrome P450 superfamily of enzymes, which is involved in drug metabolism.
+   - *1.0 (Intermediate Metabolizer)*, *1.5 (Intermediate Metabolizer)*, or *Intermediate Metabolizer*:
+   decreased enzyme activity (activity between normal and poor metabolizer).
+   Corresponds to combinations of normal function, decreased function, and/or no function alleles in
+   genes, encoding drug-metabolizing enzymes: *CYP2B6*, *CYP2C19*, *CYP2C9*, *CYP3A4*, *CYP3A5*,
+   *DPYD*, *NUDT15*, *TPMT*, *UGT1A1*.<br></br>
+   1.0 and 1.5 are activity scores used by PharmCAT. The enzyme activity with a score of 1.0 is closer to the
+   lower limit of normal, while the enzyme activity with a score of 1.5 is slightly higher and closer to a normal
+   metabolizer.
+   - *Likely Intermediate Metabolizer*. It can be determined for the *CYP2C19* gene, encoding
+   a member of the cytochrome P450 superfamily of enzymes, which is involved in drug metabolism.
+   - *Possible Intermediate Metabolizer*. It can be determined for the genes, encoding drug-metabolizing enzymes:
+   *CYP3A5*, *NUDT15* и *TPMT*.
+   - *Poor Function*: little to no transporter function. Corresponds to combination of no function alleles
+   and/or decreased function alleles in genes, encoding transporters: *ABCG2* and *SLCO1B1*.
+   - *Decreased Function*: decreased transporter function (function between normal and poor function).
+   Corresponds to combinations of normal function, decreased function, and/or no function alleles
+   in genes, encoding transporters: *ABCG2* and *SLCO1B1*.
+    - *Possible Decreased Function*. It can be determined for the *SLCO1B1* gene, encoding
+    organic anion transporting polypeptide 1B1 (OATP1B1), which is involved in drug transportation.
+   - *Deficient*: deficiency of the enzyme glucose-6-phosphate dehydrogenase (G6PD), encoded by the *G6PD* gene.
+   - *Deficient with CNSHA*: deficiency of the enzyme glucose-6-phosphate dehydrogenase (G6PD), encoded by
+   the *G6PD* gene, in chronic nonspherocytic hemolytic anemia (CNSHA).
+- ***Increased Function*** - includes the following phenotypes:
+   - *Rapid Metabolizer*: increased enzyme activity compared to normal metabolizers but less than ultrarapid
+   metabolizers. Corresponds to combinations of normal function and increased function alleles in
+   genes, encoding drug-metabolizing enzymes: *CYP2B6* and *CYP2C19*.
+   - *Ultrarapid Metabolizer*: increased enzyme activity compared to rapid metabolizers.
+   Corresponds to two increased function alleles, or more than 2 normal function alleles in
+   genes, encoding drug-metabolizing enzymes: *CYP2B6* and *CYP2C19*.
+   - *Increased Function*: increased transporter function compared to normal function.
+   Corresponds to one or more increased function alleles in the *SLCO1B1* gene, encoding
+    organic anion transporting polypeptide 1B1 (OATP1B1), which is involved in drug transportation.
+- ***Side Effects***: corresponds to the *Malignant Hyperthermia Susceptibility* phenotype,
+a pharmacogenetic disorder of skeletal muscle calcium regulation associated with uncontrolled skeletal
+muscle hypermetabolism. It develops with mutations in the *RYR1* and *CACNA1S* genes.
+- ***Drug Response*** - includes the following phenotypes:
+   - The "*-1639 AA*", "*-1639 AG*", "*-1639 GG*" genotypes of the *VKORC1* gene, encoding drug-metabolizing enzyme.
+   These variants differ in their levels of enzyme expression and, therefore, require different drug dosages.
+   For example, patients with the -1639 AA genotype should be given 60% of the standard initial dose of warfarin,
+   while there are no recommendation for patients with the -1639 AG genotype[^1].
+   - *ivacaftor non-responsive in CF patients*: no response to ivacaftor treatment in patients with cystic fibrosis
+   (CF). This phenotype corresponds to a situation where all analyzed variants in the *CFTR* gene are homozygous
+   for the reference allele. Since the efficacy of ivacaftor has only been established in patients carrying
+   certain genetic variants in the *CFTR* gene (either homozygous or heterozygous), the absence of such variants
+   indicates a low probability of therapeutic response[^2].
+   - *ivacaftor responsive in CF patients*: a probable positive response to ivacaftor treatment in patients with
+   cystic fibrosis (CF). The phenotype is consistent with the detection of a genetic variant in the *CFTR* gene that
+   is likely to be effective with ivacaftor. The presence of this mutation means the patient has a high chance of
+   a positive response to therapy.
+- ***Normal Function*** - includes the following phenotypes:
+   - *2.0 (Normal Metabolizer)*, and *Normal Metabolizer*: fully functional enzyme activity.
+   Corresponds to combinations of normal function and decreased function alleles in
+   genes, encoding drug-metabolizing enzymes: *CYP2B6*, *CYP2C19*, *CYP2C9*,
+   *CYP3A4*, *CYP3A5*, *DPYD*, *NUDT15*, *TPMT*, *UGT1A1*.
+   - *Normal Function*: fully functional transporter function.
+   Corresponds to combinations of normal function and/or decreased function alleles in genes, encoding
+   transporters: *ABCG2* and *SLCO1B1*.
+   - *Normal*: normal activity of the enzyme glucose-6-phosphate dehydrogenase (G6PD), encoded by the *G6PD* gene.
+   Corresponds to homozygote for the reference allele - B (reference)/B (reference).
+- ***Uncertain Effect*** - includes the following phenotypes:
+   - *Indeterminate*: a standardized CPIC phenotype term assigned to genotypes containing uncertain function or
+   unknown function alleles. It can be determined for the following genes:
+   *CYP2B6*, *CYP2C19*, *CYP2C9*, *CYP3A5*, *G6PD*, *NUDT15*, *SLCO1B1*, *TPMT*, *UGT1A1*.
+   - *Uncertain Susceptibility*: undefined susceptibility to malignant hyperthermia,
+   a pharmacogenetic disorder of skeletal muscle calcium regulation associated with uncontrolled skeletal
+   muscle hypermetabolism. Malignant hyperthermia susceptibility develops with mutations in the *RYR1* and
+   *CACNA1S* genes.
+   - *Variable*: variable activity of the enzyme glucose-6-phosphate dehydrogenase (G6PD), encoded by the *G6PD* gene.
+   - *0.5 (Phenotyping)*, *1.0 (Phenotyping)*, or *Phenotyping*: enzyme activity must be assessed using phenotyping.
+   0.5 and 1.0 are activity scores used by PharmCAT.
+- ***Conflicting Phenotypes***: a category of results that arises when, for the same gene, different combinations
+of detected alleles or interpretations from different sources lead to incompatible phenotype assignments. In such
+cases, the patient's genotype cannot be reliably associated with a single, definitive phenotype.
+2. **Gene** - the name of the analyzed gene. The analysis includes 18 pharmacogenetically significant genes:
+- *ABCG2* and *SLCO1B1* - genes encoding transporters;
+- *CYP2B6*, *CYP2C19*, *CYP2C9*, *CYP3A4*, *CYP3A5*, *CYP4F2*, *DPYD*, *G6PD*, *NUDT15*, *TPMT*, *UGT1A1*, and
+*VKORC1* - genes encoding drug-metabolizing enzymes;
+- *CACNA1S* and *RYR1* - genes associated with susceptibility to malignant hyperthermia;
+- *CFTR* - a gene that determines response to treatment with ivacaftor;
+- *IFNL3* - a gene encoding cytokines, which are distantly related to type I interferons and the IL-10 family.<br></br>
+3. **Alleles** - pharmacogenetically relevant alleles (diplotypes) detected in the patient for the given gene.
+If there is ambiguity in allele assignment for a gene, all possible allele combinations are listed,
+separated by commas.<br></br>
+If no allele can be determined for a gene, the value "*insufficient data to determine alleles*" is reported.
+Such genes are then excluded from subsequent sections of the report.<br></br>
+Genetic variants identifiable as pharmacogenomic markers are described ***the star-allele nomenclature***.
+In this nomenclature, alleles are not identified by their genomic position or HGVS notation, but
+are assigned labels such as \*1, \*2, \*3, and so on. Each label corresponds to a specific genetic variant
+within the gene and its established functional effect. The use of star-allele nomenclature helps non-specialized
+professionals quickly and reliably identify clinically relevant pharmacogenetic alleles and reduces the risk of
+transcription mistakes which may be more frequent by using the standard HGVS nomenclature.<br></br>
+***"Reference" or "\*1" alleles*** are assigned by default when no alternative variants are found at the genetic
+positions relevant to determining pharmacogenetic alleles. Importantly, they do not suggest a lack of genetic
+variation at every position in the gene and should not be mistaken to mean an exact match to the entire reference
+sequence for the gene.<br></br>
+For the *CFTR* gene, the "Reference" designation corresponds to a *CFTR* variant that does not respond to
+ivacaftor therapy.
+
+## Diplotypes {#diplotypes}
+
+The "Diplotypes" section contains the results of pharmacogenetic data interpretation performed using the PharmCAT tool.
+The table includes only those genes for which the available input data were sufficient to determine a diplotype.
+For each identified diplotype, the table provides information on the functional impact of the corresponding alleles,
+the expected phenotype, and the drugs associated with the gene.
+
+<p align="center">
+<img src={require('/img/results/dyplotypes.png').default} width="900"/>
+</p>
+
+Table columns:
+1. **Gene** - the name of the gene in which the relevant alleles were identified. For some genes,
+warnings are provided in footnotes below the table:
+- For *CYP2B6*, *CYP2C19*, *CYP2C9*, *CYP3A4*, *CYP4F2*, *G6PD*, *NUDT15*, *SLCO1B1*, *TPMT*, and *UGT1A1*,
+it is not always possible to unambiguously determine the diplotype when unphased genomic data are used.
+In such cases, diplotypes that determine the priority according to PharmCAT are indicated.
+- When no alternative nucleotides are detected in positions that determine pharmacogenomic alleles, the gene
+is assigned a reference allele ("Reference" or "\*1"). Importantly, this does not suggest a lack of genetic
+variation at every position in the gene and should not be mistaken to mean an exact match to the entire reference
+sequence for the gene.
+- If at least one position in a gene lacks genotype information (i.e., the patient's variant nucleotides could
+not be determined), a footnote is added: "Diplotype predicted based on incomplete genomic data".
+2. **Diplotype** - a combination of two haplotypes of a gene's alleles, inherited from each parent. It represents
+a pharmacogenetically relevant form of the patient's genotype. Diplotypes are translated by PharmCAT into the
+corresponding phenotypes. If diplotype assignment is ambiguous for a gene, all possible diplotypes are listed on
+separate rows.
+3. **Allele Functionality** - a description of the clinical functional impact of the detected alleles on the
+activity of the encoded protein.
+4. **Phenotype** - the interpretation of the diplotype from a pharmacogenetic perspective. It defines the patient's
+expected ability to metabolize specific drugs. Definitions of possible phenotypes are given above.
+5. **Drugs** - a list of medications associated with the gene and for which the gene has clinical relevance.
+The list is based on CPIC and DPWG guidelines.
+
+The primary source of information on diplotypes, allele functionality, and phenotypes
+is [the Clinical Pharmacogenetics Implementation Consortium (CPIC)](https://cpicpgx.org/).
+Information from CPIC is provided without special notation.
+If [the Dutch Pharmacogenetics Working Group (DPWG)](https://www.clinpgx.org/page/dpwg) provides recommendations
+that differ from those of CPIC, they are indicated with the label "DPWG". In the example below for the *VKORC1* gene,
+no CPIC recommendations were found for the identified diplotype, while DPWG provides information on drug response:
+
+<p align="center">
+<img src={require('/img/results/dpwg_example.png').default} width="900"/>
+</p>
+
+## Genotypes {#genotypes}
+
+The "Genotypes" section contains the genotyping results generated by PharmCAT and provides detailed information
+about the nucleotides present at the analyzed positions in the patient's genomic data. The section includes a
+list of 18 pharmacogenes; for each gene, the detected pharmacogenetically relevant variants are presented in
+the format "chromosome: position - genotype". For some genes, warnings and comments generated by PharmCAT are
+also displayed.
+
+<p align="center">
+<img src={require('/img/results/pharm_genotypes.png').default} width="900"/>
+</p>
+
+If nucleotide information is missing for certain positions, those positions are listed in the "Position data not
+provided" subsection in the format "chromosome: position".
+
+<p align="center">
+<img src={require('/img/results/no_data_on_genotype.png').default} width="900"/>
+</p>
+
+## Disclaimer {#disclaimer}
+
+PharmCAT uses gene allele definitions included in the CPIC database, with modifications for the
+*CYP3A4*, *DPYD*, *G6PD*, *SLCO1B1*, *RYR1* genes. Exceptions are noted
+in [Gene Definition Exceptions document](https://pharmcat.clinpgx.org/methods/Gene-Definition-Exceptions/).
+
+CPIC assigns function terms to alleles based on literature evidence reviewed by a panel of experts in pharmacogenomics.
+CPIC aims to assign an allele function that leads to a phenotype assignment that can drive clinical prescribing
+actionability. It is important to note that an allele's CPIC-assigned function can differ from the biochemical
+function reported in the literature. For example, an allele may show a decrease in function under experimental
+conditions, but this decrease is so small that no change in prescribing action is required. As a result, this
+allele may be classified by CPIC as a normal function allele.
+CPIC prioritizes clinical interpretation over purely biochemical data. Therefore, CPIC function terms
+should always be considered in the context of clinical applicability.
+
+The *CYP3A4* gene is currently not part of a CPIC guideline. Since the DPWG *CYP3A4* documentation includes limit
+variant notations for the included alleles (only \*16, \*20, and \*22 are specified), PharmCAT relies
+on [PharmVar](https://www.pharmvar.org/) *CYP3A4* allele definitions. However, the CYP3A4\*16, \*20 and \*22
+definitions are the same in both sources.
+
+PharmCAT does not replace missing genomic positions in the source data with reference variants; all missing positions
+are not considered when determining alleles. The absence of genomic position information in the source data may
+affect the prediction of alleles, diplotype, and phenotype. If an allele is determined by multiple genomic variants,
+but only some of them are present in the source data, PharmCAT will attempt to make a prediction based on the
+available information. This may result in several possible diplotypes with equally high priority. Additionally,
+alternative diplotypes with lower priority may be present.
+
+Genomic positions display nucleotides from the positive strand of the chromosome regardless of gene orientation.
+
+PharmCAT matches genomic variants with alleles and diplotypes, assuming the data is unphased unless phasing is
+explicitly specified in the source genomic data. By default, it is assumed that the determined alleles are in trans
+configuration, meaning on opposite chromosomes. However, in cases where an allele is determined by a combination of
+two or more variants, and each of these variants can also independently determine an allele, the "longer" allele
+determined by a larger number of variants will be output as the result.
+
+There are cases where it is impossible to unambiguously differentiate between phased and unphased diplotypes.
+In such cases, diplotypes have different priorities according to PharmCAT. The diplotype with higher priority
+(the "longer" allele) will be used to determine the phenotype. However, the diplotype with lower priority is also
+possible. For the genes listed below, the diplotypes shown in unphased data are indistinguishable from the diplotypes
+shown in square brackets:
+- Gene *CYP2B6*: \*1/\*36 [\*6/\*22]; \*1/\*34 [\*33/\*36]; \*1/\*6 [\*4/\*9]; \*1/\*7 [\*5/\*6];
+\*1/\*13 [\*6/\*8]; \*1/\*18 [\*4/\*18];
+- Gene *CYP2C19*: \*1/\*4 [\*17/\*4]; \*1/\*2 [\*11/\*2]; \*1/\*35 [\*15/\*35];
+- Gene *CYP2C9*: \*1/\*71 [\*10/\*22];
+- Gene *CYP3A4*: \*1/\*37 [\*3/\*22]; \*1/\*38 [\*3/\*11];
+- Gene *CYP4F2*: \*1/\*4 [\*2/\*3];
+- Gene *G6PD*: A- 202A_376G/B (reference) [A/Asahi]; B (reference)/Mt Sinai [A/Guadalajara]; B (reference)/Santa
+Maria [A/Malaga]; Ananindeua/B (reference) [A/Viangchan, Jammu]; B (reference)/Hechi [Asahi/Viangchan, Jammu]; B
+(reference)/Hermoupolis [Cassano/Union,Maewo, Chinese-2, Kalo];
+- Gene *NUDT15*: \*1/\*2 [\*3/\*6];
+- Gene *SLCO1B1*: \*1/\*46 [\*15/\*45]; \*1/\*20 [\*19/\*37]; \*1/\*12 [\*2/\*10]; \*1/\*13 [\*3/\*11];
+\*1/\*14 [\*4/\*37]; \*1/\*15 [\*5/\*37]; \*1/\*25 [\*4/\*28]; \*1/\*31 [\*9/\*37]; \*1/\*32
+[\*4/\*24]; \*1/\*40 [\*5/\*19]; \*1/\*43 [\*4/\*44];
+- Gene *TPMT*: \*1/\*3A [\*3B/\*3C];
+- Gene *UGT1A1*: \*1/\*80+\*28 [\*28/\*80]; \*1/\*80+\*37 [\*37/\*80].
+
+See cases for which there is an overlap in the allele definitions
+in [the PharmCAT documentation](https://pharmcat.clinpgx.org/Disclaimers/).
+
+## Report export {#export}
+
+The pharmacogenetic report can be downloaded in PDF format. To do this, click on
+the button <img src={require('/img/results/export_pdf.png').default} width="150"/> in the upper right corner
+of the report page.
+
+[^1]: [Annotation of DPWG Guideline for warfarin and VKORC1](https://www.clinpgx.org/guidelineAnnotation/PA166182841)
+
+[^2]: [Annotation of CPIC Guideline for ivacaftor and CFTR](https://www.clinpgx.org/chemical/PA165950341/guidelineAnnotation/PA166114461)
