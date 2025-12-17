@@ -40,7 +40,7 @@ Report on polygenic traits is generated for a sample if the following conditions
 1. The sample is uploaded as a non-tumor sample (a sample of the "NORMAL" type).
 2. The sample analysis has been successfully completed (i.e. all stages included in the workflow
 have the "Complete" status).
-3. The "Polygenic risk scores calculation" task of the "Phenotype prediction" analysis stage has been successfully
+3. The "Polygenic risk scores calculation" task of the "Genomic predictions" analysis stage has been successfully
 completed for the sample. By default, the task is not included in the analysis workflow, so it must be included in the
 parameters by activating [the "Run polygenic risk scores calculation" option](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation).
 Please note that to include polygenic risk scores calculation in the analysis workflow of a sample uploaded
@@ -57,8 +57,8 @@ or on the report page itself. If the patient is under 18 years old, the extreme 
 the age value of 18 y.o. for calculations, since the predictive model uses a range from 18 to 80 years old.
 If the patient is over 80 years old, the extreme upper limit will be used as the age value of 80 y.o. for
 calculations, since the predictive model uses a range from 18 to 80 years old.
-If the sex value you specified does not match the value determined from the genetic data, the latter value
-will be taken into account to generate the report.
+If the patient's sex is not specified, the sex value determined from genetic data is used
+(the "Determining sex" task of the "Genomic predictions" stage).
 After specifying the patient's age and sex, you need to wait a bit while the values required for generating
 the report are calculated.
 

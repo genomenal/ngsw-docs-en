@@ -1,0 +1,339 @@
+---
+sidebar_position: 9
+sidebar_label: Report on Oligogenic Traits
+---
+
+# Report on Oligogenic Traits
+
+**Oligogenic traits** are characteristics such as hair or eye color whose manifestation depends on a small
+number of genes, each making a substantial contribution to the phenotype. Unlike monogenic traits, which are
+determined by a single gene, oligogenic traits arise from the interaction of multiple genetic variants;
+therefore, their inheritance may deviate from classical Mendelian patterns. The influence of external factors
+on oligogenic traits is generally smaller than on [polygenic traits](/results/polygenic-report), although
+environmental and lifestyle factors may still play a role.
+
+The prediction of oligogenic traits is based on single nucleotide polymorphisms (SNPs) associated with specific
+trait manifestations, using models built on multinomial logistic regression (MLR).
+
+## Report generation {#generate-report}
+
+The report is based
+on [the "Oligogenic traits" report template block](/settings/report-templates/report-templates#oligogenic-traits),
+which can only be applied to non-tumor samples. The block regulates oligogenic risk score calculation results
+for which traits will be included in the report.
+
+Report on oligogenic traits is generated for a sample if the following conditions are met:
+1. The sample is uploaded as a non-tumor sample (a sample of the "NORMAL" type).
+2. The sample analysis has been successfully completed (i.e. all stages included in the workflow
+have the "Complete" status).
+3. The "Calculation of oligogenic risk scores" task of the "Genomic predictions" analysis stage has been successfully
+completed for the sample. By default, the task is not included in the analysis workflow, so it must be included
+in the parameters by activating
+[the "Run oligogenic risk scores calculation" option](/settings/settings/variant-discovery-settings#enable-phenotype-prediction).
+Please note that to include oligogenic risk scores calculation in the analysis workflow of a sample uploaded
+in VCF or GT format, you must select [the setting preset](/settings/settings/settings), which includes the
+"Run oligogenic risk scores calculation" parameter, at the stage of composing a sample set.
+4. The report template, which includes the "Oligogenic traits" block, is active (adjusted
+on [the "Report templates" page](/settings/report-templates/report-templates)).
+5. The report template was added to the system before the sample processing has been completed.
+
+## Results {#results}
+
+The list of oligogenic traits included in the report is determined by the report template settings.
+Below is a description of all available traits.
+
+For each trait, the report provides the prediction result as well as a list of the analyzed genomic positions in
+the following format:
+"chromosome":"position on chromosome" "reference nucleotide">"alternative nucleotide" - "genotype in data".
+
+If data for one or more genomic positions required to predict a trait are missing in the sample, the following
+message is displayed as the result:
+"*Not enough genetic variants detected to make a prediction*".
+
+An example of how data are presented in the oligogenic traits report:
+
+<p align="center">
+<img src={require('/img/results/oligo_result.png').default} width="850"/>
+</p>
+
+### Hair Color {#hair-color}
+
+Hair color, or hair pigmentation, is a pronounced phenotypic trait with complex genetics and a polygenic mode
+of inheritance. A major contribution to the genetic architecture of the hair color spectrum is made by polymorphisms
+in the *MC1R* gene. Because specific hair shades directly depend on the presence or absence of pigment, as well
+as on the relative proportions of pheomelanin and eumelanin, hair color formation ultimately involves all genes
+associated in one way or another with melanin biosynthesis and the development of melanocytes. In addition,
+experimental studies have shown that hair color is also influenced by genes whose functions are related to
+the regulation of hair growth and hair structure formation.[^1]
+
+The probability of hair color is calculated using a model based on multinomial logistic regression.
+The primary model[^2] predicts hair color based on 22 polymorphisms and estimates the probabilities
+of four categories: black, brown, red, and blond. A separate model predicts hair tone (dark or light)
+using 20 polymorphisms, which partially overlap with those used in the primary model. The final phenotype
+is determined by combining the predicted probabilities from both models according to an integrated decision scheme.
+
+It is important to note that these models predict the natural hair color in youth (approximately up to 30 years
+of age), as hair pigmentation may lighten or darken with age.
+
+Predicted hair color categories:
+- **Black**;
+- **Dark brown**;
+- **Brown**;
+- **Light brown**;
+- **Red** - includes classic red, blond-red, and auburn shades[^2];
+- **Blond** (pale blond to dark blond) – a broad category encompassing pale and gold blond shades as well as
+darker tones close to light brown, including light brown–blond and ash-blond shades.
+
+### Eyes Color {#eyes-color}
+
+Eye color, or eye pigmentation, is a heritable phenotypic trait that depends on the production of the pigment
+melanin in the body. The greater the amount of melanin, the darker the eye color. Accordingly, reduced melanin
+production results in lighter eye colors, while a complete absence of pigment leads to albinism. Mutations in
+at least 16 genes have been identified that influence melanin biosynthesis and its metabolic pathways.[^3]
+
+The probability of eye color is calculated using a model based on multinomial logistic regression.
+The model[^4] predicts eye color based on six polymorphisms and estimates the probabilities of three basic
+categories: brown, blue, and green eyes. The final result is derived from the relative values of these probabilities.
+
+If one of the basic categories shows a clear predominance (a high probability), the eye color is reported as
+the corresponding basic color. If the probabilities of two categories are comparable, the result is interpreted
+as an intermediate shade reflecting a mixed phenotype.
+
+Predicted eye color categories:
+- **Blue**;
+- **Green**;
+- **Brown**;
+- **Brown-grey**;
+- **Brown-green**;
+- **Green-grey**;
+- **Blue-grey**.
+
+### Skin Color {#skin-color}
+
+Skin color, or skin pigmentation, is an important phenotypic trait that can be highly informative in anthropology,
+medicine, and forensic practice. Skin color has a polygenic mode of inheritance, meaning it depends on the combined
+effects of multiple genes. This trait is directly determined by the intensity of melanin production and the forms
+of this pigment. Because melanin performs a protective function in human skin, its biosynthesis is activated by
+exposure to ultraviolet (UV) radiation. This explains the variation in skin tones observed among populations from
+different continents and climatic zones.[^5]
+
+The probability of skin color is calculated using a model based on multinomial logistic regression. Skin phenotype
+is defined according to the Fitzpatrick scale.[^6] The model[^7] analyzes 36 polymorphisms, and
+the probabilities of four phenotypic categories are predicted based on it:
+- **Dark skin** - corresponds to Fitzpatrick skin types V–VI.
+<br></br>Fitzpatrick type V is characterized by very dark brown skin. The skin rarely burns in the
+sun and easily develops a deep tan. Hair and eye color are typically dark.
+<br></br>Fitzpatrick type VI corresponds to the darkest skin tone. The skin does not burn; tanning only
+further intensifies its dark color. Hair and eyes are usually black.
+- **Medium skin** - corresponds to Fitzpatrick skin types III–IV.
+<br></br>Fitzpatrick type III is characterized by slightly darker skin and moderate sensitivity to sunlight.
+The skin may burn but usually tans well. Eye color ranges from gray to light brown; hair color ranges from
+dark blond to brown.
+<br></br>Fitzpatrick type IV corresponds to olive or moderately dark skin that rarely burns and tans easily.
+Eyes are typically dark, and hair is dark brown.
+- **Medium-light skin** - corresponds to Fitzpatrick skin type II.
+Fitzpatrick type II is characterized by light skin with increased sensitivity to ultraviolet radiation.
+The risk of sunburn is high; the skin tans poorly and gradually. Eye color is most often blue, green, or gray;
+hair is blond or light brown.
+- **Light skin** - corresponds to Fitzpatrick skin type I.
+Fitzpatrick type I is characterized by the lightest skin tone, often with freckles. The skin almost never tans
+and is extremely sensitive to ultraviolet radiation; the risk of sunburn is very high. Hair color is typically
+red or very light blond, and eye color is blue.
+
+### Freckling {#freckling}
+
+Freckles, or ephelides, are a phenotypic trait manifested as areas of skin hyperpigmentation. They are most
+commonly observed in individuals with Fitzpatrick skin types I and II (fair-skinned, light-eyed, blond or
+red-haired) and typically appear on skin areas most exposed to sunlight. The first freckles usually develop
+between the ages of 4 and 6 and present as light brown spots on the skin. As a rule, during the summer period
+the number of pigmented spots, their size, and the intensity of pigmentation increase. Unlike moles, freckles
+do not contain a large number of pigment cells (melanocytes). Their distinguishing feature is a high accumulation
+of pigment molecules (melanin) within skin cells. Freckles are a hereditary trait associated with the presence
+of specific genes.[^8]
+
+The probability of freckles is predicted using a model based on multinomial logistic regression.
+The model[^9] determines freckling based on 14 predictors (one of which is sex) and predicts three categories
+of freckling:
+- **Severe**;
+- **Medium**;
+- **Absent**.
+
+### Lactose Intolerance {#lactose-intolerance}
+
+Lactose intolerance, or lactase deficiency (hypolactasia), is a condition associated with reduced activity of
+the enzyme lactase. It is characterized by symptoms such as abdominal pain, diarrhea, bloating, nausea, sometimes
+vomiting, and other gastrointestinal symptoms that occur after the consumption of milk and dairy products.[^10]
+
+The probability of lactose intolerance is predicted using a model based primarily on a single polymorphism,
+rs4988235, which is fully associated with biochemically confirmed lactase non-persistence[^11]. Additionally,
+the polymorphisms rs182549 and rs145946881 are considered as secondary and tertiary contributors, as they may
+account for variability of this trait in certain populations, including Finnish[^11] and East African[^12] populations.
+
+Predicted categories:
+- **Normal lactose tolerance**;
+- **Normal lactose tolerance with the potential to develop intolerance with age or high lactose intake**;
+- **A risk of developing lactose intolerance with age**;
+- **Lactose intolerance, which may worsen with age**.
+
+### Bitter Taste {#bitter-taste}
+
+Bitterness is a taste sensation that arises when certain molecules interact with receptors located on the tongue.
+Bitter taste is the most complex of the basic tastes: 25 different receptors involved in its perception have been
+identified. These receptors serve an important protective function, causing aversion to potentially toxic substances,
+such as those found in plants, thereby reducing the risk of poisoning. Genetic variation in the relevant genes
+leads to differences in how molecules activate bitter taste receptors among individuals, which explains why bitter
+foods may be perceived as more or less unpleasant.[^13]
+
+The probability of sensitivity to bitter taste is calculated using a model[^14] based on the analysis of three
+polymorphisms that form five haplotypes in the *TAS2R38* gene, which encodes a member of the TAS2R family of
+bitter taste receptors. These haplotypes fully explain the bimodal distribution of bitter taste sensitivity,
+and the model predicts two phenotypic categories: **sensitive** and **insensitive**.
+
+### Blood Type {#blood-type}
+
+The ABO blood group system is the most clinically significant blood antigen system. It is based on the presence
+of antigens A and B on the surface of red blood cells and the corresponding antibodies that recognize them.
+This system defines four major blood groups, determined by three primary alleles of the *ABO* gene (A, B, and O).
+The blood groups differ in the antigens expressed on erythrocytes. Antigens A and B are carbohydrate structures
+synthesized by glycosyltransferase enzymes. An individual’s blood can belong to one of four groups: **O**, **A**,
+**B**, or **AB**.
+ABO blood group compatibility is critically important for blood transfusion and organ or tissue transplantation,
+as incompatibility can be life-threatening. In addition, blood groups may be associated, to some extent, with
+susceptibility to certain diseases, including thrombosis and other cardiovascular disorders, oncological diseases,
+and the clinical course of COVID-19.[^15]
+
+Blood groups are predicted using a model[^16] based on haplotype analysis of two polymorphisms, rs8176719 and
+rs8176746, in the *ABO* gene.
+
+### Alcohol Metabolism {#alcohol-metabolism}
+
+Alcohol metabolism is a phenotypic trait characterized by individual differences in sensitivity to alcohol,
+which are largely determined by variation in the activity of enzymes involved in ethanol metabolism. Genes that
+regulate alcohol metabolism influence both alcohol consumption levels and the risk of developing alcohol dependence.
+These include the *ADH1B* gene, which encodes alcohol dehydrogenase, and the *ALDH2* gene, which encodes
+mitochondrial aldehyde dehydrogenase.[^17]
+
+The probability of alcohol sensitivity is primarily predicted using a model based on a single polymorphism, rs671.
+A lysine-to-glutamate substitution at the rs671 locus results in a nearly inactive ALDH2 enzyme, which is no
+longer able to oxidize acetaldehyde to acetate[^18]. The presence of even one copy of this allele provides
+strong protection against alcohol dependence. In fact, the protective effect of this polymorphism represents
+one of the most consistently replicated associations between a specific gene and alcoholism[^19].
+An additional polymorphism, rs1229984, which is frequently included in studies[^19], is considered as a
+secondary contributor.
+
+Predicted categories of alcohol sensitivity:
+- **Fast alcohol metabolism**: normal tolerance to alcohol. The risk of developing alcohol dependence may be higher
+compared to other genotypes.
+- **Decreased alcohol metabolism**: alcohol consumption may be accompanied by side effects such as facial flushing.
+The risk of developing alcohol dependence may be lower compared to other genotypes.
+- **Slow alcohol metabolism**: poor tolerance even to small amounts of alcohol.
+The risk of developing alcohol dependence is extremely low.
+
+### Ear Wax {#earwax-type}
+
+Earwax (cerumen) is a substance produced by glands located in the epithelium of the external ear canal.
+The primary functions of earwax are to protect, cleanse, and moisturize the auditory canal. Dirt, dust,
+and bacteria adhere to earwax, preventing their entry into the inner ear. The self-cleaning of the ear canal
+is facilitated by continuous epithelial growth and jaw-chewing movements, which help transport earwax outward,
+where it is shed and washed away. Based on its consistency, earwax is classified into two types: wet, which is
+yellow-brown, and dry, which is whitish-gray. It has been established that this trait is determined by two
+alleles of the *ABCC11* gene. The dry type of earwax is more common among East Asian populations, whereas
+the wet type predominates among European and African populations.[^20]
+
+Earwax type is predicted using a model[^21] based on a single polymorphism, rs17822931, in the *ABCC11* gene.
+This gene encodes a transporter protein involved in the movement of lipophilic anions into and out of cells.
+In humans, *ABCC11* influences both earwax consistency and the presence of axillary odor. Earwax type is one
+of the few phenotypic traits controlled by a single gene.
+
+Predicted categories:
+- **Wet**: earwax contains a higher lipid content, has a darker color, and a sticky consistency.
+- **Dry**: earwax contains fewer lipids, has a lighter color, and a dry, flaky texture.
+
+### Body Odour {#osmidrosis}
+
+Axillary osmidrosis is a chronic, recurrent condition characterized by an unpleasant odor produced by
+secretions of the apocrine sweat glands. This odor results from the oxidation and hydrolysis of
+ε-3-methyl-2-hexenoic acid, a compound associated with the microbiota inhabiting the apocrine glands.
+The sources of ε-3-methyl-2-hexenoic acid include fatty acids, proteins, and carbohydrates. Bacterial
+metabolic activity is intensified by emotional stress, physical exertion, and hot weather.[^22]
+
+The probability of axillary osmidrosis is predicted using a model[^23] based on a single polymorphism,
+rs17822931, in the *ABCC11* gene. This gene encodes a transporter protein involved in the movement of
+lipophilic anions into and out of cells. The rs17822931 polymorphism is strongly associated with the
+development of axillary osmidrosis.
+
+Predicted body odour categories:
+- **Strong**;
+- **Faint**;
+- **Imperceptible**.
+
+### Misophonia {#misophonia}
+
+Misophonia (selective sound sensitivity syndrome) is characterized by intolerance to specific sounds,
+most commonly chewing noises and other sounds produced by the mouth or nose.[^24]
+
+The probability of misophonia is predicted using a model[^25] based on a single polymorphism, rs2937573,
+located near the *TENM2* gene, which is involved in brain development. This polymorphism is associated
+with an increased sensitivity to chewing sounds. Depending on the identified genetic variant, the model
+predicts **probable sensitivity** or **decreased sensitivity** to sounds.
+
+### Sleep Movement Risk {#sleep-movement}
+
+Sleep-related movements are episodic involuntary muscle contractions that occur during sleep, particularly
+during the non-rapid eye movement sleep. Sleep-related movements include periodic limb movement disorder
+and restless legs syndrome. These phenomena are associated with polymorphisms in the *BTBD9*, *TOX3/BC034767*,
+*MEIS1*, *MAP2K5/SKOR1*, and *PTPRD* genes.[^26]
+
+The probability of sleep-related movements is predicted using a model[^27] based on a single polymorphism,
+rs3923809, in the *BTBD9* gene, which is associated with restless legs syndrome and periodic limb movements.
+
+Predicted categories:
+- **Increased movement during sleep**;
+- **Moderately increased movement during sleep**;
+- **Normal movement during sleep**.
+
+### Photic Sneeze Reflex Sensitivity {#photic-sneeze-reflex}
+
+The photic sneeze reflex is a neuro-ophthalmological phenomenon characterized by reflexive sneezing
+triggered by sudden exposure to bright light. This reflex is relatively common across populations and
+is observed in approximately one in four individuals worldwide. It is believed to follow an autosomal
+dominant pattern of inheritance; however, the specific gene responsible for this trait has not yet been
+identified.[^28]
+
+The probability of the photic sneeze reflex is predicted using a model[^29] based on two polymorphisms,
+rs11856995 and rs10427255, located in intergenic regions and associated with this phenomenon.
+
+Predicted photic sneeze reflex categories:
+- **Likely sensitive**;
+- **Moderately sensitive**;
+- **Normal**.
+
+[^1]: [Hair color](https://www.genokarta.ru/disease/Cvet_volos)
+[^2]: [Hair color and tone prediction model](https://www.fsigenetics.com/article/S1872-4973(12)00181-0/fulltext)
+[^3]: [Eye color](https://www.genokarta.ru/disease/Cvet_glaz)
+[^4]: [Eye color prediction model](https://www.fsigenetics.com/article/S1872-4973(11)00144-X/fulltext)
+[^5]: [Skin color](https://www.genokarta.ru/disease/Cvet_kozhi)
+[^6]: [Fitzpatrick scale](https://jamanetwork.com/journals/jamadermatology/article-abstract/549509)
+[^7]: [Skin color prediction model](https://link.springer.com/article/10.1007/s00439-017-1808-5)
+[^8]: [Freckles](https://www.genokarta.ru/disease/Vesnushki)
+[^9]: [Freckling prediction model](https://www.fsigenetics.com/article/S1872-4973(19)30037-7/fulltext)
+[^10]: [Lactose intolerance](https://www.genokarta.ru/disease/Neperenosimost_laktozy)
+[^11]: [Enattah N., Sahi T., Savilahti E. et al. Identification of a variant associated with adult-type hypolactasia. Nat Genet 30, 233–237 (2002)](https://www.nature.com/articles/ng826z)
+[^12]: [Tishkoff S., Reed F., Ranciaro A. et al. Convergent adaptation of human lactase persistence in Africa and Europe. Nat Genet 39, 31–40 (2007)](https://www.nature.com/articles/ng1946)
+[^13]: [Bitter taste sensitivity](https://www.genokarta.ru/disease/Chuvstvitelnost_k_gorkomu_vkusu)
+[^14]: [Un-kyung Kim et al. Positional Cloning of the Human Quantitative Trait Locus Underlying Taste Sensitivity to Phenylthiocarbamide. Science 299, 1221-1225 (2003)](https://www.science.org/doi/10.1126/science.1080190)
+[^15]: [ABO blood group system](https://www.genokarta.ru/disease/Gruppy_krovi_po_sisteme_ABO)
+[^16]: [Melzer D. et al. A genome-wide association study identifies protein quantitative trait loci (pQTLs). PLoS Genet 4, e1000072 (2008)](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000072)
+[^17]: [Alcohol metabolism](https://www.genokarta.ru/disease/Metabolizm_alkogolya)
+[^18]: [Crabb D.W., Edenberg H.J., Bosron W.F., Li T.K. Genotypes for aldehyde dehydrogenase deficiency and alcohol sensitivity. The inactive ALDH2(2) allele is dominant. J Clin Invest 83, 314-316 (1989)](https://www.jci.org/articles/view/113875)
+[^19]: [Chen C.C. et al. Interaction between the functional polymorphisms of the alcohol-metabolism genes in protection against alcoholism. Am J Hum Genet 65, 795-807 (1999)](https://www.cell.com/ajhg/fulltext/S0002-9297(07)62333-7)
+[^20]: [Earwax](https://www.genokarta.ru/disease/Ushnaya_sera)
+[^21]: [Yoshiura Ki. et al. A SNP in the ABCC11 gene is the determinant of human earwax type. Nat Genet 38, 324–330 (2006)](https://www.nature.com/articles/ng1733)
+[^22]: [Axillary osmidrosis](https://www.genokarta.ru/disease/Podmyshechnyj_osmidroz)
+[^23]: [Inoue Y. et al. Correlation of axillary osmidrosis to a SNP in the ABCC11 gene determined by the Smart Amplification Process (SmartAmp) method. J Plast Reconstr Aesthet Surg 63, 1369-1374 (2010)](https://www.jprasurg.com/article/S1748-6815(09)00487-2/fulltext)
+[^24]: [Misophonia](https://www.genokarta.ru/disease/Mizofoniya)
+[^25]: [Fayzullina S. et al. White Paper 23‐08 Genetic Associations	with Traits	in 23andMe Customers. 23andMe (2015)](https://permalinks.23andme.com/pdf/23-08_genetic_associations_with_traits.pdf)
+[^26]: [Sleep-related movements](https://www.genokarta.ru/disease/Dvizhenie_vo_vremya_sna)
+[^27]: [Stefansson H. et al. A genetic risk factor for periodic limb movements in sleep. N Engl J Med 357, 639-47 (2007)](https://www.nejm.org/doi/full/10.1056/NEJMoa072743)
+[^28]: [Photic sneeze reflex](https://www.genokarta.ru/disease/Svetovoj_refleks_chihaniya)
+[^29]: [Eriksson N. et al. Web-based, participant-driven studies yield novel genetic associations for common traits. PLoS Genet 6, e1000993 (2010)](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000993)

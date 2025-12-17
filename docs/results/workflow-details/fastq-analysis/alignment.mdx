@@ -7,7 +7,7 @@ sidebar_label: Alignment
 
 After the ["Check quality and cleanup"](/results/workflow-details/fastq-analysis/check-quality-and-cleanup) stage
 has been successfully completed, further sample analysis (SNVs/Indels, structural variations, or copy number
-variations discovery, as well as phenotype prediction) requires alignment (mapping) of reads to the reference
+variations discovery, as well as genomic predictions) requires alignment (mapping) of reads to the reference
 genome. [GRCh38.p14](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/), the most recent version
 of the human genome is used for alignment. If alignment
 is [excluded](/settings/settings/alignment-settings#disable-alignment) from the workflow, the analysis is
@@ -128,8 +128,9 @@ analysis: [somatic SNVs/Indels discovery](/settings/settings/variant-discovery-s
 [germline SNVs/Indels discovery](/settings/settings/variant-discovery-settings#germline-snvs-discovery),
 [structural variations discovery](/settings/settings/variant-discovery-settings#sv-discovery),
 [copy number variations discovery](/settings/settings/variant-discovery-settings#cnv-discovery),
-[phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) or
+[oligogenic risk scores calculation](/settings/settings/variant-discovery-settings#enable-phenotype-prediction),
 [polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation),
+pharmacogenetic calculation, or ancestry analysis,
 then after the "Alignment" task is successfully completed,
 [the "Variant discovery preprocessing" stage](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
 will start.

@@ -18,17 +18,17 @@ The analysis of a sample uploaded in VCF or GT format depends on the analysis se
 the sample set. The analysis workflow of such a sample can only be affected
 by [a setting for allowing only variants passing all filters](/settings/settings/variant-discovery-settings#allow-filtered-variants),
 [a phasing group merging setting](/settings/settings/variant-discovery-settings#pg-merge-distance) and the settings
-from [the "Phenotype prediction" section](/settings/settings/variant-discovery-settings#phenotype-prediction).
+from [the "Genomic predictions" section](/settings/settings/variant-discovery-settings#phenotype-prediction).
 Please note that it will be impossible to change anything during the analysis of a sample uploaded in VCF or GT
 format after the analysis has started.
 
 Analysis of a sample uploaded in VCF or GT format may include the following stages:
 1. [Upload, identify and verify](/results/workflow-details/vcf-analysis/upload-identify-verify);
 2. [SNVs/Indels or SV annotation](/results/workflow-details/vcf-analysis/annotation);
-3. [Phenotype prediction](/results/workflow-details/vcf-analysis/phenotypes)
-if [phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) and/or
-[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation)
-are included in the workflow;
+3. [Genomic predictions](/results/workflow-details/vcf-analysis/phenotypes)
+if [oligogenic risk scores calculation](/settings/settings/variant-discovery-settings#enable-phenotype-prediction),
+[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation),
+pharmacogenetic calculation and/or ancestry analysis are included in the workflow;
 4. [Generate reports](/results/workflow-details/vcf-analysis/report-generation) if:
 - The sample analysis has been successfully completed (i.e. all stages included in the workflow have the status
 "*Complete*").

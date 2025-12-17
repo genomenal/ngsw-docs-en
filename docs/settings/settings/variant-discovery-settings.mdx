@@ -478,24 +478,25 @@ the required panel:
 
 If the sample is automatically detected as WGS, CNV reference panel is ignored.
 
-### Phenotype prediction {#phenotype-prediction}
+### Genomic predictions {#phenotype-prediction}
 
-Phenotypes are predicted from single nucleotide polymorphisms (SNPs) associated with a particular
-trait expression according to multinomial logistic regression (MLR) models. We use models that
-predict such phenotypic traits as hair color, eyes color, skin color, freckling, lactose intolerance,
+#### Oligogenic risk scores calculation {#enable-phenotype-prediction}
+
+Calculation of oligogenic risk scores is based on single nucleotide polymorphisms (SNPs) associated with specific
+trait manifestations, using models built on multinomial logistic regression (MLR). We use models that
+predict such oligogenic traits as hair color, eyes color, skin color, freckling, lactose intolerance,
 blood type, alcohol metabolism, body odour (axillary osmidrosis), earwax type, bitter taste receptor
-sensitivity, sex, and pharmacokinetics of some drugs. Phenotype prediction can be performed on
+sensitivity, misophonia, sleep movement risk, and photic sneeze reflex sensitivity.
+Oligogenic risk scores calculation can be performed on
 genotyping data in GT format or annotated germline SNVs/indels in VCF format.
 
-#### Enable phenotype prediction {#enable-phenotype-prediction}
-
-To enable phenotype prediction in sample, turn on the corresponding toggle:
+To enable oligogenic risk scores calculation in sample, turn on the corresponding toggle:
 
 <p align="center">
 <img src={require('/img/eng/turn_on_phenotypes.png').default} width="400"/>
 </p>
 
-#### Enable polygenic risk scores calculation {#polygenic-risk-scores-calculation}
+#### Polygenic risk scores calculation {#polygenic-risk-scores-calculation}
 
 The polygenic risk score (PRS) represents the total number of single nucleotide polymorphisms (SNPs) that an
 individual has to assess their heritable risk of developing a particular phenotype. It reflects an individual's

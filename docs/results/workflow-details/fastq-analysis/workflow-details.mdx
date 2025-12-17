@@ -22,12 +22,14 @@ Analysis of a sample uploaded in FASTQ or BAM format may include the following s
 is [included](/settings/settings/alignment-settings) in the workflow;
 4. [Variant discovery preprocessing](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing)
 if at least one of the following downstream stages is included in the workflow:
-SNVs/Indels discovery, structural variations discovery, copy number variations discovery, phenotype prediction
-or polygenic risk scores calculation;
+SNVs/Indels discovery, structural variations discovery, copy number variations discovery,
+or at least one of the genomic predictions tasks (oligogenic/polygenic risk scores calculation, pharmacogenetic
+calculation, or ancestry analysis);
 5. [Calculate coverage](/results/workflow-details/fastq-analysis/calculate-coverage)
 if at least one of the following downstream stages is included in the workflow:
-SNVs/Indels discovery, structural variations discovery, copy number variations discovery or phenotype prediction
-or polygenic risk scores calculation;
+SNVs/Indels discovery, structural variations discovery, copy number variations discovery,
+or at least one of the genomic predictions tasks (oligogenic/polygenic risk scores calculation, pharmacogenetic
+calculation, or ancestry analysis);
 6. [Somatic SNVs/Indels discovery](/results/workflow-details/fastq-analysis/somatic-snvs-indels#somatic-variants-discovery)
 if somatic SNVs/Indels discovery is [included](/settings/settings/variant-discovery-settings#somatic-snvs-discovery)
 in the workflow and if sequencing sample is uploaded as tumor;
@@ -47,10 +49,10 @@ the workflow;
 if copy number variations discovery is [included](/settings/settings/variant-discovery-settings#cnv-discovery) in
 the workflow and if a sequencing type and capture kit (if the sequencing type is defined as "WES" or "Panel")
 are detected for the sample;
-10. [Phenotype prediction](/results/workflow-details/fastq-analysis/phenotypes)
-if [phenotypes prediction](/settings/settings/variant-discovery-settings#enable-phenotype-prediction) and/or
-[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation)
-are included in the workflow;
+10. [Genomic predictions](/results/workflow-details/fastq-analysis/phenotypes)
+if [oligogenic risk scores calculation](/settings/settings/variant-discovery-settings#enable-phenotype-prediction),
+[polygenic risk scores calculation](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation),
+pharmacogenetic calculation and/or ancestry analysis are included in the workflow;
 11. [Generate reports](/results/workflow-details/fastq-analysis/report-generation) if:
 - At least one active [report template](/settings/report-templates/report-templates), applicable to the sample type,
 with at least one [added block](/settings/report-templates/report-templates#add-block) was added to the system.
