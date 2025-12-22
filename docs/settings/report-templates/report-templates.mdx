@@ -712,6 +712,24 @@ depends on a small number of genes, each making a substantial contribution to th
 
 **Example block in the report:** [Report on Oligogenic Traits](/results/oligogenic-report).
 
+### 34. Ancestry {#ancestry}
+
+The report presents the results of a genetic ancestry analysis, which is performed by
+[ADMIXTURE](https://genome.cshlp.org/content/19/9/1655) using
+[the Human Genome Diversity Project reference genotypic panel](https://www.science.org/doi/full/10.1126/science.aay5012).
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – the section title (required).
+2. *Description* – the text displayed below the title.
+3. *Probability threshold for populations* - the minimum threshold for the membership probability obtained
+from the ancestry analysis. Only populations for which the calculated probability - reflecting the contribution
+of that population to the genetic structure of the sample - exceeds the specified threshold are included in the
+report. The recommended default value is 0.01.
+
+**Example block in the report:** [Ancestry Report](/results/ancestry-report).
+
 ## Edit report template {#edit-template}
 
 In the report template, you can edit its fields (“Name,” “Active,” “Report title,” “Report description”)

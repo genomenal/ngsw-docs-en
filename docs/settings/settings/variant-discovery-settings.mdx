@@ -5,7 +5,7 @@ sidebar_label: Variant Discovery Settings
 
 # Variant Discovery Settings
 
-### PCR duplicates filtration {#pcr-duplicates-filtration}
+## PCR duplicates filtration {#pcr-duplicates-filtration}
 
 After the alignment stage, the results go through several preprocessing steps.
 This increases the sensitivity for low frequency variants, contributes to a more accurate copy number count,
@@ -13,7 +13,7 @@ which depends on the number of reads, and also speeds up variant calling.
 If you want to keep every read in the process of variant calling (for example, if you are working with amplicon data),
 then disable Mark Duplicates and Limit Reads options.
 
-#### Disable mark duplicates {#disable-mark-duplicates}
+### Disable mark duplicates {#disable-mark-duplicates}
 
 During the sequencing process, the number of original sequences of fragmented DNA is increased in the polymerase
 chain reaction (PCR). For further analysis, it is essential to take into account duplicate reads of the
@@ -28,7 +28,7 @@ To disable the duplicates marking, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_mark_dupl.png').default} width="400"/>
 </p>
 
-#### Disable limit reads per alignment {#disable-limit-reads}
+### Limit reads per alignment {#disable-limit-reads}
 
 After a certain threshold (50 reads per site for GATK), increasing coverage (number of reads)
 of the site used to call a variant is not informative, imposes unreasonable computational
@@ -47,9 +47,9 @@ turn off the corresponding toggle:
 This option is only applicable to the germline SNVs/indels discovery.
 :::
 
-### SNVs/Indels filtration {#snvs-filtration}
+## SNVs/Indels filtration {#snvs-filtration}
 
-#### Filter SNVs/indels by Capture Kit target and disable it {#filter-snvs-by-capture-kit}
+### Filter SNVs/indels by Capture Kit target {#filter-snvs-by-capture-kit}
 
 Generally, for samples obtained as a result of targeted sequencing, variant call is carried out in the
 same genomic intervals in which sequencing was performed. Thus, if a Capture Kit has been defined for the sample,
@@ -64,7 +64,7 @@ To disable filtering by Capture Kit, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_filter_by_ck.png').default} width="400"/>
 </p>
 
-#### Allow only variants passing all filters and disable it {#allow-filtered-variants}
+### Allow only variants passing all filters {#allow-filtered-variants}
 
 All variants discovered by the caller necessarily go through the filtering stage,
 during which it is checked whether they pass quality criteria.
@@ -85,7 +85,7 @@ This option only affects the display of unfiltered variants in the SNV Viewer an
 In further analysis (for example, in a group analysis), only filtered variants will still be accepted.
 :::
 
-### Somatic SNVs/indels discovery {#somatic-snvs-discovery}
+## Somatic SNVs/indels discovery {#somatic-snvs-discovery}
 
 Somatic mutations are acquired after birth and characteristic of the tumor process.
 Therefore, such mutations discovery is carried out only in tumor tissue samples
@@ -104,7 +104,7 @@ To disable the somatic SNVs/indels discovery, turn off the corresponding toggle:
 <img src={require('/img/eng/turn_off_somatic.png').default} width="400"/>
 </p>
 
-#### Select Panel of Normal {#panel-of-normal}
+### Select Panel of Normal {#panel-of-normal}
 
 Panel of Normal (PON) is a panel made from normal samples (that is, healthy tissue that is believed
 to not have any somatic alterations) to capture recurrent technical artifacts in order to improve the
@@ -138,7 +138,7 @@ field and select the panel you need:
 <img src={require('/img/eng/change_pon.png').default} width="400"/>
 </p>
 
-#### Disable somatic tumor only discovery {#disable-somatic-tumor-only-discovery}
+### Somatic tumor only discovery {#disable-somatic-tumor-only-discovery}
 
 To disable the somatic SNVs/indels discovery in a single tumor tissue sample (tumor-only mode),
 turn off the corresponding toggle:
@@ -151,7 +151,7 @@ turn off the corresponding toggle:
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
 :::
 
-### Germline SNVs/indels discovery {#germline-snvs-discovery}
+## Germline SNVs/indels discovery {#germline-snvs-discovery}
 
 Germline mutations are inherited and can be found in every cell in the body. The discovery of such
 mutations is carried out for single tumor samples without control and for normal samples.
@@ -166,7 +166,7 @@ To disable the germline SNVs/indels discovery, turn off the corresponding toggle
 <img src={require('/img/eng/turn_off_germline.png').default} width="400"/>
 </p>
 
-#### Disable germline tumor only discovery {#disable-germline-tumor-only-discovery}
+### Germline tumor only discovery {#disable-germline-tumor-only-discovery}
 
 To disable the germline SNVs/indels discovery in a single tumor tissue sample,
 turn off the corresponding toggle:
@@ -179,7 +179,7 @@ turn off the corresponding toggle:
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
 :::
 
-#### Phasing group merging setting {#pg-merge-distance}
+### Phasing group merging setting {#pg-merge-distance}
 
 Phasing group is a merging of homozygous variants located within a specific genomic interval
 (window of size N).
@@ -192,10 +192,9 @@ To disable merging variants into phasing groups, turn off the corresponding togg
 
 To adjust the genomic distance within which homozygotes will be merged into a phasing group,
 click on the current value (window of size N = 3 bp by default) and edit (min value = 1, max value = 10).
-To save the changes, press "Enter" key or click the left mouse button in an empty space on the page.
 To save changes, press Enter or click outside edit value container.
 
-#### The germline SNVs/indels hard-filtering parameters {#hard-filtration}
+### The germline SNVs/indels hard-filtering parameters {#hard-filtration}
 
 <details>
 <summary>Click to read about hard-filtering parameters and their thresholds</summary>
@@ -309,7 +308,7 @@ Turned on toggle is blue and shifted to the right: <img src={require('/img/eng/t
 and turned off toggle is gray and shifted to the
 left: <img src={require('/img/eng/toggle_off.png').default} width="35"/>.
 
-#### Enable CNN variant scoring {#enable-cnn-scoring}
+### CNN variant scoring {#enable-cnn-scoring}
 
 In addition to hard-filtering, germline variants can be annotated with FILTERs based on scores from a pre-trained
 Convolutional Neural Network (CNN) implemented in
@@ -321,7 +320,7 @@ To enable CNN scoring of germline SNVs/indels, turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_cnn.png').default} width="400"/>
 </p>
 
-### Structural variations discovery {#sv-discovery}
+## Structural variations discovery {#sv-discovery}
 
 Structural variations (SVs) are long deletions, tandem duplications, inversions and translocations.
 SVs are detected using the ***Delly***[^1] tool, an integrated structural variant prediction method
@@ -339,7 +338,7 @@ To disable structural variations discovery in sample, turn off the corresponding
 <img src={require('/img/eng/turn_off_structural.png').default} width="400"/>
 </p>
 
-### Copy number variations discovery {#cnv-discovery}
+## Copy number variations discovery {#cnv-discovery}
 
 Copy number variation (CNV) is a phenomenon in which the number of repeats of DNA fragments in the
 genome varies between individuals. The length of such fragments usually ranges from 1 thousand to
@@ -364,7 +363,7 @@ To disable copy number variations discovery in sample, turn off the correspondin
 <img src={require('/img/eng/turn_off_cnv.png').default} width="400"/>
 </p>
 
-#### CNV call threshold {#cnv-call-threshold}
+### CNV call threshold {#cnv-call-threshold}
 
 Threshold value of log2FC below which single autosome is called instead of two in normal.
 log2FC is the logarithmic ratio of the detected copy number to the normal copy number
@@ -423,7 +422,7 @@ number of copies of chromosomes), turn on the corresponding toggle:
 <img src={require('/img/eng/turn_on_aneuploidies.png').default} width="400"/>
 </p>
 
-#### Select reference samples panel for WGS {#wgs-reference-panel}
+### Select reference samples panel for WGS {#wgs-reference-panel}
 
 CNV analysis is more powerful when a batch of reference samples is used for normalization.
 By default, the panel is not selected (*None*, i.e. the normalization is disabled).
@@ -445,7 +444,7 @@ the required panel:
 
 If the sample is automatically detected as Targeted Capture, CNV reference panel is ignored.
 
-#### Bin size for WGS data {#bin-size}
+### Bin size for WGS data {#bin-size}
 
 Bin is an interval within which the reads are counted. If you have low coverage data,
 choose larger target bin sizes (e.g. up to 500,000 for low-pass WGS data),
@@ -455,7 +454,7 @@ Min value = 1000, max value = 5,000,000. To save changes, press Enter or click o
 If you [have selected a reference samples panel for WGS](/settings/settings/variant-discovery-settings#wgs-reference-panel),
 then select the bin size for which it was designed from the list.
 
-#### Select reference samples panel for targeted capture {#targeted-capture-reference-panel}
+### Select reference samples panel for targeted capture {#targeted-capture-reference-panel}
 
 CNV analysis is more powerful when a batch of reference samples is used for normalization.
 Selected CNV reference panel should match the capture kit used to prepare the analyzed sample.
@@ -478,16 +477,18 @@ the required panel:
 
 If the sample is automatically detected as WGS, CNV reference panel is ignored.
 
-### Genomic predictions {#phenotype-prediction}
+## Genomic predictions {#phenotype-prediction}
 
-#### Oligogenic risk scores calculation {#enable-phenotype-prediction}
+### Oligogenic risk scores calculation {#enable-phenotype-prediction}
 
+Oligogenic traits are characteristics such as hair or eye color whose manifestation depends on a small
+number of genes, each making a substantial contribution to the phenotype.
 Calculation of oligogenic risk scores is based on single nucleotide polymorphisms (SNPs) associated with specific
 trait manifestations, using models built on multinomial logistic regression (MLR). We use models that
 predict such oligogenic traits as hair color, eyes color, skin color, freckling, lactose intolerance,
 blood type, alcohol metabolism, body odour (axillary osmidrosis), earwax type, bitter taste receptor
 sensitivity, misophonia, sleep movement risk, and photic sneeze reflex sensitivity.
-Oligogenic risk scores calculation can be performed on
+Oligogenic risk scores calculation can only be performed on non-tumor samples:
 genotyping data in GT format or annotated germline SNVs/indels in VCF format.
 
 To enable oligogenic risk scores calculation in sample, turn on the corresponding toggle:
@@ -496,25 +497,47 @@ To enable oligogenic risk scores calculation in sample, turn on the correspondin
 <img src={require('/img/eng/turn_on_phenotypes.png').default} width="400"/>
 </p>
 
-#### Polygenic risk scores calculation {#polygenic-risk-scores-calculation}
+### Polygenic risk scores calculation {#polygenic-risk-scores-calculation}
 
+Polygenic traits are traits, such as height or weight, that are caused by the action of multiple genes.
 The polygenic risk score (PRS) represents the total number of single nucleotide polymorphisms (SNPs) that an
 individual has to assess their heritable risk of developing a particular phenotype. It reflects an individual's
 estimated genetic predisposition to the given trait and can be used as a predictor of that trait in a predictive
 model. In other words, the PRS estimates how likely an individual is to have the given trait based only on genetic
 data and without taking into account environmental factors.
+Polygenic risk scores calculation can only be performed on non-tumor samples.
 
 The polygenic risk scores are calculated for the following traits:
-   - Height
-   - Weight
-   - Body Mass Index (BMI)
-   - Predisposition to being overweight
-   - Predisposition to Prostate Cancer
-   - Predisposition to Breast Cancer
-   - Predisposition to Coronary Artery Disease
-   - Predisposition to Inflammatory Bowel Disease
-   - Predisposition to Type 2 diabetes
-   - Predisposition to Colorectal Cancer
+   - Height;
+   - Weight;
+   - Body Mass Index (BMI);
+   - Trunk fat mass;
+   - Trunk fat-free mass;
+   - Hip circumference;
+   - Predisposition to obesity;
+   - Insulin-like growth factor 1 level;
+   - Fasting glucose level;
+   - Fasting insulin level;
+   - Hemoglobin level;
+   - Hematocrit;
+   - Bone mineral density;
+   - Predisposition to coronary artery disease;
+   - Predisposition to inflammatory bowel disease;
+   - Predisposition to type 2 diabetes;
+   - Predisposition to chronic renal failure;
+   - Predisposition to asthma;
+   - Predisposition to idiopathic pulmonary fibrosis;
+   - Predisposition to hyperthyroiditis;
+   - Predisposition to alcohol-associated liver cirrhosis;
+   - Predisposition to Alzheimer's disease;
+   - Predisposition to Parkinson's Disease;
+   - Predisposition to prostate cancer;
+   - Predisposition to breast cancer;
+   - Predisposition to colorectal cancer;
+   - Neuroticism score;
+   - Predisposition to risk-taking behaviour;
+   - Risk of hospitalization for COVID-19;
+   - Risk of very severe COVID-19.
 
 To enable polygenic risk scores calculation in sample, turn on the corresponding toggle:
 
@@ -522,17 +545,86 @@ To enable polygenic risk scores calculation in sample, turn on the corresponding
 <img src={require('/img/eng/prs_enable.png').default} width="400"/>
 </p>
 
-#### Disable quality control and imputation {#disable-qc-and-imputation}
+### Pharmacogenetic calculation {#pharmacogenetics}
 
-The phenotype prediction pipeline includes three preprocessing steps before the prediction itself:
+Pharmacogenetic testing makes it possible to account for the patient's hereditary characteristics when
+prescribing medications. Pharmacogenetic calculation is the analysis of genetic variants in a sample to
+determine the alleles and diplotypes of pharmacogenetically significant genes using
+a tool [PharmCAT](https://pharmcat.clinpgx.org/). The interpretation of the results is based on the data
+from [CPIC](https://cpicpgx.org/),
+[PharmGKB](https://www.pharmgkb.org/), [DPWG](https://www.clinpgx.org/page/dpwg), and [FDA](https://www.fda.gov/).
+Pharmacogenetic calculation can only be performed on non-tumor samples.
+
+To enable pharmacogenetic calculation in sample, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/pharma_setting.png').default} width="400"/>
+</p>
+
+### Ancestry analysis {#ancestry-analysis}
+
+Ancestry inference is performed using
+[the Human Genome Diversity Project reference genotypic panel](https://www.science.org/doi/full/10.1126/science.aay5012),
+constructed based on the GRCh38 human genome assembly and comprising data from 929 individuals from 54
+populations. Ancestry estimation is carried out using [ADMIXTURE](https://genome.cshlp.org/content/19/9/1655),
+a software tool for maximum likelihood estimation of individual ancestries under a statistical model based
+on multilocus SNP genotype datasets. The model assumes that individuals in the reference panel are unrelated.
+During the analysis, the genotype of the analyzed sample is projected onto the trained model, resulting in
+estimated proportions of contribution from each ancestral component to the individual’s genome.
+Ancestry analysis can only be performed on non-tumor samples.
+
+To enable ancestry analysis in sample, turn on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/ancestry_setting.png').default} width="400"/>
+</p>
+
+#### Number of ancestral components {#ancestral-components}
+
+Number of ancestral components (K) used by ADMIXTURE to decompose the sample. Each ancestral component
+represents a hypothetical genetic group characterized by specific allele frequency patterns and reflects
+the structure of genetic variation present in the reference population data.
+During the analysis, ADMIXTURE statistically decomposes the reference panel into K theoretical ancestral
+components and estimates allele frequencies for each component. The genotype of the analyzed sample is
+then projected onto this model, resulting in estimated proportions of contribution from each ancestral
+component to the individual’s genome.
+
+By default, the analysis is performed using 10 ancestral components. The allowed range of values is from
+2 to 20. The parameter value can be changed by clicking on the current value and editing it. To save changes,
+press Enter or click outside edit value container.
+
+<p align="center">
+<img src={require('/img/eng/ancestral_components.png').default} width="400"/>
+</p>
+
+The number of ancestral components determines the level of detail of the ancestry analysis, that is, the
+number of statistically distinguishable genetic clusters that the model attempts to identify in the reference data.
+
+Effect of the number of ancestral components on the analysis:
+- Low values of K (K = 2-5): the components typically correspond to large continental or superpopulation-level
+clusters (e.g., Africa, Europe, America). Genetic differences within these groups are largely smoothed out.
+The analysis is highly stable and easy to interpret, but it does not allow discrimination between closely
+related populations.
+- Intermediate values of K (K = 6-10): finer differentiation within continents emerges, reflecting population
+structure and historical migration processes. The results become more informative, but their interpretation
+requires greater care, as components may partially overlap between populations.
+- High values of K (K = 11-20): components are split into narrow clusters, enabling the detection of subtle
+differences between closely related populations. However, at high K values there is an increased risk that
+components reflect not only biological structure but also characteristics of the reference panel, sample
+size effects, or statistical noise. Results obtained at this level require cautious and expert interpretation.
+
+### Quality control and imputation {#disable-qc-and-imputation}
+
+Before running the oligogenic risk scores calculation, polygenic risk scores calculation and ancestry analysis,
+three preparatory steps with quality control and imputation are carried out:
 1. Quality control, that is a filtering SNPs (markers) by quality and is done using
 the ***[PLINK](https://www.cog-genomics.org/plink/)*** tool.
 2. Imputation, that is a determination of non-genotyped markers and is done
 using ***[bcftools](https://samtools.github.io/bcftools/bcftools.html)*** and ***Beagle***[^3] tools.
-Imputation significantly increases the number of markers on the basis of which phenotype prediction will occur.
+Imputation significantly increases the number of markers on the basis of which genomic predictions will occur.
 3. Quality control.
 
-These steps are important for the quality of phenotype prediction, but are not always successful
+These steps are important for the quality of genomic predictions, but are not always successful
 for annotated VCF variants. To disable quality control and imputation, turn off the corresponding toggle:
 
 <p align="center">

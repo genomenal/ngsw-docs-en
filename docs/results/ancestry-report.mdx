@@ -1,0 +1,87 @@
+---
+sidebar_position: 11
+sidebar_label: Ancestry Report
+---
+
+# Ancestry Report
+
+The report presents the results of a genetic ancestry analysis. Ancestry inference is performed using
+[the Human Genome Diversity Project reference genotypic panel](https://www.science.org/doi/full/10.1126/science.aay5012),
+constructed based on the GRCh38 human genome assembly and comprising data from 929 individuals from 54
+populations. Ancestry estimation is carried out using [ADMIXTURE](https://genome.cshlp.org/content/19/9/1655),
+a software tool for maximum likelihood estimation of individual ancestries under a statistical model based
+on multilocus SNP genotype datasets. The model assumes that individuals in the reference panel are unrelated.
+
+During the analysis, ADMIXTURE statistically decomposes the reference panel into K theoretical ancestral
+components and estimates allele frequencies for each component. The genotype of the analyzed sample is
+then projected onto this model, resulting in estimated proportions of contribution from each ancestral
+component to the individual’s genome. These proportions are reported as the inferred genetic ancestry.
+
+The number of ancestral components (K) used in the analysis is configurable
+in [the analysis parameters](/settings/settings/variant-discovery-settings#ancestral-components).
+Each ancestral component
+represents a hypothetical genetic group characterized by specific allele frequency patterns and reflects
+the structure of genetic variation present in the reference population data. It is important to note
+that ancestral components are not direct equivalents of modern ethnic groups or nationalities; rather,
+they represent statistical patterns in genetic data and depend on the composition of the reference panel
+and the chosen value of K.
+
+:::caution
+The ancestry analysis represents an automated statistical inference and is intended solely for informational
+purposes. It is not a legal, medical, or any other expert opinion on ancestry.
+:::
+
+## Report generation {#generate-report}
+
+The report is based
+on [the "Ancestry" report template block](/settings/report-templates/report-templates#ancestry),
+which can only be applied to non-tumor samples.
+
+Ancestry report is generated for a sample if the following conditions are met:
+1. The sample is uploaded as a non-tumor sample (a sample of the "NORMAL" type).
+2. The sample analysis has been successfully completed (i.e. all stages included in the workflow
+have the "Complete" status).
+3. The "Ancestry analysis" task of the "Genomic predictions" analysis stage has been successfully
+completed for the sample. By default, the task is not included in the analysis workflow,
+so it must be included in the parameters by
+activating [the "Run ancestry analysis" option](/settings/settings/variant-discovery-settings#ancestry-analysis).
+Please note that to include ancestry analysis in the workflow of a sample uploaded
+in VCF or GT format, you must select [the setting preset](/settings/settings/settings), which includes the
+"Run ancestry analysis" parameter, at the stage of composing a sample set.
+4. The report template, which includes the "Ancestry" block, is active (adjusted
+on [the "Report templates" page](/settings/report-templates/report-templates)).
+5. The report template was added to the system before the sample processing has been completed.
+
+## Results {#results}
+
+The report specifies the number of genetic markers available in the sample that were matched to markers of
+the reference panel. In addition, it reports the number of markers actually used in the analysis after the
+filtering step, which excludes highly correlated markers. This filtering reduces the influence of correlated
+variants and ensures the correct performance of the model when estimating ancestral component proportions.
+
+As a result of the ancestry analysis, the report indicates the population with which the analyzed sample
+shows the greatest similarity based on the distribution of ancestral components. In addition, a table is
+provided listing all populations for which genetic similarity to the sample was detected. The table
+includes only populations whose estimated membership probability exceeds
+a [predefined threshold](/settings/report-templates/report-templates#ancestry) specified
+in the report template settings.
+
+<p align="center">
+<img src={require('/img/results/ancestry_report.png').default} width="900"/>
+</p>
+
+Columns of the ancestry analysis results table:
+- ***Population*** - the reference population from the genetic panel to which the genotype of the analyzed
+sample is compared. Population names correspond to reference samples and do not imply exclusivity or identity.
+- ***Superpopulation/Continental group*** - a broader grouping of populations reflecting their geographic and
+genetic relatedness: Africa, America, Central/South Asia, East Asia, Europe, Middle East, and Oceania.
+- ***Membership probability*** - an estimated proportion (expressed as a percentage) reflecting the degree
+of genetic similarity between the sample and a given reference population, based on the distribution of
+ancestral components as calculated by the ADMIXTURE model. These values are model-based estimates of
+genetic similarity to reference groups and are not direct estimates of genealogical or ethnic
+ancestry proportions.
+<br></br>Low ancestral component proportions at the level of a few percent may reflect either common
+ancient ancestry or statistical noise in the model; they should be interpreted with caution, especially when comparing
+closely related populations.
+
+The population with the highest estimated membership probability is highlighted in bold in the table.
