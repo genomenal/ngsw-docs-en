@@ -51,9 +51,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         darkTheme: darkCodeTheme,
       },
 	  algolia: {
-          apiKey: 'dbf798e1335cbc57fae603c4eb582fe4',
+          apiKey: 'd044e3c24c06c1a02d95052238b1eaee',
           indexName: 'ngsw-en',
-          appId: 'DZAOFCP7KJ',
+          appId: '7QED0LN5K8',
       }
     }),
 });
