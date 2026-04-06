@@ -1131,29 +1131,78 @@ whether the query conditions are expanded or collapsed immediately after applyin
 
 ## Save a Query {#save-query}
 
-If you want to reuse the created query in the future, save it.
-To do this, open the Query Builder by
-clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>, and then
-click on <img src={require('/img/vv/save_to_library_btn.png').default} width="150"/>.
-Enter the query name:
+If you want to reuse a set of filtering conditions, save it to the library.
+To do this, open the query builder and click
+the <img src={require('/img/vv/save_to_library_btn.png').default} width="150"/> button.
+In the dialog that opens, enter a query name:
 
 <p align="center">
 <img src={require('/img/vv/query_name.png').default} width="600"/>
 </p>
 
-and click on <img src={require('/img/group_analysis/save_btn.png').default} width="150"/>.
+and click <img src={require('/img/group_analysis/save_btn.png').default} width="150"/>.
 
-The saved query will appear in the **Saved queries** list, on the left in the Query Builder.
-To apply a saved query, click on its line:
+Saved queries are displayed in the query builder on the left:
 
 <p align="center">
-<img src={require('/img/vv/select_saved_query.png').default} width="200"/>
+<img src={require('/img/vv/select_saved_query.png').default} width="250"/>
 </p>
 
-and then click on <img src={require('/img/vv/apply.png').default} width="150"/>.
+They are also available in [the corresponding basic filter](/results/main/snvs-indels/basic-filtering#saved-queries)
+options.
 
-In addition, the saved query will appear in the options of the basic
-filter ["Saved queries"](/results/main/snvs-indels/basic-filtering#saved-queries).
+To ***delete*** a saved query, select it and click the
+trash icon <img src={require('/img/vv/delete_saved_query.png').default} width="25"/>.
 
-If you want to ***delete*** a saved query, click on the query line and
-then on <img src={require('/img/vv/delete_saved_query.png').default} width="25"/>.
+### Filtering by saved queries {#saved-queries-filtering}
+
+Filtering is available in two modes:
+- **Single query**. To apply a single query, select it in the Saved queries list
+and click <img src={require('/img/vv/apply.png').default} width="150"/>:
+
+<p align="center">
+<img src={require('/img/vv/filter_by_one_saved.png').default} width="750"/>
+</p>
+
+After applying the filter, all conditions included in the selected query are displayed above the table:
+
+<p align="center">
+<img src={require('/img/vv/one_saved_query.png').default} width="1000"/>
+</p>
+
+When query conditions are modified, an asterisk appears next to the query name:
+
+<p align="center">
+<img src={require('/img/vv/changed_query.png').default} width="200"/>
+</p>
+
+To save changes:
+- Click <img src={require('/img/vv/save_to_library_btn.png').default} width="150"/> in the query builder;
+- Then:
+   - Click <img src={require('/img/group_analysis/save_btn.png').default} width="150"/> to update the existing query;
+   - Or enter a new name and
+   click <img src={require('/img/vv/save_as_new.png').default} width="150"/> to save it as a new query.
+
+- **Multiple queries**. To apply multiple queries at once, select them using checkboxes and
+click <img src={require('/img/vv/apply_queries.png').default} width="150"/>:
+
+<p align="center">
+<img src={require('/img/vv/filter_by_several_saved.png').default} width="750"/>
+</p>
+
+In this mode, filtering is performed as a logical OR combination of the selected queries.
+Only the query names are displayed above the table. To view the conditions included in a query, open
+it in the query builder.
+
+<p align="center">
+<img src={require('/img/vv/several_queries.png').default} width="1000"/>
+</p>
+
+**Limitations of the multiple queries mode:**
+- Additional conditions that are not part of saved queries cannot be added to the current filter.
+To use extra conditions, first save them as a separate query, then select and apply it together with the others.
+- When editing a query, the Apply queries button becomes unavailable.
+If you do not want to save the changes, click Cancel (the changes will not be applied).
+To apply modified conditions, first save them as an existing or new query, then select it and click Apply queries.
+- In this mode, clicking a query does not add it to the filter. It is only used to view the query conditions.
+To apply a query, you must select its checkbox.
