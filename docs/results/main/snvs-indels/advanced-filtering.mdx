@@ -298,32 +298,27 @@ To complete adding the condition, press Enter or click outside edit value contai
 database (e.g. NM_002354.3). [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 2. **OMIM ID** - filter variants by gene ID in [OMIM](https://www.omim.org/) database (e.g. 185535).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-3. **OMIM Phenotypes** - filter by the column values
-of [the table with OMIM phenotypes associated with the gene](/results/main/snvs-indels/snv-details-panel#omim-phenotypes)
-in which the variant is located. [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
-Only available if you have access to [OMIM](https://www.omim.org/) database data inside Genomenal, which is provided
-if the user has a license to access the database.
-4. **NCBI ID** - filter variants by gene ID in [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) database
+3. **NCBI ID** - filter variants by gene ID in [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) database
 (e.g. 4072). Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-5. **Swiss-Prot ID** - filter variants by gene ID
+4. **Swiss-Prot ID** - filter variants by gene ID
 in [UniProtKB Swiss-Prot](https://www.uniprot.org/uniprotkb/?facets=reviewed%3Atrue&query=%2A) database (e.g. P16422).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-6. **TrEMBL ID** - filter variants by gene ID
+5. **TrEMBL ID** - filter variants by gene ID
 in [UniProtKB TrEMBL](https://www.uniprot.org/uniprotkb?query=reviewed:false) database (e.g. B5MCA4).
 Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-7. **Ensembl ID** - filter variants by gene ID in [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
+6. **Ensembl ID** - filter variants by gene ID in [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
 database (e.g. ENSG00000119888). Filter [with ID input](/results/main/snvs-indels/advanced-filtering#id-filters).
-8. **pLI** - filter variants by pLI (Probability of Loss-of-Function Intolerance) - the probability that a transcript
+7. **pLI** - filter variants by pLI (Probability of Loss-of-Function Intolerance) - the probability that a transcript
 is intolerant to loss-of-function (LoF) variants. Range: 0 to 1. Genes with pLI ≥ 0.9 are considered LoF-intolerant.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
-9. **LOEUF** - filter variants by LOEUF (Loss-of-function Observed/Expected Upper bound Fraction) - the upper bound
+8. **LOEUF** - filter variants by LOEUF (Loss-of-function Observed/Expected Upper bound Fraction) - the upper bound
 of the 90% confidence interval for the observed/expected ratio of high-confidence pLoF (predicted loss-of-function)
 variants. Lower values (LOEUF < 0.35) indicate a gene is more constrained against LoF variants.
 [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
-10. **Missense O/E ratio** - filter variants by the upper bound of the 90% confidence interval for the
+9. **Missense O/E ratio** - filter variants by the upper bound of the 90% confidence interval for the
 observed/expected ratio of missense variants. Lower values suggest a gene is more constrained against missense
 variation. [Numeric filter](/results/main/snvs-indels/advanced-filtering#numeric-filters) (positive rational number).
-11. **Missense Z-score** - filter variants by a Z-score representing the deviation of the observed number of missense
+10. **Missense Z-score** - filter variants by a Z-score representing the deviation of the observed number of missense
 variants in a transcript from the expected number under a model of neutral mutation distribution.
 Greater positive values (Z-score ≥ 3.09) indicate that the transcript is more intolerant of missense variation.
 Lower or negative Z-scores indicate that the gene tolerates more missense mutations than expected.
@@ -348,6 +343,40 @@ The filter is implemented as a toggle switch:
 <p align="center">
 <img src={require('/img/vv/mane_transcript_off.png').default} width="300"/>
 </p>
+
+### Phenotypes {#phenotypes}
+
+1. **OMIM Phenotype** - filter by the names of OMIM phenotypes associated with the gene in which the variant is
+located. [Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
+Only available if you have access to [OMIM](https://www.omim.org/) database data inside Genomenal, which is provided
+if the user has a license to access the database.
+2. **OMIM Inheritance** - filter by the mode of inheritance of OMIM phenotypes.
+[Multiselect filter](/results/main/snvs-indels/advanced-filtering#multiselect-filters).
+Only available if you have access to [OMIM](https://www.omim.org/) database data inside Genomenal, which is provided
+if the user has a license to access the database.
+
+Possible modes of inheritance:
+- Autosomal dominant (AD);
+- Autosomal recessive (AR);
+- Digenic dominant (DD);
+- Digenic recessive (DR);
+- Inherited chromosomal imbalance (ICB);
+- Isolated cases (IC);
+- Mitochondrial (Mi);
+- Multifactorial (Mu);
+- Somatic mosaicism (SMo);
+- Somatic mutation (SMu);
+- X-linked (XL);
+- X-linked dominant (XLD);
+- X-linked recessive (XLR);
+- Y-linked (YL);
+- Pseudoautosomal dominant (PD);
+- Pseudoautosomal recessive (PR);
+- Not specified - the phenotype has an empty value in the "Inheritance" column in the OMIM database.
+
+3. **GenCC Phenotypes** - filter by the names of diseases in [GenCC](https://thegencc.org/) database
+associated with the gene in which the variant is located.
+[Any value filter](/results/main/snvs-indels/advanced-filtering#any-value-filters).
 
 ### gnomAD 3 {#gnomad}
 
