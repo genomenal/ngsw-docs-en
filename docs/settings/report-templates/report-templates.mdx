@@ -80,9 +80,9 @@ A block with a heading and description of the report section.
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
+1. *Name* – section title (required field).
 If there are multiple sections in the report, they are numbered automatically.
-2. *Description* – the text displayed below the title.
+2. *Description* – text displayed below the section title.
 
 ### 2. Patient info {#patient-info}
 
@@ -221,9 +221,24 @@ in [the corresponding section](/results/main/snvs-indels/variant-viewer#include-
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Origin*: somatic or germline.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Origin* – somatic or germline.
+4. *Interpretation* – defines how interpretations are included in the report:
+- *By variants* (default) – only interpretations added for each individual genetic variant included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of genetic variants. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variants and overall for the block* – both individual variant interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
 
 ### 9. Pinned SNVs/Indels {#pinned-variants}
 
@@ -233,9 +248,24 @@ Pinning variants is described in [the corresponding section](/results/main/snvs-
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Origin*: somatic or germline.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Origin* – somatic or germline.
+4. *Interpretation* – defines how interpretations are included in the report:
+- *By variants* (default) – only interpretations added for each individual genetic variant included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of genetic variants. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variants and overall for the block* – both individual variant interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
 
 ### 10. SNVs/Indels suitable for the specified conditions {#suitable-variants}
 
@@ -244,16 +274,31 @@ A block containing the variants matching conditions specified within it.
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Origin*: somatic or germline.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Origin* – somatic or germline.
 4. *Conditions for including variants to the report*: If the variants detected in the sample meet the specified
 conditions, they will be displayed in this report block. To create a condition,
 click the button <img src={require('/img/report_templates/query_builder.png').default} width="170"/>.
 This will open the query builder, which is identical to the advanced variant search form on the SNV Viewer page.
 Creating conditions in the query builder are described
 in [the corresponding section](/results/main/snvs-indels/advanced-filtering#add-condition).
-5. *Use SNVs/Indels as potential findings*: To include SNVs/Indels detected in the sample that meet the
+5. *Interpretation* – defines how interpretations are included in the report:
+- *By variants* (default) – only interpretations added for each individual genetic variant included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of genetic variants. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variants and overall for the block* – both individual variant interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+6. *Use SNVs/Indels as potential findings*: To include SNVs/Indels detected in the sample that meet the
 specified conditions as [potential findings](/results/potential-findings), activate the toggle switch.
 
 **Example block in the report:** [Mutations Suitable For The Specified Conditions](/results/mutations-suitable-for-the-specified-conditions#snvs).
@@ -265,9 +310,9 @@ A block containing the copy number variations (CNVs) matching conditions specifi
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *CNV region type*: segment or bin. Read more about segments and
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *CNV region type* – segment or bin. Read more about segments and
 bins [here](/results/main/copy-number-variations/cnv-viewer#segments-and-bins).
 4. *Conditions for including variations to the report*: If the copy number variations detected in the sample
 meet the specified conditions, they will be displayed in this report block. To define the condition,
@@ -317,7 +362,22 @@ and are excluded from the report.
 chromosomes.
 :::
 
-5. *Use CNVs as potential findings*: To include copy number variations detected in the sample that meet the
+5. *Interpretation* – defines how interpretations are included in the report:
+- *By variations* (default) – only interpretations added for each individual CNV included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of CNVs. When this option is selected, the following settings become available:
+   - *Transfer variation interpretation to overall interpretation* – when enabled, interpretations added for CNVs
+   included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variations and overall for the block* – both individual CNV interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variation interpretation to overall interpretation* – when enabled, interpretations added for CNVs
+   included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+6. *Use CNVs as potential findings*: To include copy number variations detected in the sample that meet the
 specified conditions as [potential findings](/results/potential-findings), activate the toggle switch.
 
 **Example block in the report:** [Mutations Suitable For The Specified Conditions](/results/mutations-suitable-for-the-specified-conditions#cnvs).
@@ -331,8 +391,8 @@ Low TMB, less than 6 mutations per 1 Mb, may predict no susceptibility to immuno
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Immunotherapy Markers](/results/glioma-report#immunotherapy-markers).
 
@@ -344,8 +404,8 @@ performed in people with a certain phenotype from [the ClinicalTrials database](
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 3. *Phenotypes* - a list of phenotypes for which clinical trials should be displayed.
 Phenotype names must be separated by semicolons (e.g., "Glioma;Astrocytoma").
 4. *Phases*: Phase 1, Phase 2, Phase 3, Phase 4.
@@ -365,15 +425,30 @@ and may help guide future clinical management.
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Origin*: somatic or germline.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Origin* – somatic or germline.
 4. *Frequency threshold for too frequent pathogenic variants*: recommended default value = 0.03.
-5. *Use the most important variants for interpretation as potential findings*:
+5. *Interpretation* – defines how interpretations are included in the report:
+- *By variants* (default) – only interpretations added for each individual genetic variant included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of genetic variants. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variants and overall for the block* – both individual variant interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variant interpretation to overall interpretation* – when enabled, interpretations added for genetic
+   variants included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+6. *Use the most important variants for interpretation as potential findings*:
 To include SNVs/Indels detected in the sample that are located in genes from the ACMG SF list and associated
 with the specified phenotype ([Tier I variants](/results/acmg-sf-report#acmg-sf-content))
 as [potential findings](/results/potential-findings), activate the toggle switch.
-6. *Use the variants that require further analysis as potential findings*:
+7. *Use the variants that require further analysis as potential findings*:
 To include SNVs/Indels detected in the sample that are located in genes from the ACMG SF list
 but for which no match to the specified phenotypes or conditions could be determined
 ([Tier II variants](/results/acmg-sf-report#acmg-sf-content)), activate the toggle switch.
@@ -390,8 +465,8 @@ and relevant for cancer diagnosis and treatment.
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Variants of Strong Clinical Significance](/results/glioma-report#tier-i).
 
@@ -405,8 +480,8 @@ but whose roles are not yet fully validated.
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 ### 17. Glioma: Tier III variants {#glioma-tier3}
 
@@ -417,8 +492,8 @@ that have high gene product impact and are detected in genes associated with can
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 ### 18. Glioma: Suggested diagnosis {#glioma-diagnosis}
 
@@ -431,8 +506,8 @@ uncertainty up to three most probable diagnosis suggestions are proposed.
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Suggested Diagnosis](/results/glioma-report#suggested-diagnosis).
 
@@ -444,8 +519,8 @@ detected in the sample.
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Suggested Drugs](/results/glioma-report#suggested-drugs).
 
@@ -458,8 +533,8 @@ and ["Glioma: Tier II variants"](/settings/report-templates/report-templates#gli
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Mutations Details](/results/glioma-report#mutations-details).
 
@@ -473,8 +548,8 @@ completely a transcript is sequenced.
 **Applicable to samples:** tumor.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Glioma Genes Panel Details](/results/glioma-report#glioma-genes-panel-details).
 
@@ -491,8 +566,8 @@ pathogenic or likely pathogenic for gliomas. The following variants are included
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Pathogenic or Likely Pathogenic for Gliomas](/results/glioma-report#pathogenic-or-likely-pathogenic-for-glioma).
 
@@ -504,8 +579,8 @@ pathogenic or likely pathogenic and are associated with diseases other than glio
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 ### 24. Glioma: Germline glioma associated {#glioma-associated-germline-pathogenic-variants}
 
@@ -516,8 +591,8 @@ in [the "Glioma: Germline pathogenic for gliomas" block](/settings/report-templa
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Glioma Associated](/results/glioma-report#glioma-associated).
 
@@ -527,7 +602,42 @@ Block displaying links to articles, publications and books on glioma research.
 
 **Applicable to samples:** tumor.
 
-### 26. Germline CNV: results {#cnv-results}
+### 26. Pinned CNVs {#pinned-cnv}
+
+A block containing the copy number variations pinned in the CNV Viewer table.
+Pinning variations is described in [the corresponding section](/results/main/copy-number-variations/cnv-viewer#pin-variation).
+
+**Applicable to samples:** any, tumor, normal.
+
+**Editable fields:**
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *CNV region type* – segment or bin. Read more about segments and
+bins [here](/results/main/copy-number-variations/cnv-viewer#segments-and-bins).
+4. *Interpretation* – defines how interpretations are included in the report:
+- *By variations* (default) – only interpretations added for each individual CNV included in the
+report are displayed.
+- *Overall for the block* – only a single interpretation for the entire block is displayed; it appears below
+the table of CNVs. When this option is selected, the following settings become available:
+   - *Transfer variation interpretation to overall interpretation* – when enabled, interpretations added for CNVs
+   included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+- *By variations and overall for the block* – both individual CNV interpretations and an overall interpretation
+are displayed in the report. When this option is selected, the following settings become available:
+   - *Transfer variation interpretation to overall interpretation* – when enabled, interpretations added for CNVs
+   included in the report will also be displayed in the overall interpretation section.
+   - *Interpretation text* – a field for entering the overall interpretation; this text can be edited directly
+   in the report.
+
+**Display of pinned CNVs in the report:**
+- If a full region is pinned, it is displayed in the report without information about affected genes.
+- If one or more split regions are pinned, the report displays the corresponding full region, while the
+"Affected genes" column includes only the genes corresponding to the pinned split records within that region.
+- Only the interpretation added for the full region is displayed in the report.
+Interpretations added for split regions are not displayed.
+
+### 27. Detection of whole-chromosome and сhromosome arm-level aneuploidies: results {#cnv-results}
 
 The block presents the results of germline copy number variation (CNV) detection in the sample.
 It includes a statement on whether any deviation from the normal copy number of a chromosome or
@@ -536,14 +646,14 @@ chromosome arm was observed in the analyzed sample.
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
+1. *Name* – section title (required field).
 2. *Show inferred sex*: Based on CNVs detected in the sex chromosomes (X, Y), it is possible to infer
 the patient's sex. To include the result of this inference in the report, enable the corresponding
 toggle: <img src={require('/img/eng/toggle_on.png').default} width="35"/>.
 
 **Example block in the report:** [CNV Report](/results/cnv-report/sample-cnv-report).
 
-### 27. Germline CNV: interpretation {#cnv-interpretation}
+### 28. Detection of whole-chromosome and сhromosome arm-level aneuploidies: interpretation {#cnv-interpretation}
 
 The block presents an interpretation of the results of germline copy number variation (CNV) detection in
 the sample, along with conclusions based on the findings. It includes:
@@ -555,11 +665,11 @@ the sample, along with conclusions based on the findings. It includes:
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
+1. *Name* – section title (required field).
 
 **Example block in the report:** [CNV Report](/results/cnv-report/sample-cnv-report).
 
-### 28. Onco: Onco relevant SNVs/Indels selected by user for reports {#onco-variants}
+### 29. Onco: Onco relevant SNVs/Indels selected by user for reports {#onco-variants}
 
 The block displays a table with information about clinically significant cancer-related variants included
 in the report from the SNV Viewer page. Including variants in the report is described
@@ -570,12 +680,12 @@ oncology-related medical communities (<a href="https://www.rosoncoweb.ru/">RUSSC
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Onco-Relevant Variants](/results/onco-genetic-testing-report#onco-relevant-variants).
 
-### 29. Onco: Clinical Guidelines for onco relevant SNVs/Indels selected by user for reports {#clinical-recommendations}
+### 30. Onco: Clinical Guidelines for onco relevant SNVs/Indels selected by user for reports {#clinical-recommendations}
 
 The block displays clinical recommendations for onco-relevant variants included in the report from the SNV Viewer
 page. Including variants in the report is described
@@ -592,12 +702,12 @@ corresponding to: (a) the onco-relevant variant included in the report, and
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 
 **Example block in the report:** [Clinical Guidelines](/results/onco-genetic-testing-report#clinical-guidelines).
 
-### 30. Polygenic traits {#polygenic-traits}
+### 31. Polygenic traits {#polygenic-traits}
 
 The block displays results of polygenic trait prediction. Polygenic traits are characteristics that result
 from the combined action of many different genes, each contributing a small effect to the overall trait score.
@@ -605,9 +715,9 @@ from the combined action of many different genes, each contributing a small effe
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Polygenic traits* - a selection of traits whose prediction results will be shown in the report:
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Polygenic traits* – a selection of traits whose prediction results will be shown in the report:
 - Height;
 - Weight;
 - BMI (Body Mass Index);
@@ -618,10 +728,13 @@ from the combined action of many different genes, each contributing a small effe
 - Inflammatory bowel disease;
 - Type 2 diabetes;
 - Colorectal cancer.
+4. *Add interpretation block* – a toggle that enables the display of an overall interpretation for the
+entire block in the report. When this toggle is enabled, the *Interpretation text* field becomes available. This
+field is used to enter the overall interpretation, and the entered text can be edited directly within the report.
 
 **Example block in the report:** [Report on Polygenic Traits](/results/polygenic-report).
 
-### 31. SNVs/Indels by ClinVar phenotypes {#clinvar-phenotype}
+### 32. SNVs/Indels by ClinVar phenotypes {#clinvar-phenotype}
 
 The block displays a phenotype from [the ClinVar database](https://www.ncbi.nlm.nih.gov/clinvar/) and
 associated recommendations.
@@ -629,23 +742,23 @@ associated recommendations.
 **Applicable to samples:** any, tumor, normal.
 
 **Editable fields:**
-1. *ClinVar Phenotypes* - a table of phenotypes from the ClinVar database, for which the report will include
+1. *ClinVar Phenotypes* – a table of phenotypes from the ClinVar database, for which the report will include
 information on pathogenic variants detected in the sample that are associated with increased risk of developing
 these conditions. To add a phenotype, click the
 button <img src={require('/img/report_templates/add_phenotype.png').default} width="190"/> and fill out the form:
-   * <i>MedGen ID</i> - the phenotype ID
+   * <i>MedGen ID</i> – the phenotype ID
    from <a href="https://www.ncbi.nlm.nih.gov/medgen/">the MedGen database</a> (e.g., "C0745103").
-   * <i>ClinVar name</i> - phenotype name from <a href="https://www.ncbi.nlm.nih.gov/clinvar/">the ClinVar database</a>.
+   * <i>ClinVar name</i> – phenotype name from <a href="https://www.ncbi.nlm.nih.gov/clinvar/">the ClinVar database</a>.
    It must exactly match the ClinVar entry, for example: "Hypercholesterolemia, familial, 1". Use the ClinVar name
    if the MedGen ID is unknown, but the ID is preferred if available.<br></br>
    To add a phenotype, at least one of the fields “MedGen ID” or “ClinVar name” must be filled out.
-   * <i>Report name</i> - the name of the phenotype as it will appear in the report.
-   * <i>Recommendations</i> - guidance related to the phenotype that may help the patient reduce the risk of
+   * <i>Report name</i> – the name of the phenotype as it will appear in the report.
+   * <i>Recommendations</i> – guidance related to the phenotype that may help the patient reduce the risk of
    developing the associated condition.
    Supports <a href="https://www.markdownguide.org/basic-syntax/">Markdown formatting</a>.<br></br>
    After filling in the required fields, click <img src={require('/img/eng/submit_btn.png').default} width="160"/>.
    You can add as many phenotypes as needed in this way.
-2. *Origin*: somatic or germline.
+2. *Origin* – somatic or germline.
 3. *Frequency threshold for extremely rare pathogenic variants*: recommended default value = 0,01.
 4. *Frequency threshold for too frequent pathogenic variants*: recommended default value = 0,15.
 5. *Reliability threshold*: recommended default value = 0,01.
@@ -661,20 +774,20 @@ If no population frequency data is available, a default value of p = 0.001 is us
 The values for <i>n</i> and <i>m</i> are taken
 from <a href="/settings/custom-annotations#define-annotation-type">the user-provided frequency database</a>.
 If no such database is uploaded, the reliability threshold will not be applied.
-6. *The heading of the phenotypes list* - header for the list of conditions associated with detected pathogenic
+6. *The heading of the phenotypes list* – header for the list of conditions associated with detected pathogenic
 or likely pathogenic variants.
-7. *Heading if no pathogenic variants found* - text shown when no pathogenic variants increasing risk of
+7. *Heading if no pathogenic variants found* – text shown when no pathogenic variants increasing risk of
 investigated conditions are detected in the sample.
-8. *Description of the genetic variants found* - title for the table listing detected pathogenic or likely
+8. *Description of the genetic variants found* – title for the table listing detected pathogenic or likely
 pathogenic genetic variants associated with increased risk of the investigated conditions.
-9. *The heading of the recommendations* - header shown in the detailed report section containing diagnostic
+9. *The heading of the recommendations* – header shown in the detailed report section containing diagnostic
 or follow-up recommendations (if any are available for the condition in the report template).
-10. *Recommendations for the patient* - general recommendation text for the patient.
-11. *Information for the doctor* - explanation text on how the report was generated.
+10. *Recommendations for the patient* – general recommendation text for the patient.
+11. *Information for the doctor* – explanation text on how the report was generated.
 
 **Example block in the report:** [ClinVar Phenotype Report](/results/variants-by-phenotypes).
 
-### 32. Pharmacogenetic {#pharmacogenetics}
+### 33. Pharmacogenetic {#pharmacogenetics}
 
 The block displays the results of pharmacogenetic analysis — an interpretation of the patient's genetic data
 aimed at predicting their individual response to medications.
@@ -682,10 +795,13 @@ aimed at predicting their individual response to medications.
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Add interpretation block* – a toggle that enables the display of an overall interpretation for the
+entire block in the report. When this toggle is enabled, the *Interpretation text* field becomes available. This
+field is used to enter the overall interpretation, and the entered text can be edited directly within the report.
 
-### 33. Oligogenic traits {#oligogenic-traits}
+### 34. Oligogenic traits {#oligogenic-traits}
 
 The block displays results of oligogenic trait prediction. Oligogenic traits are characteristics whose manifestation
 depends on a small number of genes, each making a substantial contribution to the phenotype.
@@ -693,8 +809,8 @@ depends on a small number of genes, each making a substantial contribution to th
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
 3. *Oligogenic traits* - a selection of traits whose prediction results will be shown in the report:
 - Hair color;
 - Eyes color;
@@ -709,10 +825,13 @@ depends on a small number of genes, each making a substantial contribution to th
 - Misophonia;
 - Sleep movement;
 - Photic sneeze reflex.
+4. *Add interpretation block* – a toggle that enables the display of an overall interpretation for the
+entire block in the report. When this toggle is enabled, the *Interpretation text* field becomes available. This
+field is used to enter the overall interpretation, and the entered text can be edited directly within the report.
 
 **Example block in the report:** [Report on Oligogenic Traits](/results/oligogenic-report).
 
-### 34. Ancestry {#ancestry}
+### 35. Ancestry {#ancestry}
 
 The report presents the results of a genetic ancestry analysis, which is performed by
 [ADMIXTURE](https://genome.cshlp.org/content/19/9/1655) using
@@ -721,9 +840,12 @@ The report presents the results of a genetic ancestry analysis, which is perform
 **Applicable to samples:** normal.
 
 **Editable fields:**
-1. *Name* – the section title (required).
-2. *Description* – the text displayed below the title.
-3. *Probability threshold for populations* - the minimum threshold for the membership probability obtained
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Add interpretation block* – a toggle that enables the display of an overall interpretation for the
+entire block in the report. When this toggle is enabled, the *Interpretation text* field becomes available. This
+field is used to enter the overall interpretation, and the entered text can be edited directly within the report.
+4. *Probability threshold for populations* - the minimum threshold for the membership probability obtained
 from the ancestry analysis. Only populations for which the calculated probability - reflecting the contribution
 of that population to the genetic structure of the sample - exceeds the specified threshold are included in the
 report. The recommended default value is 0.01.
