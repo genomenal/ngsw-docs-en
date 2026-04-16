@@ -10,7 +10,7 @@ have been added to your profile by an administrator when registering in the syst
 other preset described here for analysis, you can contact your administrator or create
 it yourself, as described below.
 
-### 1. Somatic and germline variant analysis {#somatic-variant-analysis}
+### Somatic and germline variant analysis {#somatic-variant-analysis}
 
 - allows somatic and germline mutations (SNVs/indels), structural variations and copy number variations discovery;
 - completely identical to the preset that is created by default (before any changes are made to it);
@@ -26,7 +26,7 @@ to open the form for a preset adding.
 3. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/>.
 Because this preset is the same as the default preset, no further changes need to be made and you can leave the page.
 
-### 2. Germline variant analysis {#germline-variant-analysis}
+### Germline variant analysis {#germline-variant-analysis}
 
 - allows germline mutations (SNVs/indels), structural variations and copy number variations discovery;
 - differs from the preset that is created by default by the analysis mode - Germline variant analysis,
@@ -48,7 +48,7 @@ to open the form for a preset adding.
 <img src={require('/img/eng/change_to_germline.png').default} width="400"/>
 </p>
 
-### 3. Prenatal analysis {#prenatal-analysis}
+### Prenatal analysis {#prenatal-analysis}
 
 - allows germline aneuploidies (variations in the number of copies of chromosomes) discovery;
 - differs from the preset that is created by default by the analysis mode - Germline variant analysis,
@@ -89,3 +89,42 @@ by turning on the corresponding toggle:
 <p align="center">
 <img src={require('/img/eng/turn_on_aneuploidies.png').default} width="400"/>
 </p>
+
+### Amplicon panel analysis {#amplicon-panels}
+
+To improve the detection of SNVs/Indels when analyzing amplicon panels, the following changes to the analysis
+parameters are recommended:
+1. Alignment: adjust the BWA-MEM parameters as
+described [here](/settings/settings/alignment-settings#bwa-mem-parameters) to filter out non-specific
+alignments.
+2. Mark Duplicates: disable by turning off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_mark_dupl.png').default} width="400"/>
+</p>
+
+3. Limit reads per alignment: disable by turning off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_recalibr.png').default} width="400"/>
+</p>
+
+4. Exclude soft-clipped bases from the analysis by turning on the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/soft_clipped_bases.png').default} width="400"/>
+</p>
+
+5. Disable filtering of sequencing artifacts associated with strand and orientation bias by
+turning off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/filter_strand_bias.png').default} width="400"/>
+</p>
+
+6. Adjust the hard-filtering parameters for germline SNVs/Indels as follows:
+- FS SNP parameter: disable or increase the value to 150-200;
+- SOR SNP parameter: disable or increase the value to 8-10;
+- MQ SNP parameter: decrease the value to 30;
+- MQRankSum SNP parameter: decrease the value to -20;
+- ReadPosRankSum SNP parameter: decrease the value to -12.

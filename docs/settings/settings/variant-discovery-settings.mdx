@@ -5,7 +5,7 @@ sidebar_label: Variant Discovery Settings
 
 # Variant Discovery Settings
 
-## PCR duplicates filtration {#pcr-duplicates-filtration}
+## Data filtration for variant discovery {#filtration-for-variant-discovery}
 
 After the alignment stage, the results go through several preprocessing steps.
 This increases the sensitivity for low frequency variants, contributes to a more accurate copy number count,
@@ -13,7 +13,7 @@ which depends on the number of reads, and also speeds up variant calling.
 If you want to keep every read in the process of variant calling (for example, if you are working with amplicon data),
 then disable Mark Duplicates and Limit Reads options.
 
-### Disable mark duplicates {#disable-mark-duplicates}
+### Mark Duplicates {#disable-mark-duplicates}
 
 During the sequencing process, the number of original sequences of fragmented DNA is increased in the polymerase
 chain reaction (PCR). For further analysis, it is essential to take into account duplicate reads of the
@@ -27,6 +27,10 @@ To disable the duplicates marking, turn off the corresponding toggle:
 <p align="center">
 <img src={require('/img/eng/turn_off_mark_dupl.png').default} width="400"/>
 </p>
+
+:::tip
+If you are analyzing amplicon panel data, we recommend *disabling* mark duplicates to improve SNVs/indels calling.
+:::
 
 ### Limit reads per alignment {#disable-limit-reads}
 
@@ -45,6 +49,36 @@ turn off the corresponding toggle:
 
 :::note
 This option is only applicable to the germline SNVs/indels discovery.
+:::
+
+:::tip
+If you are analyzing amplicon panel data, we recommend *disabling* limit reads per alignment
+to improve germline SNVs/Indels calling.
+:::
+
+### Using soft clipped bases {#soft-clipped-bases}
+
+Soft-clipped bases are bases located at the 3' and 5' ends of a read that do not align to the reference sequence.
+They are excluded from the alignment itself; however, unlike hard-clipped bases, they are not discarded during
+alignment and are retained for downstream analysis by variant calling tools such
+as ***[GATK Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)***
+and ***[GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)***.
+Although the use of soft-clipped bases may increase the risk of false-positive calls, excluding them from
+analysis is generally not recommended. In many cases, soft-clipped bases provide the only evidence of true
+insertions and deletions (indels). If multiple reads are soft-clipped at the same position, this may indicate
+the presence of a structural variant.
+
+Disabling this feature is recommended only in cases where bases that should have been hard-clipped at earlier
+stages of the pipeline were instead soft-clipped. To exclude soft-clipped bases from the analysis, enable
+the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/soft_clipped_bases.png').default} width="400"/>
+</p>
+
+:::tip
+If you are analyzing amplicon panel data, *enabling* excluding soft-clipped bases from the analysis
+is recommended to improve variant calling.
 :::
 
 ## SNVs/Indels filtration {#snvs-filtration}
@@ -149,6 +183,39 @@ turn off the corresponding toggle:
 
 :::note
 Disabling this option does not affect the analysis pipeline for sample sets that include a normal sample.
+:::
+
+### Filter strand and orientation bias {#filter-strand-orientation-bias}
+
+This setting controls the filtering of sequencing artifacts associated with strand bias and read orientation bias.
+
+By default, the setting is enabled. In this case, orientation bias priors are used during variant filtering,
+allowing the removal of false-positive variants that exhibit bias toward a single read direction (forward or reverse).
+
+When the setting is disabled, filtering of strand and orientation bias-related artifacts is not performed.
+This results in the following changes to the pipeline:
+- The variant caller GATK Mutect2 is not provided with the `--f1r2-tar-gz` argument used to collect F1R2 metrics.
+F1R2 refers to a type of paired reads in which the first read aligns to the forward strand of the reference,
+while the second read aligns to the complementary strand.
+- The read orientation model is not constructed using GATK LearnReadOrientationModel, which estimates prior
+probabilities of orientation bias artifacts using a maximum likelihood approach.
+- The `--ob-priors` argument is not passed to GATK FilterMutectCalls. This argument contains the prior
+probabilities of artifacts derived from the read orientation model.
+
+Disabling orientation bias models may lead to the detection of additional variants, including those with low
+variant allele fractions. This can be beneficial when analyzing amplicon panel data. However, it also
+substantially increases the number of false-positive calls.
+
+To disable filtering of sequencing artifacts related to strand and orientation bias, turn off the
+corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/filter_strand_bias.png').default} width="400"/>
+</p>
+
+:::tip
+When analyzing amplicon panel data, it is recommended to disable sequencing artifact filtering to improve
+detection of somatic SNVs/Indels.
 :::
 
 ## Germline SNVs/indels discovery {#germline-snvs-discovery}
@@ -297,6 +364,16 @@ To save changes, press Enter or click outside edit value container.
 
 If at least one of the hard-filtering parameters of a variant satisfies the set threshold,
 then this variant does not pass the filtering.
+
+:::tip
+If you are analyzing amplicon panel data, to improve germline SNVs/indels calling, we recommend adjusting
+the hard-filtering parameters as follows:
+- FS SNP parameter: disable or increase the value to 150-200;
+- SOR SNP parameter: disable or increase the value to 8-10;
+- MQ SNP parameter: decrease the value to 30;
+- MQRankSum SNP parameter: decrease the value to -20;
+- ReadPosRankSum SNP parameter: decrease the value to -12.
+:::
 
 #### Disable or enable hard-filtering parameters and change their thresholds {#tweak-hard-filtration}
 

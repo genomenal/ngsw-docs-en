@@ -144,9 +144,96 @@ If the metric value in the sample alignment file does not meet the set threshold
 then the alignment is considered faulty by this metric, which is noted in the alignment quality warning
 (the alignment completes with an error, the message of which contains the number of failed metrics).
 
-### Change metric thresholds {#change-metric-thresholds}
-
 To change the metric threshold value, click on the current value and edit.
+To save changes, press Enter or click outside edit value container.
+
+### BWA-MEM parameters {#bwa-mem-parameters}
+
+Parameters passed to the BWA2 Burrows-Wheeler Aligner (BWA-MEM2) or earlier version of the
+tool - BWA Burrows-Wheeler Aligner (BWA-MEM).
+
+<table>
+  <tr>
+   <td>Parameter</td>
+   <td>Description</td>
+   <td>Default value</td>
+   <td>Recommended value for amplicon panels*</td>
+  </tr>
+  <tr>
+   <td><b>Penalty for a mismatch</b></td>
+   <td>Corresponds to the mem option [-B mmPenalty], which defines the penalty subtracted from the alignment
+   score for each nucleotide mismatch between the read and the reference sequence. The higher the value,
+   the more strongly mismatches are penalized, making the algorithm less tolerant to variation. The sequence
+   error rate is approximately: &#123;.75 * exp[-log(4) * B/A]&#125;, where A is the matching score.</td>
+   <td>4</td>
+   <td>8</td>
+  </tr>
+  <tr>
+   <td><b>Gap open penalty for deletion</b></td>
+   <td>Corresponds to the mem option [-O gapOpenPen] for deletions, which defines the penalty subtracted from
+   the alignment score for opening a gap. This penalty is applied once at the start of the gap. Higher values
+   reduce the number of gaps inserted into the alignment, and vice versa.</td>
+   <td>6</td>
+   <td>8</td>
+  </tr>
+  <tr>
+   <td><b>Gap open penalty for insertion</b></td>
+   <td>Corresponds to the mem option [-O gapOpenPen] for insertions, which defines the penalty subtracted from
+   the alignment score for opening a gap. See above for details.</td>
+   <td>6</td>
+   <td>8</td>
+  </tr>
+  <tr>
+   <td><b>Gap extension penalty for deletion</b></td>
+   <td>Corresponds to the mem option [-E gapExtPen] for deletions, which defines the penalty subtracted from the
+   alignment score for extending an already opened gap. This penalty is applied to each position within the gap.
+   A gap of length k costs O + k*E (i.e. -O is for opening a zero-length gap). Higher values reduce the number
+   of gaps inserted into the alignment and make long deletions less likely, and vice versa.</td>
+   <td>1</td>
+   <td>2</td>
+  </tr>
+  <tr>
+   <td><b>Gap extension penalty for insertion</b></td>
+   <td>Corresponds to the mem option [-E gapExtPen] for insertions, which defines the penalty subtracted from the
+   alignment score for extending an already opened gap. Higher values reduce the number of gaps inserted into the
+   alignment and make long insertions less likely, and vice versa. See above for details.</td>
+   <td>1</td>
+   <td>2</td>
+  </tr>
+  <tr>
+   <td><b>Minimum seed length</b></td>
+   <td>Corresponds to the mem option [-k minSeedLen], which defines the minimum seed length.
+   Matches shorter than this value will be missed. Higher values reduce sensitivity to short matches,
+   while lower values increase sensitivity but may also increase the number of spurious matches.
+   The alignment speed is usually insensitive to this value unless it significantly deviates 20.</td>
+   <td>19</td>
+   <td>25</td>
+  </tr>
+  <tr>
+   <td><b>Minimum score to output</b></td>
+   <td>Corresponds to the mem option [-T], which defines the minimum alignment score threshold required for an
+   alignment to be reported. Alignments with scores below this threshold are discarded. Increasing this value
+   makes the output more stringent (fewer alignments are reported, but they are more reliable). This option
+   affects output only.</td>
+   <td>30</td>
+   <td>50</td>
+  </tr>
+</table>
+
+*When aligning amplicon panel data, it is recommended to adjust the aligner parameters to filter out non-specific
+alignments. Such alignments may arise from primers that anneal non-specifically to the template during the
+amplification step (prior to sequencing).<br></br>
+Filtering non-specific signals helps mitigate the following issues:
+1. *Excessive calling of minor variants in non-specific regions.*
+PCR can generate a substantial number of non-specific amplicons. When analyzed (e.g., using GATK), these may
+produce a large number of low-frequency variant calls. As a result, dozens or even hundreds of “variants” may
+appear in the output, although they are in fact technical artifacts rather than true mutations in target genes.
+2. *Masking of heterozygous variants in hotspot regions.*
+True heterozygous hotspot mutations may be masked by noise originating from non-specific amplification products.
+This leads to a reduction in the observed mutant allele fraction. If the fraction of mutant reads falls below
+the detection threshold of the algorithm, the variant may not be detected.
+
+To change the parameter value, click on the current value and edit.
 To save changes, press Enter or click outside edit value container.
 
 [^1]: [Vasimuddin M., Sanchit M., Heng L., Srinivas A. Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems. IEEE Parallel and Distributed Processing Symposium (IPDPS) (2019)](https://doi.org/10.1109/IPDPS.2019.00041)

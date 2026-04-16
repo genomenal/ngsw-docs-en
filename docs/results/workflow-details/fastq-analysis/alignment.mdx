@@ -78,7 +78,7 @@ For each metric, the following are provided:
 - description of the result of checking the compliance of a certain sample alignment indicator and the threshold
 of this metric: the indicator value for the sample (e.g. Mapped reads, i.e. the percent of mapped reads in the
 alignment file) and the used metric threshold, at which the alignment file is considered high-quality
-(can be changed in the [parameters](/settings/settings/alignment-settings#change-metric-thresholds)), are provided;
+(can be changed in the [parameters](/settings/settings/alignment-settings#alignment-metrics)), are provided;
 - result of assessing the quality of alignment by
 metric: <img src={require('/img/eng/passed_metric.png').default} width="90"/> if
 the sample alignment satisfies the metric threshold,
@@ -90,7 +90,7 @@ or <img src={require('/img/eng/failed_metric.png').default} width="80"/> if it d
   <tr>
    <td>Metric</td>
    <td>The metric threshold value at which the alignment file is considered high-quality (this is the default value,
-   can be changed in <a href="/settings/settings/alignment-settings#change-metric-thresholds">parameters</a>)</td>
+   can be changed in <a href="/settings/settings/alignment-settings#alignment-metrics">parameters</a>)</td>
   </tr>
   <tr>
    <td><b>Mapped reads</b></td>
@@ -122,6 +122,11 @@ If the metric value does not meet the threshold in the sample alignment file, th
 the metric criteria, i.e. the alignment is completed successfully, but the stage status indicates the number of
 metrics that do not meet the criteria. If no sample reads are aligned to the genome, the "Alignment" stage completes
 with an error and the analysis is stopped.
+
+:::tip
+When aligning amplicon panel data, it is recommended to adjust the aligner parameters to filter out non-specific
+alignments as described [here](/settings/settings/alignment-settings#bwa-mem-parameters).
+:::
 
 If at least one of the following stages is included in the sample
 analysis: [somatic SNVs/Indels discovery](/settings/settings/variant-discovery-settings#somatic-snvs-discovery),
