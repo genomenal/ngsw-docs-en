@@ -23,20 +23,21 @@ the variant details panel is expanded or collapsed in SNV Viewer by default.
 
 ## Details Panel Tabs {#panel-tabs}
 
-The panel is divided into 12 tabs (or 11 if there are no [custom annotations](/settings/custom-annotations) in
+The panel is divided into 13 tabs (or 12 if there are no [custom annotations](/settings/custom-annotations) in
 the system):
 1. [Common](/results/main/snvs-indels/snv-details-panel#common-tab)
 2. [Gene](/results/main/snvs-indels/snv-details-panel#gene)
-3. [ClinVar](/results/main/snvs-indels/snv-details-panel#clinvar-tab)
+3. [Phenotypes](/results/main/snvs-indels/snv-details-panel#phenotypes)
+4. [ClinVar](/results/main/snvs-indels/snv-details-panel#clinvar-tab)
 4. [gnomAD 3](/results/main/snvs-indels/snv-details-panel#gnomad-3-tab)
-5. [gnomAD 4](/results/main/snvs-indels/snv-details-panel#gnomad-4-tab)
-6. [ExAC](/results/main/snvs-indels/snv-details-panel#exac-tab)
-7. [Other frequencies](/results/main/snvs-indels/snv-details-panel#other-frequencies-tab)
-8. [Conservation](/results/main/snvs-indels/snv-details-panel#conservation-tab)
-9. [Protein function effect](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
-10. [Protein function effect (additional)](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
-11. [Other](/results/main/snvs-indels/snv-details-panel#other-tab)
-12. [Custom annotation sources](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab) (if
+4. [gnomAD 4](/results/main/snvs-indels/snv-details-panel#gnomad-4-tab)
+5. [ExAC](/results/main/snvs-indels/snv-details-panel#exac-tab)
+8. [Other frequencies](/results/main/snvs-indels/snv-details-panel#other-frequencies-tab)
+9. [Conservation](/results/main/snvs-indels/snv-details-panel#conservation-tab)
+10. [Protein function effect](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+11. [Protein function effect (additional)](/results/main/snvs-indels/snv-details-panel#protein-function-effect-tab)
+12. [Other](/results/main/snvs-indels/snv-details-panel#other-tab)
+13. [Custom annotation sources](/results/main/snvs-indels/snv-details-panel#custom-annotation-sources-tab) (if
 at least one custom annotation was [added](/settings/custom-annotations#add-custom-annotation) to the system
 before the variants in the sample were annotated)
 
@@ -194,10 +195,8 @@ and one phasing group on the right in the track: chr15:48505117 CA>AG (contains 
 <img src={require('/img/vv/gene_tab.png').default} width="900"/>
 </p>
 
-The tab contains basic information about [the gene](/results/main/snvs-indels/snv-details-panel#gene-info)
-and [the transcripts](/results/main/snvs-indels/snv-details-panel#transcripts) in which the variant is located.
-If you are granted access to OMIM database, there may also be information
-on [gene-phenotype relations](/results/main/snvs-indels/snv-details-panel#omim-phenotypes).
+The tab contains basic information about the gene, including constraint gnomAD metrics,
+and the transcripts in which the variant is located.
 
 #### 1. Gene {#gene-info}
 
@@ -207,9 +206,6 @@ on [gene-phenotype relations](/results/main/snvs-indels/snv-details-panel#omim-p
 <img src={require('/img/vv/gene_source.png').default} width="300"/>
 </p>
 
-- ***Links*** to pages with information about the gene in various databases
-([Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index), [UniProt](https://www.uniprot.org/uniprot/),
-[GTEx](https://www.gtexportal.org/home/), [OMIM](https://www.omim.org/), [NCBI](https://www.ncbi.nlm.nih.gov/gene/)).
 - ***Search for all variants in gene***: search for all variants discovered in the sample and located in the same
 gene. To search, click on "*All variants in gene*" link and new tab with SNV Viewer filtered by this gene
 will open.
@@ -220,24 +216,33 @@ were filtered and/or sorted on the original SNV Viewer page, these filtering and
 or changed, and the state of SNV Viewer on the new tab will retain.
 :::
 
-- ***Genetic Constraint Metrics*** — these are metrics that reflect the degree to which a gene is intolerant to
-functionally significant mutations and help assess the likelihood of pathogenicity:
-   - ***pLI*** (Probability of Loss-of-Function Intolerance) — the probability that a transcript is intolerant to
-   loss-of-function (LoF) variants. This metric indicates the probability that a transcript falls into distribution
-   of haploinsufficient genes, meaning that the loss of one copy leads to functional consequences. It is computed
-   from high-confidence pLoF (predicted LoF) gnomAD data. Range: 0 to 1. Genes with pLI ≥ 0.9 are considered
-   LoF-intolerant.
-   - ***LOEUF*** (Loss-of-function Observed/Expected Upper bound Fraction) — the upper bound of the 90% confidence
-   interval for the observed/expected ratio of high-confidence pLoF (predicted loss-of-function) variants.
-   Lower values (LOEUF < 0.35) indicate a gene is more constrained against LoF variants.
-   - ***Missense O/E ratio*** — the upper bound of the 90% confidence interval for the observed/expected ratio of
-   missense variants. Lower values suggest a gene is more constrained against missense variation.
-   - ***Missense Z-score*** — a Z-score representing the deviation of the observed number of missense variants in a
-   transcript from the expected number under a model of neutral mutation distribution.
-   Greater positive values (Z-score ≥ 3.09) indicate that the transcript is more intolerant of missense variation.
-   Lower or negative Z-scores indicate that the gene tolerates more missense mutations than expected.
+#### 2. External links {#gene-external-links}
 
-#### 2. Transcripts {#transcripts}
+Links to pages with information about the gene in various databases:
+[Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index), [UniProt](https://www.uniprot.org/uniprot/),
+[GTEx](https://www.gtexportal.org/home/), [OMIM](https://www.omim.org/), [NCBI](https://www.ncbi.nlm.nih.gov/gene/),
+[Orphanet](https://www.orpha.net/consor/cgi-bin/index.php), [GenCC](https://thegencc.org/).
+
+#### 3. Constraint metrics (gnomAD) {#constraint-metrics}
+
+Genetic Constraint Metrics — these are metrics that reflect the degree to which a gene is intolerant to
+functionally significant mutations and help assess the likelihood of pathogenicity:
+- ***pLI*** (Probability of Loss-of-Function Intolerance) — the probability that a transcript is intolerant to
+loss-of-function (LoF) variants. This metric indicates the probability that a transcript falls into distribution
+of haploinsufficient genes, meaning that the loss of one copy leads to functional consequences. It is computed
+from high-confidence pLoF (predicted LoF) gnomAD data. Range: 0 to 1. Genes with pLI ≥ 0.9 are considered
+LoF-intolerant.
+- ***LOEUF*** (Loss-of-function Observed/Expected Upper bound Fraction) — the upper bound of the 90% confidence
+interval for the observed/expected ratio of high-confidence pLoF (predicted loss-of-function) variants.
+Lower values (LOEUF < 0.35) indicate a gene is more constrained against LoF variants.
+- ***Missense O/E ratio*** — the upper bound of the 90% confidence interval for the observed/expected ratio of
+missense variants. Lower values suggest a gene is more constrained against missense variation.
+- ***Missense Z-score*** — a Z-score representing the deviation of the observed number of missense variants in a
+transcript from the expected number under a model of neutral mutation distribution.
+Greater positive values (Z-score ≥ 3.09) indicate that the transcript is more intolerant of missense variation.
+Lower or negative Z-scores indicate that the gene tolerates more missense mutations than expected.
+
+#### 4. Transcripts {#transcripts}
 
 The panel contains gene transcripts from two databases: [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index)
 and [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/).
@@ -249,7 +254,7 @@ By default, a table with transcripts from Ensembl is shown. To open the table wi
 click on the corresponding switch button:
 
 <p align="center">
-<img src={require('/img/vv/refseq_transcripts.png').default} width="700"/>
+<img src={require('/img/vv/refseq_transcripts.png').default} width="800"/>
 </p>
 
 :::note
@@ -265,7 +270,7 @@ The main gene transcript, according to [MANE Select](https://www.ncbi.nlm.nih.go
 [MANE plus clinical](https://www.ncbi.nlm.nih.gov/refseq/MANE/#:~:text=MANE%20Plus%20Clinical%3A%20The%20MANE,variants%20available%20in%20public%20resources.)
 or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html), is marked
 with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen
-as the main one for this variant is framed. Impact, HGVSp, and HGVSc values for this transcript are shown
+as the main one for this variant is framed. Impact, HGVSc, and HGVSp values for this transcript are shown
 for the variant in SNV Viewer table.
 
 import Highlight from '@site/src/components/Highlight';
@@ -275,11 +280,11 @@ import Highlight from '@site/src/components/Highlight';
 HIGH impact value is colored <Highlight color="#E95726">red</Highlight>, MODERATE
 is colored <Highlight color="#E2CC81">yellow</Highlight>, and LOW and MODIFIER are
 colored <Highlight color="#999AAB">gray</Highlight>.
-- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
-(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
 - ***HGVSc*** - is a nucleotide substitution using [HGVS notation](https://varnomen.hgvs.org/): “c.” (coding; for a
 substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
 genomic position of the substituted nucleotide + reference allele > alternative allele.
+- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
 
 The gene transcript table from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) has the following columns:
 - ***Transcript*** is a transcript ID from [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) database
@@ -289,43 +294,122 @@ The main gene transcript, according to [MANE Select](https://www.ncbi.nlm.nih.go
 or [Ensembl canonical](https://www.ensembl.org/info/genome/genebuild/canonical.html), is marked
 with <img src={require('/img/vv/main_transcript.png').default} width="20"/>. The gene transcript chosen
 as the main one for this variant is framed.
-- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
-(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
 - ***HGVSc*** - is a nucleotide substitution using [HGVS notation](https://varnomen.hgvs.org/): “c.” (coding; for a
 substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence) prefix +
 genomic position of the substituted nucleotide + reference allele > alternative allele.
+- ***HGVSp*** is an amino acid substitution using [HGVS notation](https://varnomen.hgvs.org/): “p.” prefix
+(protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution.
 
-#### 3. OMIM Gene-Phenotype Relationships {#omim-phenotypes}
-
-Access to data from [OMIM](https://www.omim.org/) database inside Genomenal is provided if the user has a
-license to access the database. If you have been granted access to OMIM, there will be information on the
-phenotypes associated with the gene in which the variant is located on the right side of "Gene" tab:
+### Phenotypes {#phenotypes}
 
 <p align="center">
-<img src={require('/img/vv/omim_phenotypes.png').default} width="500"/>
+<img src={require('/img/vv/phenotypes_tab.png').default} width="900"/>
+</p>
+
+This tab provides information on phenotypes associated with the gene in which the variant is located, based
+on data from the [GenCC](https://thegencc.org/) and [OMIM](https://www.omim.org/) databases.
+Information on OMIM phenotypes is provided if you have been granted access to this database.
+
+#### 1. GenCC Gene-Phenotype Relationships {#gencc-phenotypes}
+
+This section contains information on diseases associated with the gene in which the variant is located,
+according to the [GenCC](https://thegencc.org/) database.
+
+<p align="center">
+<img src={require('/img/vv/gencc_phenotypes.png').default} width="700"/>
 </p>
 
 The information is presented in the form of a table with the following columns:
-1. ***Phenotype*** is the full name of the phenotype associated with the gene. For some phenotypes,
+1. ***Disease*** - the full name of the disease associated with the gene. For each disease, a link to the
+corresponding entry in the [MONDO](https://mondo.monarchinitiative.org/) ontology (on
+the [Monarch Initiative](https://monarchinitiative.org/) consortium website)
+is provided: <img src={require('/img/vv/link_icon.png').default} width="20"/>. Hovering over the link icon
+displays a tooltip with the disease's MONDO ID.
+2. ***Mode of inheritance***:
+- **AD** - Autosomal dominant;
+- **AR** - Autosomal recessive;
+- **MI** - Mitochondrial;
+- **SD** - Semidominant;
+- **XL** - X-linked;
+- **XLR** - X-linked recessive;
+- **YL** - Y-linked;
+- **—** - Unknown.
+3. ***Classification*** - an assessment of the gene-disease relationship based on the strength of evidence
+supporting or refuting this association. The classification reflects the level of clinical validity of
+the gene-disease relationship.
+
+Column values are displayed as icons indicating the number of sources that provided evidence for a given
+type of relationship. When hovering over an icon, a tooltip is shown with the relationship type and a list
+of all sources that contributed the corresponding evidence:
+
+<p align="center">
+<img src={require('/img/vv/classification_resources.png').default} width="350"/>
+</p>
+
+Types of gene-disease relationships in GenCC:
+- <img src={require('/img/vv/df.png').default} width="47"/> - Definitive;
+- <img src={require('/img/vv/st.png').default} width="47"/> - Strong;
+- <img src={require('/img/vv/md.png').default} width="47"/> - Moderate;
+- <img src={require('/img/vv/sp.png').default} width="47"/> - Supportive;
+- <img src={require('/img/vv/lm.png').default} width="47"/> - Limited;
+- <img src={require('/img/vv/ds.png').default} width="47"/> - Disputed Evidence;
+- <img src={require('/img/vv/rf.png').default} width="47"/> - Refuted Evidence;
+- <img src={require('/img/vv/nk.png').default} width="47"/> - No Known Disease Relationship.
+
+For each disease, all relationship types reported for the given gene in GenCC are displayed. Classification
+icons are shown in descending order of evidence strength (as listed above).
+
+The table is sorted by gene-disease classification: first by descending strength of evidence, and then
+by the number of sources providing evidence for each relationship type.
+
+#### 2. OMIM Gene-Phenotype Relationships {#omim-phenotypes}
+
+This section contains information on phenotypes associated with the gene in which the variant is located,
+according to the [OMIM](https://www.omim.org/) database.
+Access to data from OMIM database inside Genomenal is provided if the user has a
+license to access the database.
+
+<p align="center">
+<img src={require('/img/vv/omim_phenotypes.png').default} width="700"/>
+</p>
+
+The information is presented in the form of a table with the following columns:
+1. ***Phenotype*** is the full name of the phenotype associated with the gene.
+- For some phenotypes,
 there is a question mark before the name (e.g. "<b>?</b>Bleeding disorder, platelet-type, 22"), which
-indicates that the relationship between the phenotype and gene is provisional. Some phenotypes are enclosed
+indicates that the relationship between the phenotype and gene is provisional.
+- Some phenotypes are enclosed
 in square brackets (e.g. "<b>[</b>Urate oxidase deficiency<b>]</b>"), which indicates mainly genetic variations
-that lead to apparently abnormal laboratory test values. Some phenotypes are enclosed in curly brackets
+that lead to apparently abnormal laboratory test values.
+- Some phenotypes are enclosed in curly brackets
 (e.g. "<b>{</b>Prostate cancer/brain cancer susceptibility, somatic<b>}</b>"), which indicates mutations
 that contribute to susceptibility to multifactorial disorders or to susceptibility to infection.
 2. ***Phenotype MIM number*** is a phenotype ID in OMIM database.
 You can open the phenotype page by clicking on the link.
-3. ***Inheritance*** is a pattern of inheritance phenotype: <b>AD</b> - autosomal
-dominant; <b>AR</b> - autosomal recessive; <b>DD</b> - digenic dominant; <b>DR</b> - digenic
-recessive; <b>IC</b> - isolated cases; <b>Mi</b> - mitochondrial; <b>Mu</b> - multifactorial; <b>PADom</b> -
-pseudoautosomal dominant; <b>PARec</b> - pseudoautosomal recessive; <b>SomMos</b> - somatic
-mosaicism; <b>SMu</b> - somatic mutation; <b>XL</b> - X-linked; <b>XLD</b> - X-linked
-dominant; <b>XLR</b> - X-linked recessive; <b>YL</b> - Y-linked.
-4. ***Phenotype mapping key*** is an OMIM phenotype map key (the map displays relationships of the
-phenotype with associated phenotypes, phenotypic series and genes): <b>1</b> - the phenotype is placed on
-the map due to its association with a gene, but the underlying defect is not known; <b>2</b> - the phenotype
-has been placed on the map by statistical methods, no mutation has been found; <b>3</b> - the molecular basis of the
-disorder is known; <b>4</b> - a contiguous gene duplication or deletion syndrome in which multiple genes are involved.
+3. ***Inheritance***:
+- **AD** - Autosomal dominant;
+- **AR** - Autosomal recessive;
+- **DD** - Digenic dominant;
+- **DR** - Digenic recessive;
+- **ICB** - Inherited chromosomal imbalance;
+- **IC** - Isolated cases;
+- **Mi** - Mitochondrial;
+- **Mu** - Multifactorial;
+- **SMo** - Somatic mosaicism;
+- **SMu** - Somatic mutation;
+- **XL** - X-linked;
+- **XLD** - X-linked dominant;
+- **XLR** - X-linked recessive;
+- **YL** - Y-linked;
+- **PD** - Pseudoautosomal dominant;
+- **PR** - Pseudoautosomal recessive;
+- **—** - Not specified (phenotype has an empty value in the "Inheritance" column in the OMIM database).
+4. ***Phenotype mapping key*** is an OMIM phenotype map key displaying relationships of the
+phenotype with associated phenotypes, phenotypic series and genes: <br /><b>1</b> - the phenotype is placed on
+the map due to its association with a gene, but the underlying defect is not known; <br /><b>2</b> - the phenotype
+has been placed on the map by statistical methods, no mutation has been found; <br /><b>3</b> - the molecular basis
+of the disorder is known; <br /><b>4</b> - a contiguous gene duplication or deletion syndrome in which multiple
+genes are involved.
 
 ### ClinVar {#clinvar-tab}
 
