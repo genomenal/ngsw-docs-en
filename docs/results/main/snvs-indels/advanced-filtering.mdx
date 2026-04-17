@@ -1038,9 +1038,13 @@ enter ***filter column value***:
 
 4. To complete adding the condition, press Enter or click outside edit value container.
 
-## Edit a Condition {#edit-condition}
+## Actions with a Condition in the Query Builder {#condition-actions-query-builder}
 
-You can change the ***operator*** and/or ***value*** in an already created condition.
+In the query builder, you can edit, turn off, or remove an already created condition.
+
+### Edit a Condition {#edit-condition}
+
+You can change the ***operator*** and/or ***value*** in the added condition.
 To do this, you need to click on the corresponding field:
 
 <p align="center">
@@ -1053,7 +1057,7 @@ and choose another option:
 <img src={require('/img/vv/change_operator.png').default} width="700"/>
 </p>
 
-## Turn off a Condition {#turn-off-condition}
+### Turn off a Condition {#turn-off-condition}
 
 Turning off a condition is useful if you don’t want to lose the added condition, but at the moment you
 don’t need to filter by it. To turn off a condition, hover over it and
@@ -1063,7 +1067,7 @@ click on <img src={require('/img/vv/turn_off_btn.png').default} width="25"/>:
 <img src={require('/img/vv/turn_off_condition.png').default} width="700"/>
 </p>
 
-## Remove a Condition {#remove-condition}
+### Remove a Condition {#remove-condition}
 
 To remove a condition, hover over it and
 click on <img src={require('/img/vv/delete_condition.png').default} width="25"/>:
@@ -1112,51 +1116,102 @@ To get started, click on the highlighted window:
 
 ## Apply a Query {#apply-query}
 
-After you have completed all the conditions for the sought variants,
+After filling in the conditions for the searched variants,
 click on <img src={require('/img/vv/apply.png').default} width="150"/>.
-The Query Builder closes and the query is applied to the variants.
-Уou can see which query has been applied at the top of the table:
+The query builder window will then close, and the SNV Viewer table will display only those variants
+that satisfy the conditions of the applied query.
+
+The conditions of the applied query are presented above the table with variants:
 
 <p align="center">
 <img src={require('/img/vv/filtered_var.png').default} width="1100"/>
 </p>
 
-You can turn the condition off by clicking on <img src={require('/img/vv/turn_off_created.png').default} width="20"/>,
-or you can delete it by clicking on <img src={require('/img/vv/turn_off_cond_on_vv.png').default} width="20"/>:
-
-<p align="center">
-<img src={require('/img/vv/condition.png').default} width="250"/>
-</p>
-
-To ***remove all conditions*** from the query,
-click on <img src={require('/img/vv/clear_all_filters_btn.png').default} width="45"/>.
-
-To ***change or save your query*** or ***create a new one***, open the Query Builder by
-clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>.
+To edit, [save](/results/main/snvs-indels/advanced-filtering#save-query) or create a new query,
+open the Query Builder by clicking on <img src={require('/img/vv/query_builder_btn.png').default} width="120"/>.
 
 To return to the SNV Viewer main page,
 click on <img src={require('/img/vv/basic_filtering_btn.png').default} width="120"/>.
 
-Sometimes there are a lot of conditions for the searched variants and the query can be very long:
+## Actions with the Conditions of the Applied Query {#query-condition-actions}
+
+The conditions of the applied query are presented above the table with variants:
+
+<p align="center">
+<img src={require('/img/vv/filtered_var.png').default} width="1100"/>
+</p>
+
+You can perform the following actions with query conditions:
+- <b>Edit the condition value inplace</b> - see <a href="/results/main/snvs-indels/advanced-filtering#edit-condition-value-inplace">below</a> for details.
+- <b>Turn the condition off</b> - deactivate without removing it from the query. To do this, click on the
+button <img src={require('/img/vv/turn_off_created.png').default} width="20"/>. A turned off condition is indicated
+by a strikethrough:
+
+<p align="center">
+<img src={require('/img/vv/turned_off_condition.png').default} width="200"/>
+</p>
+
+To turn the condition back on, click the same button.
+- <b>Remove the condition</b> by clicking on
+the cross <img src={require('/img/vv/turn_off_cond_on_vv.png').default} width="20"/>.
+- <b>Clear all the applied conditions</b> by clicking
+on <img src={require('/img/vv/clear_all_filters_btn.png').default} width="45"/>.
+- <b>Collapse the conditions</b>. This is useful if the query includes several conditions, resulting in it
+taking up a lot of space on the page:
 
 <p align="center">
 <img src={require('/img/vv/many_conditions.png').default} width="900"/>
 </p>
 
-In this case, you can ***collapse*** the query conditions by
-clicking on the button <img src={require('/img/vv/hide.png').default} width="20"/> to the right of
-the *Remove all conditions* button. Then only the opening conditions of the query will be shown:
+To collapse the query conditions, click on
+the button <img src={require('/img/vv/hide.png').default} width="20"/> to the right of
+the *Clear all filters* button. Then only a few conditions of the query will be shown:
 
 <p align="center">
 <img src={require('/img/vv/hidden.png').default} width="900"/>
 </p>
 
-To ***expand*** the query conditions back, click on <img src={require('/img/vv/show.png').default} height="23"/>.
+To expand the query conditions back, click on <img src={require('/img/vv/show.png').default} height="23"/>.
 
 :::info
 On [Profile Settings page](/settings/profile#advanced-filtering-conditions), you can adjust
 whether the query conditions are expanded or collapsed immediately after applying a filter query.
 :::
+
+### Editing the Condition Value Inplace {#edit-condition-value-inplace}
+
+Conditions with the values (that is, those whose operators are not "empty" or "not empty") can be edited inplace
+above the table of variants. To do this, click on the current value:
+
+<p align="center">
+<img src={require('/img/vv/edit_condition_value_inplace.png').default} width="300"/>
+</p>
+
+and make the changes:
+- For <i>multiselect filters</i>: a searchable list of values will open. To select an additional value,
+check its box. To exclude a value, uncheck its box.
+
+<p align="center">
+<img src={require('/img/vv/multiselect_inplace.png').default} width="400"/>
+</p>
+
+To finish selecting condition values, click in the empty area on the page.
+
+- For <i>single value filters</i>: select a value from the list that opens by clicking on the row:
+
+<p align="center">
+<img src={require('/img/vv/select_inplace.png').default} width="480"/>
+</p>
+
+- For <i>filters with value input</i>: edit the value and press Enter or click in the empty area on the page.
+
+<p align="center">
+<img src={require('/img/vv/input_edit.png').default} width="350"/>
+</p>
+
+All other actions to edit the condition, such
+as [selecting a different condition operator](/results/main/snvs-indels/advanced-filtering#edit-condition),
+are performed in the query builder.
 
 ## Save a Query {#save-query}
 
