@@ -196,7 +196,8 @@ can be changed on the "Parameters" tab");
 - `{sample.oncoStage}` - oncological disease stage at time of sampling (set on the tumor sample page);
 - `{sample.oncoStageDetails}` - additional details on disease stage at time of sampling (set on the tumor sample page);
 - `{sample.therapyLine}` - therapy line at time of sampling (set on the tumor sample page);
-- `{sample.comments}` - comments related to the sample (added on the sample page).
+- `{sample.comments}` - comments related to the sample (added on the sample page);
+- `{currentDate}` - current date in the format "M d, yyyy", can be used as the report issue date.
 
 :::tip
 In Markdown, use two spaces at the end of a line to insert a line break.
@@ -277,12 +278,17 @@ A block containing the variants matching conditions specified within it.
 1. *Name* – section title (required field).
 2. *Description* – text displayed below the section title.
 3. *Origin* – somatic or germline.
-4. *Conditions for including variants to the report*: If the variants detected in the sample meet the specified
-conditions, they will be displayed in this report block. To create a condition,
-click the button <img src={require('/img/report_templates/query_builder.png').default} width="170"/>.
-This will open the query builder, which is identical to the advanced variant search form on the SNV Viewer page.
-Creating conditions in the query builder are described
-in [the corresponding section](/results/main/snvs-indels/advanced-filtering#add-condition).
+4. *Conditions for including variants to the report* - a rule that defines which variants will be displayed in
+this report section. If the variants discovered in a sample meet the specified conditions, they are included
+in this section. To define a condition, click
+the button <img src={require('/img/report_templates/query_builder.png').default} width="170"/> - the query
+builder will open. A detailed description of how to use the query builder is provided
+in [the relevant section](/results/main/snvs-indels/advanced-filtering#add-condition).
+The query builder largely replicates the advanced variant search form on the SNV Viewer page, with the
+following limitations:
+- It is not possible to select multiple saved queries simultaneously (if needed, conditions can be combined
+using the OR operator);
+- The compound heterozygote filter is not available.
 5. *Interpretation* – defines how interpretations are included in the report:
 - *By variants* (default) – only interpretations added for each individual genetic variant included in the
 report are displayed.
