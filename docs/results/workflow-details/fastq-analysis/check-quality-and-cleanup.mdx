@@ -128,6 +128,14 @@ or <img src={require('/img/eng/failed_metric.png').default} width="80"/> if the 
    using [BBMap FilterByTile](https://github.com/abiswas-odu/Disco/blob/master/bbmap/docs/guides/FilterByTileGuide.txt).
    After filtering by Tile, the Check Quality is performed again.
 
+   :::info Tile Filtering Limitations
+   Tile-based filtering is supported only for FASTQ files with headers in the Illumina format. If a FASTQ header
+   does not match the Illumina format, tile-based filtering is not applied.
+
+   Illumina header format:<br></br>
+   `@<instrument>:<run ID>:<flowcell ID>:<lane>:<tile>:<x-pos>:<y-pos> <read>:<is filtered>:<control number>:<sample number>`
+   :::
+
    2.2. **Quality Trimmer**:
       - Remove adapters if the sample file contains more than 1% of reads contaminated with adapter sequences.
       - Filter short reads if the sample file contains more than 25% of short reads (i.e. reads shorter than the
