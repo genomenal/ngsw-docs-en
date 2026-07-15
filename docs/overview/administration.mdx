@@ -1,0 +1,700 @@
+---
+sidebar_position: 8
+sidebar_label: Administration
+---
+
+# Administration
+
+The "Administration" page block is accessible only to the Program administrator.
+It includes the ["Configurations"](/overview/administration#configurations),
+["Users"](/overview/administration#users), ["Organizations"](/overview/administration#organisations),
+["Active tasks"](/overview/administration#active-tasks), and ["Tariffs"](/overview/administration#tarifs) pages.
+
+## Configurations {#configurations}
+
+The page contains configuration settings that can be transferred to new users when they register in the System.
+
+<p align="center">
+<img src={require('/img/eng/configurations_page.png').default} width="900"/>
+</p>
+
+To add a configuration to the System,
+click <img src={require('/img/eng/add_configuration.png').default} width="200"/>.
+In the Add Configuration dialog, enter the configuration name and, optionally, a description.
+Then add the settings preset, report template, and/or demo sample that you want to provide to
+the new user as part of the configuration.
+
+<p align="center">
+<img src={require('/img/eng/add_configuration_form.png').default} width="450"/>
+</p>
+
+#### Settings Presets {#preset}
+
+To add a settings preset to the configuration, click the corresponding search field and select a preset
+from [the settings presets available in your System](/settings/settings/settings).
+Then click <img src={require('/img/eng/add_btn.png').default} width="130"/>.
+
+One of the added presets must be designated as the default preset. To change the default preset,
+click <img src={require('/img/eng/default_btn.png').default} width="30"/> next to the desired preset.
+
+To remove a preset from the configuration,
+click <img src={require('/img/eng/delete_btn_white.png').default} width="28"/>.
+
+<p align="center">
+<img src={require('/img/eng/settings_in_configuration.png').default} width="600"/>
+</p>
+
+#### Report Templates {#report-templates}
+
+To add a report template to the configuration, click the corresponding search field and select a template
+from [the report templates available in your System](/settings/report-templates/report-templates).
+Then click <img src={require('/img/eng/add_btn.png').default} width="130"/>.
+
+To remove a report template from the configuration,
+click <img src={require('/img/eng/delete_btn_white.png').default} width="28"/>.
+
+<p align="center">
+<img src={require('/img/eng/report_templates.png').default} width="600"/>
+</p>
+
+#### Demo samples {#demo-samples}
+
+Demo samples are demonstration samples that can be provided to a new user when they register in the System.
+They are intended to help users become familiar with the Program. Using these samples, users can explore
+the Program's main features without having to search for and upload suitable samples themselves.
+
+To add demo samples to a configuration, locate the desired samples among those you have uploaded to the System.
+You can use the search box and the navigation controls to find them.
+
+The table of available samples displays the sample name and either the patient ID or the name of the run to which
+the sample belongs. A non-tumor sample is marked
+with <img src={require('/img/eng/normal_success.png').default} width="20"/>, and a tumor sample is marked
+with <img src={require('/img/eng/tumor_success.png').default} width="20"/>.
+
+Only samples that belong to a patient or a run that is not archived are available for inclusion in a configuration.
+
+Select the required samples by checking the corresponding boxes.
+The message below the "Demo samples" section heading will change from "*No samples selected*"
+to "*Demo files selected:*" followed by the number of selected samples.
+
+<p align="center">
+<img src={require('/img/eng/chosen_demo_samples.png').default} width="600"/>
+</p>
+
+After you add at least one settings preset, at least one report template, or at least one demo sample to the
+configuration, the <img src={require('/img/eng/create_btn.png').default} width="170"/> button becomes active.
+Click it to add the configuration to the System.
+
+To edit a configuration, click its row in the table, make the necessary changes, and then
+click <img src={require('/img/eng/create_btn.png').default} width="170"/>.
+
+The configurations added to the System are displayed in a table with the following columns:
+1. **CONFIGURATION** – the configuration name.
+2. **DESCRIPTION** – the configuration description.
+3. **REGISTRATION LINK** – the link used to register new users in the System with this configuration.
+To copy the link to the clipboard, click <img src={require('/img/eng/copy_to_clipboard.png').default} width="30"/>.
+4. **MODIFIED** – the date the configuration was last modified, in the format M/d/yyyy.
+
+The table is sorted by configuration name.
+
+When you hover over a configuration row,
+the <img src={require('/img/eng/delete_btn.png').default} width="30"/> button appears,
+allowing you to delete the configuration.
+
+## Users {#users}
+
+The page displays all users who have registered in the System or have been invited to it, and
+allows administrators to invite new users.
+
+For Administrators, all users are displayed. Organization administrators see only the users who
+belong to their organization.
+
+<p align="center">
+<img src={require('/img/eng/users_page.png').default} width="900"/>
+</p>
+
+Registered and invited users are displayed in a table with the following columns:
+1. **LOGIN** - the user's login name specified during registration. Users who have been invited to the System
+but have not yet completed registration are labeled "*Pending invitation*".
+2. **EMAIL** - the user's email address, either specified during registration or entered in the invitation form.
+3. **ORGANIZATION** - the organization to which the user belongs. Organizations are groups of users created to
+facilitate collaboration. Administrators and Organization administrators can configure settings that apply
+to all users within an organization on [the Organizations page](/overview/administration#organisations).
+This column is available only to Administrators, who can assign users to organizations.
+Administrators can also filter the user list by organization using the Organization filter above the table.
+4. **ROLE** - the user's role in the System. Administrators can change the roles of other users by clicking
+the current role and selecting a new one. Organization administrators can change the roles of all users except
+those with the Administrator role.
+- ***Administrator*** - has full administrative privileges and can manage other users.
+Administrators have access to all pages in the Administration section,
+including [the Tariffs page](/overview/administration#tarifs).
+- ***Organization administrator*** - can manage users who belong to the same organization.
+Compared with an Administrator, the following restrictions apply:
+   - on the Users page, only users from the same organization are displayed, and the organization search field
+   and Organization column are not displayed;
+   - cannot manage Administrators (cannot change their role, sign in to their accounts, or remove them from the System);
+   - on the Organizations page, only the Organization administrator's own organization is displayed.
+   They cannot delete the organization, change its maximum number of processed samples, or create new organizations;
+   - on the Active tasks page, only sample and group analysis processing tasks belonging to users from the same
+   organization are displayed;
+   - the Tariffs page is not available, including when selecting another user on the Users page.
+- ***User*** - has full access to the System except for user administration (the Administration section
+is unavailable).
+- ***Fixed settings*** - has the same permissions as a User, with the following restrictions:
+   - cannot access [the Settings page](/settings/settings/settings);
+   - cannot change analysis settings or the sequencing type when uploading samples.
+   The default analysis settings designated by the administrator are always used, and the sequencing type
+   is determined by those settings;
+   - cannot modify analysis parameters ([the Parameters tab](/results/parameters) is disabled);
+   - cannot restart sample processing from scratch or from any analysis stage.
+- ***Read only*** - can browse the Program but cannot perform any actions.
+5. **SAMPLES VISIBILITY** - determines which samples are visible in the user's account:
+- ***Owned only*** - the user can access only the samples they uploaded (demo samples may also be available).
+- ***All in organization*** - the user can access samples uploaded by all users in their organization.
+This option is available only if the user belongs to an organization.
+- ***Selected in organization*** - the user can access samples belonging to specific patients uploaded by
+other users in the same organization. This option is available only if the user belongs to an organization.
+When this option is selected, a dialog opens where you can choose the patients whose samples will be available
+to the selected user.
+
+<p align="center">
+<img src={require('/img/eng/add_patients_for_user.png').default} width="450"/>
+</p>
+
+The list contains all patients in the organization. The username of the user who added each patient to the
+System is shown in parentheses. Select the required patients by checking the corresponding boxes, then
+click anywhere outside the list within the dialog to close it.
+
+The selected patients are displayed in the Selected Patients section:
+
+<p align="center">
+<img src={require('/img/eng/chosen_patients.png').default} width="550"/>
+</p>
+
+To confirm your selection, click <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+The number of patients whose samples are available to the user is displayed in the Samples Visibility column:
+
+<p align="center">
+<img src={require('/img/eng/chosen_patients_number.png').default} width="350"/>
+</p>
+
+If you need to change the selection later, click the displayed value, modify the list of selected patients,
+and confirm your changes.
+
+6. **SAMPLES QUOTAS** - displays information about the number of samples processed by the user during their
+entire time using the Program, as well as any processing limits. The value is displayed in the format "N of M",
+where N is the number of samples processed by the user in Genomenal, and M is the maximum number of samples
+the user is allowed to process (configured using the "Max number of processed samples" parameter). The value
+in parentheses, if present, indicates the maximum sample size that the user is allowed to process
+(configured using the "Max sample size, GB" parameter).
+
+To edit these limits for a user, click the current value in the Samples Quotas column, enter the desired
+values in the dialog that opens, and confirm the changes by
+clicking <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>:
+
+<p align="center">
+<img src={require('/img/eng/quotes.png').default} width="420"/>
+</p>
+
+If both fields are left empty, no sample processing limits are applied, allowing the user to process an
+unlimited number of samples of any size. If the maximum number of processed samples is set to 0, the user
+will not be able to process any samples.
+
+7. **OMIM DATA** - determines whether the user has access to [the OMIM database](https://www.omim.org/).
+Users with OMIM access can
+view [the OMIM Gene-Phenotype Relationships section](/results/main/snvs-indels/snv-details-panel#omim-phenotypes)
+and use [the OMIM Phenotype filter](/results/main/snvs-indels/advanced-filtering#phenotypes) in SNV Viewer.
+To grant access, select the corresponding checkbox in the column.
+8. **LAST LOGIN AT** - the date (in M/d/yyyy format) and time (in HH:mm:ss format) of the user's most recent
+login to the System (that is, when they authenticated using their login and password).
+
+By default, the table is sorted by user login. It can also be sorted in ascending or descending order by the
+"*Login*", "*Email*", "*Organization*", "*Role*", and "*Last Login At*" columns.
+To sort the table, click a column header once for ascending order or twice for descending order.
+An ascending (<img src={require('/img/vv/sort_asc.png').default} width="17"/>) or
+descending (<img src={require('/img/vv/sort_desc.png').default} width="17"/>) sort indicator is displayed
+next to the column name. To clear the sorting, refresh the browser page.
+"*Login*" and "*Email*" columns are sorted alphabetically.
+Sorting by the "*Organization*" column groups users by organization.
+"*Role*" column is sorted in the following order: User, Read only, Administrator, Fixed settings,
+Organization administrator.
+"*Last Login At*" column is sorted chronologically, from the earliest to the latest login time or vice versa.
+Users who have been invited but have not yet completed registration are always displayed at the top of the table,
+regardless of the selected sort order.
+
+By clicking the row of a registered user, an Administrator can open that user's Payments page.
+This functionality is not available to Organization administrator.
+
+When you hover over another user's row, the following actions become available:
+- <img src={require('/img/eng/sing_as.png').default} width="28"/> - sign in to that user's account.
+- <img src={require('/img/eng/copy_to_clipboard_blue.png').default} width="28"/> – for users who have been
+invited but have not yet registered, copy the invitation link to the clipboard.
+- <img src={require('/img/eng/delete_btn.png').default} width="28"/> – for users who have been invited but have
+not yet registered, delete the invitation. After clicking the button, confirm the action in the dialog that appears:
+
+
+<p align="center">
+<img src={require('/img/eng/delete_user_invitation.png').default} width="450"/>
+</p>
+
+- <img src={require('/img/eng/delete_btn.png').default} width="28"/> – for registered users, delete the user's
+account from the System. After clicking the button, confirm the action in the dialog that appears:
+
+<p align="center">
+<img src={require('/img/eng/delete_user.png').default} width="450"/>
+</p>
+
+Only inactive user accounts can be deleted from the System. A user is considered inactive if they have no
+patients, runs, group analyses, uploaded capture kits, or custom annotations in the System.
+If you are unable to delete a user even after removing all of these items from their account, contact
+technical support. The database may still contain archived SNVs/Indels associated with the user that
+cannot be removed through the Program interface.
+
+### Inviting a New User {#invite-user}
+
+To invite a new user to the System, click <img src={require('/img/eng/invite_user_btn.png').default} width="200"/>.
+In the dialog that opens, enter the email address of the user you want to invite:
+
+<p align="center">
+<img src={require('/img/eng/invite_user_window.png').default} width="400"/>
+</p>
+
+You can also configure a number of settings for the invited user:
+
+1. **Configuration**. Select a configuration containing settings presets, report templates, and/or demo samples
+that will be added to the user's account after registration. For information on creating configurations,
+see [above](/overview/administration#configurations).
+2. **Role**. Select one of the following roles for the invited user:
+- *Administrator* – has full administrative privileges and can manage other users.
+Administrators have access to all pages in the Administration section,
+including [the Tariffs page](/overview/administration#tarifs).
+This role can only be assigned by an Administrator, not by an Organization administrator.
+- *Organization administrator* - can manage users who belong to the same organization.
+Compared with an Administrator, the following restrictions apply:
+   - on the Users page, only users from the same organization are displayed, and the organization search field
+   and Organization column are not displayed;
+   - cannot manage Administrators (cannot change their role, sign in to their accounts, or remove them from the System);
+   - on the Organizations page, only the Organization administrator's own organization is displayed.
+   They cannot delete the organization, change its maximum number of processed samples, or create new organizations;
+   - on the Active tasks page, only sample and group analysis processing tasks belonging to users from the same
+   organization are displayed;
+   - the Tariffs page is not available, including when selecting another user on the Users page.
+- *User* - has full access to the System except for user administration (the Administration section
+is unavailable).
+- *Fixed settings* - has the same permissions as a User, with the following restrictions:
+   - cannot access [the Settings page](/settings/settings/settings);
+   - cannot change analysis settings or the sequencing type when uploading samples.
+   The default analysis settings designated by the administrator are always used, and the sequencing type
+   is determined by those settings;
+   - cannot modify analysis parameters ([the Parameters tab](/results/parameters) is disabled);
+   - cannot restart sample processing from scratch or from any analysis stage.
+- *Read only* - can browse the Program but cannot perform any actions.
+3. **Samples Visibility**:
+- *Owned only* - the user can access only the samples they uploaded (demo samples may also be available).
+- *All in organization* - the user can access samples uploaded by all users in the organization to which
+the inviting administrator belongs (and to which the invited user will belong).
+This option is available only if the inviting administrator belongs to an organization.
+- *Selected in organization* - the user can access selected samples uploaded by other users in the
+inviting administrator's organization. The specific samples can be selected later using the Samples Visibility
+column on the Users page. This option is available only if the inviting administrator belongs to an organization.
+4. **OMIM Data**. Grants the user access to [the OMIM database](https://www.omim.org/). Users with OMIM access
+can view [the OMIM Gene-Phenotype Relationships section](/results/main/snvs-indels/snv-details-panel#omim-phenotypes)
+and use [the OMIM Phenotype filter](/results/main/snvs-indels/advanced-filtering#phenotypes) in SNV Viewer.
+5. **Max number of processed samples**. Specifies the maximum number of samples the user is allowed to process.
+If the field is left empty, the user can process an unlimited number of samples. If the value is set to 0,
+the user will not be able to process any samples.
+6. **Max sample size, GB**. Specifies the maximum sample size (in GB) that the user is allowed to upload.
+If the field is left empty, no file size limit is applied.
+
+After completing the required fields, click <img src={require('/img/runs/create_btn.png').default} width="170"/>.
+A registration link will be sent to the specified email address and copied to your clipboard, allowing you
+to send it directly to the invited user if needed.
+
+### User Page {#user-page}
+
+The User page is used to manage billing for the Genomenal platform. It is available only to
+Administrators and is not accessible to Organization administrators.
+
+To open the page, click the corresponding user's row on the Users page.
+
+<p align="center">
+<img src={require('/img/eng/payments_tab.png').default} width="900"/>
+</p>
+
+The page contains the [Payments](/overview/administration#payments),
+[Usage Details](/overview/administration#usage-statistics), and [Pricing](/overview/administration#pricing) tabs.
+
+At the top of the page, the following switches are available:
+1. "***Enable billing***" – controls whether billing information is available to the user.
+When enabled, the following information becomes
+available on [the Profile settings page](/settings/profile):
+- completed and upcoming payments;
+- usage details;
+- pricing.
+2. "***Allow file downloads***" - controls whether the user is allowed to download and export files from their account.
+When disabled, the user cannot:
+- download original sample files from the Workflow details tab;
+- download result files generated during sample analysis from the Main and Workflow details tabs;
+- export SNVs/Indels from SNV Viewer;
+- export gene coverage information from the Coverage Analysis tab;
+- export interpreted SNVs/Indels statistics from the Profile page.
+
+The following actions remain available:
+- export reports in PDF format;
+- download attachments from the Patient Info section;
+- export report templates in JSON format;
+- download capture kits;
+- download custom annotations.
+
+For users whose file download permission is disabled, the restriction is displayed as follows:
+
+<p align="center">
+<img src={require('/img/eng/restricted_downloading.png').default} width="800"/>
+</p>
+
+#### 1. Payments {#payments}
+
+The Payments tab displays information about the user's completed and upcoming payments for using Genomenal.
+
+At the top of the tab, the amount due (in RUB) as of the beginning of the current month is displayed.
+This amount is updated automatically as information about received payments is added.
+
+Completed payments are displayed in a table with the following columns:
+- **Payment amount** - the payment amount in RUB;
+- **Payment date** - the date the payment was made;
+- **Comments** - additional information about the payment.
+
+To add a payment, click <img src={require('/img/eng/add_payment.png').default} width="200"/>.
+In the dialog that opens, specify the payment amount and payment date (the current date is selected by default).
+Optionally, enter a comment.
+
+<p align="center">
+<img src={require('/img/eng/add_payment_dialog.png').default} height="400"/>
+</p>
+
+After filling in the required fields, click <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+To delete a payment record, hover over the corresponding row in the table
+and click <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+In the confirmation dialog,
+click <img src={require('/img/eng/delete.png').default} width="150"/> to confirm the deletion:
+
+<p align="center">
+<img src={require('/img/eng/delete_payment.png').default} width="400"/>
+</p>
+
+#### 2. Usage Details {#usage-statistics}
+
+The Usage Details tab displays information about the user's usage of Genomenal products and the calculated
+cost for the selected time period.
+
+<p align="center">
+<img src={require('/img/eng/usage_details.png').default} width="900"/>
+</p>
+
+At the top of the tab, you can select the time period for which usage details are displayed.
+By default, the period spans from the first day of the current month to the current date.
+
+Usage details for the selected period are presented in a table with the following columns:
+1. **Product** - the name of the service provided. Expanding a row displays the samples
+or group analyses for which the service was provided.
+
+<p align="center">
+<img src={require('/img/eng/product_rows.png').default} width="900"/>
+</p>
+
+The expanded entries are displayed in the following formats:
+- Patient samples: `patient ID / sample name`
+- Run samples: `run name / sample name`
+- Patient samples in a run: `run name / patient ID / sample name`
+- Group analyses: `group analysis name (Samples: number of samples included in the analysis)`
+
+If a sample has been deleted after processing, *(deleted)* is appended to its name.
+
+2. **Usage** - represents the amount of resources consumed or the number of services
+provided during the selected period.
+- For <b>Processing</b>, <b>Annotation</b>, and <b>Group analysis</b> services,
+the value represents the number of completed operations.
+- For the <b>Analysis support</b> service, the value represents the total size of stored
+sample files, expressed in GB*day (1 GB of data stored for 1 day).
+- For the <b>SNV viewer support</b> service, the value represents the total number
+of stored genetic variants (SNVs/Indels), expressed in 100K SNV*day (100,000 variants stored for 1 day).
+The displayed value is rounded.
+
+Actual usage is calculated as: `Usage − Added`.
+The added amount is excluded from billing because storage is provided
+free of charge for the first 30 days after sample processing.
+
+For Processing, Annotation, and Group analysis services, detailed usage information is available in the expanded rows.
+
+3. **Cost** - the cost of the service for the selected period (in RUB).
+
+The general formula is: `Cost = Actual Usage × Unit Price / 30 days`
+
+Prices are available on the Pricing tab.
+
+- The cost of Processing, Annotation, and Group analysis services depends on the number of processed
+samples or completed group analyses during the selected period.
+- The cost of Analysis support depends on the total size of the stored sample files.
+- The cost of SNV viewer support depends on the number of stored SNVs/Indels.
+
+For Processing, Annotation, and Group analysis services, detailed cost information is available in the expanded rows.
+
+The bottom row of the table (Total for the period) displays the total cost of all services during the selected period.
+
+4. **Details** - contains additional information for each service.
+
+**Details for Processing, Annotation, and Group analysis:**
+- <b>Processed at</b> – the date and time when the sample or group analysis was processed.
+
+**Details for Analysis support:**
+- <b>GB*day on period start</b> - the storage usage carried over to the beginning of the selected period.
+This value is always 0, because each reporting period is calculated independently and accumulated usage
+is not carried over.
+- <b>GB*day added for the period</b> - the amount of newly stored data during the selected period that is
+excluded from billing. This value is recalculated for the full 30-day free storage period according to the
+formula: <code>Storage Size (GB) × 30 days</code>.
+- <b>GB*day used for the period</b> - the actual storage usage during the selected period, calculated
+as: <code>Storage Size (GB) × Actual Storage Time (days)</code>.
+- <b>GB*day on period end</b> - the storage usage at the end of the selected period. This value is always 0,
+because each reporting period is calculated independently.
+
+**Expanded row details for Analysis support:**
+- <b>Sample files size</b> - the size of a single sample file, or the combined size of the primary and mate
+files for paired-end sequencing.
+- <b>Period</b> - the time interval selected at the top of the Usage Details tab.
+Usage is calculated in whole days within the selected period according to the System time zone.
+- <b>GB*day added for the period</b> - see above.
+- <b>GB*day used for the period</b> - see above.
+
+**Details for SNV viewer support:**
+- <b>100K SNV*day on period start</b> - the number of SNVs/Indels counted at the beginning of the selected period.
+Always 0, because each reporting period is calculated independently.
+- <b>100K SNV*day added for the period</b> - the number of SNVs/Indels added during the selected period and
+excluded from billing. This value is recalculated for the full 30-day free storage period according to the
+formula: <code>Stored Variants (100K SNV) × 30 days</code>.
+- <b>100K SNV*day used for the period</b> - the actual usage during the selected period, calculated
+as: <code>Stored Variants (100K SNV) × Actual Storage Time (days)</code>.
+- <b>100K SNV*day on period end</b> - the number of SNVs/Indels counted at the end of the selected period.
+Always 0, because each reporting period is calculated independently.
+
+**Expanded row details for SNV viewer support:**
+- <b>SNV count for sample</b> - the total number of variants stored in the sample's SNV Viewer. If both somatic
+and germline variants are present, their counts are added together.
+- <b>Period</b> - the time interval selected at the top of the Usage Details tab.
+Usage is calculated in whole days within the selected period according to the System time zone.
+- <b>100K SNV*day added for the period</b> - see above.
+- <b>100K SNV*day used for the period</b> - see above.
+
+**Total for the period row at the bottom of the table displays:**
+- <b>Debt on period start</b> - the unpaid balance at the beginning of the selected period (RUB).
+- <b>Period payments</b> - the total amount of payments received during the selected period (RUB).
+- <b>Cost of usage for the period</b> - the total cost of all services during the selected period (RUB).
+- <b>Debt on period end</b> - the amount due for the selected period (RUB),
+calculated as: <code>(Debt on period start) + (Cost of usage for the period) − (Period payments)</code>.
+
+#### 3. Pricing {#pricing}
+
+The Pricing tab displays the current prices for Genomenal products available to the user.
+
+The available prices are displayed in a table with the following columns:
+1. **Product** - the name of the Genomenal service:
+- FASTQ/BAM gene panel processing;
+- FASTQ/BAM whole-exome processing;
+- FASTQ/BAM whole-genome processing;
+- FASTQ/BAM low-pass whole-genome processing;
+- VCF gene panel annotation;
+- VCF whole-exome annotation;
+- VCF whole-genome annotation;
+- VCF Structural variations annotation;
+- Analysis support, 1GB per 30 days (the first 30 days after sample processing are free of charge);
+- Group analysis of FASTQ/BAM gene panels, per sample (price depends on the number of samples in the analysis);
+- Group analysis of FASTQ/BAM whole-exome samples, per sample
+(price depends on the number of samples in the analysis);
+- Group analysis of FASTQ/BAM whole-genome samples, per sample
+(price depends on the number of samples in the analysis);
+- SNV viewer support, 100000 variants per 30 days (the first 30 days after sample processing are free of charge).
+2. **Price** - the price of the product (in RUB). A personal price is indicated
+by the <img src={require('/img/eng/personal_price.png').default} width="20"/> icon.
+3. **Valid from** - the date from which the price becomes effective.
+
+To assign a personal price for a specific product, hover over the corresponding row in the table and
+click <img src={require('/img/eng/plus_btn.png').default} width="20"/>.
+In the dialog that opens, specify the price (in RUB) and the date from which the price should become valid.
+The current date is selected by default.
+
+<p align="center">
+<img src={require('/img/eng/add_price.png').default} height="400"/>
+</p>
+
+After filling in the required fields, click <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+To delete a personal price, hover over the corresponding row
+in the table and click <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+In the confirmation dialog, click <img src={require('/img/eng/delete.png').default} width="150"/> to
+confirm the deletion.
+
+<p align="center">
+<img src={require('/img/eng/delete_price.png').default} width="400"/>
+</p>
+
+## Organizations {#organisations}
+
+The Organizations page displays the organizations added to the System. An organization is a group of
+users united by a common characteristic. Organizations are typically created to facilitate collaboration between users.
+
+<p align="center">
+<img src={require('/img/eng/organisations_page.png').default} width="900"/>
+</p>
+
+Only the Administrator has access to all organizations in the System.
+An Organization administrator can access only the organization to which they belong.
+In addition, unlike the Administrator, the Organization administrator cannot delete an organization,
+change the organization's maximum number of processed samples, or create new organizations.
+
+Organizations are displayed as individual cards. The blue header at the top of each card contains
+the organization name. It also includes:
+- <img src={require('/img/report_templates/edit.png').default} width="25"/> - edits the organization.
+The edit dialog contains the same fields as the Add organization dialog (see below), except for the
+"Personal Interpretation Results" option. The "Max number of processed samples" field is also unavailable
+to the Organization administrator.
+- <img src={require('/img/report_templates/delete.png').default} width="25"/> - deletes the organization.
+This button is not available to the Organization administrator.
+
+Each organization card contains the following sections:
+- **Quotas usage** - displays the total number of samples processed by users in the organization
+throughout their use of the System, as well as the maximum number of samples that users in the
+organization are allowed to process (configured by the "Max number of processed samples" parameter).
+- **Personal Interpretation Results** - displays "Yes" or "No", depending on whether this option was
+enabled when the organization was created.
+- **Default parameters for new users** - displays the default user role, samples count quota,
+and size quota in GB assigned to new users invited to the organization.
+These settings can be modified either for the entire organization or for individual users in the invitation dialog.
+- **Custom logo** - displays the organization's logo, if one has been uploaded. The logo is used throughout
+the interface in place of the Genomenal logo (for example, in the navigation sidebar).
+- **Demo files** - displays "*No demo files selected*" if no demo files have been configured for newly
+invited users, or "*Demo files selected:*" followed by the number of selected files.
+- **Work actions** - stages used to track the progress of sample interpretation. Work actions are intended
+to support collaborative interpretation by multiple users within an organization. If work actions are
+configured for an organization, all users in that organization will see the Work actions tab on the sample page.
+From this tab, users can add actions defined for the organization and assign responsible users to complete them.
+To add a work action:
+1. Click <img src={require('/img/eng/add_stage.png').default} width="200"/>.
+2. In the dialog that opens, enter the action name.
+
+<p align="center">
+<img src={require('/img/eng/add_stage_form.png').default} width="400"/>
+</p>
+
+3. The first word of the action name is automatically used as the action's short name.
+This short name is displayed in the Interpretation actions column on the Samples page. If necessary, edit it.
+4. Select the action type:
+- *Interpretation* - actions related to sample interpretation.
+- *Administration* - actions intended for reviewing or supervising other users' work.
+5. Select the visibility:
+- *All organization users* - the action is available to all users in the organization.
+- *Administrators only* - the action is available only to the Administrator and Organization administrator.
+6. Click <img src={require('/img/runs/create_btn.png').default} width="170"/>.
+
+The list of work actions can be managed as follows:
+- move an action up by clicking <img src={require('/img/report_templates/up.png').default} width="25"/>;
+- move an action down by clicking <img src={require('/img/report_templates/down.png').default} width="25"/>;
+- edit an action by clicking <img src={require('/img/report_templates/edit.png').default} width="23"/>,
+then save your changes by clicking <img src={require('/img/group_analysis/save_btn.png').default} width="170"/>;
+- delete an action by clicking <img src={require('/img/report_templates/delete.png').default} width="23"/>.
+
+#### Add organization {#add-organisation}
+
+To add a new organization to the System,
+click <img src={require('/img/eng/add_organisation_btn.png').default} width="180"/>.
+This button is available only to the Administrator and is not available to the Organization administrator.
+
+In the dialog that opens, complete the following fields:
+1. **Organization name.**
+2. **Custom logo.** Optionally, upload your organization's logo. It will be displayed throughout the interface
+in place of the Genomenal logo (for example, in the navigation sidebar). To upload a logo, drag and drop an
+image into the upload area or click the area to open the file browser. The logo must be an SVG image no
+larger than 100 KB with an aspect ratio of 8:1 (for example, 200 × 25 pixels).
+3. **Max number of processed samples** - the total number of samples that users belonging to this organization
+are allowed to process. If the field is left empty, no limit is applied. If the value is set to 0, users
+in the organization will not be able to process samples.
+4. **Personal Interpretation Results.** If this option is enabled, users who share samples within the organization
+can interpret them independently. Changes made by other users (such as variant interpretations, pinned variants,
+report inclusion, hidden variants, pathogenicity classifications, and similar modifications) will not be visible.
+If this option is disabled, users sharing samples within the organization will see one another's changes,
+enabling collaborative variant interpretation.
+Note that this option cannot be changed after the organization has been created.
+5. **User role** - the default role assigned to users invited to the organization. This value can be changed
+later in the invitation dialog. Available roles are:
+- *User* - has full access to the System except for user administration (the Administration section
+is unavailable).
+- *Fixed settings* - has the same permissions as a User, with the following restrictions:
+   - cannot access [the Settings page](/settings/settings/settings);
+   - cannot change analysis settings or the sequencing type when uploading samples.
+   The default analysis settings designated by the administrator are always used, and the sequencing type
+   is determined by those settings;
+   - cannot modify analysis parameters ([the Parameters tab](/results/parameters) is disabled);
+   - cannot restart sample processing from scratch or from any analysis stage.
+- *Read only* - can browse the Program but cannot perform any actions.
+6. **Samples count quota** - the default maximum number of samples that users invited to the organization
+are allowed to process. If the field is left empty, no limit is applied. If the value is set to 0, invited
+users will not be able to process samples. This value can be changed later in the user invitation dialog.
+7. **Size quota in GB** - the default maximum sample size (in GB) that users invited to the organization
+are allowed to process. If the field is left empty, no size limit is applied. This value can be changed
+later in the user invitation dialog.
+8. **Demo samples** - demonstration samples that are automatically added to the accounts of all new users
+invited to the organization. They help users become familiar with the System by allowing them to explore
+its main features without having to find and upload their own sample data. Instructions for adding demo
+samples are provided [above](/overview/administration#demo-samples).
+
+<p align="center">
+<img src={require('/img/eng/add_organisation_form.png').default} width="500"/>
+</p>
+
+## Active tasks {#active-tasks}
+
+The Active tasks page displays the sample processing and group analysis tasks that are currently
+scheduled or running in the System. An Organization administrator can view only the active tasks
+of users belonging to their organization.
+
+<p align="center">
+<img src={require('/img/eng/active_tasks_page.png').default} width="900"/>
+</p>
+
+The page displays a table with the following columns:
+1. **PATIENT/RUN** - the patient and/or run to which the processed sample assigned.
+2. **SAMPLE/ANALYSIS** - the name of the sample or group analysis currently being processed.
+3. **STATUS** - the name of the scheduled analysis task and its progress.
+4. **SCHEDULED AT** - the date (MM/dd/yyyy) and time (HH:mm:ss) when the task was scheduled.
+5. **STARTED AT** - the date (MM/dd/yyyy) and time (HH:mm:ss) when task execution began.
+
+Tasks are grouped by the user who owns the processed samples.
+
+To cancel an active task,
+click <img src={require('/img/eng/cross_btn.png').default} width="20"/> in the corresponding table row.
+
+## Tariffs {#tarifs}
+
+The Tariffs page displays the prices of the services provided by Genomenal. This page is available only
+to the Administrator.
+
+To change the price of a service for all users in the System, hover over the corresponding row in the table
+and click <img src={require('/img/eng/plus_btn.png').default} width="20"/>.
+In the dialog that opens, specify the price (in RUB) and the date from which the new price should become valid.
+The current date is selected by default.
+
+<p align="center">
+<img src={require('/img/eng/add_price.png').default} width="400"/>
+</p>
+
+After filling in the required fields, click <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+
+To delete a price entry, hover over the corresponding row in the table and
+click <img src={require('/img/eng/delete_btn.png').default} width="18"/>.
+
+In the confirmation dialog,
+click <img src={require('/img/eng/delete.png').default} width="150"/> to confirm the deletion.
+
+<p align="center">
+<img src={require('/img/eng/delete_price.png').default} width="400"/>
+</p>

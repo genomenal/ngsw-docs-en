@@ -64,3 +64,20 @@ and then the details of the "*Annotate SNVs/Indels*" task. Right-click on the li
 has been switched off for the sample, then copy the link to all variants' annotation index file
 "*Download All variants VCF_TBI*".
 :::
+
+:::tip
+BLAT search is available in IGV, allowing to quickly find sequences of 95% and greater similarity of length 25
+bases or more.
+
+To perform a search, right-click on an aligned read and select one of the options:
+*BLAT read sequence*, *BLAT right-soft clipped sequence*, or *BLAT left-soft clipped sequence*.
+
+By default, a local version of BLAT is used, which may run slowly.
+To switch to the remote BLAT service (igv.org):
+1. In your browser, open Developer Tools on the Genomenal page (Ctrl+Shift+I or F12).
+2. Go to the Console tab.
+3. Run the following command: `localStorage.setItem("BLAT_USE_IGV_ORG", "true")`.
+4. Reopen IGV.
+
+After that, BLAT search will be performed using the remote service in this browser.
+:::

@@ -5,9 +5,21 @@ sidebar_label: Profile Settings
 
 # Profile Settings
 
-The "Profile settings" page contains your personal settings: account settings
-(email, login, password), the Program navigation panel settings, patient page settings,
-SNV Viewer and CNV Viewer settings.
+The Profile settings page may contain the following tabs:
+- [Account settings](/settings/profile#account-settings) - personal settings, including email address, login,
+and password, as well as preferences for the application navigation panel, the patient page, SNV Viewer,
+and CNV Viewer.
+- [Payments](/settings/profile#payments) - information about completed and upcoming payments for using
+Genomenal. This tab is available only if [billing is enabled](/overview/administration#user-page) for
+the user (configured by an administrator).
+- [Usage Details](/settings/profile#usage-details) - information about the user's Genomenal product usage
+and the calculated cost for the selected period. This tab is available only
+if [billing is enabled](/overview/administration#user-page) for the user (configured by an administrator).
+- [Pricing](/settings/profile#pricing) - the current prices for Genomenal products. This tab is
+available only if [billing is enabled](/overview/administration#user-page) for
+the user (configured by an administrator).
+- [Statistics/Export](/settings/profile#statistics-export) - statistics for interpreted SNVs/Indels and the
+ability to export them.
 
 To open "Profile settings" page, hover over your username at the bottom of the navigation panel
 and click on the three<br></br>dots <img src={require('/img/eng/profile_options.png').default} height="20"/>.
@@ -260,3 +272,447 @@ If you have made changes to the language selection, navigation bar, patient page
 CNV Viewer settings, you can return to the default settings by
 clicking on <img src={require('/img/eng/default.png').default} width="150"/>. Please note that the action
 will immediately reset all changes that you made on the page (except for changes to email, login and password).
+
+## Payments {#payments}
+
+The Payments tab is available only if [billing is enabled](/overview/administration#user-page) for
+your account (configured by an administrator).
+The page displays information about your completed and upcoming payments for using Genomenal.
+
+<p align="center">
+<img src={require('/img/eng/personal_payments.png').default} width="900"/>
+</p>
+
+At the top of the tab, the amount due (in RUB) as of the beginning of the current month is displayed.
+This amount is updated automatically as information about received payments is added.
+
+Completed payments are displayed in a table with the following columns:
+- **Payment amount** - the payment amount in RUB;
+- **Payment date** - the date the payment was made;
+- **Comments** - additional information about the payment.
+
+## Usage Details {#usage-details}
+
+The Usage Details tab is available only if [billing is enabled](/overview/administration#user-page) for
+your account (configured by an administrator).
+The page displays information about your usage of Genomenal products and the calculated
+cost for the selected time period.
+
+<p align="center">
+<img src={require('/img/eng/personal_usage_details.png').default} width="900"/>
+</p>
+
+At the top of the tab, you can select the time period for which usage details are displayed.
+By default, the period spans from the first day of the current month to the current date.
+
+Usage details for the selected period are presented in a table with the following columns:
+1. **Product** - the name of the service provided. Expanding a row displays the samples
+or group analyses for which the service was provided.
+
+<p align="center">
+<img src={require('/img/eng/personal_product_rows.png').default} width="900"/>
+</p>
+
+The expanded entries are displayed in the following formats:
+- Patient samples: `patient ID / sample name`
+- Run samples: `run name / sample name`
+- Patient samples in a run: `run name / patient ID / sample name`
+- Group analyses: `group analysis name (Samples: number of samples included in the analysis)`
+
+The names link to the corresponding pages.<br></br>
+If a sample has been deleted after processing, its name is displayed without a link and is
+followed by the label *(deleted)*.
+
+2. **Usage** - represents the amount of resources consumed or the number of services
+provided during the selected period.
+- For <b>Processing</b>, <b>Annotation</b>, and <b>Group analysis</b> services,
+the value represents the number of completed operations.
+- For the <b>Analysis support</b> service, the value represents the total size of stored
+sample files, expressed in GB*day (1 GB of data stored for 1 day).
+- For the <b>SNV viewer support</b> service, the value represents the total number
+of stored genetic variants (SNVs/Indels), expressed in 100K SNV*day (100,000 variants stored for 1 day).
+The displayed value is rounded.
+
+Actual usage is calculated as: `Usage − Added`.
+The added amount is excluded from billing because storage is provided
+free of charge for the first 30 days after sample processing.
+
+For Processing, Annotation, and Group analysis services, detailed usage information is available in the expanded rows.
+
+3. **Cost** - the cost of the service for the selected period (in RUB).
+
+The general formula is: `Cost = Actual Usage × Unit Price / 30 days`
+
+Prices are available on the Pricing tab.
+
+- The cost of Processing, Annotation, and Group analysis services depends on the number of processed
+samples or completed group analyses during the selected period.
+- The cost of Analysis support depends on the total size of the stored sample files.
+- The cost of SNV viewer support depends on the number of stored SNVs/Indels.
+
+For Processing, Annotation, and Group analysis services, detailed cost information is available in the expanded rows.
+
+The bottom row of the table (Total for the period) displays the total cost of all services during the selected period.
+
+:::info
+To reduce the cost of Analysis support and SNV viewer support, you
+can [compress a sample](/results/workflow-details/workflow-details#compress-sample) by deleting
+the FASTQ files and SNV Viewer data, respectively.
+:::
+
+4. **Details** - contains additional information for each service.
+
+**Details for Processing, Annotation, and Group analysis:**
+- <b>Processed at</b> – the date and time when the sample or group analysis was processed.
+
+**Details for Analysis support:**
+- <b>GB*day on period start</b> - the storage usage carried over to the beginning of the selected period.
+This value is always 0, because each reporting period is calculated independently and accumulated usage
+is not carried over.
+- <b>GB*day added for the period</b> - the amount of newly stored data during the selected period that is
+excluded from billing. This value is recalculated for the full 30-day free storage period according to the
+formula: <code>Storage Size (GB) × 30 days</code>.
+- <b>GB*day used for the period</b> - the actual storage usage during the selected period, calculated
+as: <code>Storage Size (GB) × Actual Storage Time (days)</code>.
+- <b>GB*day on period end</b> - the storage usage at the end of the selected period. This value is always 0,
+because each reporting period is calculated independently.
+**Expanded row details for Analysis support:**
+- <b>Sample files size</b> - the size of a single sample file, or the combined size of the primary and mate
+files for paired-end sequencing.
+- <b>Period</b> - the time interval selected at the top of the Usage Details tab.
+Usage is calculated in whole days within the selected period according to the System time zone.
+- <b>GB*day added for the period</b> - see above.
+- <b>GB*day used for the period</b> - see above.
+
+**Details for SNV viewer support:**
+- <b>100K SNV*day on period start</b> - the number of SNVs/Indels counted at the beginning of the selected period.
+Always 0, because each reporting period is calculated independently.
+- <b>100K SNV*day added for the period</b> - the number of SNVs/Indels added during the selected period and
+excluded from billing. This value is recalculated for the full 30-day free storage period according to the
+formula: <code>Stored Variants (100K SNV) × 30 days</code>.
+- <b>100K SNV*day used for the period</b> - the actual usage during the selected period, calculated
+as: <code>Stored Variants (100K SNV) × Actual Storage Time (days)</code>.
+- <b>100K SNV*day on period end</b> - the number of SNVs/Indels counted at the end of the selected period.
+Always 0, because each reporting period is calculated independently.
+
+**Expanded row details for SNV viewer support:**
+- <b>SNV count for sample</b> - the total number of variants stored in the sample's SNV Viewer. If both somatic
+and germline variants are present, their counts are added together.
+- <b>Period</b> - the time interval selected at the top of the Usage Details tab.
+Usage is calculated in whole days within the selected period according to the System time zone.
+- <b>100K SNV*day added for the period</b> - see above.
+- <b>100K SNV*day used for the period</b> - see above.
+
+**Total for the period row at the bottom of the table displays:**
+- <b>Debt on period start</b> - the unpaid balance at the beginning of the selected period (RUB).
+- <b>Period payments</b> - the total amount of payments received during the selected period (RUB).
+- <b>Cost of usage for the period</b> - the total cost of all services during the selected period (RUB).
+- <b>Debt on period end</b> - the amount due for the selected period (RUB),
+calculated as: <code>(Debt on period start) + (Cost of usage for the period) − (Period payments)</code>.
+
+## Pricing {#pricing}
+
+The Pricing tab is available only if [billing is enabled](/overview/administration#user-page) for
+your account (configured by an administrator).
+The page displays displays the current prices for Genomenal products.
+
+The prices are displayed in a table with the following columns:
+1. **Product** - the name of the Genomenal service:
+- FASTQ/BAM gene panel processing;
+- FASTQ/BAM whole-exome processing;
+- FASTQ/BAM whole-genome processing;
+- FASTQ/BAM low-pass whole-genome processing;
+- VCF gene panel annotation;
+- VCF whole-exome annotation;
+- VCF whole-genome annotation;
+- VCF Structural variations annotation;
+- Analysis support, 1GB per 30 days (the first 30 days after sample processing are free of charge);
+- Group analysis of FASTQ/BAM gene panels, per sample (price depends on the number of samples in the analysis);
+- Group analysis of FASTQ/BAM whole-exome samples, per sample
+(price depends on the number of samples in the analysis);
+- Group analysis of FASTQ/BAM whole-genome samples, per sample
+(price depends on the number of samples in the analysis);
+- SNV viewer support, 100000 variants per 30 days (the first 30 days after sample processing are free of charge).
+2. **Price** - the price of the product (in RUB). A personal price is indicated
+by the <img src={require('/img/eng/personal_price.png').default} width="20"/> icon.
+3. **Valid from** - the date from which the price becomes effective.
+
+## Statistics/Export {#statistics-export}
+
+The page provides statistics for interpreted SNVs/Indels and allows you to export this data.
+
+<p align="center">
+<img src={require('/img/eng/statistics_export_page.png').default} width="900"/>
+</p>
+
+The statistics include data for both existing and deleted patients, runs, and group analyses
+in which SNVs/Indels were discovered.
+
+Only SNVs/Indels that meet at least one of the following criteria are included:
+- a [pathogenicity](/results/main/snvs-indels/pathogenicity) has been determined;
+- a [variant interpretation](/results/main/snvs-indels/variant-interpretation) has been added;
+- the variant has been [pinned](/results/main/snvs-indels/variant-viewer#pin-variant) in SNV Viewer.
+
+The table displays the following statistics for interpreted SNVs/Indels:
+- **Patients** - the number of patients whose samples contain interpreted SNVs/Indels.
+- **Samples** - the number of samples containing interpreted SNVs/Indels.
+- **Runs** - the number of runs containing samples with interpreted SNVs/Indels.
+- **Group analyses** - the number of group analyses containing interpreted SNVs/Indels.
+- **Records** - the total number of interpreted SNVs/Indels.
+
+To export the interpreted SNVs/Indels as a CSV file,
+click <img src={require('/img/eng/export_to_csv_btn.png').default} width="150"/>.<br></br>
+
+**The exported table contains the following columns:**
+- `type` – the record type:
+   - `Sample SNV` – a variant discovered in a sample;
+   - `Group Analysis SNV` – a variant discovered in a group analysis;
+   - `Group Analysis Sample` – a sample belonging to a group analysis in which the variant was discovered.
+
+- **Patient information:** fields describing the patient to whom the sample containing the variant belongs.
+These fields generally correspond to those in the "Patient Info" section:
+   - `patients.patientId` - patient ID;
+   - `patients.firstName` - first name;
+   - `patients.lastName` - last name;
+   - `patients.middleName` - middle name;
+   - `patients.sex` - sex;
+   - `patients.diagnosis` - provided diagnosis;
+   - `patients.description` - comments;
+   - `patients.dateOfDiagnosis` - date of diagnosis;
+   - `patients.dateOfBirth` - date of birth;
+   - `patients.archived` - whether the patient's data is archived: `true` or `false`;
+   - `patients.inProgress` - whether the patient's data is currently being processed: `true` or `false`;
+   - `patients.problems` - whether any processing issues or quality concerns have been identified for
+   the patient's data: `true` or `false`;
+   - `patients.readOnly` - whether the patient's data is read-only: `true` or `false`;
+   - `patients.deleted` - whether the patient's data has been deleted: `true` or `false`.
+
+- **Run information:** fields describing the run to whom the sample containing the variant belongs:
+   - `runs.name` - run name;
+   - `runs.description` - description;
+   - `runs.sampleType` - samples type in run;
+   - `runs.archived` - whether the run is archived: `true` or `false`;
+   - `runs.deleted` - whether the run has been deleted by the user: `true` or `false`;
+   - `runs.deletionFinalized` - whether the run deletion process has been completed: `true` or `false`;
+   - `runs.virtual` - whether the sample in the run is a demo sample: `true` or `false`.
+
+- **Sample information:** fields describing the sample that contains the variant. These fields generally
+correspond to those in the "Sample Info" section:
+   - `sample_sets.name` - file name. Populated only if the sample is added to a run but is not assigned
+   to any patient.
+   - `sample_sets.status` - sample processing status: `SUCCESS`, `IN_PROGRESS`, `FAILED`;
+   - `sample_sets.problems` - whether any processing issues have been identified during the sample
+   processing: `true` or `false`;
+   - `source_files.name` - file name;
+   - `source_files.description` - comments;
+   - `source_files.sourceType` - uploading source type:
+       - `FILE` - file;
+       - `SRA` - run code from NCBI SRA;
+       - `URL` - link to the file on the FTP, HTTP servers, Yandex.Disk, or Google Drive.
+   - `source_files.source` - file source. Depending on the value of the `source_files.sourceType` field,
+   it contains the file name, the NCBI SRA run code, or a link to the file;
+   - `source_files.alias` - alias;
+   - `source_files.sampleType` - sample type: `NORMAL` or `TUMOR`;
+   - `source_files.format` - file format: `FASTQ_GZ` or `VCF`;
+   - `source_files.formatFeature` - format feature;
+   - `source_files.readsType` - reads type: `DNA`, `RNA`, `UNKNOWN`;
+   - `source_files.sequencer` - sequencer: `ILLUMINA`, `ION_TORRENT`, `BGI`, `UNKNOWN`;
+   - `source_files.sequencingType` - sequencing type: `PANEL`, `WES`, `WGS`, `LOW_PASS_WGS`, `UNKNOWN`;
+   - `source_files.fileSize` - file size in bytes (B);
+   - `source_files.sampleLocation` - sample location (organ);
+   - `source_files.sampleCollectionDate` - sample collection date;
+   - `source_files.methodology` - methodology;
+   - `source_files.diseaseHpoId` - oncological disease ID in HPO database;
+   - `source_files.oncoStage` - oncological disease stage;
+   - `source_files.oncoSubStage` - stage subgroup;
+   - `source_files.oncoStageDetails` - stage details;
+   - `source_files.therapyLine` - therapy line;
+   - `source_files.pipelineOutdated` - whether the pipeline of the sample included in the group analysis was updated
+   after the group analysis creation: `true` or `false`;
+   - `source_files.deleted` - whether the sample has been deleted: `true` or `false`;
+   - `source_files.snvsGermlineCalled` - whether germline SNVs/Indels discovery was carried out for the
+   sample: `true` or `false`;
+   - `source_files.snvsSomaticCalled` - whether somatic SNVs/Indels discovery was carried out for the
+   sample: `true` or `false`;
+   - `source_files.snvsDeleted` - whether SNV Viewer data has been deleted: `true` or `false`;
+   - `source_files.cnvsDeleted` - whether CNV Viewer data has been deleted: `true` or `false`;
+   - `source_files.needNotifyProcessed` - whether the sample processing completion notification was
+   enabled: `true` or `false`.
+
+- **Fields from Bioinformatic report** with information about the sample in which the variant was discovered:
+   - `source_files.readsCount` - the number of reads in the sample file after it was verified, but before cleanup;
+   - `source_files.finalReadsCount` - the number of reads in the sample file counted during the quality check
+   after cleanup;
+   - `source_files.readsLengthMin` - the minimum read length in the sample file;
+   - `source_files.readsLengthMax` - the maximum read length in the sample file;
+   - `source_files.readsLengthMedian` - median length;
+   - `source_files.cleanupStatus` - status of the Check quality and cleanup stage: `FINISHED`.
+
+- **Group analysis information:** fields describing the group analysis in which the variant was discovered.
+These fields generally correspond to those in the "Group Analysis Info" section:
+   - `group_analysis.name` - name;
+   - `group_analysis.description` - comments;
+   - `group_analysis.type` - analysis type: `GERMLINE_COHORT`, `GERMLINE_FAMILY`, `GERMLINE_POPULATION`;
+   - `group_analysis.archived` - whether the group analysis is archived: `true` or `false`;
+   - `group_analysis.outdated` - whether group analysis results are outdated: `true` or `false`;
+   - `group_analysis.deleted` - whether the group analysis has been deleted: `true` or `false`;
+   - `group_analysis.sequencingType` - sequencing type of the sample in group analysis in which the variant
+   was discovered: `PANEL`, `WES`, `WGS`, `LOW_PASS_WGS`, `UNKNOWN`.
+
+- **Fields with interpreted genetic variant information:**
+   - `snv_user_data.originType`	- origin: `GERMLINE`, `SOMATIC`;
+   - `snv_user_data.pinned` - whether variant is pinned in SNV Viewer: `true` or `false`;
+   - `snv_user_data.pathogenicity` - variant pathogenicity: `PATHOGENIC`, `LIKELY_PATHOGENIC`,
+   `UNCERTAIN_SIGNIFICANCE_CONFLICT`, `UNCERTAIN_SIGNIFICANCE`, `LIKELY_BENIGN`, `BENIGN`, `UNDEFINED`;
+   - `snv_user_data.pathogenicityOrigin` - variant pathogenicity classification origin: `ACMG`, `USER_DEFINED`;
+   - `snv_user_data.pathogenicityApproved` - whether variant pathogenicity class is confirmed: `true` or `false`;
+   - `snv_user_data.interpretation` - variant interpretation added by the user;
+   - `snv_user_data.interpretationApproved` - whether variant interpretation is confirmed: `true` or `false`;
+   - `snv_user_data.includeToReport` - whether variant is included to report: `true` or `false`;
+   - `snv_user_data.mutationClass` - mutation class defined by the user
+   for [oncorelevant variant in the report](/results/onco-genetic-testing-report#onco-relevant-variants);
+   - `snv_user_data.deleted` - whether variant data has been deleted: `true` or `false`;
+   - `snv_user_data.label` - variant label: `HIGH_SIGNIFICANCE`, `MODERATE_SIGNIFICANCE`, `LOW_SIGNIFICANCE`,
+   `SEQUENCING_ERROR`, `UNDEFINED`;
+   - `snv_user_data.includeInterpretationResultStatus` - potential finding status:
+   `INCLUDED_TO_INTERPRETATION_RESULT`, `EXCLUDED_FROM_POTENTIAL_FINDINGS`, `UNDEFINED`;
+   - `snv_user_data.interpretationAuthorId` - ID of the user who added variant interpretation;
+   - `partitionId` - partition ID in ClickHouse table;
+   - **Samples info**:
+      - `sources.sample_name` - names of the samples, for which the analysis was performed;
+      - `sources.genotype` - genotype;
+      - `sources.depth` - read depth;
+      - `sources.refReads` - reference allele reads count;
+      - `sources.altReads` - alternative allele reads count;
+      - `sources.allelicFrequency` - allelic frequency.
+
+- **Variant annotation result fields:**
+   - `genes` - the common name of the gene in which the variant is located;
+   - `originType` - mutation type: `GERMLINE` or `SOMATIC`;
+   - `chrId` - chromosome number;
+   - `startDisplay` and `start` - start position;
+   - `endDisplay` and `end` - end position;
+   - `refDisplay` and `ref` - reference allele;
+   - `altDisplay` and `alt` - alternative allele;
+   - `impact` - the predicted effect of the variant on the protein;
+   - `genomePosition` - variant position in the genome;
+   - `consequences` - the effect of the variant on genes;
+   - `canonicalRefSeqTranscriptId` - canonical transcript ID in RefSeq database;
+   - `rsId` - variant ID in dbSNP database;
+   - `minExon` - the number of the first exon affected by the variant;
+   - `maxExon` - the number of the last exon affected by the variant (for a variant affecting one exon,
+   this is the same as the `minExon` value);
+   - `vcfFilters` - caller filters;
+   - `hgvsc` - nucleotide substitution using the HGVS notation;
+   - `hgvsp` - amino acid substitution using the HGVS notation in the three-letter amino acid code;
+   - `shortHgvsp` - amino acid substitution using the HGVS notation in the single-letter amino acid code;
+   - `oncoRelevance` - whether variant is oncorelevant: `true` or `false`;
+   - `lineOffset` - a service field used by the system for internal data processing;
+   - `cosmicId` - variant ID in COSMIC database;
+   - `ruSeqAf` - variant AF in RUSeq database;
+   - `codingSequenceEffect_aminoAcids` - reference amino acid;
+   - `codingSequenceEffect_cdsPosition` - coding sequence position;
+   - `codingSequenceEffect_codons` - nucleotide substitution written as codons;
+   - `codingSequenceEffect_proteinPosition` - protein position;
+   - `dbnsfpData_aminoAcidPos` - amino acid position;
+   - `dbnsfpData_appris` - human splicing isoforms;
+   - `dbnsfpData_geuvadisEqtlTargetGene` - gene from eQTL data analysis in GEUVADIS;
+   - `phasingGroupData` - phasing group information: about the variants included in the phasing group, or
+   about the phasing groups to which the variant belongs;
+   - `phasingGroupStatus` - phasing group status: `PHASING_GROUP`, `PART_OF_GROUP_CONSEQUENCE_EQUAL`,
+   `PART_OF_GROUP_CONSEQUENCE_UNEQUAL`;
+   - `enigma_clinicalSignificance` - variant clinical significance determined by ENIGMA consortium;
+   - `enigma_clinicalSignificanceComment` - comment on clinical significance determined by ENIGMA consortium;
+   - `customAnnotations` - column values from the custom annotations with which the variant was annotated;
+   - `transcripts` - information on gene transcripts in Ensembl database;
+   - **Protein function effect**
+   (`polyphenData_score`, `polyphenData_prediction`, `dbnsfpData_reliabilityIndex`, `dbnsfpData_deogenRankscore`,
+   `dbnsfpDann_score`, `dbnsfpDann_rankscore`, `dbnsfpEigen_rawCoding`, `dbnsfpEigen_rawCodingRankscore`,
+   `dbnsfpEigen_pcRawCoding`, `dbnsfpEigen_pcRawCodingRankscore`, `dbnsfpEigen_pcPhredCoding`,
+   `dbnsfpFathmm_score`, `dbnsfpFathmm_convertedRankscore`, `dbnsfpFathmm_prediction`, `dbnsfpFathmm_mklCodingScore`,
+   `dbnsfpFathmm_mklCodingRankscore`, `dbnsfpFathmm_mklCodingGroupOfFeatures`,
+   `dbnsfpFathmm_mklCodingPrediction`, `dbnsfpFathmm_xfCodingScore`, `dbnsfpFathmm_xfCodingRankscore`,
+   `dbnsfpFathmm_xfCodingPrediction`, `dbnsfpLrt_score`, `dbnsfpLrt_convertedRankscore`, `dbnsfpLrt_prediction`,
+   `dbnsfpLrt_omega`, `dbnsfpMcap_score`, `dbnsfpMcap_rankscore`, `dbnsfpMcap_prediction`, `dbnsfpMeta_svmScore`,
+   `dbnsfpMeta_svmRankscore`, `dbnsfpMeta_svmPrediction`, `dbnsfpMeta_lrScore`, `dbnsfpMeta_lrRankscore`,
+   `dbnsfpMeta_lrPrediction`, `dbnsfpMeta_score`, `dbnsfpMeta_rankscore`, `dbnsfpMpc_score`, `dbnsfpMpc_rankscore`,
+   `dbnsfpMutPred_score`, `dbnsfpMutPred_rankscore`, `dbnsfpMutPred_protId`, `dbnsfpMutPred_aaChange`,
+   `dbnsfpMutPred_top5Features`, `dbnsfpMvp_score`, `dbnsfpMvp_rankscore`, `dbnsfpPrimateAi_score`,
+   `dbnsfpPrimateAi_rankscore`, `dbnsfpPrimateAi_prediction`, `dbnsfpBayesDel_addAfPrediction`,
+   `dbnsfpBayesDel_addAfScore`, `dbnsfpBayesDel_addAfRankscore`, `dbnsfpBayesDel_noAfPrediction`,
+   `dbnsfpBayesDel_noAfScore`, `dbnsfpBayesDel_noAfRankscore`, `dbnsfpProvean_score`,
+   `dbnsfpProvean_convertedRankscore`, `dbnsfpProvean_prediction`, `dbnsfpSift_score`, `dbnsfpSift_convertedRankscore`,
+   `dbnsfpSift_score4g`, `dbnsfpSift_convertedRankscore4g`, `dbnsfpSift_prediction4g`, `snvCaddData_raw`,
+   `snvCaddData_phred`, `snvSpliceAiData_deltaScore`, `snvSpliceAiData_deltaPosition`,
+   `snvSpliceAiData_deltaScoreAcceptorGain`, `snvSpliceAiData_deltaScoreAcceptorLoss`,
+   `snvSpliceAiData_deltaScoreDonorGain`, `snvSpliceAiData_deltaScoreDonorLoss`,
+   `snvSpliceAiData_deltaPositionAcceptorGain`, `snvSpliceAiData_deltaPositionAcceptorLoss`,
+   `snvSpliceAiData_deltaPositionDonorGain`, `snvSpliceAiData_deltaPositionDonorLoss`, `dbnsfpMutationAssessor_score`,
+   `dbnsfpMutationAssessor_pred`, `maxEntScan_alt`, `maxEntScan_ref`, `maxEntScan_diff`);
+   - **Allele frequencies in the 1000 Genomes Project** (`thousandGenomesAfTotal`,
+   `thousandGenomesData_eastAsianAf`,
+   `thousandGenomesData_europeanAf`, `thousandGenomesData_africanAf`, `thousandGenomesData_americanAf`,
+   `thousandGenomesData_southAsianAf`);
+   - **Phenotypic significance in ClinVar database** (`clinvarId`,
+   `clinvarData_alleleId`, `clinvarData_clinicalSignificance`, `clinvarData_clinicalSources`,
+   `clinvarData_diseaseDatabasesIds`, `clinvarData_diseaseDatabasesIdsIncl`, `clinvarData_haplotypeId`,
+   `clinvarData_origin`, `clinvarData_phenotypes`, `clinvarData_phenotypesIncl`, `clinvarData_reviewStatus`);
+   - **Allele frequencies in gnomAD 3 database** (`gnomadId`, `gnomadAfTotal`,
+   `gnomadData_ac`, `gnomadData_an`, `gnomadData_maleAf`, `gnomadData_femaleAf`, `gnomadData_ashkenaziJewishAf`,
+   `gnomadData_ashkenaziJewishMaleAf`, `gnomadData_ashkenaziJewishFemaleAf`, `gnomadData_amishAf`,
+   `gnomadData_amishMaleAf`, `gnomadData_amishFemaleAf`, `gnomadData_africanAf`, `gnomadData_africanMaleAf`,
+   `gnomadData_africanFemaleAf`, `gnomadData_finnishAf`, `gnomadData_finnishMaleAf`, `gnomadData_finnishFemaleAf`,
+   `gnomadData_southAsianAf`, `gnomadData_southAsianMaleAf`, `gnomadData_southAsianFemaleAf`,
+   `gnomadData_latinoAf`, `gnomadData_latinoMaleAf`, `gnomadData_latinoFemaleAf`, `gnomadData_nonFinnishEuropeanAf`
+   `gnomadData_nonFinnishEuropeanMaleAf`, `gnomadData_nonFinnishEuropeanFemaleAf`, `gnomadData_eastAsianAf`,
+   `gnomadData_eastAsianMaleAf`, `gnomadData_eastAsianFemaleAf`, `gnomadData_middleEasternAf`
+   `gnomadData_middleEasternMaleAf`, `gnomadData_middleEasternFemaleAf`, `gnomadData_otherAf`,
+   `gnomadData_otherMaleAf`, `gnomadData_otherFemaleAf`, `gnomadData_nhomalt`, `gnomadData_africanNhomalt`,
+   `gnomadData_amishNhomalt`, `gnomadData_latinoNhomalt`, `gnomadData_ashkenaziJewishNhomalt`,
+   `gnomadData_eastAsianNhomalt`, `gnomadData_finnishNhomalt`, `gnomadData_nonFinnishNhomalt`,
+   `gnomadData_middleEasternNhomalt`, `gnomadData_southAsianNhomalt`, `gnomadData_otherNhomalt`,
+   `gnomadData_coverage`);
+   - **Allele frequencies in gnomAD 4 database** (`gnomad4Data_acGenomes`,
+   `gnomad4Data_acXxGenomes`, `gnomad4Data_acXyGenomes`, `gnomad4Data_acJoint`, `gnomad4Data_acJointXx`,
+   `gnomad4Data_acJointXy`, `gnomad4Data_afGenomes`, `gnomad4Data_afXxGenomes`, `gnomad4Data_afXyGenomes`,
+   `gnomad4Data_afJoint`, `gnomad4Data_afJointXx`, `gnomad4Data_afJointXy`, `gnomad4Data_anGenomes`,
+   `gnomad4Data_anXxGenomes`, `gnomad4Data_anXyGenomes`, `gnomad4Data_anJoint`, `gnomad4Data_anJointXx`,
+   `gnomad4Data_anJointXy`, `gnomad4Data_nhomaltGenomes`, `gnomad4Data_nhomaltXxGenomes`,
+   `gnomad4Data_nhomaltXyGenomes`, `gnomad4Data_nhomaltJoint`, `gnomad4Data_nhomaltJointXx`,
+   `gnomad4Data_nhomaltJointXy`, `gnomad4Data_acExomes`, `gnomad4Data_acXxExomes`, `gnomad4Data_acXyExomes`,
+   `gnomad4Data_afExomes`, `gnomad4Data_afXxExomes`, `gnomad4Data_afXyExomes`, `gnomad4Data_anExomes`,
+   `gnomad4Data_anXxExomes`, `gnomad4Data_anXyExomes`, `gnomad4Data_nhomaltExomes`, `gnomad4Data_nhomaltXxExomes`,
+   `gnomad4Data_nhomaltXyExomes`);
+   - **Variant conservation** (`dbnsfpData_ancestralAllele`, `dbnsfpData_altaiNeandertal`,
+   `dbnsfpData_denisova`, `dbnsfpData_vindijiaNeandertal`, `dbnsfpBstatistic_bValue`, `dbnsfpBstatistic_rankscore`,
+   `dbnsfpFitCons_integratedScore`, `dbnsfpFitCons_integratedRankscore`, `dbnsfpFitCons_integratedConfidenceValue`,
+   `dbnsfpFitCons_gm12878Score`, `dbnsfpFitCons_gm12878Rankscore`, `dbnsfpFitCons_gm12878ConfidenceValue`,
+   `dbnsfpFitCons_h1HescScore`, `dbnsfpFitCons_h1HescRankscore`, `dbnsfpFitCons_h1HescConfidenceValue`,
+   `dbnsfpFitCons_huvecScore`, `dbnsfpFitCons_huvecRankscore`, `dbnsfpFitCons_huvecConfidenceValue`,
+   `dbnsfpGerp_neutralRate`, `dbnsfpGerp_rsScore`, `dbnsfpGerp_rsRankscore`, `dbnsfpPhastCons_vertebrate100way`,
+   `dbnsfpPhastCons_vertebrate100wayRankscore`, `dbnsfpPhastCons_mammalian30way`,
+   `dbnsfpPhastCons_mammalian30wayRankscore`, `dbnsfpPhastCons_primate17way`, `dbnsfpPhastCons_primate17wayRankscore`,
+   `dbnsfpPhylop_vertebrate100way`, `dbnsfpPhylop_vertebrate100wayRankscore`, `dbnsfpPhylop_mammalian30way`,
+   `dbnsfpPhylop_mammalian30wayRankscore`, `dbnsfpPhylop_primate17way`, `dbnsfpPhylop_primate17wayRankscore`,
+   `dbnsfpSiphy_pA29way`, `dbnsfpSiphy_pC29way`, `dbnsfpSiphy_pG29way`, `dbnsfpSiphy_pT29way`,
+   `dbnsfpSiphy_logOdds29way`, `dbnsfpSiphy_logOdds29wayRankscore`);
+   - **Allele frequencies in ExAC database** (`dbnsfpExac_ac`, `dbnsfpExac_af`,
+   `dbnsfpExac_adjustedAc`, `dbnsfpExac_adjustedAf`, `dbnsfpExac_africanAc`, `dbnsfpExac_africanAf`,
+   `dbnsfpExac_americanAc`, `dbnsfpExac_americanAf`, `dbnsfpExac_eastAsianAc`, `dbnsfpExac_eastAsianAf`,
+   `dbnsfpExac_finnishAc`, `dbnsfpExac_finnishAf`, `dbnsfpExac_nonFinnishEuropeanAc`,
+   `dbnsfpExac_nonFinnishEuropeanAf`, `dbnsfpExac_southAsianAc`, `dbnsfpExac_southAsianAf`,
+   `dbnsfpExac_nonTcgaAc`, `dbnsfpExac_nonTcgaAf`, `dbnsfpExac_nonTcgaAdjustedAc`, `dbnsfpExac_nonTcgaAdjustedAf`,
+   `dbnsfpExac_nonTcgaAfricanAc`, `dbnsfpExac_nonTcgaAfricanAf`, `dbnsfpExac_nonTcgaAmericanAc`,
+   `dbnsfpExac_nonTcgaAmericanAf`, `dbnsfpExac_nonTcgaEastAsianAc`, `dbnsfpExac_nonTcgaEastAsianAf`,
+   `dbnsfpExac_nonTcgaFinnishAc`, `dbnsfpExac_nonTcgaFinnishAf`, `dbnsfpExac_nonTcgaNonFinnishEuropeanAc`,
+   `dbnsfpExac_nonTcgaNonFinnishEuropeanAf`, `dbnsfpExac_nonTcgaSouthAsianAc`, `dbnsfpExac_nonTcgaSouthAsianAf`,
+   `dbnsfpExac_nonPsychAc`, `dbnsfpExac_nonPsychAf`, `dbnsfpExac_nonPsychAdjustedAc`,
+   `dbnsfpExac_nonPsychAdjustedAf`, `dbnsfpExac_nonPsychAfricanAc`, `dbnsfpExac_nonPsychAfricanAf`,
+   `dbnsfpExac_nonPsychAmericanAc`, `dbnsfpExac_nonPsychAmericanAf`, `dbnsfpExac_nonPsychEastAsianAc`,
+   `dbnsfpExac_nonPsychEastAsianAf`, `dbnsfpExac_nonPsychFinnishAc`, `dbnsfpExac_nonPsychFinnishAf`,
+   `dbnsfpExac_nonPsychNonFinnishEuropeanAc`, `dbnsfpExac_nonPsychNonFinnishEuropeanAf`,
+   `dbnsfpExac_nonPsychSouthAsianAc`, `dbnsfpExac_nonPsychSouthAsianAf`);
+   - **Allele frequencies in NHLBI GO ESP** (`dbnsfpNhlbi_africanAmericanAc`,
+   `dbnsfpNhlbi_africanAmericanAf`, `dbnsfpNhlbi_europeanAmericanAc`, `dbnsfpNhlbi_europeanAmericanAf`);
+   - **Allele frequencies in the UK10K project** (`dbnsfpUk10_twinsukAc`, `dbnsfpUk10_twinsukAf`,
+   `dbnsfpUk10_alspacAc`, `dbnsfpUk10_alspacAf`, `dbnsfpUk10_combinedAc`, `dbnsfpUk10_combinedAf`).
