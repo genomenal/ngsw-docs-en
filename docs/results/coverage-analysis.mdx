@@ -5,23 +5,65 @@ sidebar_label: Coverage Analysis
 
 # Coverage Analysis
 
-Genome coverage (or target exome regions or target panel) allows you to assess how informative the CNV
-discovery is in general. In this section, you can estimate both the fraction of data covered in general,
-and how much the genes and transcripts of your interest are covered.
+Coverage of the genome or target regions for exome and targeted panel sequencing allows you to assess how
+comprehensively the regions of interest have been sequenced and how informative the analysis results are
+likely to be. This section allows you to assess both the coverage of the target regions as a whole and the
+coverage of individual genes and transcripts.
 
-**Depth of coverage of target regions (example)**
+The "Coverage Analysis" tab is displayed only for samples uploaded in FASTQ or BAM format
+if [the "Calculate сoverage" stage](/results/workflow-details/fastq-analysis/calculate-coverage) has
+completed successfully and [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is
+enabled.
+
+### Depth of Coverage Report {#depth-of-coverage}
+
+The first section contains a graph showing the proportion of the target regions covered at different depths.
+A table to the right of the graph shows the percentage of regions corresponding to specific coverage depths.
 
 ![Coverage analysis](/img/eng/36-coverage-analysis.png)
 
-The plot shows which fraction of the genome or target regions is covered at different depths. So, in the example,
-96.79% of the target regions are covered with 30 reads, which is a good indicator. For a more accurate assessment
-of coverage in genes of interest, you can use the search below on the page and select a transcript. To select
-a transcript, click on the gene name. By default, the transcript of the
-[MANE Clinical](https://www.ncbi.nlm.nih.gov/refseq/MANE/) database is chosen, if there is no gene in the
-database, the canonical transcript is chosen according to
-[Ensembl](https://www.ensembl.org/info/docs/tools/vep/index.html) annotation.
-Search results can be exported as a table.
+For example, in the graph above, 96.79% of the target regions have a coverage depth of at least 30X,
+which is a good indicator.
 
-***TP53*** **gene coverage**
+Coverage depth is expressed in units of X and indicates how many times, on average, a given position
+is covered by sequencing reads. For example, a coverage depth of 30X means that a given position is
+covered by an average of 30 reads.
+
+### Gene coverage {#gene-coverage}
+
+The second section allows you to assess the coverage of genes and transcripts of interest in greater detail.
+It is displayed only for samples for
+which [saving detailed per-gene coverage](/settings/settings/alignment-settings#save-detailed-gene-coverage) is
+enabled.
+
+The section contains a table of genes with the proportion of the covered region at different coverage depths:
+1X, 10X, 20X, 30X, 50X, 100X, 200X, and 300X. For example, the value 30X shows what proportion of a gene or
+transcript is covered by at least 30 reads.
+
+The first column contains the gene name and its Ensembl ID. Click the gene name
+or the <img src={require('/img/vv/show.png').default} width="13"/> icon to view coverage information for all
+transcripts of the gene.
+
+The canonical transcript row is highlighted in yellow and includes either
+a green <img src={require('/img/eng/mane_select.png').default} width="25"/> icon if the transcript is
+selected as the gene's main transcript
+according to <a href="https://www.ncbi.nlm.nih.gov/refseq/MANE/#Select">MANE Select</a>, or
+a black <img src={require('/img/eng/ensembl_canonical.png').default} width="25"/> icon if the transcript
+is selected as the gene's main transcript
+according to <a href="https://www.ensembl.org/info/genome/genebuild/canonical.html">Ensembl canonical</a>.
+
+The columns corresponding to different coverage depths show the percentage of the gene or transcript covered
+by at least the specified number of reads. For a gene, coverage information is provided for its main transcript.
+
+The covered proportion is shown in green, and the uncovered proportion is shown in red. For example,
+a 61% coverage visualization looks as follows: <img src={require('/img/eng/gene_coverage.png').default} width="110"/>.
+
+To find coverage information for a specific gene or transcript, use the search by gene name,
+gene Ensembl ID, or transcript Ensembl ID.
+
+Example of coverage data for the *TP53* gene:
 
 ![Gene coverage](/img/eng/37-gene-coverage.png)
+
+The table containing gene coverage information can be downloaded in TSV format by
+clicking <img src={require('/img/eng/export_btn.png').default} width="150"/>.

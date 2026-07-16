@@ -96,6 +96,60 @@ You can choose a bed file appropriate for your exome capture kit from the built-
 You can upload your Capture Kit on the "Capture kits" page from the "Settings" section.
 Usually appropriate Capture Kit can be obtained from kit producer website.
 
+### Gene coverage analysis {#gene-coverage}
+
+Gene coverage analysis is controlled by two toggles:
+- *Run gene coverage analysis* - determines whether gene coverage analysis is performed during sample processing.
+Enabled by default.
+- *Save detailed per-gene coverage* - determines whether detailed per-gene coverage data is saved during sample
+processing. Disabled by default.
+
+#### Gene coverage analysis {#gene-coverage-analysis}
+
+In addition to calculating the overall sample coverage, you can assess gene coverage - the coverage of transcripts
+produced by genes. However, calculating gene coverage can be time-consuming. To speed up sample processing,
+you can disable gene coverage analysis by turning off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_gene_coverage.png').default} width="400"/>
+</p>
+
+Disabling gene coverage analysis has the following consequences:
+1. [The "Coverage Analysis" tab](/results/coverage-analysis) is not displayed on the sample page.
+2. The following subtasks are not performed as part of the "Calculate coverage statistics" task:
+- Screening for overlaps between exons from Ensembl and capture kit intervals;
+- Computing the depth and breadth of coverage of sample read alignments on exons from Ensembl, as well as
+reporting a histogram of coverage for each exon and a summary histogram for all exons.
+3. The "Gene coverage TSV" file is not generated.
+4. The "Save coverage" task is not performed.
+
+When the "Run gene coverage analysis" toggle is turned off, the "Save detailed per-gene coverage" toggle
+becomes inactive.
+
+#### Saving detailed per-gene coverage {#save-detailed-gene-coverage}
+
+If you need to perform gene coverage analysis but want to reduce sample processing time, you can disable
+only the saving of detailed gene coverage data. To do this, turn off the corresponding toggle:
+
+<p align="center">
+<img src={require('/img/eng/turn_off_save_coverage.png').default} width="400"/>
+</p>
+
+Disabling the saving of detailed per-gene coverage has the following consequences:
+1. [The "Coverage Analysis" tab](/results/coverage-analysis) displays only information about the overall
+sample coverage; transcript coverage information is not displayed.
+2. The "Save coverage" task is not performed.
+
+:::info
+If a sample was analyzed with the default settings (that is, with gene coverage analysis enabled and the
+saving of detailed per-gene coverage disabled), and you want to enable saving this data for an already
+analyzed sample, you must first fully update the coverage calculation results.
+
+To do this, first turn off the "Run gene coverage analysis" toggle and apply the changes.
+Then turn the "Run gene coverage analysis" and "Save detailed per-gene coverage" toggles back on
+and apply the changes again.
+:::
+
 ### Alignment metrics {#alignment-metrics}
 
 <table>

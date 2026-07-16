@@ -7,7 +7,7 @@ sidebar_label: Calculate coverage
 
 At this stage, the coverage of genes and target regions (capture kit intervals) by sample read alignments is
 calculated. These metrics are important for assessing the quality of mapping in general and in the regions
-of interest (genes, transcripts). The coverage calculation results will be located
+of interest (genes, transcripts). The coverage calculation results are located
 on [the "Coverage Analysis" tab](/results/coverage-analysis) on the sample page. The coverage calculation
 is launched
 after [the "Variant discovery preprocessing" stage](/results/workflow-details/fastq-analysis/variant-discovery-preprocessing) has
@@ -27,12 +27,17 @@ computes the depth and breadth of coverage of sample read alignments on capture 
 reports a histogram of coverage for each capture kit interval as well as a summary histogram for all intervals.
 - [bedtools intersect](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html)
 screens for overlaps between exons from [Ensembl](https://www.ensembl.org/index.html) and capture kit intervals.
+The subtask is performed only if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis)
+is enabled for the sample.
 - [bedtools coverage](https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html)
 computes the depth and breadth of coverage of sample read alignments on exons
 from [Ensembl](https://www.ensembl.org/index.html) and reports a histogram of coverage for each exon as well
-as a summary histogram for all exons.
+as a summary histogram for all exons. The subtask is performed only
+if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is enabled for the sample.
 
-The file with gene coverage on mapped reads can be downloaded in the "*Result files*" section
+The gene coverage file is generated only
+if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is enabled for the sample.
+It can be downloaded in the "*Result files*" section
 in the "*Calculate coverage statistics*" task details ("*Download Gene coverage TSV*").
 You can also open it in Google Sheets.
 - [GATK CollectHsMetrics](https://gatk.broadinstitute.org/hc/en-us/articles/360036856051-CollectHsMetrics-Picard-)
@@ -48,8 +53,10 @@ the same section ("*Download Per target coverage TSV*"). You can also open it in
 - [bedtools coverage](https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html)
 computes the depth and breadth of coverage of sample read alignments on exons
 from [Ensembl](https://www.ensembl.org/index.html) and reports a histogram of coverage for each exon as well
-as a summary histogram for all exons.
-The file with gene coverage on mapped reads can be downloaded in the "*Result files*" section
+as a summary histogram for all exons.<br></br>
+The subtask is performed only
+if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is enabled for the sample.
+As a result, a gene coverage file is generated, which can be downloaded in the "*Result files*" section
 in the "*Calculate coverage statistics*" task details ("*Download Gene coverage TSV*").
 You can also open it in Google Sheets.
 
@@ -57,11 +64,17 @@ You can also open it in Google Sheets.
 - [bedtools coverage](https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html)
 computes the depth and breadth of coverage of sample read alignments on exons
 from [Ensembl](https://www.ensembl.org/index.html) and reports a histogram of coverage for each exon as well
-as a summary histogram for all exons.
+as a summary histogram for all exons. The subtask is performed only
+if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is enabled for the sample.
 - [bedtools genomecov](https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html)
-computes histograms of aligned sample sequences coverage for the reference genome.<br></br>
-The file with gene coverage on mapped reads can be downloaded in the "*Result files*" section
+computes histograms of aligned sample sequences coverage for the reference genome.
+
+The gene coverage file is generated only
+if [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is enabled for the sample.
+It can be downloaded in the "*Result files*" section
 in the "*Calculate coverage statistics*" task details ("*Download Gene coverage TSV*").
 You can also open it in Google Sheets.
 
-2. **Save coverage** task is saving of gene and transcript coverage.
+2. **Save coverage** task is saving of gene and transcript coverage. The task is performed only
+if [saving detailed per-gene coverage](/settings/settings/alignment-settings#save-detailed-gene-coverage) is enabled
+for the sample.

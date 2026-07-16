@@ -77,9 +77,11 @@ the button <img src={require('/img/results/export_pdf.png').default} width="150"
 report page.
 :::
 
-3. **[Coverage Analysis](/results/coverage-analysis)** (the tab is visible only for samples uploaded in FASTQ or
-BAM formats, and only after successful completion of all stages of analysis) contains information on depth of coverage
-and coverage of genes and transcripts in a sample.
+3. **[Coverage Analysis](/results/coverage-analysis)** - contains information on depth of coverage
+and coverage of genes and transcripts in a sample. The tab is displayed only for samples uploaded in FASTQ or
+BAM format if [the "Calculate coverage" stage](/results/workflow-details/fastq-analysis/calculate-coverage) has
+completed successfully and [gene coverage analysis](/settings/settings/alignment-settings#gene-coverage-analysis) is
+enabled.
 
 4. **[Workflow details](/results/workflow-details/workflow-details)** includes detailed information about the
 processing of the sample and intermediate data.
