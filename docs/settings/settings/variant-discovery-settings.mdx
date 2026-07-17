@@ -385,18 +385,6 @@ Turned on toggle is blue and shifted to the right: <img src={require('/img/eng/t
 and turned off toggle is gray and shifted to the
 left: <img src={require('/img/eng/toggle_off.png').default} width="35"/>.
 
-### CNN variant scoring {#enable-cnn-scoring}
-
-In addition to hard-filtering, germline variants can be annotated with FILTERs based on scores from a pre-trained
-Convolutional Neural Network (CNN) implemented in
-***[GATK CNNScoreVariants](https://gatk.broadinstitute.org/hc/en-us/articles/360037226672-CNNScoreVariants)***.
-CNN scoring is time consuming and does not contribute much to filtering compared to hard-filtering.
-To enable CNN scoring of germline SNVs/indels, turn on the corresponding toggle:
-
-<p align="center">
-<img src={require('/img/eng/turn_on_cnn.png').default} width="400"/>
-</p>
-
 ## Structural variations discovery {#sv-discovery}
 
 Structural variations (SVs) are long deletions, tandem duplications, inversions and translocations.
