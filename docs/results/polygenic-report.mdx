@@ -29,7 +29,7 @@ How well a statistical model predicts the presence or absence of a disease in a 
 by the **AUC** (Area Under the Receiver Operating Characteristic Curve) index. The AUC value ranges from 50% to
 100%, where higher values indicate that the model has more predictive power.
 
-## Report generation {#generate-report}
+## Report Generation {#generate-report}
 
 The report is based
 on [the "Polygenic traits" report template block](/settings/report-templates/report-templates#polygenic-traits),
@@ -67,114 +67,148 @@ the report are calculated.
 Which polygenic traits will be included in the report is defined in the report template block.
 Quantitative and binary polygenic traits are available for selection.
 
-### Prediction results for quantitative polygenic traits {#quantity-traits-results}
+### Quantitative Polygenic Trait Prediction Results {#quantity-traits-results}
 
-A quantitative trait defined by a numerical value, often determined by multiple genes at different genomic
-locations that have small effects and are influenced by environmental conditions. For such traits, the predicted
-value is estimated from a predictive model using the PRS value and the patient's sex and age. This dimension
-of this value is of the given trait, so it can be easily interpreted. Since the predictive model determines a trait
-value with a certain error, a confidence interval is provided for each trait, giving the information about the range
-of possible values. The confidence interval is calculated from the parameters of the predictive model.
+Quantitative traits are characteristics whose individual manifestations have a numerical expression.
+For such traits, the polygenic risk score (PRS) is estimated and displayed on a PRS frequency distribution
+plot, which makes it possible to determine the patient's position relative to the distribution of values
+in the population.
 
-Quantitative polygenic risks calculated:
-   - Height
-   - Weight
-   - Body Mass Index (BMI)
+The following quantitative polygenic risks are calculated:
+   - Height;
+   - Weight;
+   - Body Mass Index (BMI);
+   - Trunk fat mass;
+   - Trunk fat-free mass;
+   - Hip circumference;
+   - Insulin-like growth factor 1 level;
+   - Fasting glucose level;
+   - Fasting insulin level;
+   - Hemoglobin level;
+   - Hematocrit;
+   - Bone mineral density;
+   - Neuroticism score.
 
-As prediction results for quantitative polygenic traits, the following information is provided:
-- **Predicted trait value** is the absolute trait value determined using a logistic regression model that takes
-into account the patient’s genetic data and data on sex and age. In the diagram below, the predicted trait value
-is the patient's genetic height (162 cm).
-- **The range of possible trait values** is the 95% confidence interval, which includes the true value of the
-trait with a high degree of confidence (the logistic regression model is used for calculation). In the diagram
-below, the range of possible values is a height from 153 cm to 172 cm.
-- **A comparison of the predicted value with the mean value of the trait**. The result of the comparison is a
-conclusion about how much the patient's predicted value of a given trait is less or more than the average value
-of the trait, determined taking into account the patient's ethnicity, as well as his sex and age. In the diagram
-below, the average value of the trait is the average genetic height (166 cm).
-
-<p align="center">
-<img src={require('/img/results/confidence_interval.png').default} width="600"/>
-</p>
-
-- A display of a patient's polygenic risk score (PRS) value on **a PRS distribution graph**.
-The patient’s PRS value area is marked green (if values fall in the low or average PRS range) or orange (if values
-fall in the high PRS range) and the remaining area is blue. In the graph below, the patient's PRS values deviate to
-the left of the average PRS range, indicating lower values of the polygenic trait:
+The predicted polygenic risk score (PRS) is presented as a **PRS frequency distribution plot**.
+The range of the patient's PRS values is highlighted in green (if the values fall within the low or
+average PRS range) or orange (if the values fall within the high PRS range), while the remaining
+area is highlighted in blue.
+In the plot below, the PRS values are shifted to the left of the mean, indicating a lower value of
+the polygenic trait:
 
 <p align="center">
 <img src={require('/img/results/prs_height.png').default} width="600"/>
 </p>
 
-We also determine how much the absolute value of the patient's trait differs from the average value of the trait of
-people from a group of close ethnic origin. As the result of comparison, the percentage of the number of people, who
-have a genetic prognosis of the trait lower or greater than the patient, is given.
+The patient's PRS is also compared with the PRS values of people from a group with a similar ethnic background.
+The comparison provides the percentage of people in the reference cohort whose PRS is greater or lower than
+the patient's PRS.
 
-### Prediction results for binary polygenic traits {#quality-traits-results}
+For quantitative traits such as height, weight, and BMI, a corresponding predictive model has been developed
+to additionally determine the absolute value of the trait based on the patient's genetic data, sex, and age.
+Since the predictive model determines the trait value with a certain degree of error, a confidence interval
+describing the range of possible trait values is also calculated for these traits.
 
-Binary traits are characteristics with two possible outcomes: presence or absence (e.g. susceptibility or resistance
-to a certain infection).
-
-Binary polygenic risks calculated:
-   - Predisposition to being overweight
-   - Predisposition to Prostate Cancer (if the patient's sex is indicated as male)
-   - Predisposition to Breast Cancer (if the patient's sex is indicated as female)
-   - Predisposition to Coronary Artery Disease
-   - Predisposition to Inflammatory Bowel Disease
-   - Predisposition to Type 2 diabetes
-   - Predisposition to Colorectal Cancer
-
-As prediction results for binary polygenic traits, the following information is provided:
-- **Predicted value of the patient's predisposition to the trait** determined using a logistic regression model
-that takes into account the user’s genetic data and data on age and sex. It's presented in the diagram
-as a "Patient risk" block. The block is colored green if the patient’s risk is less than the mean risk, or orange
-if the patient’s risk is greater than the mean risk. In the diagram below, the predicted trait value (the risk
-of developing the disease) is 21%.
-- **A comparison of the predicted value with the mean risk**. Comparison is presented as a diagram. The mean
-risk of disease is determined by the patient's ethnicity as well as sex and age, and is presented in a blue-coloured
-"Mean risk" block. In the diagram below, the mean risk value of the trait is 12%. As a result, information is
-provided on how many times the patient’s genetic risk for the trait is greater or less than the average risk of people
-from a group of close ethnic origin.
+In addition to the PRS frequency distribution plot, the following results are provided for
+the Genetic Height, Genetic Weight, and Genetic Body Mass Index traits:
+- **Predicted trait value** - the absolute value of the trait determined using a logistic regression model
+that takes into account the patient's genetic data, sex, and age. In the diagram below, the predicted trait
+value is the patient's genetic height (162 cm).
+- **Range of possible trait values** - a 95% confidence interval that, with a high degree of confidence,
+includes the absolute trait value. The interval is calculated using the logistic regression model. In the
+diagram below, the range of possible values is a height of 153 to 172 cm.
+- **Comparison of the predicted value with the mean trait value** - an indication of how much the patient's
+predicted trait value is lower or higher than the mean trait value determined based on the patient's ethnicity,
+sex, and age. In the diagram below, the mean trait value is the mean genetic height (166 cm).
 
 <p align="center">
-<img src={require('/img/results/obesity_result.png').default} width="600"/>
+<img src={require('/img/results/confidence_interval.png').default} width="600"/>
 </p>
 
-- **The quality of model prediction** (in percent) observed using the AUC (Area Under the Receiver
-Operating Characteristic Curve) score for calculation of genetic predisposition to a certain disease.
-In the diagram below, the model prediction quality is 75% for the trait under study and patient's ethnic group.
+### Binary Polygenic Trait Prediction Results {#quality-traits-results}
 
-<p align="center">
-<img src={require('/img/results/auc.png').default} width="600"/>
-</p>
+Binary traits are characteristics with two possible outcomes: the presence or absence of a particular
+condition (for example, susceptibility or resistance to a specific infection).
 
-- A display of a patient's polygenic risk score (PRS) value on **a PRS distribution graph**.
-The patient’s PRS value area is marked green (if values fall in the low or average PRS range) or orange (if values
-fall in the high PRS range) and the remaining area is blue. In the graph below, the patient's PRS values deviate to
-the right of the average PRS range, indicating greater values of the polygenic risk:
+The following binary polygenic risks are calculated:
+   - Predisposition to Being Overweight;
+   - Predisposition to Coronary Artery Disease;
+   - Predisposition to Inflammatory Bowel Disease;
+   - Predisposition to Type 2 diabetes;
+   - Predisposition to Chronic Renal Failure;
+   - Predisposition to Asthma;
+   - Predisposition to Idiopathic Pulmonary Fibrosis;
+   - Predisposition to Thyrotoxicosis;
+   - Predisposition to Alcohol-Associated Liver Cirrhosis;
+   - Predisposition to Alzheimer's Disease;
+   - Predisposition to Parkinson's Disease;
+   - Predisposition to Prostate Cancer (if the patient's sex is indicated as male);
+   - Predisposition to Breast Cancer (if the patient's sex is indicated as female);
+   - Predisposition to Colorectal Cancer;
+   - Predisposition to Risk-Taking Behaviour;
+   - Predisposition to Hospitalization for COVID-19;
+   - Predisposition to Severe COVID-19.
+
+The predicted polygenic risk score (PRS) is presented as a **PRS frequency distribution plot**.
+The range of the patient's PRS values is highlighted in green (if the values fall within the low
+or average PRS range) or orange (if the values fall within the high PRS range), while the remaining
+area is highlighted in blue.
+In the plot below, the PRS values are shifted to the right of the mean, indicating a higher polygenic risk:
 
 <p align="center">
 <img src={require('/img/results/prs_obesity.png').default} width="600"/>
 </p>
 
-It is also determined how much the patient's polygenic risk score value differs from the distribution of the
-values of the polygenic risk scores of people from a group of close ethnic origin. As the result of comparison,
-the percentage of the number of people, who have a genetic risk of the trait lower or greater than the patient,
-is given.
+The patient's PRS is also compared with the PRS values of people from a group with a similar ethnic background.
+The comparison provides the percentage of people in the reference cohort whose PRS is higher or lower than the
+patient's PRS.
 
-- **A graph of disease risk versus age**, taking into account the patient's genetic predisposition and comparing
-this risk value with the average results of people of similar ethnic origin. The probability of having a disease
-based on age is presented as a graph. The patient’s disease risk curve is marked green (if the patient’s disease
-risk is below average) or orange (if the patient’s disease risk is above average), and the average disease risk curve
-is marked blue.
+For some binary traits (*overweight, coronary artery disease, inflammatory bowel disease, type 2 diabetes,
+chronic renal failure, asthma, idiopathic pulmonary fibrosis, alcohol-associated liver cirrhosis,
+Alzheimer's disease, Parkinson's disease, breast cancer, prostate cancer, colorectal cancer, risk-taking behavior,
+COVID-19 hospitalization, and severe COVID-19*), the **predictive model performance metric** is additionally
+provided to assess genetic predisposition to the respective condition. The metric is determined using the
+AUC (Area Under the Receiver Operating Characteristic Curve) parameter.
 
-An example of a graph showing a patient's risk of having a disease based on age is below average:
+In the diagram below, the predictive model performance metric is 75% for the trait under study and the
+patient's ethnic group:
+
+<p align="center">
+<img src={require('/img/results/auc.png').default} width="600"/>
+</p>
+
+For some binary traits (*overweight, coronary artery disease, inflammatory bowel disease, type 2 diabetes,
+breast cancer, prostate cancer, colorectal cancer, COVID-19 hospitalization, and severe COVID-19*), the following
+results are additionally provided:
+- **Predicted risk of developing the condition for the patient** - the value determined using a logistic
+regression model that takes into account the patient's genetic data, sex, and age. The value is presented
+in the diagram as the "Patient risk" block. The block is highlighted in green if the patient's risk is lower
+than the mean risk, or in orange if the patient's risk is higher than the mean risk.
+In the diagram below, the predicted risk of developing the condition is 21%.
+- **Comparison of the patient's predicted risk with the mean risk of developing the condition**.
+The mean risk is determined based on the patient's ethnic background, sex, and age, and is presented in
+the diagram in the blue "Mean risk" block. In the diagram below, the mean risk of developing the condition
+is 12%. The comparison provides information on how many times the patient's genetic risk is greater or lower
+than the mean risk in a group of people with a similar ethnic background.
+
+<p align="center">
+<img src={require('/img/results/obesity_result.png').default} width="600"/>
+</p>
+
+- **Assessment of the risk of developing the condition depending on age** - an assessment of risk that takes
+into account the patient's genetic predisposition and compares the resulting risk with the average risk values
+for people with a similar ethnic background.
+The relationship between the probability of developing the condition and age is presented as a plot.
+The patient's risk curve is highlighted in green if the patient's risk is lower than average, or in orange
+if the patient's risk is higher than average. The average risk curve is highlighted in blue.
+
+Example of a plot where the patient's risk of developing the condition depending on age is lower than average:
 
 <p align="center">
 <img src={require('/img/eng/cancer_graph.png').default} width="700"/>
 </p>
 
-An example of a graph showing a patient's risk of having a disease based on age is above average:
+Example of a plot where the patient's risk of developing the condition depending on age is higher than average:
 
 <p align="center">
 <img src={require('/img/eng/obesity_graph.png').default} width="700"/>
