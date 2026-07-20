@@ -797,6 +797,35 @@ N/A - the column value is unknown (dot in VCF file). The cell is
 colored <Highlight color="#FFFAEB">yellow</Highlight>.<br></br>3.
 FAIL - the variant does not satisfy one or more GATK filters. By hovering over a cell,
 you can see these filters. The cell is colored <Highlight color="#F9DAE0">red</Highlight>.
+- The "**OMIM Phenotype**" and "**OMIM Inheritance**" columns contain information
+from [the OMIM database](https://www.omim.org/). The columns can be added to the table only if you have
+access to OMIM database data in Genomenal.<br></br>
+The "*OMIM Phenotype*" column contains a list of phenotype names associated with a gene according to the
+OMIM database. The list is presented as a string with values separated by semicolons. If the list does not
+fit in the cell, its full contents are displayed in a tooltip that appears when you hover over the
+corresponding cell.<br></br>
+The "*OMIM Inheritance*" column contains a list of phenotype inheritance types. The column lists all
+inheritance types defined for the phenotypes associated with a gene, without duplicates and without a
+direct correspondence to the values in the "OMIM Phenotype" column. Values are separated by a vertical
+bar (|).<br></br>
+Inheritance types are represented by the following abbreviations:
+   - *AD* - Autosomal dominant;
+   - *AR* - Autosomal recessive;
+   - *DD* - Digenic dominant;
+   - *DR* - Digenic recessive;
+   - *ICB* - Inherited chromosomal imbalance;
+   - *IC* - Isolated cases;
+   - *Mi* - Mitochondrial;
+   - *Mu* - Multifactorial;
+   - *SMo* - Somatic mosaicism;
+   - *SMu* - Somatic mutation;
+   - *XL* - X-linked;
+   - *XLD* - X-linked dominant;
+   - *XLR* - X-linked recessive;
+   - *YL* - Y-linked;
+   - *PD* - Pseudoautosomal dominant;
+   - *PR* - Pseudoautosomal recessive;
+   - *NA* - Not specified (phenotype has an empty value in the "Inheritance" column in the OMIM database).
 - "**ClinVar**" column contains information about the clinical significance of the variant
 in [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) database.
 It is called "Clinical significance" ("ClinVar" section)
