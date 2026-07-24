@@ -18,7 +18,7 @@ through the navigation panel on the left:
 ## Add a gene panel {#add-gene-panel}
 
 There are four ways to add a panel to the system:
-1. [Selection of genes of interest from all genes (by name or Ensembl code)](/settings/gene-panels#add-from-all-genes-list);
+1. [Selection of genes of interest from all genes (by name or Ensembl ID)](/settings/gene-panels#add-from-all-genes-list);
 2. [Adding genes associated with a certain phenotype](/settings/gene-panels#add-from-hpo);
 3. [Import of a pre-prepared gene list](/settings/gene-panels#import-gene-list);
 4. [Import panel from the library of the most common clinical panels](/settings/gene-panels#import-from-library).
@@ -39,16 +39,19 @@ adding a gene panel:
 2. In the opened form, enter gene panel name in the **Name** field.
 You can also add a panel description.
 
-3. Add genes to the panel. To do this, enter official gene symbol or Ensembl gene ID (ENSG...) into the search box.
-Among the found genes, select one or several ones, click on its/their row(s), and then
-click on <img src={require('/img/gene_panels/add_btn.png').default} width="40"/>:
+3. Add genes to the panel. To do this, enter an official gene symbol or
+an [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) gene ID (ENSGxxxxxxxxxxx) in the search field.<br></br>
+From the list of matching genes, select one or more genes, click the corresponding row (or rows),
+and then click <img src={require('/img/gene_panels/add_btn.png').default} width="40"/>.
+Alternatively, you can add a gene by double-clicking its row.
 
 <p align="center">
 <img src={require('/img/gene_panels/add_gene.png').default} height="350"/>
 </p>
 
-Among the genes added to the panel, you can search, as well as remove genes from the panel (to do so, click on the
-gene row, and then click on <img src={require('/img/gene_panels/remove_gene.png').default} width="40"/>):
+You can search within the genes added to the panel and remove genes from the panel.
+To remove a gene, either double-click its row or select one or more rows
+and click <img src={require('/img/gene_panels/remove_gene.png').default} width="40"/>.
 
 <p align="center">
 <img src={require('/img/gene_panels/remove_example.png').default} height="350"/>
@@ -199,18 +202,13 @@ importing gene list:
 2. In the opened form, enter gene panel name in the **Name** field.
 You can also add a panel description.
 
-3. Enter gene list in the **Genes** area. The list must include only official gene symbols and/or
-Ensembl gene IDs (ENSG...) separated by commas or new lines.
-It is preferable to use Ensembl ID or unique gene synonym that correspond to only one Ensembl ID,
-since when using gene symbols, ambiguity may arise due to the existence of human alternative sequence
-genes (in the given example, the *MUC6* gene has three such genes:
-[ENSG00000277281](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000277281),
-[ENSG00000277518](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000277518),
-[ENSG00000283350](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000283350)):
-
-<p align="center">
-<img src={require('/img/gene_panels/ambigous_gene.png').default} width="600"/>
-</p>
+3. Enter a list of genes in the **Genes** field. The list must contain official gene symbols
+and/or [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) gene IDs (ENSGxxxxxxxxxxx),
+separated by commas or line breaks.<br></br>
+If multiple Ensembl gene IDs correspond to the specified gene symbol in the database
+(for example, because the gene is annotated on both the primary assembly and one or more alternative sequences),
+all corresponding genes are added to the panel. For example, adding the gene *MUC6* includes three genes to
+the panel: ENSG00000184956, ENSG00000277281, and ENSG00000277518.
 
 4. Click on <img src={require('/img/eng/create_btn.png').default} width="130"/> to add gene panel to the system.
 
