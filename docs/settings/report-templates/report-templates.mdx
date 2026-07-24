@@ -857,7 +857,120 @@ field is used to enter the overall interpretation, and the entered text can be e
 
 **Example block in the report:** [Report on Oligogenic Traits](/results/oligogenic-report).
 
-### 35. Ancestry {#ancestry}
+### 35. SNP panel interpretation by genotype {#snp-panel-genotypes}
+
+This block displays the polymorphisms added to the SNP panel together with the interpretation defined
+for each genotype.
+
+**Applicable to samples:** normal.
+
+**Editable fields:**
+1. *Name* – section title (required field).
+2. *Description* – text displayed below the section title.
+3. *Selected SNPs* - a table containing the polymorphisms added to the SNP panel.
+
+Example of an SNP panel:
+
+<p align="center">
+<img src={require('/img/eng/selected_snps_example.png').default} width="900"/>
+</p>
+
+The table columns correspond to the fields in the SNP addition form:
+   - *Gene* - the name of the gene in which the polymorphism is located. If gene information is unavailable in
+   the database, a dash (`-`) is displayed.
+   - *rsID* - the polymorphism ID from the <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a> database,
+   displayed as a link to the corresponding page. The value is specified by the user.
+   - *Alteration* - displayed according to the selected allele/genotype combination:
+       - `reference allele > alternative allele` - for alternative homozygous and heterozygous genotypes;
+       - `reference allele > NON_REF`, where NON_REF denotes any allele other than the reference allele, - for
+       the reference heterozygous genotype;
+       - `reference allele =` - for the reference homozygous genotype. This notation indicates that no
+       substitution occurs and the variant is represented by the reference allele.
+   - *Genotype* - displayed according to the selected allele/genotype combination:
+       - `reference allele / alternative allele` - for the alternative heterozygous genotype;
+       - `alternative allele / alternative allele` - for the alternative homozygous genotype;
+       - `reference allele / reference allele` - for the reference homozygous genotype;
+       - `reference allele / NON_REF`, where NON_REF denotes any allele other than the reference allele, - for
+       the reference heterozygous genotype.
+   - *Exon* - the exon number of the transcript in which the polymorphism is located.<br></br>
+   For alternative homozygous, alternative heterozygous, and reference heterozygous genotypes, this field
+   is always left empty because exon information is taken from the genetic variant annotation and added to
+   the final report.<br></br>
+   For the reference homozygous genotype, the value is retrieved from the database or specified by the user.<br></br>
+   The supported format is `exon number (or exon range) / total number of exons in the transcript`, for example
+   3/8 or 3-4/8. If the information is unavailable, a dash (`-`) is displayed.
+   - *Interpretation* - a textual interpretation of the selected genotype. The value is specified by the
+   user and displayed in the final report.
+4. *Coverage threshold for genotypes* - the minimum sequencing depth at the polymorphism position required for
+the genotype to be included in the final report. The default value is 20, meaning that the position must be
+covered by at least 20 reads.
+5. *Add interpretation block* – a toggle that enables the display of an overall interpretation for the
+entire block in the report. When this toggle is enabled, the *Interpretation text* field becomes available. This
+field is used to enter the overall interpretation, and the entered text can be edited directly within the report.
+
+**Adding an SNP to the panel:**
+
+To add a polymorphism to the SNP panel,
+click <img src={require('/img/report_templates/add_snp.png').default} width="190"/> and fill in the fields
+in the dialog:
+1. *rsID* - the polymorphism ID from [the dbSNP database](https://www.ncbi.nlm.nih.gov/snp/). It can be
+entered either as `rs12345` or simply as `12345`.<br></br>
+If the specified identifier is not found in the database, the message "*Cannot find rsId in DbSNP*" is displayed,
+and the polymorphism cannot be added.<br></br>
+If the ID is recognized successfully, the Allele and Interpretation fields become available.
+If gene information is available for the polymorphism, the "*Gene*" field is also displayed.
+
+<p align="center">
+<img src={require('/img/report_templates/add_snp_form.png').default} width="600"/>
+</p>
+
+2. <i>Allele</i> - selects one of the variant alleles: the reference allele or one of the alternative
+alleles (if multiple alternative alleles exist, all of them are presented). Each allele is labeled as
+either reference or alternative.
+
+<p align="center">
+<img src={require('/img/report_templates/alleles_options.png').default} width="600"/>
+</p>
+
+After an allele is selected, the Genotype field becomes available.
+
+3. <i>Genotype</i> - selects either a homozygous or heterozygous genotype.
+
+The following genotype combinations can be added for each SNP:
+   - *Reference homozygous* = reference allele + homozygous genotype.
+   Selecting this combination displays the additional Exon field.
+   - *Reference heterozygous* = reference allele + heterozygous genotype. This entry represents all possible
+   heterozygous genotypes with alternative alleles. Once added, individual heterozygous genotypes for
+   alternative alleles cannot be added.
+   - *Alternative homozygous* = alternative allele + homozygous genotype.
+   If multiple alternative alleles exist, a separate entry can be added for each allele.
+   - *Alternative heterozygous* = alternative allele + heterozygous genotype.
+   If multiple alternative alleles exist, a separate entry can be added for each allele.
+   This combination is mutually exclusive with the reference heterozygous genotype: for a given SNP, you
+   can add either the reference heterozygous genotype or one or more alternative heterozygous genotypes.
+
+4. *Exon* - a field displayed only for the reference homozygous genotype.<br></br>
+The supported format is `exon number/total number of exons` or `exon range/total number of exons`,
+for example 1/3 or 1-2/3. The values refer to the primary transcript of the gene.<br></br>
+If exon information is available in the database, the field is filled automatically but can be edited
+if necessary.<br></br>
+If the information is unavailable, the field remains empty but is still required. Enter the exon number
+in the supported format, or enter a dash (`-`) if the variant is not located within an exon or the exon
+number is unknown.
+
+5. <i>Interpretation</i> - a textual interpretation of the selected genotype that will be displayed in the
+final report. The field supports <a href="https://www.markdownguide.org/basic-syntax/">Markdown formatting</a>.
+
+After completing all required fields, click <img src={require('/img/custom-annot/ok_btn.png').default} width="130"/>.
+The polymorphism is then added to the table.
+
+While adding or editing the block, you can edit or remove a polymorphism entry by
+clicking <img src={require('/img/custom-annot/edit_column.png').default} width="25"/>
+or <img src={require('/img/eng/delete_btn_white.png').default} width="25"/>, respectively.
+
+**Example block in the report:** [SNP Panel Genotype Interpretation Report](/results/snp-panel-report).
+
+### 36. Ancestry {#ancestry}
 
 The report presents the results of a genetic ancestry analysis, which is performed by
 [ADMIXTURE](https://genome.cshlp.org/content/19/9/1655) using

@@ -1,0 +1,79 @@
+---
+sidebar_position: 12
+sidebar_label: SNP Panel Genotype Interpretation Report
+---
+
+# SNP Panel Genotype Interpretation Report
+
+The report displays information about the polymorphisms added to the SNP panel,
+including their identified genotypes and the corresponding interpretation.
+
+To generate this report for a sample, create a report template that
+includes [the "SNP panel interpretation by genotype" block](/settings/report-templates/report-templates#snp-panel-genotypes).
+
+The report includes only those polymorphisms that meet the following criteria:
+- the polymorphism has been added to the SNP panel in the report template;
+- the sequencing depth at the polymorphism position is not lower than the coverage threshold for genotypes
+specified in the report template.
+
+If no matching polymorphisms are found, the following message is displayed: "*Specified alleles were not found*".
+
+The polymorphisms are displayed in a table with the following columns:
+
+<p align="center">
+<img src={require('/img/results/snp_panel_report.png').default} width="900"/>
+</p>
+
+1. **Gene** - the name of the gene in which the polymorphism is located.
+2. **Location (GRCh38)** - the genomic coordinates of the polymorphism (chromosome and position)
+together with the nucleotide substitution:
+- `reference allele > alternative allele` - for alternative homozygous, alternative heterozygous, and
+reference heterozygous genotypes;
+- `reference allele =` - for the reference homozygous genotype. This notation indicates that no substitution
+occurs and the variant is represented by the reference allele.
+3. **Genotype** - the pair of alleles representing the polymorphism genotype:
+- `reference allele / alternative allele` - for reference and alternative heterozygous genotypes;
+- `alternative allele / alternative allele` - for the alternative homozygous genotype;
+- `reference allele / reference allele` - for the reference homozygous genotype.
+4. **Exon** - the exon number of the transcript in which the polymorphism is located.
+The following values may be displayed:
+- `exon number (or exon range) / total number of exons in the transcript` - retrieved from the variant
+annotation for alternative homozygous, alternative heterozygous, and reference heterozygous genotypes,
+or from the report template for the reference homozygous genotype;
+- `-` - indicates that the polymorphism is located outside an exon.
+The value is retrieved either from the variant annotation or from the report template, depending on the genotype;
+- `ref. val.` - displayed for the reference homozygous genotype if the Exon field was left empty in the
+report template.
+5. **cDNA Variant (AA Change)** - information about the nucleotide and amino acid substitutions.
+This field is not displayed for the reference homozygous genotype. The following values may be provided:
+- HGVSc - a nucleotide substitution described according
+to [the HGVS nomenclature](https://varnomen.hgvs.org/).<br></br>
+Format: `position + reference allele > alternative allele`. The prefixes `c.` (coding) and `n.` (non-coding)
+are used. Example: c.176T>C.<br></br>
+Hovering over the value displays the full notation including the Ensembl transcript ID,
+for example: ENST00000559488.7:c.176T>C.
+- HGVSp - an amino acid substitution described according
+to [the HGVS nomenclature](https://varnomen.hgvs.org/).<br></br>
+Format: `p.(three-letter reference amino acid + position + new amino acid)`. Example: p.(Leu59Pro).<br></br>
+Hovering over the value displays the short notation using one-letter amino acid codes, for example: p.L59P.
+6. **Transcript** - the identifier of the main gene transcript from
+the [RefSeq](https://www.ncbi.nlm.nih.gov/nuccore/) (NM_xxxxxx.x)
+or [Ensembl](https://www.ensembl.org/Homo_sapiens/Info/Index) (ENSTxxxxxxxxxxx) database.
+7. **Allele Frequencies** - the frequencies of all known polymorphism alleles according
+to [the gnomAD v3 database](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/).
+Values are displayed as percentages. If no frequency is available for an allele, `n/a` is displayed.
+8. **Coverage Depth** - the total number of independent sequence reads for a genome region containing the mutation.
+9. **dbSNP** - the polymorphism ID in [the dbSNP database](https://www.ncbi.nlm.nih.gov/snp/), displayed
+as a link to the corresponding page.
+10. A link to the polymorphism position visualization
+module: <img src={require('/img/vv/igv.png').default} width="30"/>.
+
+An interpretation of the corresponding genotype may be displayed below each polymorphism if it
+was defined in the report template.
+
+### Exporting the Report {#export}
+
+The SNP Panel Genotype Interpretation Report can be downloaded as a PDF.
+To download the report,
+click <img src={require('/img/results/export_pdf.png').default} width="150"/> in the upper-right corner of
+the report page.
