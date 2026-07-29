@@ -252,9 +252,13 @@ or outside the confirmation window.
 ### Run SNV Viewer {#run-variant-viewer}
 
 Run SNV Viewer is an embedded service for viewing and analyzing the variants discovered in all run samples
-for which the germline or somatic SNVs/Indels annotation stage has been successfully completed. Run SNV Viewer
+for which the germline or somatic SNVs/Indels annotation stage has been successfully completed.
+
+Run SNV Viewer
 is not much different from Sample SNV Viewer (a detailed description of Sample SNV Viewer can be
-found [here](/results/main/snvs-indels/variant-viewer)). Run SNV Viewer and Run Sample SNV Viewer
+found [here](/results/main/snvs-indels/variant-viewer)).
+
+Run SNV Viewer and Run Sample SNV Viewer
 are connected with each other: if you pin or interpret a variant, etc. in Run SNV Viewer, the variant
 state is immediately updated in Run Sample SNV Viewer, and vice versa.
 
@@ -279,34 +283,35 @@ not their intersection. Variants that are identical but discovered in different 
 in the value of "Sample" column.
 :::
 
-#### 2. Basic Filtering Column "Samples" {#samples-filter}
+#### 2. "Samples" Basic Filter {#samples-filter}
 
-To filter variants by "Sample" column, there is a basic filtering column "**Samples**" in Run SNV Viewer
-(added [by default](/settings/profile#basic-mode-filters)). To filter variants by the run samples
-in which they were discovered, click on the filter
-window <img src={require('/img/runs/sample_filtering.png').default} width="150"/> and check the boxes for
-required samples
-in the drop-down list (or click on <img src={require('/img/runs/choose_all.png').default} width="100"/>):
+To filter variants by "Sample" column, the run SNV Viewer provides the "**Samples**" basic filter.
+This filter is added [by default](/settings/profile#basic-mode-filters).
+
+To filter variants by samples in which they were discovered,
+click the filter field <img src={require('/img/runs/sample_filtering.png').default} width="150"/> and
+check the boxes for required samples
+(or click on <img src={require('/img/runs/choose_all.png').default} width="100"/>):
 
 <p align="center">
-<img src={require('/img/runs/sample_choice.png').default} width="300"/>
+<img src={require('/img/runs/sample_choice.png').default} width="400"/>
 </p>
 
 Done! The filter has been applied. The samples that have been selected for filtering the variants
-can be seen in the same window:
+can be seen in the same field:
 
 <p align="center">
 <img src={require('/img/runs/sample_name.png').default} width="160"/>
 </p>
 
-To see all the full sample names, hover over the filter window.
+To see all the full sample names, hover over the filter field.
 
-To clear the filter by samples, click on the filter window,
-and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+To clear the filter, click on the filter field
+and then click <img src={require('/img/vv/clear_option.png').default} width="70"/>.
 
 :::info
-The basic filtering column "Samples" is also available
-in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Run SNV Viewer:
+The "Samples" basic filter is also available in the SNV Viewer after switching
+to [the advanced filtering mode](/results/main/snvs-indels/advanced-filtering):
 
 <p align="center">
 <img src={require('/img/runs/in_advanced_search.png').default} width="900"/>
@@ -314,7 +319,52 @@ in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering) of Ru
 
 :::
 
-#### 3. Sample Interpretation {#sample-interpretation}
+#### 3. "Samples Type" Basic Filter {#samples-type}
+
+To filter variants by sample type (normal or tumor), the run SNV Viewer provides the "**Samples Type**"
+basic filter. This filter is not provided by default. You can add it
+on [the "Profile settings" page](/settings/profile#basic-mode-filters) (the "Samples Type" option).
+
+The filter is displayed only in the SNV Viewer of runs that contain both normal and tumor samples.
+
+To filter variants by the type of samples in which they were discovered,
+click the filter field <img src={require('/img/runs/samples_type.png').default} width="150"/>
+and select the required option:
+
+<p align="center">
+<img src={require('/img/runs/samples_type_options.png').default} width="330"/>
+</p>
+
+To clear the filter, click the filter field and then
+click <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+
+The "Samples Type" and "Samples" filters are synchronized. Changing the value of one filter automatically
+updates the other:
+- When a samples type filter is applied, the corresponding samples are automatically selected in
+the "Samples" filter.
+- If only normal samples are selected in the "Samples" filter, the "Normal only" option is automatically applied.
+- If only tumor samples are selected in the "Samples" filter, the "Tumor only" option is automatically applied.
+- If both tumor and normal samples are selected in the "Samples" filter,
+the "Samples Type" filter is automatically cleared.
+
+For example, the image below shows all tumor samples in the run selected in the
+"Samples" filter (tumor samples are marked with a dot ·):
+
+<p align="center">
+<img src={require('/img/runs/only_tumor_samples.png').default} width="400"/>
+</p>
+
+:::info
+The "Samples Type" basic filter is also available in the SNV Viewer after switching
+to [the advanced filtering mode](/results/main/snvs-indels/advanced-filtering):
+
+<p align="center">
+<img src={require('/img/runs/sample_type_in_advanced.png').default} width="900"/>
+</p>
+
+:::
+
+#### 4. Sample Interpretation {#sample-interpretation}
 
 There is an additional way to complete and resume interpretation for run samples
 in the run SNV Viewer. Other ways are described [here](/results/sample-interpretation#complete).
@@ -369,29 +419,30 @@ the corresponding option:
 <img src={require('/img/runs/restore_interpretation.png').default} width="300"/>
 </p>
 
-#### 4. Basic Filter "Sample status" {#sample-interpretation-status-filter}
+#### 5. "Sample status" Basic Filter {#sample-interpretation-status-filter}
 
-To filter variants by sample interpretation status (completed or uncompleted), there is a basic filter
-"**Sample status**" in Run SNV Viewer. The filter is not available by default; it can be added
-on ["Profile settings" page](/settings/profile#basic-mode-filters) ("Sample Interpretation Status" option).
-To filter variants by the interpretation status of run samples
-in which the variants were discovered, click on the filter
-window <img src={require('/img/runs/sample_status.png').default} width="150"/> and
-select the required status from the drop-down list:
+To filter variants by sample interpretation status (completed or uncompleted),
+the run SNV Viewer provides the "**Sample status**" basic filter. This filter is not provided by default.
+You can add it on [the "Profile settings" page](/settings/profile#basic-mode-filters)
+(the "Sample Interpretation Status" option).
+
+To filter variants by the interpretation status of samples in which they were discovered,
+click the filter field <img src={require('/img/runs/sample_status.png').default} width="150"/> and
+select the required status:
 
 <p align="center">
 <img src={require('/img/runs/interpretation_options.png').default} width="330"/>
 </p>
 
-To clear the filter, click on the filter window,
-and then on <img src={require('/img/vv/clear_option.png').default} width="70"/>.
+To clear the filter, click the filter field
+and then click <img src={require('/img/vv/clear_option.png').default} width="70"/>.
 
 You can also filter by sample interpretation status
 in [advanced filtering mode](/results/main/snvs-indels/advanced-filtering)
 using ["Sample Status" filter](/results/main/snvs-indels/advanced-filtering#single-value-filters). In this case,
 it is not necessary to add an additional basic filter "Sample status" in the settings.
 
-#### 5. Occurrence in Run {#occurrence-in-run}
+#### 6. Occurrence in Run {#occurrence-in-run}
 
 On ["Common" tab of the variant details panel](/results/main/snvs-indels/snv-details-panel#common-tab)
 in run SNV Viewer and run sample SNV Viewer, there is information on the number of run samples
