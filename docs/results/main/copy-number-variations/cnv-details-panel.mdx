@@ -5,7 +5,7 @@ sidebar_label: Variation Details Panel
 
 # Variation Details Panel
 
-Click on a variation row to see a panel with detailed information about it below the table.
+To display the variation details panel, click a variation row. The panel is located below the table.
 The panel is different for full and split rows. Panel with detailed information about the variation full length:
 
 <p align="center">
@@ -18,14 +18,20 @@ Panel with detailed information about each gene overlapped by the variation:
 <img src={require('/img/vv/details_panel_split.png').default} width="950"/>
 </p>
 
-The panel can be resized by hovering over the top border of the panel and dragging down or up.
-You can also collapse or expand the panel by
-clicking on <img src={require('/img/vv/expand.png').default} width="30"/>
+The panel can be expanded or collapsed by
+clicking <img src={require('/img/vv/expand.png').default} width="30"/>
 or <img src={require('/img/vv/collapse.png').default} width="30"/>, respectively.
 
-:::info
-On ["Profile settings" page](/settings/profile#variant-details-bottom-panel), you can adjust whether
-the variation details panel is expanded or collapsed in CNV Viewer by default.
+:::note
+On [the "Profile settings" page](/settings/profile#variant-details-bottom-panel), you can choose whether
+the variation details panel is expanded or collapsed by default in the CNV Viewer.
+:::
+
+You can resize the panel by dragging its top border up or down.
+
+:::note
+The panel height is saved in the user profile and applies to the details panel in all
+CNV Viewer and SNV Viewer modules.
 :::
 
 The panel is divided into ["Common"](/results/main/copy-number-variations/cnv-details-panel#common-tab)
