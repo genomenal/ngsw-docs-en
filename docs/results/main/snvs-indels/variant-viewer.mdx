@@ -419,21 +419,41 @@ click on <img src={require('/img/vv/export_btn.png').default} width="120"/> and 
 By default, the table has the following columns (the set and order of the columns can be changed - how to do it is
 described [here](/results/main/snvs-indels/edit-table-columns)):
 
-1. **Locus** is the common name of the gene in which the variant is located. If the gene is unknown,
+1. **Action Columns** - contain buttons for performing actions on variants:
+- <img src={require('/img/vv/pin_variant.png').default} width="28"/> - pins the variant to the table,
+while <img src={require('/img/vv/unpin.png').default} width="28"/> unpins it;
+- <img src={require('/img/vv/hide_btn.png').default} width="25"/> - hides the variant from the table,
+while <img src={require('/img/vv/show_btn.png').default} width="25"/> displays it again;
+- <img src={require('/img/vv/include_to_report.png').default} width="25"/> - includes the variant to the report,
+while <img src={require('/img/vv/remove_from_report.png').default} width="25"/> removes it from the report;
+- <img src={require('/img/vv/details_info_btn.png').default} width="25"/> - opens the variant details page,
+while <img src={require('/img/vv/interpreted_btn.png').default} width="28"/> opens the same page for
+a variant with an interpretation;
+- <img src={require('/img/vv/igv.png').default} width="30"/> - opens the variant Integrative Genomics Viewer (IGV).
+
+:::note
+The action columns can be hidden by clicking <img src={require('/img/vv/hide_columns.png').default} width="30"/>.
+To display the hidden action columns again, click <img src={require('/img/vv/show_columns.png').default} width="30"/>.
+
+The visibility state of the action columns is saved in the user profile and applies to
+all SNV Viewers for samples, runs, and group analyses.
+:::
+
+2. **Locus** is the common name of the gene in which the variant is located. If the gene is unknown,
 the locus is designated as <img src={require('/img/vv/no_gene.png').default} width="110"/>.
 You can copy the gene name to the clipboard by moving the cursor over the column value and
 clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
-2. **Origin** is a mutation type (somatic or germline).
+3. **Origin** is a mutation type (somatic or germline).
 
 :::info
 "Origin" column is hidden in [SNV Viewer with germline mutations](/results/main/snvs-indels/variant-viewer)
 and in SNV Viewer with somatic mutations if "Origin is Somatic" filter is on.
 :::
 
-3. **Position** is a coordinate of the variant in the genome (chromosome + start position).
+4. **Position** is a coordinate of the variant in the genome (chromosome + start position).
 You can copy the variant position to the clipboard by moving the cursor over the column value and
 clicking on <img src={require('/img/vv/copy.png').default} width="20"/>.
-4. **HGVSp** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
+5. **HGVSp** is an amino acid substitution using [the HGVS notation](https://varnomen.hgvs.org/) (“p.” prefix
 (protein) + reference amino acid + amino acid position in protein + new amino acid resulting from the substitution).
 Amino acids are written in one letter code.
 When hovering over the value of the "HGVSp" column for a variant, you can see the transcript which the substitution
@@ -449,8 +469,8 @@ the "*HGVSp (long)*" column in [the Edit Table Columns window](/results/main/snv
 and [hide](/results/main/snvs-indels/edit-table-columns#remove-columns) the "*HGVSp (short)*" column.
 :::
 
-4. **Alteration** is a nucleotide substitution (reference allele > alternative allele).
-5. **HGVSc** is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position of
+6. **Alteration** is a nucleotide substitution (reference allele > alternative allele).
+7. **HGVSc** is a nucleotide substitution using [the HGVS notation](https://varnomen.hgvs.org/) (genomic position of
 the substituted nucleotide + reference allele > alternative allele). Starts with a prefix: “c.” (coding; for a
 substitution in the coding sequence) or “n.” (non-coding; for a substitution in the non-coding sequence). When hovering
 over the value of the "HGVSc" column for a variant, you can see the transcript which the substitution was predicted
@@ -460,8 +480,8 @@ for (the transcript IDs from Ensembl (ENSTxxxxxxxxxxx) and RefSeq (NM_) are give
 <img src={require('/img/vv/hgvsc_tooltip.png').default} width="300"/>
 </p>
 
-6. **Exon** is the exon number in the transcript which is affected by the variant.
-7. **Depth (Alt/Ref)** is a sequencing depth; the total number of reads of the sequence overlapping the variant
+8. **Exon** is the exon number in the transcript which is affected by the variant.
+9. **Depth (Alt/Ref)** is a sequencing depth; the total number of reads of the sequence overlapping the variant
 position for this sample. **Alt** is the alternative allele reads count, **Ref** is the reference allele reads count.
 Also the percentage of the share of the alternative allele reads count among all reads (Alt/Depth) is shown.
 
@@ -473,9 +493,9 @@ import Highlight from '@site/src/components/HighlightBlackText';
 - <Highlight color="#FFFAEB">yellow</Highlight> if 20 ≤ depth ≤ 60;
 - <Highlight color="#F9DAE0">red</Highlight> if depth &lt; 20.
 
-8. **GT** is a genotype; allelic values (0 - reference allele, 1 - first alternative allele, 2 - second alternative
+10. **GT** is a genotype; allelic values (0 - reference allele, 1 - first alternative allele, 2 - second alternative
 allele etc.), divided by ”/” (for unphased genotype) or “|” (for phased genotype).
-9. **Consequence** is the effect of the variant on genes.
+11. **Consequence** is the effect of the variant on genes.
 
 #### Consequences of variants in the annotation {#variant-consequences}
 
@@ -742,7 +762,7 @@ The "Impact" column cells are colored:
 - <Highlight color="#FFFAEB">yellow</Highlight> if the impact is MODERATE;
 - no color if impact is LOW or MODIFIER.
 
-10. **External links** are links to pages with variant information
+12. **External links** are links to pages with variant information
 in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>, <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if
 COSMIC database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>), <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>: <img src={require('/img/vv/franklin.png').default} width="35"/>, <a href="https://genome-euro.ucsc.edu/">UCSC</a>: <img src={require('/img/vv/ucsc.png').default} width="35"/>, <a href="https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/">gnomAD 3</a>: <img src={require('/img/vv/gnomad.png').default} width="35"/>, <a href="http://ruseq.ru/#/">RUSeq</a>: <img src={require('/img/vv/ruseq.png').default} width="35"/> (if
 RUSeq database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>).
@@ -754,7 +774,7 @@ By clicking on these dots, you can see all the other links:
 <img src={require('/img/vv/added_external_links.png').default} width="260"/>
 </p>
 
-11. **gnomAD 3 AF** is the allele frequency according to
+13. **gnomAD 3 AF** is the allele frequency according to
 the [gnomAD v3](https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/) database.
 
 The column cells are colored depending on the allele frequency value:
@@ -763,7 +783,7 @@ The column cells are colored depending on the allele frequency value:
 - <Highlight color="#FFFAEB">yellow</Highlight> if 0.01 ≤ AF &lt; 0.015;
 - <Highlight color="#F9DAE0">red</Highlight> if AF &lt; 0.01.
 
-12. **Pathogenicity** is the variant pathogenicity, which can be determined either manually, by ACMG criteria, or
+14. **Pathogenicity** is the variant pathogenicity, which can be determined either manually, by ACMG criteria, or
 according to the pathogenicity base. If you have not [uploaded the pathogenicity database](/settings/custom-annotations#define-annotation-type)
 or have not determined the variant pathogenicity, then the column
 value will be <img src={require('/img/vv/acmg_var_btn.png').default} width="40"/> (No interpretation).
