@@ -762,13 +762,28 @@ The "Impact" column cells are colored:
 - <Highlight color="#FFFAEB">yellow</Highlight> if the impact is MODERATE;
 - no color if impact is LOW or MODIFIER.
 
-12. **External links** are links to pages with variant information
-in <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>: <img src={require('/img/vv/rsId_btn.png').default} width="35"/>, <a href="https://varsome.com/">VarSome</a>: <img src={require('/img/vv/varsome.png').default} width="35"/>, <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>: <img src={require('/img/vv/clinvar.png').default} width="35"/>, <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>: <img src={require('/img/vv/cosmic.png').default} width="35"/> (if
-COSMIC database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>), <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>: <img src={require('/img/vv/franklin.png').default} width="35"/>, <a href="https://genome-euro.ucsc.edu/">UCSC</a>: <img src={require('/img/vv/ucsc.png').default} width="35"/>, <a href="https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/">gnomAD 3</a>: <img src={require('/img/vv/gnomad.png').default} width="35"/>, <a href="http://ruseq.ru/#/">RUSeq</a>: <img src={require('/img/vv/ruseq.png').default} width="35"/> (if
-RUSeq database was <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>).
-There may be up to three buttons maximum in a cell. If the variant is found in more than three databases,
-then there will be three dots <img src={require('/img/vv/three_points.png').default} width="15"/> in the cell.
-By clicking on these dots, you can see all the other links:
+12. **External links** - links to the variant in the following databases:
+- <img src={require('/img/vv/rsId_btn.png').default} width="35"/> - <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP</a>.
+- <img src={require('/img/vv/varsome.png').default} width="35"/> - <a href="https://varsome.com/">VarSome</a>.
+- <img src={require('/img/vv/clinvar.png').default} width="35"/> - <a href="https://preview.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>.
+- <img src={require('/img/vv/cosmic.png').default} width="35"/> - <a href="https://cancer.sanger.ac.uk/cosmic/">COSMIC</a>.
+Displayed if the database has
+been <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>.
+- <img src={require('/img/vv/franklin.png').default} width="35"/> - <a href="https://franklin.genoox.com/clinical-db/home">Franklin</a>.
+For germline variants, the link opens the Variant Assessment page, which provides comprehensive information
+and database summaries of the variant. For somatic variants, the link opens the Somatic Clinical Evidence
+page, which includes the variant classification, according to the Association for Molecular Pathology (AMP)
+guidelines, and a list of available clinical evidences.
+- <img src={require('/img/vv/ucsc.png').default} width="35"/> - <a href="https://genome-euro.ucsc.edu/">UCSC</a>
+- <img src={require('/img/vv/gnomad.png').default} width="35"/> - <a href="https://gnomad.broadinstitute.org/news/2020-10-gnomad-v3-1/">gnomAD 3</a>
+- <img src={require('/img/vv/ruseq.png').default} width="35"/> - <a href="http://ruseq.ru/#/">RUSeq</a>.
+Displayed if the database has
+been <a href="/settings/custom-annotations#define-annotation-type">uploaded as a custom annotation</a>.
+
+A maximum of three link buttons are displayed in the table cell at the same time.
+If more than three external links are available for a
+variant, <img src={require('/img/vv/three_points.png').default} width="15"/> icon is displayed.
+Click it to open a dialog containing the additional links for the variant.
 
 <p align="center">
 <img src={require('/img/vv/added_external_links.png').default} width="260"/>
