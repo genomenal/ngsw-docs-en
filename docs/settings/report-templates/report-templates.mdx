@@ -677,11 +677,17 @@ the sample, along with conclusions based on the findings. It includes:
 
 ### 29. Onco: Onco relevant SNVs/Indels selected by user for reports {#onco-variants}
 
-The block displays a table with information about clinically significant cancer-related variants included
-in the report from the SNV Viewer page. Including variants in the report is described
+The block displays a table with information about clinically
+significant [onco-relevant variants](/results/main/snvs-indels/onco-relevance) included
+in the report from the SNV Viewer page.<br></br> Including variants in the report is described
 in [the corresponding section](/results/main/snvs-indels/variant-viewer#include-to-report).<br></br>
 Onco-relevant variants are those for which clinical guidelines exist, based on data from various
 oncology-related medical communities (<a href="https://www.rosoncoweb.ru/">RUSSCO</a>, <a href="https://oncology-association.ru/">АОР</a>, <a href="https://cr.minzdrav.gov.ru/">Clinical Recommendations of the Ministry of Health of the Russian Federation (КР МЗ РФ)</a>, <a href="https://www.nccn.org/">NCCN</a>, <a href="https://www.esmo.org/">ESMO</a>).
+
+:::caution
+The block is intended for use only with onco-relevant variants.
+If a variant included in the report is not onco-relevant, it will not appear in this block.
+:::
 
 **Applicable to samples:** any, tumor, normal.
 
@@ -901,6 +907,11 @@ The table columns correspond to the fields in the SNP addition form:
    3/8 or 3-4/8. If the information is unavailable, a dash (`-`) is displayed.
    - *Interpretation* - a textual interpretation of the selected genotype. The value is specified by the
    user and displayed in the final report.
+
+SNPs of the same gene are displayed together in the order in which they were added to the panel.
+When a new entry is added for a gene already represented in the panel, it is displayed after the previously
+added entries for that gene.
+
 4. *Coverage threshold for genotypes* - the minimum sequencing depth at the polymorphism position required for
 the genotype to be included in the final report. The default value is 20, meaning that the position must be
 covered by at least 20 reads.
