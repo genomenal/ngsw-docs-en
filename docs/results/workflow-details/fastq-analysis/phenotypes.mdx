@@ -37,7 +37,7 @@ a VCF file during the **"Calculation of genotypes"** task.
 
 [GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
 produces calls at germline variant sites and confident reference sites, that are needed to calculate the polygenic
-risk scores of phenotypes, in an alignment file. The calling is accomplished via local *de novo* assembly of
+or oligogenic risk scores, in an alignment file. The calling is accomplished via local *de novo* assembly of
 haplotypes in an active region. In other words, whenever the program encounters a region showing signs of
 variation, it discards the existing mapping information and completely reassembles the reads in that region.
 This allows to be more accurate when calling regions that are traditionally difficult to call, for example
@@ -220,7 +220,7 @@ The patient's sex is used to generate [the report on polygenic traits](/results/
 If the user manually entered sex, this value is used; otherwise, the sex
 determined from genetic data is used.
 
-## Polygenic risk scores calculation {#calculate-prs}
+## Calculation of polygenic risk scores {#calculate-prs}
 
 Polygenic risk scores calculation is launched after sample preprocessing steps has been successfully completed
 if [the corresponding parameter](/settings/settings/variant-discovery-settings#polygenic-risk-scores-calculation) is
@@ -237,7 +237,7 @@ the "*Normalize multiallelic VCF*" task details ("*Download VCF_GZ*"). In additi
 using [tabix](http://www.htslib.org/doc/tabix.html). The resulting index file can be downloaded in the
 same section ("*Download VCF_TBI*").
 
-#### 2. Polygenic risk scores calculation {#prs-calculation}
+#### 2. Calculation of polygenic risk scores {#prs-calculation}
 
 Polygenic risk scores calculation consists of applying a linear scoring to each sample
 using [PLINK](https://www.cog-genomics.org/plink/2.0/). Variants for which genotype information is missing for
