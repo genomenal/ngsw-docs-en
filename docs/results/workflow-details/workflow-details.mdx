@@ -89,42 +89,56 @@ processing has been completed or is in progress:
 <img src={require('/img/eng/workflow_stages.png').default} width="900"/>
 </p>
 
-The stage processing status is displayed on the right for each stage:
-- If a stage processing is in progress, its status includes
-an icon <img src={require('/img/results/in_process.png').default} width="22"/> and a percentage value of its progress.
-- If a stage processing is completed successfully,
-its status is <img src={require('/img/eng/complete.png').default} width="100"/>.
-- If a stage processing is completed successfully, but not all metrics meet the criteria, it has
-a status <img src={require('/img/eng/complete_metrics.png').default} width="100"/>, which indicates
+The following information is displayed to the right of each stage:
+1. **Stage status:**
+- *In progress* - the  icon <img src={require('/img/results/in_process.png').default} width="22"/> is
+displayed, along with the specific task currently in progress and its completion percentage.
+- *Queued or waiting for the prerequisite stages of the control sample to be completed* (for a
+tumor sample in a tumor/control pair) - the
+icon <img src={require('/img/eng/queed_status.png').default} width="14"/> is displayed, along with
+the specific task that is queued or waiting.
+- *Completed successfully* - the status <img src={require('/img/eng/complete.png').default} width="100"/> is displayed.
+- *Completed successfully with non-critical issues* - the
+status <img src={require('/img/eng/complete_metrics.png').default} width="100"/> is displayed, along with
 the number of metrics that do not meet the criteria.
-- If a stage processing is completed with an error, its status includes
-an icon <img src={require('/img/results/failed.png').default} width="25"/> and the specific task at which
-the processing failed.
+- *Failed* - the
+icon <img src={require('/img/results/failed.png').default} width="25"/> is displayed, along with the specific
+task at which the analysis stopped.
+2. **Processing time** - the total time taken to complete the stage.
+Displayed only after the stage has finished processing.
 
-You can expand any stage to see its details by clicking on it:
+Any stage can be expanded by clicking it to view its details:
 
 <p align="center">
 <img src={require('/img/eng/stage_details.png').default} width="900"/>
 </p>
 
-In each stage details, there is a table with the following columns:
-- «TASK» is the name of the analysis task;
-- «START» is the start time of the task;
-- «END» is the end time of the task;
-- «STATUS»: if the task processing is in the progress, then its status contains
-an icon <img src={require('/img/results/in_process.png').default} width="22"/> and a percentage value of its
-progress; if the task is completed successfully, then it has
-the status <img src={require('/img/results/complete.png').default} width="100"/>;
-if the task is completed successfully, but not all metrics meet the criteria, then it has
-a status <img src={require('/img/results/complete_metrics.png').default} width="100"/> indicating the number
-of metrics that do not meet the criteria; if the task is completed with an error, then its status contains
-an icon <img src={require('/img/results/failed.png').default} width="25"/> and the task name.
+Each expanded stage contains a table with the following columns:
+- **TASK** - the name of the analysis task.
+- **START** - the time when the task started.
+- **END** - the time when the task finished.
+- **DURATION** - the total time taken to complete the task.
+- **STATUS** - the task execution status:
+    - *In progress* - the icon <img src={require('/img/results/in_process.png').default} width="22"/> is
+    displayed, along with the task completion percentage.
+    - *Queued or waiting for the prerequisite stages of the control sample to be completed* (for a tumor
+    sample in a tumor/control pair) - the
+    icon <img src={require('/img/eng/queed_status.png').default} width="14"/> is displayed.
+    - *Completed successfully* - the
+    status <img src={require('/img/results/complete.png').default} width="100"/> is displayed.
+    - *Completed successfully with non-critical issues* - the
+    status <img src={require('/img/results/complete_metrics.png').default} width="100"/> is displayed,
+    along with the number of metrics that do not meet the criteria.
+    - *Failed* - the icon <img src={require('/img/results/failed.png').default} width="25"/> is displayed.
 
-You can expand any task to see its details by clicking on it. The following information may be provided for a task:
-- Console output about the task processing;
-- Verification problems (for the "Verify" task);
-- Task result files: all files are available for downloading, and some can also be opened in the IGV browser
-or in Google Sheets;
-- Metrics (for the "Check quality and cleanup" and "Alignment" tasks);
-- Technical details of the task processing (tool, parameters);
-- Error while processing, if the task completed with an error.
+Any task can be expanded by clicking it to view its details. The following information may be available:
+- Console output showing the task execution process.
+- Verification problems (for the "Verify" task).
+- Task result files. All files are available for download, and some can also be opened in the IGV browser
+or Google Sheets.
+- Metrics (for the "Check quality and cleanup" and "Alignment" tasks).
+- Technical details of task execution (tool and parameters).
+- Error while processing, if the task failed.
+
+After the analysis is complete, the **Processing time** displayed below all stages shows the total time
+taken to complete all analysis stages.
